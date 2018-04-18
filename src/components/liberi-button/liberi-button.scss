@@ -1,0 +1,20 @@
+$button-round-background: radial-gradient(#ffe904, #ffad22);
+$button-round-background-activated: radial-gradient(#ffd661, #ffa42a);
+
+liberi-button {
+  .liberi-button {
+    padding: 28px 12px;
+    border-radius: 50%;
+    background: $button-round-background;
+    border: 4px solid #aaaaaa;
+    box-shadow: none;
+    &.activated {
+      background: $button-round-background-activated;
+    }
+    img {
+      width: 35px;
+      position: relative;
+    }
+  }
+
+}

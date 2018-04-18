@@ -1,0 +1,12 @@
+{
+  "keyboard": {
+    "description": "Allow show keyboard accessory on ios",
+    "dependency": "npm install --save @ionic-native/keyboard",
+    "plugin": "ionic cordova plugin add ionic-plugin-keyboard"
+  },
+  "angularfire2": {
+    "description": "Allow connection to firebase services",
+    "dependency": "npm install firebase angularfire2 --save",
+    "plugin": null
+  }
+}

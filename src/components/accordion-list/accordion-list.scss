@@ -1,0 +1,46 @@
+accordion-list {
+  .nomargin {
+    margin: 0 !important;
+  }
+
+  .accordion-header {
+    background: map_get($colors, light);
+    .item-inner {
+      margin-left: 0 !important;
+    }
+    ion-list-header {
+      &.item-md{
+        .item-inner {
+          padding-top: 13px !important;
+        }
+      }
+    }
+
+    ion-icon {
+      transition: all .25s ease-in;
+      transform: rotate(0);
+    }
+  }
+
+  .accordion-content {
+    transition: 0.3s ease-in-out;
+    &.active {
+      padding: 10px;
+    }
+    text-transform: initial;
+    font-size: larger;
+  }
+  .active ion-icon {
+    transform: rotate(90deg);
+  }
+
+  ion-list-header {
+    border: none !important;
+    .item-md {
+      background-color: map_get($colors, light);
+    }
+  }
+  .label {
+    margin: 0;
+  }
+}

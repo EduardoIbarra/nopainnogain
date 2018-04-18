@@ -1,0 +1,42 @@
+page-login {
+
+  .login-container {
+    ion-item {
+      margin-bottom: 10px;
+      border-radius: 10px;
+      .item-inner {
+        margin-left: 0 !important;
+      }
+    }
+
+    .danger-text{
+      color: map_get($colors, danger);
+      font-weight: bold;
+    }
+
+    .facebook-button {
+      background: #334b96;
+      color: white;
+      &.activated {
+        background: rgba(40, 79, 209, 0.68);
+      }
+
+      .social-icon {
+        left: 15px;
+        position: absolute;
+        font-size: x-large;
+      }
+      &.button-md {
+        border-radius: 5px;
+        .social-icon {
+          top: 5px;
+        }
+      }
+    }
+
+    .register-button{
+      background: $block-button-background;
+      color: map_get($colors, primary);;
+    }
+  }
+}

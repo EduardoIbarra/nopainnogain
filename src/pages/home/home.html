@@ -3,13 +3,19 @@
         <button ion-button menuToggle="left">
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>Inicio</ion-title>
+        <ion-title>
+            Inicio
+        </ion-title>
     </ion-navbar>
-    <div class="logo-bump">
-        <img src="assets/img/logo-negative.png">
-    </div>
+    <navbar-bump></navbar-bump>
 </ion-header>
 
 <ion-content padding>
+    <ion-item>
+        <ion-label>Mushrooms</ion-label>
+        <ion-toggle></ion-toggle>
+    </ion-item>
+
+    <button ion-button (click)="showLoading()">Show</button>
 
 </ion-content>
