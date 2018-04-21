@@ -8,5 +8,35 @@
     "description": "Allow connection to firebase services",
     "dependency": "npm install firebase angularfire2 --save",
     "plugin": null
+  },
+  "geolocation": {
+    "description": "Get user current location",
+    "dependency": "npm install --save @ionic-native/geolocation",
+    "plugin": "ionic cordova plugin add cordova-plugin-geolocation --variable GEOLOCATION_USAGE_DESCRIPTION='Necesitamos tu ubicación para mostrarte gimnasios mas cercanos'"
+  },
+  "polyfill": {
+    "description": "Adds polyfill",
+    "dependency": "npm install promise-polyfill --save-exact",
+    "plugin": null
+  },
+  "moment": {
+    "description": "Add moment js",
+    "dependency": "npm install moment --save",
+    "plugin": null
+  },
+  "multi-picker": {
+    "description": "Add multi-picker for credit card expiration",
+    "dependency": "npm install ion-multi-picker --save",
+    "plugin": null
+  },
+  "camera": {
+    "description": "Allow take or pick an image",
+    "dependency": "npm install --save @ionic-native/camera",
+    "plugin": "ionic cordova plugin add cordova-plugin-camera"
+  },
+  "img-viewer": {
+    "description": "Show image preview",
+    "dependency": "npm install --save ionic-img-viewer",
+    "plugin": null
   }
 }

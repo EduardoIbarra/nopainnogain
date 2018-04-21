@@ -1,5 +1,4 @@
 // http://ionicframework.com/docs/theming/
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -13,7 +12,6 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
-
 @import "../theme/animations";
 
 @font-face {
@@ -32,7 +30,7 @@ ion-title {
   text-align: center;
 }
 
-.toolbar-title{
+.toolbar-title {
   font-family: Expansiva;
 }
 
@@ -92,5 +90,72 @@ ion-title {
     box-shadow: none !important;
   }
 }
+
+.avatar-item {
+  background: #383838;
+  color: #fff;
+  padding: 15px 16px;
+  margin-bottom: 5px;
+  border: none;
+  .item-inner {
+    border: none !important;
+  }
+}
+
+.list-item {
+  background: #e6e6e6;
+  margin-bottom: 5px;
+  .item-inner {
+    border: none !important;
+  }
+}
+
+.active-highlight {
+  background: #bfbfbf;
+}
+
+.invalid {
+  border: 1px solid transparent !important;
+  border-bottom: 2px solid map_get($colors, danger) !important;
+}
+
+.valid {
+  border: 1px solid transparent !important;
+  border-bottom: 2px solid map_get($colors, primary) !important;
+}
+
+.error-message {
+  font-size: 0.8em;
+  color: map_get($colors, danger) !important;
+}
+
+.optional-input-label {
+  color: rgba(31, 85, 41, 0.52);
+  font-size: 12px;
+  font-weight: bold;
+}
+
+//Enable custom validation class on inputs
+form {
+  ion-item {
+    ion-input, ion-textarea, ion-select, ion-datetime {
+      border-bottom: 1px solid #bfbfbf !important;
+    }
+    .item-inner {
+      border: 1px solid transparent !important;
+    }
+  }
+  .list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block, .list-md .item-input:last-child {
+    border-bottom: 1px solid transparent !important;
+  }
+}
+
+.cancel-button {
+  color: map_get($colors, danger) !important;
+  &.action-sheet-button-md{
+    font-weight: bold;
+  }
+}
+
 
 @import "../assets/sass/screen-sizes";

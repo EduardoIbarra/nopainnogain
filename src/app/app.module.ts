@@ -15,6 +15,11 @@ import {LoadingService} from "../services/loading.service";
 import {AlertService} from "../services/alert.service";
 import {GymService} from "../services/gym.service";
 import {SharedModule} from "./shared.module";
+import {Geolocation} from '@ionic-native/geolocation';
+import {AuthService} from "../services/auth.service";
+import {MultiPickerModule} from "ion-multi-picker";
+import {Camera} from "@ionic-native/camera";
+import {UsersService} from "../services/users.service";
 
 @NgModule({
     declarations: [
@@ -23,7 +28,14 @@ import {SharedModule} from "./shared.module";
     imports: [
         BrowserModule,
         SharedModule,
-        IonicModule.forRoot(MyApp),
+        IonicModule.forRoot(MyApp, {
+            platforms: {
+                ios: {
+                    backButtonText: 'Atrás'
+                }
+            },
+            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+        }),
         IonicStorageModule.forRoot(),
         AngularFireModule.initializeApp(firebaseConfig),
         AngularFireDatabaseModule,
@@ -41,7 +53,11 @@ import {SharedModule} from "./shared.module";
         SharedService,
         LoadingService,
         AlertService,
-        GymService
+        GymService,
+        Geolocation,
+        AuthService,
+        Camera,
+        UsersService
     ]
 })
 export class AppModule {

@@ -1,0 +1,42 @@
+page-signup {
+
+  .swiper-pagination-progress .swiper-pagination-progressbar {
+    background: map_get($colors, primary) !important;
+  }
+
+  ion-slides {
+    height: inherit;
+  }
+
+  .steps-label {
+    .toolbar-title {
+      letter-spacing: 3px !important;
+      font-size: 2.5rem !important;
+    }
+  }
+
+  .image-input-padding {
+    padding-bottom: 10px;
+    padding-top: 16px;
+  }
+
+  .images-container {
+    padding-top: 10px;
+  }
+
+  .terms-item {
+    padding-bottom: 10px;
+    background-color: transparent;
+  }
+
+  .hidden-photo {
+    position: absolute;
+    top: 100vh;
+    opacity: 0;
+  }
+
+  .add-picture-image{
+    width: 20vw;
+    margin: 0 auto;
+  }
+}

@@ -3,19 +3,37 @@
         <button ion-button menuToggle="left">
             <ion-icon name="menu"></ion-icon>
         </button>
-        <ion-title>
-            Inicio
-        </ion-title>
+        <ion-searchbar mode="ios" placeholder="Búsqueda" (keypress)="$event.keyCode === 13 ? searchGyms():null" [(ngModel)]="searchQuery" (ionFocus)="searchHasfocus = true"></ion-searchbar>
+        <ion-buttons end class="button-group">
+            <button item-right ion-button color="light" *ngIf="searchHasfocus" (click)="searchGyms()">
+                <ion-icon name="search"></ion-icon>
+            </button>
+            <div *ngIf="!searchHasfocus">
+                <button item-right ion-button color="light">
+                    <ion-icon name="notifications"></ion-icon>
+                    <ion-badge color="danger">28</ion-badge>
+                </button>
+                <button item-right ion-button color="light">
+                    <ion-icon name="options"></ion-icon>
+                </button>
+            </div>
+
+        </ion-buttons>
     </ion-navbar>
-    <navbar-bump></navbar-bump>
 </ion-header>
 
-<ion-content padding>
-    <ion-item>
-        <ion-label>Mushrooms</ion-label>
-        <ion-toggle></ion-toggle>
-    </ion-item>
+<ion-content (click)="searchHasfocus = false">
 
-    <button ion-button (click)="showLoading()">Show</button>
+    <ion-item text-center text-wrap *ngIf="dataError" margin-top>
+        Ha ocurrido un error al mostrar la información intenta de nuevo.
+        <br/>
+        <button ion-button small (tap)="getUserLocation()">
+        <ion-icon name="reload"></ion-icon>
+            Recargar
+        </button>
+    </ion-item>
+    <div *ngIf="!dataError">
+        <div #map id="map"></div>
+    </div>
 
 </ion-content>

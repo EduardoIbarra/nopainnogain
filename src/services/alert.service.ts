@@ -27,4 +27,31 @@ export class AlertService {
         alert.present();
     }
 
+    userLocationError() {
+        let alert = this.alertCtrl.create({
+            title: 'Ha ocurrido un error',
+            message: 'No hemos podido obtener tu ubicación.',
+            buttons: ['OK']
+        });
+        alert.present();
+    }
+
+    gymListError() {
+        let alert = this.alertCtrl.create({
+            title: 'Ha ocurrido un error',
+            message: 'No hemos podido obtener los gimnasios cecanos, intenta de nuevo.',
+            buttons: ['OK']
+        });
+        alert.present();
+    }
+
+    signupError() {
+        let alert = this.alertCtrl.create({
+            title: 'Ha ocurrido un error',
+            message: 'No hemos podido registrar tu informacion, intenta de nuevo más tarde.',
+            buttons: ['OK']
+        });
+        alert.present();
+    }
+
 }

@@ -13,6 +13,7 @@ export class MyApp {
     @ViewChild(Nav) nav: Nav;
 
     rootPage: any;
+    activePage: any;
 
     pages: Array<{ title: string, component: any, icon: string }>;
 
@@ -25,13 +26,14 @@ export class MyApp {
         this.initializeApp();
 
 
-
         this.storage.get('Token').then((Token) => {
             console.log('Token: ' + Token);
             this.rootPage = Token ? 'HomePage' : 'LoginPage';
             this.sharedService.enableSplitPane = this.rootPage !== 'LoginPage';
         });
 
+        //Uncomment when login works
+        // this.rootPage = 'HomePage';
 
         // used for an example of ngFor and navigation
         this.pages = [
@@ -43,6 +45,8 @@ export class MyApp {
             {title: 'Promociones', component: 'HomePage', icon: 'promos.png'},
             {title: 'Ayuda', component: 'HomePage', icon: 'help.png'},
         ];
+
+        this.activePage = this.pages[0];
 
     }
 
@@ -62,5 +66,10 @@ export class MyApp {
         // Reset the content nav to have just this page
         // we wouldn't want the back button to show in this scenario
         this.nav.setRoot(page.component);
+        this.activePage = page;
+    }
+
+    checkActivePage(page) {
+        return page === this.activePage;
     }
 }
