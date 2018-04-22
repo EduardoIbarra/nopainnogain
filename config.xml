@@ -3,7 +3,7 @@
     <name>Liberi</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="miguelhdzch@gmail.com" href="http://ionicframework.com/">Miguel Hernandez</author>
-    <content src="index.html" />
+    <content original-src="index.html" src="http://192.168.1.68:8101" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -80,6 +80,7 @@
     <edit-config file="*-Info.plist" mode="merge" target="NSLocationWhenInUseUsageDescription">
         <string>Necesitamos tu ubicación para mostrarte gimnasios mas cercanos</string>
     </edit-config>
+    <allow-navigation href="http://192.168.1.68:8101" />
     <engine name="android" spec="6.3.0" />
     <engine name="ios" spec="4.5.4" />
     <plugin name="cordova-plugin-whitelist" spec="^1.3.3" />
@@ -87,7 +88,7 @@
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.19" />
     <plugin name="cordova-plugin-ionic-keyboard" spec="^2.0.5" />
-    <plugin name="cordova-plugin-geolocation" spec="^4.0.1">
+    <plugin name="cordova-plugin-geolocation" spec="^2.4.3">
         <variable name="GEOLOCATION_USAGE_DESCRIPTION" value="Necesitamos tu ubicacinnn para mostrarte gimnasios mas cercanos" />
     </plugin>
     <plugin name="cordova-plugin-camera" spec="^4.0.3" />

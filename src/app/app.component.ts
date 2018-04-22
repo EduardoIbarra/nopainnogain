@@ -28,12 +28,12 @@ export class MyApp {
 
         this.storage.get('Token').then((Token) => {
             console.log('Token: ' + Token);
-            this.rootPage = Token ? 'HomePage' : 'LoginPage';
+            // this.rootPage = Token ? 'HomePage' : 'LoginPage';
             this.sharedService.enableSplitPane = this.rootPage !== 'LoginPage';
         });
 
         //Uncomment when login works
-        // this.rootPage = 'HomePage';
+        this.rootPage = 'HomePage';
 
         // used for an example of ngFor and navigation
         this.pages = [
