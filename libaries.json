@@ -38,5 +38,10 @@
     "description": "Show image preview",
     "dependency": "npm install --save ionic-img-viewer",
     "plugin": null
+  },
+  "browser": {
+    "description": "Allow the use of in app broswer",
+    "dependency": "npm install --save @ionic-native/in-app-browser",
+    "plugin": "ionic cordova plugin add cordova-plugin-inappbrowser"
   }
 }

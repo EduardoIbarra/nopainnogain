@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {LoadingService} from "../../services/loading.service";
 import {GymService} from "../../services/gym.service";
 import {Keyboard} from "@ionic-native/keyboard";
@@ -29,6 +29,7 @@ export class HomePage {
     constructor(public navCtrl: NavController,
                 public gymService: GymService,
                 public geolocation: Geolocation,
+                public modalCtrl: ModalController,
                 public alertService: AlertService,
                 public navParams: NavParams,
                 public loadingService: LoadingService,) {
@@ -94,7 +95,7 @@ export class HomePage {
 
     getGymList() {
         this.gymService.getGyms().valueChanges().subscribe((response) => {
-            this.markersArray.forEach((m)=>{
+            this.markersArray.forEach((m) => {
                 m.setMap(null)
             });
 
@@ -140,8 +141,10 @@ export class HomePage {
                 let infoWindow = new google.maps.InfoWindow({content: placeName});
 
                 //Show name when click on marker icon
-                google.maps.event.addListener(marker, 'click', function () {
-                    infoWindow.open(map, marker);
+                google.maps.event.addListener(marker, 'click', () => {
+                    // infoWindow.open(map, marker);
+                    let modal = this.modalCtrl.create('GymDetailPage', {data: places[i]});
+                    modal.present();
                 });
 
 
@@ -156,7 +159,6 @@ export class HomePage {
             map.fitBounds(bounds);
             map.panToBounds(bounds);
             map.setCenter(bounds.getCenter());
-
 
 
             // if (places.length > 1) {

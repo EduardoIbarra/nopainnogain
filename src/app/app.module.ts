@@ -17,9 +17,9 @@ import {GymService} from "../services/gym.service";
 import {SharedModule} from "./shared.module";
 import {Geolocation} from '@ionic-native/geolocation';
 import {AuthService} from "../services/auth.service";
-import {MultiPickerModule} from "ion-multi-picker";
 import {Camera} from "@ionic-native/camera";
 import {UsersService} from "../services/users.service";
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 @NgModule({
     declarations: [
@@ -57,7 +57,8 @@ import {UsersService} from "../services/users.service";
         Geolocation,
         AuthService,
         Camera,
-        UsersService
+        UsersService,
+        InAppBrowser
     ]
 })
 export class AppModule {

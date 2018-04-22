@@ -24,16 +24,16 @@
 
 <ion-content (click)="searchHasfocus = false">
 
-    <ion-item text-center text-wrap *ngIf="dataError" margin-top>
+    <ion-item text-center text-wrap *ngIf="dataError" margin-top no-lines>
         Ha ocurrido un error al mostrar la información intenta de nuevo.
         <br/>
         <button ion-button small (tap)="getUserLocation()">
-        <ion-icon name="reload"></ion-icon>
+            <ion-icon name="reload"></ion-icon>
             Recargar
         </button>
     </ion-item>
-    <div *ngIf="!dataError">
-        <div #map id="map"></div>
+    <div>
+        <div #map id="{{!dataError? 'map': null}}"></div>
     </div>
 
 </ion-content>

@@ -1,0 +1,61 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>DETALLES</ion-title>
+        <ion-buttons>
+            <button icon-only ion-button (tap)="dismiss()">
+                <ion-icon name="md-close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <navbar-bump></navbar-bump>
+</ion-header>
+
+
+<ion-content>
+    <div *ngIf="segment === 'info'" padding>
+        <!--<div class="logo-img">-->
+        <!--<img [src]="gym.logo">-->
+        <!--</div>-->
+        <div #gymMap id="gymMap"></div>
+        <br>
+        <ion-list no-lines>
+            <ion-item text-center text-wrap>
+                <b>{{gym.commercial_name}}</b>
+            </ion-item>
+            <ion-item text-wrap>
+                <b>Direccion:</b> {{gym.address_street}} {{gym.address_number}}, {{gym.address_neighborhood}}. C.P. {{gym.address_zipcode}}. {{gym.address_city}}, {{gym.address_state}}.
+            </ion-item>
+
+            <ion-item text-wrap>
+                <b>Teléfono:</b> <span [innerHtml]="sharedService.phoneShorcut(gym.gym_phone)">{{sharedService.phoneShorcut(gym.gym_phone)}}</span>
+            </ion-item>
+
+            <ion-item text-wrap>
+                <b>Horario:</b> <span *ngIf="isOpenToday" class="open-today">Hoy abierto,&nbsp;</span>{{gym.attention_hours}}
+            </ion-item>
+
+            <ion-item text-wrap text-center class="website-color">
+                <a (tap)="sharedService.openBrowser(gym.gym_website)">{{gym.gym_website}}</a>
+            </ion-item>
+        </ion-list>
+    </div>
+    <div *ngIf="segment === 'img'" padding>
+        <h1>imagenes</h1>
+    </div>
+    <div *ngIf="segment === 'video'" padding>
+        <h1>Videos</h1>
+    </div>
+</ion-content>
+<ion-footer>
+    <ion-segment>
+        <ion-segment-button (tap)="activeSegment('info')" [class.segment-activated]="segment === 'info' || firstOpen" value="'info">
+            <ion-icon name="information-circle"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button (tap)="activeSegment('img')" [class.segment-activated]="segment === 'img'" value="'img">
+            <ion-icon name="image"></ion-icon>
+        </ion-segment-button>
+        <ion-segment-button (tap)="activeSegment('video')" [class.segment-activated]="segment === 'video'" value="'video">
+            <ion-icon name="logo-youtube"></ion-icon>
+        </ion-segment-button>
+    </ion-segment>
+</ion-footer>

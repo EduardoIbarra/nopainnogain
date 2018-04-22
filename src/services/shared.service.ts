@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {AlertController, App, MenuController} from "ionic-angular";
 import {Storage} from "@ionic/storage";
+import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 @Injectable()
 
@@ -3011,11 +3012,12 @@ export class SharedService {
 
     constructor(private alertCtrl: AlertController,
                 private menu: MenuController,
+                private iab: InAppBrowser,
                 private app: App,
                 private storage: Storage,) {
     }
 
-    linkify(inputText) {
+    phoneShorcut(inputText) {
         let regex = new RegExp(
             "\\+?\\(?\\d*\\)? ?\\(?\\d+\\)?\\d*([\\s./-]?\\d{2,})+",
 
@@ -3028,6 +3030,10 @@ export class SharedService {
         return output;
     };
 
+    openBrowser(website){
+        const browser = this.iab.create(website);
+        browser.show();
+    }
 
     logout() {
         this.LoggedUser = null;
