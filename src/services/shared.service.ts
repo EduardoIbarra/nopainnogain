@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AlertController, App, MenuController} from "ionic-angular";
+import {AlertController, App, MenuController, NavController} from "ionic-angular";
 import {Storage} from "@ionic/storage";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 
@@ -7,7 +7,7 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
 
 export class SharedService {
 
-    LoggedUser: any;
+    UserData: any;
     activePage: any;
     enableSplitPane: boolean;
 
@@ -3030,35 +3030,31 @@ export class SharedService {
         return output;
     };
 
-    openBrowser(website){
+    openBrowser(website) {
         const browser = this.iab.create(website);
         browser.show();
     }
 
     logout() {
-        this.LoggedUser = null;
+        this.storage.set('UserData', null);
+        this.UserData = null;
         this.enableSplitPane = false;
-        this.storage.set('LoggedUser', null);
-        this.menu.enable(true, 'PublicUserMenu');
-        this.menu.enable(false, 'LoggedUserMenu');
+        // this.menu.enable(true, 'PublicUserMenu');
+        // this.menu.enable(false, 'LoggedUserMenu');
         let nav: any = this.app.getRootNavById('n4');
-        nav.setRoot('HomePage');
+        nav.setRoot('LoginPage');
     }
 
-    SetLoggedUser(UserData) {
-        this.LoggedUser = {
-            Email: UserData.email,
-            Name: 'Miguel Hernández'
-        };
+    login(userData, navCtrl: NavController) {
 
+        this.storage.set('UserData', userData);
+        navCtrl.push('WelcomePage', {UserData: userData});
+
+        this.UserData = userData;
         this.enableSplitPane = true;
-
-        this.storage.set('LoggedUser', this.LoggedUser);
         this.activePage = 'HomePage';
-        this.menu.enable(false, 'PublicUserMenu');
-        this.menu.enable(true, 'LoggedUserMenu');
-        let nav: any = this.app.getRootNavById('n4');
-        nav.setRoot('HomePage');
+        // this.menu.enable(false, 'PublicUserMenu');
+        // this.menu.enable(true, 'LoggedUserMenu');
     }
 
     //Higlight tab on sidemenu
@@ -3066,8 +3062,12 @@ export class SharedService {
         return page.component == this.activePage
     }
 
-    setPageRoot(page) {
+    setPageRoot(page, shouldAnimate: boolean) {
         let nav: any = this.app.getRootNavById('n4');
-        nav.setRoot(page);
+
+        if (shouldAnimate) nav.setRoot(page, {}, {animate: true, direction: 'forward', animation: 'md-transition'});
+        if (!shouldAnimate) nav.setRoot(page);
     }
+
+
 }

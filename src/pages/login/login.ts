@@ -3,6 +3,8 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {GymService} from "../../services/gym.service";
 import {AuthService} from "../../services/auth.service";
 import {LoadingService} from "../../services/loading.service";
+import {UsersService} from "../../services/users.service";
+import {SharedService} from "../../services/shared.service";
 
 
 @IonicPage()
@@ -19,6 +21,8 @@ export class LoginPage {
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
+                public sharedService: SharedService,
+                public userService: UsersService,
                 public loadingService: LoadingService,
                 public authService: AuthService,) {
     }
@@ -26,15 +30,27 @@ export class LoginPage {
     login() {
         this.loadingService.presentLoading();
         console.log(this.UserData);
-        this.authService.login(this.UserData.username, this.UserData.password).then(value => {
-            console.log(value);
-            console.log('Nice, it worked!');
-            this.loadingService.dismiss();
+        this.authService.login(this.UserData.username, this.UserData.password).then(response => {
+            console.log(response);
+            this.getUserData(response.uid);
         }).catch((error) => {
             console.log(error);
             console.log('Something went wrong:', error.message);
             this.loadingService.dismiss();
         });
     }
+
+    getUserData(uid) {
+        this.userService.getUser(uid).then(response => {
+            console.log(response.val());
+            this.loadingService.dismiss();
+            this.sharedService.login(response.val(), this.navCtrl);
+        }).catch((error) => {
+            console.log(error);
+            console.log('Something went wrong:', error.message);
+            this.loadingService.dismiss();
+        });
+    }
+
 
 }

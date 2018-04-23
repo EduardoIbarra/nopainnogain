@@ -338,14 +338,38 @@ export class SignupPage {
     signup() {
         this.loadingService.presentLoading();
         console.log(this.RegisterFormData);
-        this.usersService.createUser(this.RegisterFormData).then((response) => {
+        this.authService.signup(this.RegisterFormData.email, this.RegisterFormData.password).then((response) => {
             console.log(response);
-            this.loadingService.dismiss();
+            this.createUser(response.uid);
         }, (error) => {
             console.log(error);
             this.loadingService.dismiss();
             this.alertService.signupError();
         })
-
     }
+
+    createUser(uid) {
+        this.usersService.createUser(this.RegisterFormData, uid).then((response) => {
+            console.log(response);
+            this.getUserData(uid)
+        }, (error) => {
+            console.log(error);
+            this.loadingService.dismiss();
+            this.alertService.signupError();
+        })
+    }
+
+    getUserData(uid) {
+        this.usersService.getUser(uid).then(response => {
+            console.log(response.val());
+            this.loadingService.dismiss();
+            this.sharedService.login(response.val(), this.navCtrl);
+        }).catch((error) => {
+            console.log(error);
+            console.log('Something went wrong:', error.message);
+            this.loadingService.dismiss();
+        });
+    }
+
+
 }

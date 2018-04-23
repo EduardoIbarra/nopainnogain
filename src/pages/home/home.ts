@@ -180,11 +180,6 @@ export class HomePage {
         }
     }
 
-
-    showLoading() {
-        this.loadingService.presentLoading();
-    }
-
     searchGyms() {
         this.searchHasFocus = false;
         console.log(this.searchQuery);

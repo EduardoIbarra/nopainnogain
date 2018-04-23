@@ -1,25 +1,24 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
-/**
- * Generated class for the WelcomePage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {SharedService} from "../../services/shared.service";
 
 @IonicPage()
 @Component({
-  selector: 'page-welcome',
-  templateUrl: 'welcome.html',
+    selector: 'page-welcome',
+    templateUrl: 'welcome.html',
 })
 export class WelcomePage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
+    user: any;
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad WelcomePage');
-  }
+    constructor(public sharedService: SharedService, public navParams: NavParams) {
+        this.user = this.navParams.get('UserData');
+    }
+
+    ionViewDidLoad() {
+        setTimeout(() => {
+            this.sharedService.setPageRoot('HomePage', true);
+        }, 3000)
+    }
 
 }

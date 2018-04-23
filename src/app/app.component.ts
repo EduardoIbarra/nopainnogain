@@ -26,14 +26,11 @@ export class MyApp {
         this.initializeApp();
 
 
-        this.storage.get('Token').then((Token) => {
-            console.log('Token: ' + Token);
-            // this.rootPage = Token ? 'HomePage' : 'LoginPage';
+        this.storage.get('UserData').then((UserData) => {
+            console.log('UserData: ', UserData);
+            this.rootPage = UserData ? 'HomePage' : 'LoginPage';
             this.sharedService.enableSplitPane = this.rootPage !== 'LoginPage';
         });
-
-        //Uncomment when login works
-        this.rootPage = 'HomePage';
 
         // used for an example of ngFor and navigation
         this.pages = [
@@ -44,6 +41,7 @@ export class MyApp {
             {title: 'Preferencias', component: 'HomePage', icon: 'preferences.png'},
             {title: 'Promociones', component: 'HomePage', icon: 'promos.png'},
             {title: 'Ayuda', component: 'HomePage', icon: 'help.png'},
+            {title: 'Cerrar Sesión', component: null, icon: 'logout.png'},
         ];
 
         this.activePage = this.pages[0];
@@ -65,6 +63,11 @@ export class MyApp {
     openPage(page) {
         // Reset the content nav to have just this page
         // we wouldn't want the back button to show in this scenario
+        if (!page.component) {
+            this.sharedService.logout();
+            return;
+        }
+
         this.nav.setRoot(page.component);
         this.activePage = page;
     }
