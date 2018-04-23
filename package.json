@@ -34,7 +34,7 @@
     "cordova-ios": "4.5.4",
     "cordova-plugin-camera": "^4.0.3",
     "cordova-plugin-device": "^2.0.1",
-    "cordova-plugin-geolocation": "^2.4.3",
+    "cordova-plugin-geolocation": "^4.0.1",
     "cordova-plugin-inappbrowser": "^3.0.0",
     "cordova-plugin-ionic-keyboard": "^2.0.5",
     "cordova-plugin-ionic-webview": "^1.1.19",
@@ -61,18 +61,18 @@
   "description": "An Ionic project",
   "cordova": {
     "plugins": {
-      "cordova-plugin-whitelist": {},
       "cordova-plugin-device": {},
       "cordova-plugin-splashscreen": {},
       "cordova-plugin-ionic-webview": {},
       "cordova-plugin-ionic-keyboard": {},
-      "cordova-plugin-geolocation": {
-        "GEOLOCATION_USAGE_DESCRIPTION": "Necesitamos tu ubicacinnn para mostrarte gimnasios mas cercanos"
-      },
       "cordova-plugin-camera": {},
       "ionic-plugin-keyboard": {},
       "cordova-plugin-statusbar": {},
-      "cordova-plugin-inappbrowser": {}
+      "cordova-plugin-inappbrowser": {},
+      "cordova-plugin-geolocation": {
+        "GEOLOCATION_USAGE_DESCRIPTION": "Necesitamos tu ubicacion para mostrarte gimnasios mas cercanos"
+      },
+      "cordova-plugin-whitelist": {}
     },
     "platforms": [
       "android",

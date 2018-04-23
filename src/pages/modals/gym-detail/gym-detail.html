@@ -48,7 +48,7 @@
 
         <div *ngIf="gym.images">
             <button (tap)="this.slides.slidePrev()" class="slide-back-button" *ngIf="gym.images.length > 1">
-                <ion-icon name="arrow-back"></ion-icon>
+                <ion-icon name="md-arrow-back"></ion-icon>
             </button>
             <ion-slides [loop]="true" class="image-slider" pager>
                 <ion-slide *ngFor="let i of gym.images">
@@ -56,13 +56,16 @@
                 </ion-slide>
             </ion-slides>
             <button (tap)="this.slides.slideNext()" class="slide-next-button" *ngIf="gym.images.length > 1">
-                <ion-icon name="arrow-forward"></ion-icon>
+                <ion-icon name="md-arrow-forward"></ion-icon>
             </button>
         </div>
 
     </div>
     <div *ngIf="segment === 'video'" padding>
-        <h1>Videos</h1>
+        <div class="video-container">
+            <iframe [src]="youtubeLink" frameborder="0" allowfullscreen></iframe>
+        </div>
+
     </div>
 </ion-content>
 <ion-footer>

@@ -1,6 +1,7 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, Slides, ViewController} from 'ionic-angular';
 import {SharedService} from "../../../services/shared.service";
+import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
 declare var google: any;
 
@@ -11,9 +12,10 @@ declare var google: any;
 })
 export class GymDetailPage {
 
-    segment: string ;
+    segment: string;
     gym: any;
     isOpenToday: boolean = false;
+    youtubeLink: SafeResourceUrl;
 
     @ViewChild('gymMap') mapRef: ElementRef;
     @ViewChild(Slides) slides: Slides;
@@ -21,6 +23,7 @@ export class GymDetailPage {
     constructor(public navCtrl: NavController,
                 public viewCtrl: ViewController,
                 public sharedService: SharedService,
+                public sanitizer: DomSanitizer,
                 public navParams: NavParams) {
 
         this.gym = navParams.get('data');
@@ -29,7 +32,7 @@ export class GymDetailPage {
     ionViewDidLoad() {
         console.log(this.gym);
         this.segment = 'info';
-        setTimeout(()=>{
+        setTimeout(() => {
             this.loadMap();
         }, 200);
 
@@ -41,7 +44,16 @@ export class GymDetailPage {
         if (today === 4 && this.gym.open_thursday) this.isOpenToday = true;
         if (today === 5 && this.gym.open_friday) this.isOpenToday = true;
         if (today === 6 && this.gym.open_saturday) this.isOpenToday = true;
+
+        this.getYoutubeLink();
     }
+
+    getYoutubeLink() {
+        let url = 'https://www.youtube.com/embed/-VdZRGsKZn4';
+        this.youtubeLink = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+        console.log(this.youtubeLink);
+    }
+
 
     loadMap() {
         const location = new google.maps.LatLng(parseFloat(this.gym.lat), parseFloat(this.gym.lng));
