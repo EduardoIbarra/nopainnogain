@@ -5,6 +5,7 @@ import {AuthService} from "../../services/auth.service";
 import {LoadingService} from "../../services/loading.service";
 import {UsersService} from "../../services/users.service";
 import {SharedService} from "../../services/shared.service";
+import {AlertService} from "../../services/alert.service";
 
 
 @IonicPage()
@@ -22,6 +23,7 @@ export class LoginPage {
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 public sharedService: SharedService,
+                public alertService: AlertService,
                 public userService: UsersService,
                 public loadingService: LoadingService,
                 public authService: AuthService,) {
@@ -36,6 +38,8 @@ export class LoginPage {
         }).catch((error) => {
             console.log(error);
             console.log('Something went wrong:', error.message);
+            if(error.code === 'auth/user-not-found') this.alertService.incorrectEmailLoginCredentials();
+            if(error.code === 'auth/wrong-password') this.alertService.incorrectPasswordLoginCredentials();
             this.loadingService.dismiss();
         });
     }
