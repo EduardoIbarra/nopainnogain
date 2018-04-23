@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Slides, ViewController} from 'ionic-angular';
 import {SharedService} from "../../../services/shared.service";
 
 declare var google: any;
@@ -11,13 +11,12 @@ declare var google: any;
 })
 export class GymDetailPage {
 
-    segment: string = 'info';
+    segment: string ;
     gym: any;
     isOpenToday: boolean = false;
-    firstOpen: boolean = true;
-
 
     @ViewChild('gymMap') mapRef: ElementRef;
+    @ViewChild(Slides) slides: Slides;
 
     constructor(public navCtrl: NavController,
                 public viewCtrl: ViewController,
@@ -29,7 +28,10 @@ export class GymDetailPage {
 
     ionViewDidLoad() {
         console.log(this.gym);
-        this.loadMap();
+        this.segment = 'info';
+        setTimeout(()=>{
+            this.loadMap();
+        }, 200);
 
         let today = new Date().getDay();
         if (today === 0 && this.gym.open_sunday) this.isOpenToday = true;
@@ -66,8 +68,6 @@ export class GymDetailPage {
             });
             marker.setMap(map);
         });
-
-        this.segment = 'info';
     }
 
     dismiss() {
@@ -76,7 +76,6 @@ export class GymDetailPage {
 
     activeSegment(segment) {
         this.segment = segment;
-        this.firstOpen = false;
         if (segment === 'info') {
             setTimeout(() => {
                 this.loadMap()

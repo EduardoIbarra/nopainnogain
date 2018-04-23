@@ -12,6 +12,7 @@
 
 
 <ion-content>
+
     <div *ngIf="segment === 'info'" padding>
         <!--<div class="logo-img">-->
         <!--<img [src]="gym.logo">-->
@@ -26,7 +27,7 @@
                 <b>Direccion:</b> {{gym.address_street}} {{gym.address_number}}, {{gym.address_neighborhood}}. C.P. {{gym.address_zipcode}}. {{gym.address_city}}, {{gym.address_state}}.
             </ion-item>
 
-            <ion-item text-wrap>
+            <ion-item text-wrap *ngIf="gym.gym_phone">
                 <b>Teléfono:</b> <span [innerHtml]="sharedService.phoneShorcut(gym.gym_phone)">{{sharedService.phoneShorcut(gym.gym_phone)}}</span>
             </ion-item>
 
@@ -39,8 +40,26 @@
             </ion-item>
         </ion-list>
     </div>
-    <div *ngIf="segment === 'img'" padding>
-        <h1>imagenes</h1>
+    <div *ngIf="segment === 'img'" padding class="image-container">
+
+        <ion-item *ngIf="!gym.images" text-center text-wrap no-lines>
+            Este gimnasio aún no cuenta con imágenes
+        </ion-item>
+
+        <div *ngIf="gym.images">
+            <button (tap)="this.slides.slidePrev()" class="slide-back-button" *ngIf="gym.images.length > 1">
+                <ion-icon name="arrow-back"></ion-icon>
+            </button>
+            <ion-slides [loop]="true" class="image-slider" pager>
+                <ion-slide *ngFor="let i of gym.images">
+                    <img [src]="i" imageViewer>
+                </ion-slide>
+            </ion-slides>
+            <button (tap)="this.slides.slideNext()" class="slide-next-button" *ngIf="gym.images.length > 1">
+                <ion-icon name="arrow-forward"></ion-icon>
+            </button>
+        </div>
+
     </div>
     <div *ngIf="segment === 'video'" padding>
         <h1>Videos</h1>
@@ -48,7 +67,7 @@
 </ion-content>
 <ion-footer>
     <ion-segment>
-        <ion-segment-button (tap)="activeSegment('info')" [class.segment-activated]="segment === 'info' || firstOpen" value="'info">
+        <ion-segment-button (tap)="activeSegment('info')" [class.segment-activated]="segment === 'info'" value="'info">
             <ion-icon name="information-circle"></ion-icon>
         </ion-segment-button>
         <ion-segment-button (tap)="activeSegment('img')" [class.segment-activated]="segment === 'img'" value="'img">
