@@ -15,7 +15,8 @@ export class AuthService {
     }
 
     facebookLogin() {
-        return this.facebook.login(['email', 'public_profile']);
+        //return this.facebook.login(['email', 'public_profile']);
+        return this.firebaseAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
     }
 
     signup(email: string, password: string) {

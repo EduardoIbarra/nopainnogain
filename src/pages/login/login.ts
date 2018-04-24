@@ -76,6 +76,7 @@ export class LoginPage {
         this.loadingService.presentLoading();
         this.authService.facebookLogin().then((response) => {
             console.log(response);
+            return;
             this.UserData.fb_token = response.authResponse.accessToken;
             this.UserData.fb_id = response.authResponse.userID;
             this.facebook.api('me?fields=id,name,first_name,email,last_name,picture.width(720).height(720).as(picture_large)', []).then((profile) => {
