@@ -6,6 +6,7 @@ import {LoadingService} from "../../services/loading.service";
 import {UsersService} from "../../services/users.service";
 import {SharedService} from "../../services/shared.service";
 import {AlertService} from "../../services/alert.service";
+import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
 
 
 @IonicPage()
@@ -17,13 +18,27 @@ export class LoginPage {
 
     UserData: any = {
         username: null,
-        password: null
+        password: null,
+        name: null,
+        last_name: null,
+        email: null,
+        profile_picture: null,
+        fb_id: null,
+        fb_token: null,
+        uid: null,
+        birthday: {
+            value: null,
+            text: null
+        },
+        from_app: true,
     };
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 public sharedService: SharedService,
+                public facebook: Facebook,
                 public alertService: AlertService,
+                public usersService: UsersService,
                 public userService: UsersService,
                 public loadingService: LoadingService,
                 public authService: AuthService,) {
@@ -38,8 +53,8 @@ export class LoginPage {
         }).catch((error) => {
             console.log(error);
             console.log('Something went wrong:', error.message);
-            if(error.code === 'auth/user-not-found') this.alertService.incorrectEmailLoginCredentials();
-            if(error.code === 'auth/wrong-password') this.alertService.incorrectPasswordLoginCredentials();
+            if (error.code === 'auth/user-not-found') this.alertService.incorrectEmailLoginCredentials();
+            if (error.code === 'auth/wrong-password') this.alertService.incorrectPasswordLoginCredentials();
             this.loadingService.dismiss();
         });
     }
@@ -57,4 +72,55 @@ export class LoginPage {
     }
 
 
+    facebookLogin() {
+        this.loadingService.presentLoading();
+        this.authService.facebookLogin().then((response) => {
+            console.log(response);
+            this.UserData.fb_token = response.authResponse.accessToken;
+            this.UserData.fb_id = response.authResponse.userID;
+            this.facebook.api('me?fields=id,name,first_name,email,last_name,picture.width(720).height(720).as(picture_large)', []).then((profile) => {
+                console.log(profile);
+                this.loadingService.dismiss();
+                this.UserData.name = profile['first_name'];
+                this.UserData.last_name = profile['last_name'];
+                this.UserData.profile_picture = profile['picture_large']['data']['url'];
+                this.UserData.email = profile['email'];
+                this.UserData.password = profile['first_name'];
+                this.signup();
+            }, (error) => {
+                console.log(error);
+                this.alertService.facebookLoginError();
+                this.loadingService.dismiss();
+            });
+        }, (error) => {
+            console.log(error);
+            this.UserData.password = null;
+            this.loadingService.dismiss();
+        })
+    }
+
+
+    signup() {
+        this.loadingService.presentLoading();
+        this.authService.signup(this.UserData.email, this.UserData.password).then((response) => {
+            console.log(response);
+            this.createUser(response.uid);
+        }, (error) => {
+            console.log(error);
+            this.loadingService.dismiss();
+            this.alertService.signupError();
+            this.UserData.password = null;
+        })
+    }
+
+    createUser(uid) {
+        this.usersService.createUser(this.UserData, uid).then((response) => {
+            console.log(response);
+            this.getUserData(uid)
+        }, (error) => {
+            console.log(error);
+            this.loadingService.dismiss();
+            this.alertService.signupError();
+        })
+    }
 }

@@ -27,6 +27,15 @@ export class AlertService {
         alert.present();
     }
 
+    facebookLoginError() {
+        let alert = this.alertCtrl.create({
+            title: 'Ha ocurrido un error',
+            message: 'No hemos podido iniciar con Facebook, intenta de nuevo más tarde.',
+            buttons: ['OK']
+        });
+        alert.present();
+    }
+
     serverError() {
         let alert = this.alertCtrl.create({
             title: 'Error en conexión al servidor',

@@ -3036,13 +3036,13 @@ export class SharedService {
     }
 
     logout() {
-        this.storage.set('UserData', null);
-        this.UserData = null;
-        this.enableSplitPane = false;
         // this.menu.enable(true, 'PublicUserMenu');
         // this.menu.enable(false, 'LoggedUserMenu');
         let nav: any = this.app.getRootNavById('n4');
         nav.setRoot('LoginPage');
+        this.storage.set('UserData', null);
+        this.UserData = null;
+        this.enableSplitPane = false;
     }
 
     login(userData, navCtrl: NavController) {

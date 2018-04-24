@@ -16,7 +16,7 @@ export class UsersService {
     }
 
     public createUser(data, uid) {
-        let user  =  Object.assign({}, data);
+        let user: any  =  Object.assign({}, data);
         user.birthday = null;
         user.birthday = data.birthday.value;
         user.uid = uid;

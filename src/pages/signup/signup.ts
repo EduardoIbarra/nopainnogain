@@ -53,7 +53,9 @@ export class SignupPage {
         card_holder: null,
         card_number: null,
         card_expiration: null,
-        card_cvv: null
+        card_cvv: null,
+        fb_id: null,
+        fb_token: null
     };
 
     ccOptions: any = [];

@@ -28,6 +28,7 @@ export class MyApp {
 
         this.storage.get('UserData').then((UserData) => {
             console.log('UserData: ', UserData);
+            this.sharedService.UserData = UserData;
             this.rootPage = UserData ? 'HomePage' : 'LoginPage';
             this.sharedService.enableSplitPane = this.rootPage !== 'LoginPage';
         });

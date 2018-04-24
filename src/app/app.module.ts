@@ -20,6 +20,7 @@ import {AuthService} from "../services/auth.service";
 import {Camera} from "@ionic-native/camera";
 import {UsersService} from "../services/users.service";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
+import {Facebook} from "@ionic-native/facebook";
 
 @NgModule({
     declarations: [
@@ -58,7 +59,8 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
         AuthService,
         Camera,
         UsersService,
-        InAppBrowser
+        InAppBrowser,
+        Facebook
     ]
 })
 export class AppModule {
