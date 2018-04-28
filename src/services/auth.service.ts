@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 
 import {AngularFireAuth} from 'angularfire2/auth';
-import * as firebase from 'firebase/app';
+import * as firebase from 'firebase';
 
 import {Observable} from 'rxjs/Observable';
 import {Facebook} from "@ionic-native/facebook";
@@ -15,8 +15,16 @@ export class AuthService {
     }
 
     facebookLogin() {
-        //return this.facebook.login(['email', 'public_profile']);
-        return this.firebaseAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
+        // return this.facebook.login(['email', 'public_profile']);
+        //
+        //
+        // let provider: any = new firebase.auth.FacebookAuthProvider();
+        // return this.firebaseAuth.auth.signInWithRedirect(provider).then(() => {
+        //     return this.firebaseAuth.auth.getRedirectResult();
+        // })
+        //
+
+        return this.firebaseAuth.auth.signInWithPopup(provider);
     }
 
     signup(email: string, password: string) {

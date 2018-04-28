@@ -3040,9 +3040,12 @@ export class SharedService {
         // this.menu.enable(false, 'LoggedUserMenu');
         let nav: any = this.app.getRootNavById('n4');
         nav.setRoot('LoginPage');
-        this.storage.set('UserData', null);
-        this.UserData = null;
-        this.enableSplitPane = false;
+        setTimeout(()=>{
+            this.storage.set('UserData', null);
+            this.UserData = null;
+            this.enableSplitPane = false;
+        }, 1000);
+
     }
 
     login(userData, navCtrl: NavController) {
