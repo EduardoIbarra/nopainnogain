@@ -17,9 +17,6 @@ export class UsersService {
 
     public createUser(data, uid) {
         let user: any  =  Object.assign({}, data);
-        user.birthday = null;
-        user.birthday = data.birthday.value;
-        user.uid = uid;
         user.from_app = true;
         return this.afDB.database.ref('/users/' + uid).set(user);
     }

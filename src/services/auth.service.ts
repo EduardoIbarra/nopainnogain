@@ -24,7 +24,7 @@ export class AuthService {
         // })
         //
 
-        return this.firebaseAuth.auth.signInWithPopup(provider);
+        return this.firebaseAuth.auth.signInWithPopup(new firebase.auth.FacebookAuthProvider());
     }
 
     signup(email: string, password: string) {
