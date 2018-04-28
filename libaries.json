@@ -48,16 +48,5 @@
     "description": "Allow the use of in app broswer",
     "dependency": "npm install --save @ionic-native/facebook",
     "plugin": "ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID='242703106469835' --variable APP_NAME='Liberi'"
-  },
-  "facebook-firebase": {
-    "description": "Allow the use of in app broswer",
-    "dependency": null,
-    "plugin": {
-      "buildinfo":"cordova plugin add cordova-plugin-buildinfo --save",
-      "universal":"cordova plugin add cordova-universal-links-plugin --save",
-      "browsertab":"cordova plugin add cordova-plugin-browsertab --save",
-      "inappbrowser":"cordova plugin add cordova-plugin-inappbrowser --save",
-      "customurlscheme":"cordova plugin add cordova-plugin-customurlscheme --variable URL_SCHEME=com.liberi.app --save"
-    }
   }
 }
