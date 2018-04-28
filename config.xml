@@ -1,8 +1,14 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.liberi.app" version="0.0.1" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.liberi.app" version="0.0.4" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Liberi</name>
     <description>An awesome Ionic/Cordova app.</description>
     <author email="miguelhdzch@gmail.com" href="http://ionicframework.com/">Miguel Hernandez</author>
+    <universal-links>
+        <host name="https://w8ub5.app.goo.gl" scheme="https" />
+        <host name="liberi-4e329.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
     <content src="index.html" />
     <access origin="*" />
     <access origin="http://*/*" />
@@ -103,5 +109,14 @@
         <variable name="APP_ID" value="242703106469835" />
         <variable name="APP_NAME" value="Liberi" />
         <variable name="ANDROID_SDK_VERSION" value="4.+" />
+    </plugin>
+    <plugin name="cordova-plugin-buildinfo" spec="^2.0.1" />
+    <plugin name="cordova-universal-links-plugin" spec="^1.2.1" />
+    <plugin name="cordova-plugin-browsertab" spec="^0.2.0" />
+    <plugin name="cordova-plugin-customurlscheme" spec="^4.3.0">
+        <variable name="URL_SCHEME" value="com.liberi.app" />
+        <variable name="ANDROID_SCHEME" value=" " />
+        <variable name="ANDROID_HOST" value=" " />
+        <variable name="ANDROID_PATHPREFIX" value="/" />
     </plugin>
 </widget>

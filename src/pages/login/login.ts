@@ -76,7 +76,6 @@ export class LoginPage {
         this.loadingService.presentLoading();
         this.authService.facebookLogin().then((response) => {
             console.log(response);
-            debugger;
             this.UserData.fb_token = response.authResponse.accessToken;
             this.UserData.fb_id = response.authResponse.userID;
             this.facebook.api('me?fields=id,name,first_name,email,last_name,picture.width(720).height(720).as(picture_large)', []).then((profile) => {
@@ -93,10 +92,42 @@ export class LoginPage {
                 this.alertService.facebookLoginError();
                 this.loadingService.dismiss();
             });
+            this.loadingService.dismiss();
+
+
+            // this.facebook.api('me?fields=id,name,first_name,email,last_name,picture.width(720).height(720).as(picture_large)', []).then((profile) => {
+            //
+            // }, (error) => {
+            //     console.log(error);
+            //
+            //     this.loadingService.dismiss();
+            // });
+
+
+            // this.UserData.uid = response.authResponse.uid;
+            // this.UserData.fb_token = response.authResponse.accessToken;
+            // this.UserData.fb_id = response.authResponse.userID;
+            // this.UserData.name = profile['first_name'];
+            // this.UserData.last_name = profile['last_name'];
+            // this.UserData.profile_picture = profile['picture_large']['data']['url'];
+            // this.UserData.email = profile['email'];
+            // this.UserData.password = profile['first_name'];
+            //
+
+
+            // if(response.authResponse.isNewUser){
+            //     this.signup();
+            // }else{
+            //     this.login()
+            // }
+
+
+
         }, (error) => {
             console.log(error);
             this.UserData.password = null;
             this.loadingService.dismiss();
+            this.alertService.facebookLoginError();
         })
     }
 

@@ -34,7 +34,6 @@ export class SignupPage {
     RegisterFormData: any = {
         //First form slide
         name: null,
-        middle_name: null,
         last_name: null,
         email: null,
         password: null,
@@ -85,9 +84,6 @@ export class SignupPage {
         //Form validations
         this.RegisterForm1 = formBuilder.group({
             name: ['', Validators.compose([
-                Validators.required
-            ])],
-            middle_name: ['', Validators.compose([
                 Validators.required
             ])],
             last_name: ['', Validators.compose([
