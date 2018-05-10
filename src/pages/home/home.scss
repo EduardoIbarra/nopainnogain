@@ -24,6 +24,9 @@ page-home {
   .searchbar-md .searchbar-input::-webkit-input-placeholder {
     color: yellow
   }
+  .error-item {
+    margin-top: 100px !important;
+  }
 
   #map {
     height: calc(100vh - 45px);

@@ -28,7 +28,7 @@
         <icon density="ldpi" src="resources/android/icon/drawable-ldpi-icon.png" />
         <icon density="mdpi" src="resources/android/icon/drawable-mdpi-icon.png" />
         <icon density="hdpi" src="resources/android/icon/drawable-hdpi-icon.png" />
-        <icon density="xhdpi" src="resources/andrsoid/icon/drawable-xhdpi-icon.png" />
+        <icon density="xhdpi" src="resources/android/icon/drawable-xhdpi-icon.png" />
         <icon density="xxhdpi" src="resources/android/icon/drawable-xxhdpi-icon.png" />
         <icon density="xxxhdpi" src="resources/android/icon/drawable-xxxhdpi-icon.png" />
         <splash density="land-ldpi" src="resources/android/splash/drawable-land-ldpi-screen.png" />
@@ -85,7 +85,6 @@
         <string>Necesitamos tu ubicación para mostrarte gimnasios mas cercanos</string>
     </edit-config>
     <allow-navigation href="http://192.168.1.68:8101" />
-    <engine name="android" spec="6.3.0" />
     <plugin name="cordova-plugin-device" spec="^2.0.1" />
     <plugin name="cordova-plugin-splashscreen" spec="^5.0.2" />
     <plugin name="cordova-plugin-ionic-webview" spec="^1.1.19" />
@@ -103,5 +102,4 @@
         <variable name="ANDROID_SDK_VERSION" value="4.+" />
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="~3.0.0" />
-    <engine name="ios" spec="~4.3.1" />
 </widget>

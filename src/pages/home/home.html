@@ -25,7 +25,7 @@
 
 <ion-content (click)="searchHasfocus = false">
 
-  <ion-item text-center text-wrap *ngIf="dataError" margin-top no-lines>
+  <ion-item text-center text-wrap *ngIf="dataError" margin-top no-lines class="error-item">
     Ha ocurrido un error al mostrar la información intenta de nuevo.
     <br/>
     <button ion-button small (tap)="getUserLocation()">
