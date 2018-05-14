@@ -39,4 +39,8 @@ export class AuthService {
         this.firebaseAuth.auth.signOut();
     }
 
+    resetPassword(email) {
+      return this.firebaseAuth.auth.sendPasswordResetEmail(email);
+    }
+
 }
