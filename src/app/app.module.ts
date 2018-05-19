@@ -32,7 +32,8 @@ import {Facebook} from "@ionic-native/facebook";
         IonicModule.forRoot(MyApp, {
             platforms: {
                 ios: {
-                    backButtonText: 'Atrás'
+                    backButtonText: 'Atrás',
+                    statusbarPadding: true
                 }
             },
             monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']

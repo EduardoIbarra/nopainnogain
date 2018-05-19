@@ -23,7 +23,7 @@ export class GymPurchasePage {
         setTimeout(() => {
             this.isPurchaseDone = true;
             this.loadingService.dismiss();
-        })
+        }, 1500)
     }
 
     ionViewDidLoad() {
