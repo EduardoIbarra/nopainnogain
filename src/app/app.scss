@@ -157,6 +157,10 @@ form {
   }
 }
 
+.green-txt {
+  color: #429a5c;
+}
+
 /* ITEM WHITE BACKGROUND ON LOGIN AND SIGNUP PAGE*/
 page-signup, page-login {
   ion-item {
@@ -164,11 +168,12 @@ page-signup, page-login {
   }
 }
 
-page-login{
+page-login {
   form ion-item ion-input, form ion-item ion-textarea, form ion-item ion-select, form ion-item ion-datetime {
     border-bottom: transparent !important;
   }
 }
+
 ion-popover {
   .item {
     background: white !important;

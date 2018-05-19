@@ -98,4 +98,38 @@ page-gym-detail {
     }
   }
 
+  .price-tag {
+    background: #fa6f57;
+    width: auto;
+    display: inline-block;
+    position: relative;
+    color: #FFF;
+    line-height: 30px;
+    padding: 0px 20px;
+  }
+
+  .price-tag:after {
+    content: "";
+    height: 0;
+    width: 0;
+    top: 0px;
+    right: -30px;
+    position: absolute;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-bottom: 30px solid #fa6f57;
+  }
+
+  .price-tag:before {
+    content: "";
+    height: 0;
+    width: 0;
+    top: 0px;
+    right: -30px;
+    position: absolute;
+    border-style: solid;
+    border-left: 30px solid transparent;
+    border-right: 30px solid transparent;
+    border-top: 30px solid #fa6f57;
+  }
 }

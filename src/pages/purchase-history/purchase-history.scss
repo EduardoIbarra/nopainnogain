@@ -1,0 +1,59 @@
+page-purchase-history {
+
+  .gym-list {
+    .gym-list-item {
+      ion-avatar {
+        position: static;
+      }
+      img {
+        height: 70px;
+        width: 70px;
+        border-radius: 50%;
+      }
+      h3 {
+        ion-icon {
+          right: 0;
+          position: absolute;
+          top: 23px;
+          font-size: 2rem;
+          font-weight: bold;
+        }
+      }
+    }
+
+    .gym-list-item-detail {
+      background-color: white;
+      .qr-code {
+        height: 150px;
+        border-radius: 20%;
+      }
+    }
+
+    .rate-stars {
+      ion-icon {
+        font-size: 2em;
+        &[name='star'] {
+          color: map_get($colors, primary);
+        }
+
+      }
+    }
+
+    .comments-section {
+      .comments-section-item {
+        background: white;
+        border-radius: 5px;
+        padding: 8px;
+        margin-bottom: 10px;
+        ion-icon{
+          padding-right: 10px;
+        }
+        ion-avatar{
+          display: -webkit-box;
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+
+}

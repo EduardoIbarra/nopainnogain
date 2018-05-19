@@ -95,4 +95,7 @@ export class GymDetailPage {
         }
     }
 
+    purchase() {
+        this.navCtrl.push('GymPurchasePage');
+    }
 }

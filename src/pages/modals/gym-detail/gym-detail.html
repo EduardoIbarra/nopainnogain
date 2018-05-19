@@ -23,6 +23,13 @@
             <ion-item text-center text-wrap>
                 <b>{{gym.commercial_name}}</b>
             </ion-item>
+
+            <ion-item text-wrap text-center>
+                <span class="price-tag">$78.00 MXN</span>
+                <br>
+                <liberi-button name="cart" (click)="purchase()"></liberi-button>
+            </ion-item>
+
             <ion-item text-wrap>
                 <b>Direccion:</b> {{gym.address_street}} {{gym.address_number}}, {{gym.address_neighborhood}}. C.P. {{gym.address_zipcode}}. {{gym.address_city}}, {{gym.address_state}}.
             </ion-item>

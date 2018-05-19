@@ -38,7 +38,7 @@ export class MyApp {
             {title: 'Cercanos', component: 'HomePage', icon: 'pin.png'},
             {title: 'Datos Personales', component: 'HomePage', icon: 'user.png'},
             {title: 'Notificaciones', component: 'HomePage', icon: 'notification.png'},
-            {title: 'Historial de Compras', component: 'HomePage', icon: 'history.png'},
+            {title: 'Historial de Compras', component: 'PurchaseHistoryPage', icon: 'history.png'},
             {title: 'Preferencias', component: 'HomePage', icon: 'preferences.png'},
             {title: 'Promociones', component: 'HomePage', icon: 'promos.png'},
             {title: 'Ayuda', component: 'HomePage', icon: 'help.png'},
