@@ -3,6 +3,7 @@ import {AlertController, App, MenuController, NavController} from "ionic-angular
 import {Storage} from "@ionic/storage";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 
+// declare var OpenPay: any;
 @Injectable()
 
 export class SharedService {
@@ -10,6 +11,8 @@ export class SharedService {
     UserData: any;
     activePage: any;
     enableSplitPane: boolean;
+    // OpenPay: any = require('openpay');
+    // OpenPay: any = OpenPay;
 
     public States: any = [
         {
@@ -3040,7 +3043,7 @@ export class SharedService {
         // this.menu.enable(false, 'LoggedUserMenu');
         let nav: any = this.app.getRootNavById('n4');
         nav.setRoot('LoginPage');
-        setTimeout(()=>{
+        setTimeout(() => {
             this.storage.set('UserData', null);
             this.UserData = null;
             this.enableSplitPane = false;

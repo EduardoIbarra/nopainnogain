@@ -21,6 +21,8 @@ import {Camera} from "@ionic-native/camera";
 import {UsersService} from "../services/users.service";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {Facebook} from "@ionic-native/facebook";
+import {PaymentService} from "../services/payment.service";
+import {Http, HttpModule} from "@angular/http";
 
 @NgModule({
     declarations: [
@@ -29,6 +31,7 @@ import {Facebook} from "@ionic-native/facebook";
     imports: [
         BrowserModule,
         SharedModule,
+        HttpModule,
         IonicModule.forRoot(MyApp, {
             platforms: {
                 ios: {
@@ -55,6 +58,7 @@ import {Facebook} from "@ionic-native/facebook";
         SharedService,
         LoadingService,
         AlertService,
+        PaymentService,
         GymService,
         Geolocation,
         AuthService,

@@ -5,8 +5,11 @@ import {GymService} from "../../services/gym.service";
 import {Keyboard} from "@ionic-native/keyboard";
 import {Geolocation} from '@ionic-native/geolocation';
 import {AlertService} from "../../services/alert.service";
+import {SharedService} from "../../services/shared.service";
+import {PaymentService} from "../../services/payment.service";
 
 declare var google: any;
+declare var OpenPay: any;
 
 @IonicPage()
 @Component({
@@ -31,6 +34,8 @@ export class HomePage {
                 public geolocation: Geolocation,
                 public modalCtrl: ModalController,
                 public alertService: AlertService,
+                public sharedService: SharedService,
+                public paymentService: PaymentService,
                 public navParams: NavParams,
                 public loadingService: LoadingService,) {
 
@@ -38,6 +43,32 @@ export class HomePage {
 
     ionViewDidLoad() {
         this.getUserLocation();
+
+        OpenPay.setSandboxMode(true);
+        OpenPay.setId('mrtezzirtht6piewm54o');
+        OpenPay.setApiKey('pk_c0a63b5356524d2095a0df7172965ed9')
+
+        OpenPay.token.create({
+                "card_number": "4111111111111111",
+                "holder_name": "Juan Perez Ramirez",
+                "expiration_year": "20",
+                "expiration_month": "12",
+                "cvv2": "110",
+            },
+            (data) => {
+                console.log(data);
+                this.gymPayment(data)
+            }, (error) => {
+                console.log(error);
+            });
+    }
+
+    gymPayment(data) {
+        this.paymentService.GymPayment(data, this.sharedService.UserData, '20').subscribe((result) => {
+            console.log(result);
+        }, (error) => {
+            console.log(error);
+        });
     }
 
 
