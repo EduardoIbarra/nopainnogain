@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Http} from "@angular/http";
 
+declare var OpenPay: any;
+
 @Injectable()
 export class PaymentService {
 
@@ -19,7 +21,7 @@ export class PaymentService {
             amount: amount,
             description: cardData.data.card_number,
             use_card_points: false,
-            deviceIdHiddenFieldName: '',
+            deviceIdHiddenFieldName: OpenPay.deviceData.setup("formId", "deviceIdHiddenFieldName")
         };
         return this.http.post(this.API_ENDPOINT + 'processCharge/', body).map((data) => {
             return data.json()
