@@ -48,6 +48,10 @@ export class HomePage {
         OpenPay.setId('mrtezzirtht6piewm54o');
         OpenPay.setApiKey('pk_c0a63b5356524d2095a0df7172965ed9')
 
+        let deviceSessionId = OpenPay.deviceData.setup("formId", "deviceIdHiddenFieldName");
+
+        console.log(deviceSessionId);
+
         OpenPay.token.create({
                 "card_number": "4111111111111111",
                 "holder_name": "Juan Perez Ramirez",

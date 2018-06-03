@@ -1,40 +1,37 @@
 <ion-header no-border>
-  <ion-navbar transparent>
-    <button ion-button menuToggle="left">
-      <ion-icon name="menu"></ion-icon>
-    </button>
-    <ion-searchbar mode="ios" placeholder="Búsqueda" (keypress)="$event.keyCode === 13 ? searchGyms():null"
-                   [(ngModel)]="searchQuery" (ionFocus)="searchHasfocus = true"></ion-searchbar>
-    <ion-buttons end class="button-group">
-      <button item-right ion-button color="light" *ngIf="searchHasfocus" (click)="searchGyms()">
-        <ion-icon name="search"></ion-icon>
-      </button>
-      <div *ngIf="!searchHasfocus">
-        <button item-right ion-button color="light">
-          <ion-icon name="notifications"></ion-icon>
-          <ion-badge color="danger">28</ion-badge>
+    <ion-navbar transparent>
+        <button ion-button menuToggle="left">
+            <ion-icon name="menu"></ion-icon>
         </button>
-        <button item-right ion-button color="light">
-          <ion-icon name="options"></ion-icon>
-        </button>
-      </div>
+        <ion-searchbar mode="ios" placeholder="Búsqueda" (keypress)="$event.keyCode === 13 ? searchGyms():null"
+                       [(ngModel)]="searchQuery" (ionFocus)="searchHasfocus = true"></ion-searchbar>
+        <ion-buttons end class="button-group">
+            <button item-right ion-button color="light" *ngIf="searchHasfocus" (click)="searchGyms()">
+                <ion-icon name="search"></ion-icon>
+            </button>
+            <div *ngIf="!searchHasfocus">
+                <button item-right ion-button color="light">
+                    <ion-icon name="notifications"></ion-icon>
+                    <ion-badge color="danger">28</ion-badge>
+                </button>
+                <button item-right ion-button color="light">
+                    <ion-icon name="options"></ion-icon>
+                </button>
+            </div>
 
-    </ion-buttons>
-  </ion-navbar>
+        </ion-buttons>
+    </ion-navbar>
 </ion-header>
 
 <ion-content (click)="searchHasfocus = false">
+    <ion-item text-center text-wrap *ngIf="dataError" margin-top no-lines class="error-item">
+        Ha ocurrido un error al mostrar la información intenta de nuevo.
+        <br/>
+        <button ion-button small (tap)="getUserLocation()">
+            <ion-icon name="reload"></ion-icon>
+            Recargar
+        </button>
+    </ion-item>
 
-  <ion-item text-center text-wrap *ngIf="dataError" margin-top no-lines class="error-item">
-    Ha ocurrido un error al mostrar la información intenta de nuevo.
-    <br/>
-    <button ion-button small (tap)="getUserLocation()">
-      <ion-icon name="reload"></ion-icon>
-      Recargar
-    </button>
-  </ion-item>
-
-  <div #map id="{{!dataError? 'map': null}}"></div>
-
-
+    <div #map id="{{!dataError? 'map': null}}"></div>
 </ion-content>
