@@ -44,10 +44,6 @@ export class HomePage {
     ionViewDidLoad() {
         this.getUserLocation();
 
-        let deviceSessionId = OpenPay.deviceData.setup();
-
-        console.log(deviceSessionId);
-
         OpenPay.token.create({
                 "card_number": "4111111111111111",
                 "holder_name": "Juan Perez Ramirez",
