@@ -45,8 +45,8 @@ export class HomePage {
         this.getUserLocation();
 
         OpenPay.setSandboxMode(true);
-        OpenPay.setId('mrtezzirtht6piewm54o');
-        OpenPay.setApiKey('pk_c0a63b5356524d2095a0df7172965ed9')
+        OpenPay.setId('mmgdkgnzoy3qpcxf925c');
+        OpenPay.setApiKey('pk_20c7b0256fdb4cf8aa87449ddb158abf');
 
         let deviceSessionId = OpenPay.deviceData.setup("formId", "deviceIdHiddenFieldName");
 
