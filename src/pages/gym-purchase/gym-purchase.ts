@@ -13,6 +13,8 @@ declare var OpenPay: any;
 export class GymPurchasePage {
 
     isPurchaseDone: boolean = false;
+    cards: any = [];
+
     // openpay = new this.sharedService.OpenPay('mrtezzirtht6piewm54o', 'pk_c0a63b5356524d2095a0df7172965ed9');
 
     constructor(public navCtrl: NavController,
@@ -28,6 +30,10 @@ export class GymPurchasePage {
             this.isPurchaseDone = true;
             this.loadingService.dismiss();
         }, 1500)
+    }
+
+    addCardPage() {
+        this.navCtrl.push('AddCardPage')
     }
 
     ionViewDidLoad() {

@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {Keyboard} from "@ionic-native/keyboard";
 import {Storage} from "@ionic/storage";
 import {SharedService} from "../services/shared.service";
+declare var OpenPay: any;
 
 @Component({
     templateUrl: 'app.html'
@@ -58,6 +59,11 @@ export class MyApp {
             this.keyboard.hideKeyboardAccessoryBar(false);
             this.statusBar.styleDefault();
             this.splashScreen.hide();
+
+
+            OpenPay.setSandboxMode(true);
+            OpenPay.setId('mrtezzirtht6piewm54o');
+            OpenPay.setApiKey('pk_c0a63b5356524d2095a0df7172965ed9')
         });
     }
 

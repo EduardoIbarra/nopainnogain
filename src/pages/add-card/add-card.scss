@@ -1,0 +1,29 @@
+page-add-card {
+  margin-top: 20px !important;
+
+  .card {
+    background: #FFF;
+    border-radius: 1rem;
+    box-shadow: 0 0 1px rgba(86, 61, 124, 0.2), 0 2px 4px rgba(86, 61, 124, 0.15);
+  }
+
+  .round {
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+
+  ion-item {
+    border-radius: 5px !important;
+    .item-inner {
+      padding-left: 10px !important;
+    }
+  }
+
+  .full-width {
+    width: 100% !important;
+  }
+
+  .max-width {
+    max-width: 100% !important;
+  }
+}
