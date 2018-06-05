@@ -10,17 +10,6 @@
     <!--<form id="customer-form">-->
         <!--<input type="hidden" name="token_id" id="token_id"/>-->
         <!--<fieldset>-->
-            <!--<legend>Datos del cliente</legend>-->
-            <!--<p>-->
-                <!--<label>Nombre</label>-->
-                <!--<input type="text" size="20" autocomplete="on" name="client_name"/>-->
-            <!--</p>-->
-            <!--<p>-->
-                <!--<label>Correo Electr&oacute;nico</label>-->
-                <!--<input type="text" size="20" autocomplete="on" name="cliente_email"/>-->
-            <!--</p>-->
-        <!--</fieldset>-->
-        <!--<fieldset>-->
             <!--<legend>Datos de la tarjeta</legend>-->
             <!--<p>-->
                 <!--<label>Nombre</label>-->
@@ -65,7 +54,7 @@
                 <ion-row>
                     <ion-col>
                         <ion-item no-padding>
-                            <ion-input type="text" placeholder="Titular"  data-openpay-card="holder_name"></ion-input>
+                            <ion-input type="text" placeholder="Titular"  name="Cardholder" [(ngModel)]="CardData.Cardholder" data-openpay-card="holder_name"></ion-input>
                             <!--               <ion-icon name="person" item-end no-margin></ion-icon> -->
                         </ion-item>
                     </ion-col>
@@ -73,14 +62,14 @@
                 <ion-row>
                     <ion-col>
                         <ion-item no-padding>
-                            <ion-input placeholder="Número de Trajeta"  data-openpay-card="card_number" type="number"></ion-input>
+                            <ion-input placeholder="Número de Trajeta"  data-openpay-card="card_number" type="number" name="CardNumber" [(ngModel)]="CardData.CardNumber"></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
                 <ion-row>
                     <ion-col col-4>
                         <ion-item no-padding>
-                            <ion-select placeholder="MM" class="max-width full-width"  data-openpay-card="expiration_month">
+                            <ion-select placeholder="MM" class="max-width full-width"  data-openpay-card="expiration_month" name="ExpMonth" [(ngModel)]="CardData.ExpMonth">
                                 <ion-option value="01">01</ion-option>
                                 <ion-option value="02">02</ion-option>
                                 <ion-option value="03">03</ion-option>
@@ -98,7 +87,7 @@
                     </ion-col>
                     <ion-col col-4>
                         <ion-item no-padding>
-                            <ion-select placeholder="AA" class="max-width full-width" data-openpay-card="expiration_year">
+                            <ion-select placeholder="AA" class="max-width full-width" data-openpay-card="expiration_year" name="ExpYear" [(ngModel)]="CardData.ExpYear">
                                 <ion-option value="18">18</ion-option>
                                 <ion-option value="19">19</ion-option>
                                 <ion-option value="20">20</ion-option>
@@ -111,7 +100,7 @@
                     </ion-col>
                     <ion-col col-4>
                         <ion-item no-padding>
-                            <ion-input placeholder="CVV" type="number"  data-openpay-card="cvv2"></ion-input>
+                            <ion-input placeholder="CVV" type="number"  data-openpay-card="cvv2"  name="CCV" [(ngModel)]="CardData.CCV" ></ion-input>
                         </ion-item>
                     </ion-col>
                 </ion-row>
