@@ -3,6 +3,9 @@ import {IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Form, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PasswordValidation} from "../../validators/password.validator";
 import {LoadingService} from "../../services/loading.service";
+import {SharedService} from "../../services/shared.service";
+import {AlertService} from "../../services/alert.service";
+import {Storage} from "@ionic/storage";
 
 declare var OpenPay: any;
 
@@ -23,7 +26,13 @@ export class AddCardPage {
         ExpYear: 21
     };
 
-    constructor(public navCtrl: NavController, public navParams: NavParams, formBuilder: FormBuilder, public loadingService: LoadingService) {
+    constructor(public navCtrl: NavController,
+                public navParams: NavParams,
+                public formBuilder: FormBuilder,
+                public loadingService: LoadingService,
+                public storage: Storage,
+                public alertService: AlertService,
+                public sharedService: SharedService,) {
 
         //Form validations
         this.CardForm = formBuilder.group({
@@ -65,10 +74,19 @@ export class AddCardPage {
             },
             (data) => {
                 console.log(data);
-                this.loadingService.dismiss()
+                this.loadingService.dismiss();
+
+                if (!this.sharedService.UserData.Cards) {
+                    this.sharedService.UserData.Cards = [];
+                }
+                this.sharedService.UserData.Cards.push(data.data);
+                this.storage.set('UserData', this.sharedService.UserData);
+                this.navCtrl.pop();
+
             }, (error) => {
                 console.log(error);
                 this.loadingService.dismiss()
+                this.alertService.createAlertError();
             });
 
     }

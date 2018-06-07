@@ -23,9 +23,7 @@ export class PaymentService {
             use_card_points: false,
             deviceIdHiddenFieldName: OpenPay.deviceData.setup()
         };
-        return this.http.post(this.API_ENDPOINT + 'processCharge/', body).map((data) => {
-            return data.json()
-        });
+        return this.http.post(this.API_ENDPOINT + 'processCharge/', body).map(data => data.json());
     }
 
 }

@@ -14,6 +14,7 @@ export class GymPurchasePage {
 
     isPurchaseDone: boolean = false;
     cards: any = [];
+    selectedCard: any;
 
     // openpay = new this.sharedService.OpenPay('mrtezzirtht6piewm54o', 'pk_c0a63b5356524d2095a0df7172965ed9');
 
@@ -21,11 +22,12 @@ export class GymPurchasePage {
                 public navParams: NavParams,
                 public loadingService: LoadingService,
                 public sharedService: SharedService,) {
+
     }
 
     purchase() {
         this.loadingService.presentLoading();
-
+        console.log(this.selectedCard);
         setTimeout(() => {
             this.isPurchaseDone = true;
             this.loadingService.dismiss();
@@ -36,31 +38,12 @@ export class GymPurchasePage {
         this.navCtrl.push('AddCardPage')
     }
 
-    ionViewDidLoad() {
-
-
-
-        // var newCharge = {
-        //     "method": "card",
-        //     "card": {
-        //         "card_number": "4111111111111111",
-        //         "holder_name": "John Doe",
-        //         "expiration_year": "20",
-        //         "expiration_month": "12",
-        //         "cvv2": "110",
-        //     },
-        //     "amount": 200.00,
-        //     "description": "Service Charge",
-        //     "order_id": "oid-00721"
-        // };
-        //
-        // let token = this.openpay.token;
-        // console.log(token);
-        // this.openpay.charges.create(newCharge, function (error, body) {
-        //     console.log(body);
-        // });
-
-
+    ionViewWillEnter() {
+        if (this.sharedService.UserData.Cards) {
+            this.cards = this.sharedService.UserData.Cards;
+            this.selectedCard = this.cards[0];
+        }
+        console.log(this.cards);
     }
 
 }

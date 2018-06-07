@@ -15,14 +15,9 @@
         </ion-item>
         <ion-item text-center *ngIf="cards.length">
             <ion-label stacked>Tarjeta</ion-label>
-            <ion-select okText="Seleccionar" cancelText="Cerrar">
-                <ion-option selected>VISA
-                    &lowast;&lowast;&lowast;&lowast; &lowast;&lowast;&lowast;&lowast; &lowast;&lowast;&lowast;&lowast;
-                    8976
-                </ion-option>
-                <ion-option>MASTERCARD
-                    &lowast;&lowast;&lowast;&lowast; &lowast;&lowast;&lowast;&lowast; &lowast;&lowast;&lowast;&lowast;
-                    5262
+            <ion-select okText="Seleccionar" cancelText="Cerrar" [(ngModel)]="selectedCard">
+                <ion-option *ngFor="let c of cards; let i = index;">
+                    <span ion-text text-capitalize>{{c.card.brand}}</span>&nbsp; {{c.card.card_number}}
                 </ion-option>
             </ion-select>
         </ion-item>
