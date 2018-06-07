@@ -23,6 +23,7 @@ import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {Facebook} from "@ionic-native/facebook";
 import {PaymentService} from "../services/payment.service";
 import {Http, HttpModule} from "@angular/http";
+import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 
 @NgModule({
     declarations: [
@@ -45,6 +46,8 @@ import {Http, HttpModule} from "@angular/http";
         AngularFireModule.initializeApp(firebaseConfig),
         AngularFireDatabaseModule,
         AngularFireAuthModule,
+        FormsModule,
+        ReactiveFormsModule,
     ],
     bootstrap: [IonicApp],
     entryComponents: [

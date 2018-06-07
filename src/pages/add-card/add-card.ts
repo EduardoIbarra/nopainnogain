@@ -1,5 +1,8 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {Form, FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {PasswordValidation} from "../../validators/password.validator";
+import {LoadingService} from "../../services/loading.service";
 
 declare var OpenPay: any;
 
@@ -10,6 +13,8 @@ declare var OpenPay: any;
 })
 export class AddCardPage {
 
+    CardForm: FormGroup;
+
     CardData: any = {
         Cardholder: null,
         CardNumber: null,
@@ -18,7 +23,31 @@ export class AddCardPage {
         ExpYear: null
     };
 
-    constructor(public navCtrl: NavController, public navParams: NavParams) {
+    constructor(public navCtrl: NavController, public navParams: NavParams, formBuilder: FormBuilder, public loadingService: LoadingService) {
+
+        //Form validations
+        this.CardForm = formBuilder.group({
+            Cardholder: ['', Validators.compose([
+                Validators.required
+            ])],
+            CardNumber: ['', Validators.compose([
+                Validators.required,
+                Validators.minLength(16),
+                Validators.maxLength(16),
+                Validators.pattern('^[0-9]*$'),
+            ])],
+            CCV: ['', Validators.compose([
+                Validators.required,
+            ])],
+            ExpMonth: ['', Validators.compose([
+                Validators.required
+            ])],
+            ExpYear: ['', Validators.compose([
+                Validators.required
+            ])],
+        });
+
+
     }
 
     ionViewDidLoad() {
@@ -26,37 +55,21 @@ export class AddCardPage {
     }
 
     addCard() {
-        // let form = document.getElementById('customer-form');
-        // console.log(form);
-        //
-
-        let form: any = `
-            <form id="customer-form">
-                <input type="hidden" name="token_id" id="token_id"/>
-   
-                <label>Nombre</label>
-                <input type="text" size="20" autocomplete="off"  value="${this.CardData.Cardholder}" data-openpay-card="holder_name"/>
-
-                <input type="text" size="20" autocomplete="off"  value="${this.CardData.CardNumber}" data-openpay-card="card_number"/>
-                <input type="text" size="4" autocomplete="off"  value="${this.CardData.CCV}" data-openpay-card="cvv2"/>
-        
-   
-                <input type="text" size="2" value="${this.CardData.ExpMonth}" data-openpay-card="expiration_month"/> 
-                <input type="text" size="2" value="${this.CardData.ExpYear}" data-openpay-card="expiration_year"/>
-           
-            </form>
-        
-        `;
-
-        OpenPay.token.extractFormAndCreate(form, success, error);
-
-        function success(data) {
-            console.log(data);
-        }
-
-        function error(error) {
-            console.log(error);
-        }
+        this.loadingService.presentLoading();
+        OpenPay.token.create({
+                "card_number": this.CardData.CardNumber,
+                "holder_name": this.CardData.Cardholder,
+                "expiration_year": this.CardData.ExpYear,
+                "expiration_month": this.CardData.ExpMonth,
+                "cvv2": this.CardData.CCV
+            },
+            (data) => {
+                console.log(data);
+                this.loadingService.dismiss()
+            }, (error) => {
+                console.log(error);
+                this.loadingService.dismiss()
+            });
 
     }
 }
