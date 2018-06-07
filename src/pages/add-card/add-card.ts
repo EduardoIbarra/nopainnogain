@@ -16,11 +16,11 @@ export class AddCardPage {
     CardForm: FormGroup;
 
     CardData: any = {
-        Cardholder: null,
-        CardNumber: null,
-        CCV: null,
-        ExpMonth: null,
-        ExpYear: null
+        Cardholder: 'Fulanito de Tal',
+        CardNumber: '4111111111111111',
+        CCV: '123',
+        ExpMonth: 12,
+        ExpYear: 21
     };
 
     constructor(public navCtrl: NavController, public navParams: NavParams, formBuilder: FormBuilder, public loadingService: LoadingService) {

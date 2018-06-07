@@ -38,25 +38,10 @@ export class HomePage {
                 public paymentService: PaymentService,
                 public navParams: NavParams,
                 public loadingService: LoadingService,) {
-
     }
 
     ionViewDidLoad() {
         this.getUserLocation();
-
-        OpenPay.token.create({
-                "card_number": "4111111111111111",
-                "holder_name": "Juan Perez Ramirez",
-                "expiration_year": "20",
-                "expiration_month": "12",
-                "cvv2": "110",
-            },
-            (data) => {
-                console.log(data);
-                this.gymPayment(data)
-            }, (error) => {
-                console.log(error);
-            });
     }
 
     gymPayment(data) {

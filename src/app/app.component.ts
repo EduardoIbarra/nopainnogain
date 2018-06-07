@@ -63,10 +63,11 @@ export class MyApp {
 
 
             OpenPay.setSandboxMode(true);
+            // OpenPay.setApiKey('sk_f7d7e49cdfa7462cb3ca8af2106481fb')
             OpenPay.setId('mmgdkgnzoy3qpcxf925c');
-            OpenPay.setApiKey('sk_f7d7e49cdfa7462cb3ca8af2106481fb')
-            // OpenPay.setId('mrtezzirtht6piewm54o');
-            // OpenPay.setApiKey('pk_c0a63b5356524d2095a0df7172965ed9')
+            OpenPay.setApiKey('pk_20c7b0256fdb4cf8aa87449ddb158abf')
+            //OpenPay.setId('mrtezzirtht6piewm54o');
+            //OpenPay.setApiKey('pk_c0a63b5356524d2095a0df7172965ed9')
         });
     }
 
