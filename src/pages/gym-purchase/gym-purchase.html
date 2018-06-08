@@ -13,14 +13,10 @@
       <img src="assets/img/example/bonga.jpg">
       <h2>Monto: <span ion-text color="danger">$69.00 MXN</span></h2>
     </ion-item>
-    <ion-item text-center *ngIf="cards.length">
-      <ion-label stacked>Tarjeta</ion-label>
-      <ion-select okText="Seleccionar" cancelText="Cerrar">
-        <ion-option *ngFor="let c of cards; let i = index;" text-capitalize (ionChange)="selectedCardOption(c)" [selected]="i===0">
-          {{c.card.brand}} {{c.card.card_number}}
-        </ion-option>
-      </ion-select>
-    </ion-item>
+    <button ion-item detail-none text-center *ngIf="cards.length" (tap)="showCardAlert()">
+      <h3>Tarjeta</h3>
+      <h2> {{selectedCard.card.brand}} {{selectedCard.card.card_number}}</h2>
+    </button>
     <ion-item *ngIf="cards.length" text-center>
       <small>
         <a (tap)="addCardPage()">Agregar nueva Tarjeta</a>

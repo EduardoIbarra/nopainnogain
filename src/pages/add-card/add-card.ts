@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
 import {Form, FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {PasswordValidation} from "../../validators/password.validator";
 import {LoadingService} from "../../services/loading.service";
@@ -88,6 +88,6 @@ export class AddCardPage {
                 this.loadingService.dismiss()
                 this.alertService.createAlertError();
             });
-
     }
+
 }
