@@ -72,4 +72,13 @@ export class AlertService {
         alert.present();
     }
 
+    createAlertError() {
+        let alert = this.alertCtrl.create({
+            title: 'Ha ocurrido un error',
+            message: 'No hemos podido registrar esta tarjeta, intenta de nuevo más tarde.',
+            buttons: ['OK']
+        });
+        alert.present();
+    }
+
 }

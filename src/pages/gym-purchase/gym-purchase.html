@@ -1,52 +1,48 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title>{{isPurchaseDone? 'Compra Exitosa' : 'Comprar'}}</ion-title>
-    </ion-navbar>
-    <navbar-bump></navbar-bump>
+  <ion-navbar>
+    <ion-title>{{isPurchaseDone? 'Compra Exitosa' : 'Comprar'}}</ion-title>
+  </ion-navbar>
+  <navbar-bump></navbar-bump>
 </ion-header>
 
 
 <ion-content padding>
-    <div *ngIf="!isPurchaseDone">
-        <ion-item text-center>
-            <h1><b>Bonga GYM</b></h1>
-            <img src="assets/img/example/bonga.jpg">
-            <h2>Monto: <span ion-text color="danger">$69.00 MXN</span></h2>
-        </ion-item>
-        <ion-item text-center *ngIf="cards.length">
-            <ion-label stacked>Tarjeta</ion-label>
-            <ion-select okText="Seleccionar" cancelText="Cerrar">
-                <ion-option selected>VISA
-                    &lowast;&lowast;&lowast;&lowast; &lowast;&lowast;&lowast;&lowast; &lowast;&lowast;&lowast;&lowast;
-                    8976
-                </ion-option>
-                <ion-option>MASTERCARD
-                    &lowast;&lowast;&lowast;&lowast; &lowast;&lowast;&lowast;&lowast; &lowast;&lowast;&lowast;&lowast;
-                    5262
-                </ion-option>
-            </ion-select>
-        </ion-item>
-        <ion-item text-center no-lines *ngIf="!cards.length">
-            <ion-list-header>agregar Tarjeta</ion-list-header>
-            <liberi-button name="plus" (tap)="addCardPage()"></liberi-button>
-        </ion-item>
-    </div>
+  <div *ngIf="!isPurchaseDone">
+    <ion-item text-center>
+      <h1><b>Bonga GYM</b></h1>
+      <img src="assets/img/example/bonga.jpg">
+      <h2>Monto: <span ion-text color="danger">$69.00 MXN</span></h2>
+    </ion-item>
+    <button ion-item detail-none text-center *ngIf="cards.length" (tap)="showCardAlert()">
+      <h3>Tarjeta</h3>
+      <h2> {{selectedCard.card.brand}} {{selectedCard.card.card_number}}</h2>
+    </button>
+    <ion-item *ngIf="cards.length" text-center>
+      <small>
+        <a (tap)="addCardPage()">Agregar nueva Tarjeta</a>
+      </small>
+    </ion-item>
+    <ion-item text-center no-lines *ngIf="!cards.length">
+      <ion-list-header>Agregar Tarjeta</ion-list-header>
+      <liberi-button name="plus" (tap)="addCardPage()"></liberi-button>
+    </ion-item>
+  </div>
 
-    <div *ngIf="isPurchaseDone">
-        <ion-item text-center text-wrap no-lines>
-            <ion-list-header><b>Tu compra ha sido registrada correctamente</b></ion-list-header>
-        </ion-item>
+  <div *ngIf="isPurchaseDone">
+    <ion-item text-center text-wrap no-lines>
+      <ion-list-header><b>Tu compra ha sido registrada correctamente</b></ion-list-header>
+    </ion-item>
 
-        <ion-item text-center text-wrap class="text-box-outline">
-            <p>Puedes consultar los detalles de tu compra en tu <b>HISTORIAL DE COMPRAR</b>. Una copia de compra tu y el código QR de acceso de envió a tu correo electrónico</p>
-        </ion-item>
-    </div>
+    <ion-item text-center text-wrap class="text-box-outline">
+      <p>Puedes consultar los detalles de tu compra en tu <b>HISTORIAL DE COMPRAR</b>. Una copia de compra tu y el código QR de acceso de envió a tu correo electrónico</p>
+    </ion-item>
+  </div>
 
-    <br><br>
-    <div text-center *ngIf="cards.length">
-        <liberi-button name="check-blue" (click)="!isPurchaseDone ? purchase() : navCtrl.pop()"></liberi-button>
-    </div>
+  <br><br>
+  <div text-center *ngIf="cards.length">
+    <liberi-button name="check-blue" (click)="!isPurchaseDone ? purchase() : navCtrl.pop()"></liberi-button>
+  </div>
 </ion-content>
 <ion-footer text-center>
-    <img src="assets/img/logo-text.png">
+  <img src="assets/img/logo-text.png">
 </ion-footer>
