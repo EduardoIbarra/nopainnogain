@@ -62,7 +62,7 @@ export class MyApp {
             this.splashScreen.hide();
 
 
-            OpenPay.setSandboxMode(true);
+            // OpenPay.setSandboxMode(true);
             // OpenPay.setApiKey('sk_f7d7e49cdfa7462cb3ca8af2106481fb')
             OpenPay.setId('mmgdkgnzoy3qpcxf925c');
             OpenPay.setApiKey('pk_20c7b0256fdb4cf8aa87449ddb158abf')

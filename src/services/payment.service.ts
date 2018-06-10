@@ -15,13 +15,13 @@ export class PaymentService {
         let body: any = {
             name: userData.name,
             last_name: userData.last_name,
-            phone_number: '',
+            phone_number: '8341687731',
             email: userData.email,
-            token_id: cardData.id,
+            token_id: cardData.token_id,
             amount: amount,
-            description: cardData.card.card_number,
+            description: 'Gym Payment',
             use_card_points: false,
-            deviceIdHiddenFieldName: OpenPay.deviceData.setup()
+            deviceIdHiddenFieldName: cardData.deviceSessionId
         };
         return this.http.post(this.API_ENDPOINT + 'processCharge/', body).map(data => data.json());
     }
