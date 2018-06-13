@@ -58,6 +58,6 @@ export class GymDetailPage {
     }
 
     purchase() {
-        this.navCtrl.push('GymPurchasePage');
+        this.navCtrl.push('GymPurchasePage', {viewCtrl: this.viewCtrl});
     }
 }

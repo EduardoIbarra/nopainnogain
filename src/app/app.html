@@ -8,10 +8,14 @@
                 </ion-avatar>
                 <h2> {{sharedService.UserData?.name + ' '+ sharedService.UserData?.last_name}}</h2>
             </ion-item>
-            <button menuClose ion-item detail-none *ngFor="let p of pages" (click)="openPage(p)" [class.active-highlight]="checkActivePage(p)" class="list-item">
-                <img [src]="'assets/img/menu/' + p.icon" item-start class="menu-img-icon">
-                {{p.title}}
-            </button>
+            <div *ngFor="let p of pages; let i  = index">
+                <ion-item menuClose [class.active-highlight]="checkActivePage(p)" class="list-item" *ngIf="p.show" [class.submenu-option]="i===2">
+                    <img [src]="'assets/img/menu/' + p.icon" item-start class="menu-img-icon">
+                    <span (click)="openPage(p)">{{p.title}}</span>
+                    <ion-icon *ngIf="i === 1" name="{{showCardItem? 'ios-arrow-down': 'ios-arrow-back'}}" item-end (click)="toggleCardItem($event)"></ion-icon>
+                </ion-item>
+            </div>
+
         </ion-list>
     </ion-content>
 </ion-menu>

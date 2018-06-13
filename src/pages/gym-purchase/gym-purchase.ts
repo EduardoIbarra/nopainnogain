@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {LoadingService} from "../../services/loading.service";
 import {SharedService} from "../../services/shared.service";
 import {PaymentService} from "../../services/payment.service";
@@ -16,16 +16,22 @@ export class GymPurchasePage {
     isPurchaseDone: boolean = false;
     cards: any = [];
     selectedCard: any;
+    viewCtrl: any;
 
     // openpay = new this.sharedService.OpenPay('mrtezzirtht6piewm54o', 'pk_c0a63b5356524d2095a0df7172965ed9');
 
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
+                public _viewCtrl: ViewController,
                 public alertCtrl: AlertController,
                 public paymentService: PaymentService,
                 public loadingService: LoadingService,
                 public sharedService: SharedService,) {
 
+        this.viewCtrl = navParams.get('viewCtrl');
+
+
+        this._viewCtrl.showBackButton(false);
     }
 
     purchase() {
@@ -75,5 +81,10 @@ export class GymPurchasePage {
             }
         });
         alert.present();
+    }
+
+    dismiss() {
+        this.navCtrl.pop();
+        this.viewCtrl.dismiss()
     }
 }

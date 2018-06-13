@@ -16,8 +16,9 @@ export class MyApp {
 
     rootPage: any;
     activePage: any;
+    showCardItem: boolean = false;
 
-    pages: Array<{ title: string, component: any, icon: string }>;
+    pages: Array<{ title: string, component: any, icon: string, show: boolean }>;
 
     constructor(public platform: Platform,
                 public statusBar: StatusBar,
@@ -37,14 +38,15 @@ export class MyApp {
 
         // used for an example of ngFor and navigation
         this.pages = [
-            {title: 'Cercanos', component: 'HomePage', icon: 'pin.png'},
-            {title: 'Datos Personales', component: 'HomePage', icon: 'user.png'},
-            {title: 'Notificaciones', component: 'HomePage', icon: 'notification.png'},
-            {title: 'Historial de Compras', component: 'PurchaseHistoryPage', icon: 'history.png'},
-            {title: 'Preferencias', component: 'HomePage', icon: 'preferences.png'},
-            {title: 'Promociones', component: 'HomePage', icon: 'promos.png'},
-            {title: 'Ayuda', component: 'HomePage', icon: 'help.png'},
-            {title: 'Cerrar Sesión', component: null, icon: 'logout.png'},
+            {title: 'Inicio', component: 'HomePage', icon: 'pin.png', show: true},
+            {title: 'Datos Personales', component: 'HomePage', icon: 'user.png', show: true},
+            {title: 'Datos de tarjeta', component: 'HomePage', icon: 'card.png', show: false},
+            {title: 'Notificaciones', component: 'HomePage', icon: 'notification.png', show: true},
+            {title: 'Historial de Compras', component: 'PurchaseHistoryPage', icon: 'history.png', show: true},
+            {title: 'Preferencias', component: 'HomePage', icon: 'preferences.png', show: true},
+            {title: 'Promociones', component: 'HomePage', icon: 'promos.png', show: true},
+            {title: 'Ayuda', component: 'HomePage', icon: 'help.png', show: true},
+            {title: 'Cerrar Sesión', component: null, icon: 'logout.png', show: true},
         ];
 
         this.activePage = this.pages[0];
@@ -85,5 +87,11 @@ export class MyApp {
 
     checkActivePage(page) {
         return page === this.activePage;
+    }
+
+    toggleCardItem(ev) {
+        this.showCardItem = !this.showCardItem;
+        this.pages[2].show = !this.pages[2].show;
+        ev.stopPropagation()
     }
 }
