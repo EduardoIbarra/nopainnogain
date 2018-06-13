@@ -1,4 +1,9 @@
 page-gym-detail {
+
+  .toolbar-title {
+    font-size: 1.3rem !important;
+  }
+
   ion-segment-button {
     height: 50px !important;
     ion-icon {
@@ -130,6 +135,6 @@ page-gym-detail {
     border-style: solid;
     border-left: 30px solid transparent;
     border-right: 30px solid transparent;
-    border-top: 30px solid #fa6f57;
+    border-top: 26px solid #fa6f57;
   }
 }

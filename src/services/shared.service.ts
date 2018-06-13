@@ -3041,14 +3041,26 @@ export class SharedService {
     logout() {
         // this.menu.enable(true, 'PublicUserMenu');
         // this.menu.enable(false, 'LoggedUserMenu');
-        let nav: any = this.app.getRootNavById('n4');
-        nav.setRoot('LoginPage');
-        setTimeout(() => {
-            this.storage.set('UserData', null);
-            this.UserData = null;
-            this.enableSplitPane = false;
-        }, 1000);
 
+        let nav: any = this.app.getRootNavById('n4');
+
+        let alert = this.alertCtrl.create({
+            title: '¿Desea cerrar sesión y salir de Liberi?',
+            buttons: [{
+                text: 'Cancelar'
+            }, {
+                text: 'Salir',
+                handler: () => {
+                    nav.setRoot('LoginPage');
+                    setTimeout(() => {
+                        this.storage.set('UserData', null);
+                        this.UserData = null;
+                        this.enableSplitPane = false;
+                    }, 1000);
+                }
+            }]
+        });
+        alert.present();
     }
 
     login(userData, navCtrl: NavController) {

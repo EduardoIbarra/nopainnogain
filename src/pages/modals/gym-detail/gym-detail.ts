@@ -17,7 +17,6 @@ export class GymDetailPage {
     isOpenToday: boolean = false;
     youtubeLink: SafeResourceUrl;
 
-    @ViewChild('gymMap') mapRef: ElementRef;
     @ViewChild(Slides) slides: Slides;
 
     constructor(public navCtrl: NavController,
@@ -31,11 +30,7 @@ export class GymDetailPage {
 
     ionViewDidLoad() {
         console.log(this.gym);
-        this.segment = 'info';
-        setTimeout(() => {
-            this.loadMap();
-        }, 200);
-
+        this.segment = 'img';
         let today = new Date().getDay();
         if (today === 0 && this.gym.open_sunday) this.isOpenToday = true;
         if (today === 1 && this.gym.open_monday) this.isOpenToday = true;
@@ -54,45 +49,12 @@ export class GymDetailPage {
         console.log(this.youtubeLink);
     }
 
-
-    loadMap() {
-        const location = new google.maps.LatLng(parseFloat(this.gym.lat), parseFloat(this.gym.lng));
-        const options = {
-            center: location,
-            zoom: 15,
-            disableDefaultUI: true,
-            zoomControl: true,
-            maximumAge: 30000,
-            timeout: 30000,
-            enableHighAccuracy: false
-        };
-        const map = new google.maps.Map(this.mapRef.nativeElement, options);
-
-        google.maps.event.addListener(map, 'tilt_changed', () => {
-            let marker = new google.maps.Marker({
-                position: location,
-                animation: google.maps.Animation.DROP,
-                visible: true,
-                icon: {
-                    url: 'assets/img/gym-marker.png',
-                    scaledSize: new google.maps.Size(25, 50)
-                },
-            });
-            marker.setMap(map);
-        });
-    }
-
     dismiss() {
         this.viewCtrl.dismiss();
     }
 
     activeSegment(segment) {
         this.segment = segment;
-        if (segment === 'info') {
-            setTimeout(() => {
-                this.loadMap()
-            }, 200)
-        }
     }
 
     purchase() {

@@ -13,7 +13,7 @@
       <img src="assets/img/example/bonga.jpg">
       <h2>Monto: <span ion-text color="danger">$69.00 MXN</span></h2>
     </ion-item>
-    <button ion-item detail-none text-center *ngIf="cards.length" (tap)="showCardAlert()">
+    <button ion-item detail-none text-center *ngIf="cards.length" (tap)="showCardAlert()" text-wrap>
       <h3>Tarjeta</h3>
       <h2> {{selectedCard.card.brand}} {{selectedCard.card.card_number}}</h2>
     </button>
@@ -43,6 +43,6 @@
     <liberi-button name="check-blue" (click)="!isPurchaseDone ? purchase() : navCtrl.pop()"></liberi-button>
   </div>
 </ion-content>
-<ion-footer text-center>
+<ion-footer text-center padding-bottom>
   <img src="assets/img/logo-text.png">
 </ion-footer>

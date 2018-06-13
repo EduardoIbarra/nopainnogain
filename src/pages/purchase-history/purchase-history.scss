@@ -1,5 +1,8 @@
 page-purchase-history {
 
+  .toolbar-title {
+    font-size: 1.3rem !important;
+  }
   .gym-list {
     .gym-list-item {
       ion-avatar {
@@ -45,10 +48,10 @@ page-purchase-history {
         border-radius: 5px;
         padding: 8px;
         margin-bottom: 10px;
-        ion-icon{
+        ion-icon {
           padding-right: 10px;
         }
-        ion-avatar{
+        ion-avatar {
           display: -webkit-box;
           margin-bottom: 0;
         }
