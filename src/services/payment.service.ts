@@ -1,5 +1,6 @@
 import {Injectable} from '@angular/core';
 import {Http} from "@angular/http";
+import {AngularFireDatabase} from "angularfire2/database/database";
 
 declare var OpenPay: any;
 
@@ -8,7 +9,7 @@ export class PaymentService {
 
     private API_ENDPOINT: string = 'http://liberi-landing.eduardoibarra.com/';
 
-    constructor(private http: Http) {
+    constructor(private http: Http, private afDB: AngularFireDatabase) {
     }
 
     GymPayment(cardData, userData, amount) {
@@ -26,4 +27,7 @@ export class PaymentService {
         return this.http.post(this.API_ENDPOINT + 'processCharge/', body).map(data => data.json());
     }
 
+    getPayments(){
+        return this.afDB.object('/payments/');
+    }
 }

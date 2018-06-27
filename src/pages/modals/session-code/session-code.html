@@ -1,0 +1,50 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>CÓDIGO</ion-title>
+        <ion-buttons end>
+            <button icon-only ion-button (tap)="dismiss()">
+                <ion-icon name="md-close"></ion-icon>
+            </button>
+        </ion-buttons>
+    </ion-navbar>
+    <navbar-bump></navbar-bump>
+</ion-header>
+
+
+<ion-content padding>
+
+    <div class="container">
+        <div class="item-list">
+            <div class="item" text-center *ngIf="validationStep === 1">
+                <h4 text-wrap class="title-label font-normal">Por favor introduce el código alfanúmerico</h4>
+                <ion-label floating>Código</ion-label>
+                <ion-input></ion-input>
+                <liberi-button name="check-green" (tap)="validateCode()"></liberi-button>
+                <h5 class="font-normal">Validar</h5>
+            </div>
+
+            <div class="item" text-center *ngIf="validationStep === 2">
+                <h4 text-wrap class="title-label font-normal">SnapFitness La Rioja</h4>
+                <img src="assets/img/example/snap.png">
+                <h5 ion-text color="secondary">¡Código Válido!</h5>
+                <br>
+                <br>
+                <h5 class="font-normal">¿Confirmar entrada?</h5>
+
+                <div class="flex-container">
+                    <liberi-button name="check-green" (tap)="acceptCode()"></liberi-button>
+
+                    <liberi-button name="close" (tap)="dismiss()"></liberi-button>
+                </div>
+            </div>
+            <div class="item" text-center *ngIf="validationStep === 3">
+                <h3 text-wrap class="title-label font-normal">¡Sesión registrada exitosamente!</h3>
+                <liberi-button name="check-green" (tap)="dismiss()"></liberi-button>
+                <h5 class="font-normal">Aceptar</h5>
+            </div>
+        </div>
+    </div>
+</ion-content>
+<ion-footer text-center>
+    <img src="assets/img/logo-text.png">
+</ion-footer>
