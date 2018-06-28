@@ -24,6 +24,7 @@ import {Facebook} from "@ionic-native/facebook";
 import {PaymentService} from "../services/payment.service";
 import {Http, HttpModule} from "@angular/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
+import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 
 @NgModule({
     declarations: [
@@ -68,7 +69,8 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
         Camera,
         UsersService,
         InAppBrowser,
-        Facebook
+        Facebook,
+        BarcodeScanner
     ]
 })
 export class AppModule {

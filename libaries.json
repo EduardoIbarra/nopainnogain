@@ -48,5 +48,10 @@
     "description": "Allow the use of in app broswer",
     "dependency": "npm install --save @ionic-native/facebook",
     "plugin": "ionic cordova plugin add cordova-plugin-facebook4 --variable APP_ID='242703106469835' --variable APP_NAME='Liberi'"
+  },
+  "barcode scanner": {
+    "description": "Allow the use of in app broswer",
+    "dependency": "npm install --save @ionic-native/barcode-scanner",
+    "plugin": "ionic cordova plugin add phonegap-plugin-barcodescanner"
   }
 }

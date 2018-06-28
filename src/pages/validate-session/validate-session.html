@@ -1,0 +1,27 @@
+<ion-header>
+    <ion-navbar>
+        <button ion-button menuToggle="left">
+            <ion-icon name="arrow-back"></ion-icon>
+        </button>
+        <ion-title>VALIDAR SESIÓN</ion-title>
+    </ion-navbar>
+    <navbar-bump></navbar-bump>
+</ion-header>
+
+<ion-content padding>
+    <ion-list text-wrap text-center>
+        <ion-item no-lines>
+            <button ion-button block (tap)="scanCode()" class="code-button">Código QR</button>
+        </ion-item>
+        <br>
+        <br>
+        <br>
+        <ion-item no-lines>
+            <button ion-button block (tap)="showModalCode()" class="code-button">Código Alfanumérico</button>
+        </ion-item>
+    </ion-list>
+
+</ion-content>
+<ion-footer text-center padding-bottom>
+    <img src="assets/img/logo-text.png">
+</ion-footer>

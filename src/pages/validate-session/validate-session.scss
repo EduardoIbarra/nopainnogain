@@ -1,0 +1,24 @@
+page-validate-session {
+
+  //$button-round-background: linear-gradient(#b9b9b9, #e1e1e1, #e1e1e1,  #b9b9b9);
+  //$button-round-background-activated: linear-gradient(#b9b9b9, #e1e1e1);
+
+  $button-round-background: #b9b9b9;
+  $button-round-background-activated: #e1e1e1;
+
+
+  ion-content {
+    text-align: center;
+  }
+  .code-button {
+    //background-color: #d0d0d0 !important;
+    color: #ffffff;
+    font-weight: bolder;
+    height: 2em !important;
+    background: $button-round-background;
+    &.activated {
+      background: $button-round-background-activated;
+    }
+
+  }
+}
