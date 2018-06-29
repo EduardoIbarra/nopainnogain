@@ -30,4 +30,10 @@ export class PaymentService {
     getPayments(){
         return this.afDB.object('/payments/');
     }
+    getPayment(uid, code) {
+      return this.afDB.object('/payments/' + uid + '/' + code);
+    }
+    setPaymentProperty(uid, code, property, value) {
+      return this.afDB.object('/payments/' + uid + '/' + code + '/' + property).set(value);
+    }
 }

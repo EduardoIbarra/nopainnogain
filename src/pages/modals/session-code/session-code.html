@@ -18,14 +18,14 @@
             <div class="item" text-center *ngIf="validationStep === 1">
                 <h4 text-wrap class="title-label font-normal">Por favor introduce el código alfanúmerico</h4>
                 <ion-label floating>Código</ion-label>
-                <ion-input></ion-input>
+                <ion-input [(ngModel)]="code"></ion-input>
                 <liberi-button name="check-green" (tap)="validateCode()"></liberi-button>
                 <h5 class="font-normal">Validar</h5>
             </div>
 
             <div class="item" text-center *ngIf="validationStep === 2">
-                <h4 text-wrap class="title-label font-normal">SnapFitness La Rioja</h4>
-                <img src="assets/img/example/snap.png">
+                <h4 text-wrap class="title-label font-normal">{{gym.commercial_name}}</h4>
+                <img src="{{gym.photoURL || 'https://seeklogo.com/images/G/gym-logo-3F51052256-seeklogo.com.png'}}">
                 <h5 ion-text color="secondary">¡Código Válido!</h5>
                 <br>
                 <br>
