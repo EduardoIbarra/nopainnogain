@@ -15,6 +15,10 @@ export class UsersService {
         return this.afDB.database.ref('/users/' + uid).once('value');
     }
 
+    public getUserById(uid) {
+      return this.afDB.object('/users/' + uid);
+    }
+
     public createUser(data, uid) {
         let user: any  =  Object.assign({}, data);
         user.from_app = true;
@@ -31,5 +35,9 @@ export class UsersService {
 
     public deleteUser(user) {
         return this.afDB.database.ref('/users/' + user.uid).remove();
+    }
+
+    public setUserAttribute(uid, attribute, value) {
+      return this.afDB.database.ref('/users/' + uid + '/' + attribute).set(value);
     }
 }

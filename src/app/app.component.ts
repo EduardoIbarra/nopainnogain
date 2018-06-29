@@ -32,7 +32,7 @@ export class MyApp {
         this.storage.get('UserData').then((UserData) => {
             console.log('UserData: ', UserData);
             this.sharedService.UserData = UserData;
-            this.rootPage = UserData ? 'HomePage' : 'LoginPage';
+            this.rootPage = UserData ? 'PreferencesPage' : 'LoginPage';
             this.sharedService.enableSplitPane = this.rootPage !== 'LoginPage';
         });
 
@@ -43,7 +43,7 @@ export class MyApp {
             {title: 'Datos de tarjeta', component: 'HomePage', icon: 'card.png', show: false},
             {title: 'Notificaciones', component: 'HomePage', icon: 'notification.png', show: true},
             {title: 'Historial de Compras', component: 'PurchaseHistoryPage', icon: 'history.png', show: true},
-            {title: 'Preferencias', component: 'HomePage', icon: 'preferences.png', show: true},
+            {title: 'Preferencias', component: 'PreferencesPage', icon: 'preferences.png', show: true},
             {title: 'Promociones', component: 'HomePage', icon: 'promos.png', show: true},
             {title: 'Ayuda', component: 'HomePage', icon: 'help.png', show: true},
             {title: 'Validar Sesión', component: 'ValidateSessionPage', icon: 'qr-code.png', show: true},

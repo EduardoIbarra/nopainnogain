@@ -1,0 +1,116 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle="left">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <ion-title>PREFERENCIAS</ion-title>
+  </ion-navbar>
+  <navbar-bump></navbar-bump>
+</ion-header>
+
+<ion-content>
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="savePreferences()"><ion-icon name="checkmark"></ion-icon></button>
+  </ion-fab>
+
+  <ion-grid>
+    <ion-row>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label>Aeróbico</ion-label>
+          <ion-checkbox [(ngModel)]="settings.aerobico" color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Crossfit</ion-label>
+          <ion-checkbox [(ngModel)]="settings.crossfit" color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Ritmos Latinos</ion-label>
+          <ion-checkbox [(ngModel)]="settings.ritmos" color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Pole Dance</ion-label>
+          <ion-checkbox [(ngModel)]="settings.pole" color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Jumping Fitness</ion-label>
+          <ion-checkbox [(ngModel)]="settings.jumping " color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Spinning</ion-label>
+          <ion-checkbox [(ngModel)]="settings.spinning" color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>MMA</ion-label>
+          <ion-checkbox [(ngModel)]="settings.mma" color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Karate</ion-label>
+          <ion-checkbox [(ngModel)]="settings.karate" color="dark"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Funcional</ion-label>
+          <ion-checkbox [(ngModel)]="settings.funcional" color="dark"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+      <ion-col col-6>
+        <ion-item>
+          <ion-label>Pesas</ion-label>
+          <ion-checkbox color="dark" [(ngModel)]="settings.pesas"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Zumba</ion-label>
+          <ion-checkbox color="dark" [(ngModel)]="settings.zumba"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Danza Aérea</ion-label>
+          <ion-checkbox color="dark" [(ngModel)]="settings.danza"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Yoga</ion-label>
+          <ion-checkbox color="dark" [(ngModel)]="settings.yoga"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Barre</ion-label>
+          <ion-checkbox color="dark" [(ngModel)]="settings.barre"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Boxeo</ion-label>
+          <ion-checkbox color="dark" [(ngModel)]="settings.boxeo"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Tae Kown Do</ion-label>
+          <ion-checkbox color="dark" [(ngModel)]="settings.taekwondo"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Natación</ion-label>
+          <ion-checkbox color="dark" [(ngModel)]="settings.natacion"></ion-checkbox>
+        </ion-item>
+        <ion-item>
+          <ion-label>Otras</ion-label>
+          <ion-checkbox color="dark" [(ngModel)]="settings.otras"></ion-checkbox>
+        </ion-item>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <div text-center>
+    <h3>Ubicación: {{settings.location}}km</h3>
+  </div>
+  <ion-item>
+    <ion-range [(ngModel)]="settings.location" pin="true" min="0" max="25">
+      <ion-label range-left>0 km</ion-label>
+      <ion-label range-right>25 km</ion-label>
+    </ion-range>
+  </ion-item>
+
+  <div text-center>
+    <h3>Precio ${{settings.price | number: '1.2-2'}}</h3>
+  </div>
+  <ion-item>
+    <ion-range [(ngModel)]="settings.price" pin="true" min="0" max="500" step="10">
+      <ion-label range-left>$0</ion-label>
+      <ion-label range-right>$500</ion-label>
+    </ion-range>
+  </ion-item>
+</ion-content>

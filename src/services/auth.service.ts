@@ -43,4 +43,8 @@ export class AuthService {
       return this.firebaseAuth.auth.sendPasswordResetEmail(email);
     }
 
+    getStatus() {
+      return this.firebaseAuth.authState;
+    }
+
 }
