@@ -30,6 +30,9 @@ export class PaymentService {
     getPayments(){
         return this.afDB.object('/payments/');
     }
+    createPayment(uid, code, payment){
+      return this.afDB.object('/payments/' + uid + '/' + code).set(payment);
+    }
     getPayment(uid, code) {
       return this.afDB.object('/payments/' + uid + '/' + code);
     }
