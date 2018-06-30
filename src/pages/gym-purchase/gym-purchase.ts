@@ -8,83 +8,84 @@ declare var OpenPay: any;
 
 @IonicPage()
 @Component({
-    selector: 'page-gym-purchase',
-    templateUrl: 'gym-purchase.html',
+  selector: 'page-gym-purchase',
+  templateUrl: 'gym-purchase.html',
 })
 export class GymPurchasePage {
 
-    isPurchaseDone: boolean = false;
-    cards: any = [];
-    selectedCard: any;
-    viewCtrl: any;
+  isPurchaseDone: boolean = false;
+  cards: any = [];
+  selectedCard: any;
+  viewCtrl: any;
+  gym: any;
 
-    // openpay = new this.sharedService.OpenPay('mrtezzirtht6piewm54o', 'pk_c0a63b5356524d2095a0df7172965ed9');
+  // openpay = new this.sharedService.OpenPay('mrtezzirtht6piewm54o', 'pk_c0a63b5356524d2095a0df7172965ed9');
 
-    constructor(public navCtrl: NavController,
-                public navParams: NavParams,
-                public _viewCtrl: ViewController,
-                public alertCtrl: AlertController,
-                public paymentService: PaymentService,
-                public loadingService: LoadingService,
-                public sharedService: SharedService,) {
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public _viewCtrl: ViewController,
+              public alertCtrl: AlertController,
+              public paymentService: PaymentService,
+              public loadingService: LoadingService,
+              public sharedService: SharedService,) {
 
-        this.viewCtrl = navParams.get('viewCtrl');
+    this.viewCtrl = navParams.get('viewCtrl');
+    this.gym = navParams.get('gym');
 
+    this._viewCtrl.showBackButton(false);
+  }
 
-        this._viewCtrl.showBackButton(false);
+  purchase() {
+    this.loadingService.presentLoading();
+    console.log(this.selectedCard);
+    this.paymentService.GymPayment(this.selectedCard, this.sharedService.UserData, '22').subscribe((response) => {
+      console.log(response);
+      this.loadingService.dismiss();
+    }, (error) => {
+      console.log(error);
+      this.loadingService.dismiss();
+    });
+
+  }
+
+  addCardPage() {
+    this.navCtrl.push('AddCardPage')
+  }
+
+  ionViewWillEnter() {
+    if (this.sharedService.UserData.Cards) {
+      this.cards = this.sharedService.UserData.Cards;
+      this.selectedCard = this.cards[0];
     }
+    console.log(this.cards);
+  }
 
-    purchase() {
-        this.loadingService.presentLoading();
-        console.log(this.selectedCard);
-        this.paymentService.GymPayment(this.selectedCard, this.sharedService.UserData, '22').subscribe((response) => {
-            console.log(response);
-            this.loadingService.dismiss();
-        }, (error) => {
-            console.log(error);
-            this.loadingService.dismiss();
-        });
+  showCardAlert() {
+    let alert = this.alertCtrl.create();
+    alert.setTitle('Selecciona Tarjeta');
 
-    }
+    this.cards.forEach((c, ci) => {
+      alert.addInput({
+        type: 'radio',
+        label: c.card.brand.toUpperCase() + ' ' + c.card.card_number,
+        value: ci,
+      });
 
-    addCardPage() {
-        this.navCtrl.push('AddCardPage')
-    }
+    });
 
-    ionViewWillEnter() {
-        if (this.sharedService.UserData.Cards) {
-            this.cards = this.sharedService.UserData.Cards;
-            this.selectedCard = this.cards[0];
-        }
-        console.log(this.cards);
-    }
+    alert.addButton('Cancel');
+    alert.addButton({
+      text: 'Seleccionar',
+      handler: pos => {
+        if (!pos) return;
+        this.selectedCard = this.cards[pos];
+      }
+    });
+    alert.present();
+  }
 
-    showCardAlert() {
-        let alert = this.alertCtrl.create();
-        alert.setTitle('Selecciona Tarjeta');
-
-        this.cards.forEach((c, ci) => {
-            alert.addInput({
-                type: 'radio',
-                label: c.card.brand.toUpperCase() + ' ' + c.card.card_number,
-                value: ci,
-            });
-
-        });
-
-        alert.addButton('Cancel');
-        alert.addButton({
-            text: 'Seleccionar',
-            handler: pos => {
-                if (!pos) return;
-                this.selectedCard = this.cards[pos];
-            }
-        });
-        alert.present();
-    }
-
-    dismiss() {
-        this.navCtrl.pop();
-        this.viewCtrl.dismiss()
-    }
+  dismiss() {
+    this.navCtrl.pop();
+    this.viewCtrl.dismiss()
+  }
 }

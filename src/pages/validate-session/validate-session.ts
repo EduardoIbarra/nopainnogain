@@ -5,6 +5,7 @@ import {PaymentService} from "../../services/payment.service";
 import {AuthService} from "../../services/auth.service";
 import {AlertService} from "../../services/alert.service";
 import {GymService} from "../../services/gym.service";
+import {SharedService} from "../../services/shared.service";
 
 @IonicPage()
 @Component({
@@ -24,6 +25,7 @@ export class ValidateSessionPage {
     public gymService: GymService,
     public alertService: AlertService,
     public paymentService: PaymentService,
+    public sharedService: SharedService,
     public modalCtrl: ModalController) {
 
     this.authService.getStatus().subscribe((result) => {
@@ -35,7 +37,15 @@ export class ValidateSessionPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad ValidateSessionPage');
+    this.generateQrCode()
   }
+
+  generateQrCode() {
+    this.paymentService.generateQrCode(this.sharedService.generateCode()).subscribe((response) => {
+      console.log(response);
+    })
+  }
+
 
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {
