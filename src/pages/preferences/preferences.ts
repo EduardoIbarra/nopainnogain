@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ToastController } from 'ionic-angular';
-import { UsersService } from '../../services/users.service';
-import { AuthService } from '../../services/auth.service';
+import {Component} from '@angular/core';
+import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {UsersService} from '../../services/users.service';
+import {AuthService} from '../../services/auth.service';
 
 /**
  * Generated class for the PreferencesPage page.
@@ -38,12 +38,13 @@ export class PreferencesPage {
     location: 0,
     price: 0
   };
-  uid:any;
+  uid: any;
+
   constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UsersService, public authService: AuthService, private toastCtrl: ToastController) {
     this.authService.getStatus().subscribe((result) => {
       this.uid = result.uid;
       this.userService.getUserById(this.uid).valueChanges().subscribe((user: any) => {
-        this.settings = user.settings;
+        this.settings = user.settings || this.settings;
       });
     });
   }
@@ -54,7 +55,7 @@ export class PreferencesPage {
 
   savePreferences() {
     this.userService.setUserAttribute(this.uid, 'settings', this.settings)
-      .then((result)=>{
+      .then((result) => {
         this.presentToast('Preferencias guardadas exitosamentme');
       });
   }
