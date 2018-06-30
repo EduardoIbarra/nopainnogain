@@ -56,7 +56,7 @@ export class GymPurchasePage {
     });
 
     let payment: any = {
-      amount: '20',
+      amount: this.gym.monthly_cost || '20',
       generated_code: this.sharedService.generateCode(),
       gym: this.gym.id,
       status: 'available',
