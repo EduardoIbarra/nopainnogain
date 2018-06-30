@@ -3,6 +3,7 @@ import {AlertController, IonicPage, NavController, NavParams, ViewController} fr
 import {LoadingService} from "../../services/loading.service";
 import {SharedService} from "../../services/shared.service";
 import {PaymentService} from "../../services/payment.service";
+import {AuthService} from "../../services/auth.service";
 
 declare var OpenPay: any;
 
@@ -18,6 +19,7 @@ export class GymPurchasePage {
   selectedCard: any;
   viewCtrl: any;
   gym: any;
+  currentUser: any;
 
   // openpay = new this.sharedService.OpenPay('mrtezzirtht6piewm54o', 'pk_c0a63b5356524d2095a0df7172965ed9');
 
@@ -26,6 +28,7 @@ export class GymPurchasePage {
               public _viewCtrl: ViewController,
               public alertCtrl: AlertController,
               public paymentService: PaymentService,
+              public authService: AuthService,
               public loadingService: LoadingService,
               public sharedService: SharedService,) {
 
@@ -33,6 +36,12 @@ export class GymPurchasePage {
     this.gym = navParams.get('gym');
 
     this._viewCtrl.showBackButton(false);
+
+    this.authService.getStatus().subscribe((result) => {
+      this.currentUser = result;
+      console.log(result);
+    });
+
   }
 
   purchase() {
@@ -45,6 +54,20 @@ export class GymPurchasePage {
       console.log(error);
       this.loadingService.dismiss();
     });
+
+    let payment: any = {
+      amount: '20',
+      generated_code: this.sharedService.generateCode(),
+      gym: this.gym.id,
+      status: 'available',
+      timestamp: Math.round((new Date()).getTime())
+    };
+
+    this.paymentService.createPayment(this.currentUser.uid, this.sharedService.generateCode(), payment).then((response) => {
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    })
 
   }
 
