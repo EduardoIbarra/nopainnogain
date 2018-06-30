@@ -42,4 +42,9 @@ export class PaymentService {
   generateQrCode(code) {
     return this.http.get('https://api.qrserver.com/v1/create-qr-code/?size=600x600&data=' + code);
   }
+
+  createPayment(uid, code, payment) {
+    return this.afDB.object('/payments/' + uid + '/' + code).set(payment);
+  }
+
 }
