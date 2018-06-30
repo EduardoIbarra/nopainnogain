@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
+import {ErrorHandler, LOCALE_ID, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {MyApp} from './app.component';
 import {StatusBar} from '@ionic-native/status-bar';
@@ -25,55 +25,56 @@ import {PaymentService} from "../services/payment.service";
 import {Http, HttpModule} from "@angular/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
-import { ScanService } from '../services/scan.service';
+import {ScanService} from '../services/scan.service';
 
 @NgModule({
-    declarations: [
-        MyApp,
-    ],
-    imports: [
-        BrowserModule,
-        SharedModule,
-        HttpModule,
-        IonicModule.forRoot(MyApp, {
-            platforms: {
-                ios: {
-                    backButtonText: 'Atrás',
-                    statusbarPadding: true
-                }
-            },
-            monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
-        }),
-        IonicStorageModule.forRoot(),
-        AngularFireModule.initializeApp(firebaseConfig),
-        AngularFireDatabaseModule,
-        AngularFireAuthModule,
-        FormsModule,
-        ReactiveFormsModule,
-    ],
-    bootstrap: [IonicApp],
-    entryComponents: [
-        MyApp,
-    ],
-    providers: [
-        {provide: ErrorHandler, useClass: IonicErrorHandler},
-        StatusBar,
-        SplashScreen,
-        Keyboard,
-        SharedService,
-        LoadingService,
-        AlertService,
-        PaymentService,
-        GymService,
-        Geolocation,
-        AuthService,
-        Camera,
-        UsersService,
-        InAppBrowser,
-        Facebook,
-        BarcodeScanner,
-        ScanService
-    ]
+  declarations: [
+    MyApp,
+  ],
+  imports: [
+    BrowserModule,
+    SharedModule,
+    HttpModule,
+    IonicModule.forRoot(MyApp, {
+      platforms: {
+        ios: {
+          backButtonText: 'Atrás',
+          statusbarPadding: true
+        }
+      },
+      monthNames: ['Enero', 'Febrero', 'Marzo', 'Abril', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Septiembre', 'Octubre', 'Noviembre', 'Diciembre']
+    }),
+    IonicStorageModule.forRoot(),
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule,
+    AngularFireAuthModule,
+    FormsModule,
+    ReactiveFormsModule,
+  ],
+  bootstrap: [IonicApp],
+  entryComponents: [
+    MyApp,
+  ],
+  providers: [
+    {provide: ErrorHandler, useClass: IonicErrorHandler},
+    // {provide: LOCALE_ID, useValue: "es"},
+    StatusBar,
+    SplashScreen,
+    Keyboard,
+    SharedService,
+    LoadingService,
+    AlertService,
+    PaymentService,
+    GymService,
+    Geolocation,
+    AuthService,
+    Camera,
+    UsersService,
+    InAppBrowser,
+    Facebook,
+    BarcodeScanner,
+    ScanService
+  ]
 })
 export class AppModule {
 }

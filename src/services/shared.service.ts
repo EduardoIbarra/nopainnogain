@@ -3099,4 +3099,15 @@ export class SharedService {
     let timestamp = Math.round((new Date()).getTime()).toString().substring(6, 12);
     return this.getRandomLetter() + timestamp;
   }
+
+  getGymOpenDays(gym) {
+    let today = new Date().getDay();
+    if (today === 0 && gym.open_sunday) return true;
+    if (today === 1 && gym.open_monday) return true;
+    if (today === 2 && gym.open_tuesday) return true;
+    if (today === 3 && gym.open_wednesday) return true;
+    if (today === 4 && gym.open_thursday) return true;
+    if (today === 5 && gym.open_friday) return true;
+    if (today === 6 && gym.open_saturday) return true;
+  }
 }

@@ -71,7 +71,7 @@ ion-title {
 
 }
 
-.submenu-option{
+.submenu-option {
   position: relative;
   top: -5px;
   padding-left: 28px;
@@ -170,6 +170,11 @@ form {
 .green-txt {
   color: #429a5c;
 }
+
+.red-txt {
+  color: red;
+}
+
 
 /* ITEM WHITE BACKGROUND ON LOGIN AND SIGNUP PAGE*/
 page-signup, page-login {

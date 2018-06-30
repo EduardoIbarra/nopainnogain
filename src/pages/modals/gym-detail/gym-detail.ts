@@ -31,15 +31,7 @@ export class GymDetailPage {
     ionViewDidLoad() {
         console.log(this.gym);
         this.segment = 'img';
-        let today = new Date().getDay();
-        if (today === 0 && this.gym.open_sunday) this.isOpenToday = true;
-        if (today === 1 && this.gym.open_monday) this.isOpenToday = true;
-        if (today === 2 && this.gym.open_tuesday) this.isOpenToday = true;
-        if (today === 3 && this.gym.open_wednesday) this.isOpenToday = true;
-        if (today === 4 && this.gym.open_thursday) this.isOpenToday = true;
-        if (today === 5 && this.gym.open_friday) this.isOpenToday = true;
-        if (today === 6 && this.gym.open_saturday) this.isOpenToday = true;
-
+        this.isOpenToday = this.sharedService.getGymOpenDays(this.gym);
         this.getYoutubeLink();
     }
 
