@@ -65,8 +65,10 @@ export class GymPurchasePage {
 
     this.paymentService.createPayment(this.currentUser.uid, this.sharedService.generateCode(), payment).then((response) => {
       console.log(response);
+      this.isPurchaseDone = true;
     }, (error) => {
       console.log(error);
+      this.isPurchaseDone = true;
     })
 
   }

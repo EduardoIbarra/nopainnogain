@@ -26,7 +26,7 @@
       <section *ngIf="i.isOpen">
         <ion-item class="gym-list-item-detail">
           <hr>
-          <h3 text-right>Estado: <span ion-text [color]="i.status === 'Available'? 'secondary':'danger'">{{i.status === 'Available'? 'Vigente': 'Usado'}}</span></h3>
+          <h3 text-right>Estado: <span ion-text [color]="i.status === 'available'? 'secondary':'danger'">{{i.status === 'available'? 'Vigente': 'Usado'}}</span></h3>
           <h3>{{i.address_street}} #{{i.address_number}}</h3>
           <h3>{{i.address_neighborhood}}</h3>
           <h3>{{i.address_city}}, {{i.address_state}}. C.P. {{i.address_zipcode}}</h3>
