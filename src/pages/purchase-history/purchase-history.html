@@ -34,6 +34,8 @@
           <h1 text-center ion-text [color]="i.openToday? 'secondary':'danger'">{{i.openToday ? '¡Abierto Ahora!': 'Cerrado'}}</h1>
           <div text-center>
             <img [src]="'https://api.qrserver.com/v1/create-qr-code/?size=550x550&data=' + i.purchase_code" class="qr-code">
+            <br />
+            <b>{{i.purchase_code}}</b>
           </div>
         </ion-item>
         <ion-item>
