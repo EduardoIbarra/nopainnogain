@@ -26,14 +26,16 @@
       <section *ngIf="i.isOpen">
         <ion-item class="gym-list-item-detail">
           <hr>
-          <h3 text-right>Estado: <span ion-text [color]="i.status === 'Available'? 'secondary':'danger'">{{i.status === 'Available'? 'Vigente': 'Usado'}}</span></h3>
+          <h3 text-right>Estado: <span ion-text [color]="i.status === 'available'? 'secondary':'danger'">{{i.status === 'available'? 'Vigente': 'Usado'}}</span></h3>
           <h3>{{i.address_street}} #{{i.address_number}}</h3>
           <h3>{{i.address_neighborhood}}</h3>
           <h3>{{i.address_city}}, {{i.address_state}}. C.P. {{i.address_zipcode}}</h3>
           <h3>Horario: {{i.attention_hours}}</h3>
           <h1 text-center ion-text [color]="i.openToday? 'secondary':'danger'">{{i.openToday ? '¡Abierto Ahora!': 'Cerrado'}}</h1>
           <div text-center>
-            <img [src]="'https://api.qrserver.com/v1/create-qr-code/?size=550x550&data=A123123' + i.purchase_code" class="qr-code">
+            <img [src]="'https://api.qrserver.com/v1/create-qr-code/?size=550x550&data=' + i.purchase_code" class="qr-code">
+            <br />
+            <b>{{i.purchase_code}}</b>
           </div>
         </ion-item>
         <ion-item>

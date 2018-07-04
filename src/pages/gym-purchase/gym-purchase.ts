@@ -20,6 +20,7 @@ export class GymPurchasePage {
   viewCtrl: any;
   gym: any;
   currentUser: any;
+  generated_code: any;
 
   // openpay = new this.sharedService.OpenPay('mrtezzirtht6piewm54o', 'pk_c0a63b5356524d2095a0df7172965ed9');
 
@@ -62,11 +63,13 @@ export class GymPurchasePage {
       status: 'available',
       timestamp: Math.round((new Date()).getTime())
     };
-
-    this.paymentService.createPayment(this.currentUser.uid, this.sharedService.generateCode(), payment).then((response) => {
+    this.generated_code = payment.generated_code;
+    this.paymentService.createPayment(this.currentUser.uid, payment.generated_code, payment).then((response) => {
       console.log(response);
+      this.isPurchaseDone = true;
     }, (error) => {
       console.log(error);
+      this.isPurchaseDone = true;
     })
 
   }
