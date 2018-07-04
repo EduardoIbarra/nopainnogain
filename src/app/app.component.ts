@@ -45,7 +45,7 @@ export class MyApp {
             {title: 'Historial de Compras', component: 'PurchaseHistoryPage', icon: 'history.png', show: true},
             {title: 'Preferencias', component: 'PreferencesPage', icon: 'preferences.png', show: true},
             {title: 'Promociones', component: 'HomePage', icon: 'promos.png', show: true},
-            {title: 'Ayuda', component: 'HomePage', icon: 'help.png', show: true},
+            {title: 'Ayuda', component: 'HelpPage', icon: 'help.png', show: true},
             {title: 'Validar Sesión', component: 'ValidateSessionPage', icon: 'qr-code.png', show: true},
             {title: 'Cerrar Sesión', component: null, icon: 'logout.png', show: true},
         ];

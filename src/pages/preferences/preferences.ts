@@ -3,13 +3,6 @@ import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angula
 import {UsersService} from '../../services/users.service';
 import {AuthService} from '../../services/auth.service';
 
-/**
- * Generated class for the PreferencesPage page.
- *
- * See https://ionicframework.com/docs/components/#navigation for more info on
- * Ionic pages and navigation.
- */
-
 @IonicPage()
 @Component({
   selector: 'page-preferences',
@@ -47,10 +40,6 @@ export class PreferencesPage {
         this.settings = user.settings || this.settings;
       });
     });
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad PreferencesPage');
   }
 
   savePreferences() {

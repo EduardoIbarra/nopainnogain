@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { IonicPageModule } from 'ionic-angular';
-import { PreferencesPage } from './preferences';
-import { SharedModule } from '../../app/shared.module';
+import {NgModule} from '@angular/core';
+import {IonicPageModule} from 'ionic-angular';
+import {PreferencesPage} from './preferences';
+import {SharedModule} from '../../app/shared.module';
 
 @NgModule({
   declarations: [
@@ -12,4 +12,5 @@ import { SharedModule } from '../../app/shared.module';
     SharedModule
   ],
 })
-export class PreferencesPageModule {}
+export class PreferencesPageModule {
+}

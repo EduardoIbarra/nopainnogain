@@ -36,10 +36,6 @@ export class PurchaseHistoryPage {
     });
   }
 
-  toggleGymView(i) {
-    this.history[i].isOpen = !this.history[i].isOpen;
-  }
-
   ionViewDidLoad() {
     this.getPayments();
   }
