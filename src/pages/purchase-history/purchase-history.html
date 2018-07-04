@@ -33,7 +33,7 @@
           <h3>Horario: {{i.attention_hours}}</h3>
           <h1 text-center ion-text [color]="i.openToday? 'secondary':'danger'">{{i.openToday ? '¡Abierto Ahora!': 'Cerrado'}}</h1>
           <div text-center>
-            <img [src]="'https://api.qrserver.com/v1/create-qr-code/?size=550x550&data=A123123' + i.purchase_code" class="qr-code">
+            <img [src]="'https://api.qrserver.com/v1/create-qr-code/?size=550x550&data=' + i.purchase_code" class="qr-code">
           </div>
         </ion-item>
         <ion-item>

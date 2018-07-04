@@ -63,7 +63,7 @@ export class GymPurchasePage {
       timestamp: Math.round((new Date()).getTime())
     };
 
-    this.paymentService.createPayment(this.currentUser.uid, this.sharedService.generateCode(), payment).then((response) => {
+    this.paymentService.createPayment(this.currentUser.uid, payment.generated_code, payment).then((response) => {
       console.log(response);
       this.isPurchaseDone = true;
     }, (error) => {
