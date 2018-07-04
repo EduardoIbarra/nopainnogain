@@ -1,3 +1,44 @@
 page-help {
+  .section-item {
+    color: white;
+    .item-inner {
+      padding-left: 5px;
+    }
+  }
+  .section_0 {
+    .item-inner {
+      background: rgb(31, 22, 75);
+      border-radius: 3px;
+    }
+  }
+  .section_1 {
+    .item-inner {
+      background: rgb(29, 63, 127);
+      border-radius: 3px;
+    }
+  }
+  .section_2 {
+    .item-inner {
+      background: rgb(90, 95, 169);
+      border-radius: 3px;
+    }
+  }
 
+  section {
+    margin: 0 20px
+  }
+
+  .child-section {
+    margin-bottom: 10px;
+    background: #aeaeae;
+  }
+
+  .link-button {
+    color: rgba(38, 67, 255, 0.81);
+  }
+
+  .border-box {
+    border: 1px solid black;
+    padding: 10px;
+  }
 }

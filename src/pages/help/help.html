@@ -1,5 +1,8 @@
 <ion-header>
   <ion-navbar>
+    <button ion-button menuToggle="left">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
     <ion-title>AYUDA</ion-title>
   </ion-navbar>
   <navbar-bump></navbar-bump>
@@ -8,4 +11,22 @@
 
 <ion-content padding>
 
+  <ion-list>
+    <div *ngFor="let a of articles; let i = index">
+      <ion-item (click)="a.open = !a.open" class="{{a.class + '_' + i}} section-item" text-wrap>
+        &nbsp;<ion-icon [name]="!a.open ? 'ios-arrow-forward' : 'ios-arrow-down'"></ion-icon>
+        {{a.title}}
+      </ion-item>
+      <section *ngIf="a.open" no-margin no-padding>
+        <ion-item *ngFor="let s of a.sections" text-center text-wrap>
+          <div class="{{s.class}}" text-left [class.border-box]="s.hasBorder">
+            {{s.title}}
+          </div>
+          <a *ngIf="s.action_label" class="{{s.action_label? 'link-button':''}}">{{s.action_label}}</a>
+        </ion-item>
+      </section>
+      <br>
+    </div>
+
+  </ion-list>
 </ion-content>
