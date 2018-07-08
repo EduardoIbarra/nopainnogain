@@ -2,15 +2,12 @@ import {Component, ElementRef, ViewChild} from '@angular/core';
 import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {LoadingService} from "../../services/loading.service";
 import {GymService} from "../../services/gym.service";
-import {Keyboard} from "@ionic-native/keyboard";
 import {Geolocation} from '@ionic-native/geolocation';
 import {AlertService} from "../../services/alert.service";
 import {SharedService} from "../../services/shared.service";
 import {PaymentService} from "../../services/payment.service";
 
 declare var google: any;
-declare var OpenPay: any;
-
 @IonicPage()
 @Component({
     selector: 'page-home',
@@ -131,7 +128,6 @@ export class HomePage {
 
         // Adding item markers
         for (let i = 0; i < places.length; i++) {
-            let placeName = places[i].commercial_name;
             let timeout = i * 300;
             let latLng = new google.maps.LatLng(parseFloat(places[i].lat), parseFloat(places[i].lng));
 
@@ -148,9 +144,6 @@ export class HomePage {
                     visible: true
                 });
 
-
-                //Set place name to info window marker
-                let infoWindow = new google.maps.InfoWindow({content: placeName});
 
                 //Show name when click on marker icon
                 google.maps.event.addListener(marker, 'click', () => {

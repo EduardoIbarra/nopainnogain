@@ -114,11 +114,7 @@
         <variable name="ANDROID_SDK_VERSION" value="4.+" />
     </plugin>
     <plugin name="cordova-plugin-inappbrowser" spec="~3.0.0" />
-    <plugin name="phonegap-plugin-barcodescanner" spec="~7.0.4">
-        <variable name="ANDROID_SUPPORT_V4_VERSION" value="27.+" />
-        <variable name="CAMERA_USAGE_DESCRIPTION" value=" " />
-    </plugin>
     <plugin name="cordova-custom-config" spec="^5.0.2" />
     <engine name="ios" spec="4.5.4" />
-    <engine name="android" spec="~7.0.0" />
+    <engine name="android" spec="7.0.0" />
 </widget>

@@ -1,11 +1,11 @@
-import {Component, ViewChild} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angular';
-import {Form, FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {PasswordValidation} from "../../validators/password.validator";
+import {Component} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoadingService} from "../../services/loading.service";
 import {SharedService} from "../../services/shared.service";
 import {AlertService} from "../../services/alert.service";
 import {Storage} from "@ionic/storage";
+import {IonicPage} from "ionic-angular";
+import {NavController, NavParams} from "ionic-angular/umd";
 
 declare var OpenPay: any;
 

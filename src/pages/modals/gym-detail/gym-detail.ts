@@ -1,9 +1,7 @@
-import {Component, ElementRef, ViewChild} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, Slides, ViewController} from 'ionic-angular';
 import {SharedService} from "../../../services/shared.service";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
-
-declare var google: any;
 
 @IonicPage()
 @Component({

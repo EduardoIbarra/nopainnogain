@@ -1,6 +1,6 @@
 import {Component} from '@angular/core';
-import {IonicPage, ModalCmp, ModalController, NavController, NavParams} from 'ionic-angular';
-import {BarcodeScanner} from "@ionic-native/barcode-scanner";
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+//import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {PaymentService} from "../../services/payment.service";
 import {AuthService} from "../../services/auth.service";
 import {AlertService} from "../../services/alert.service";
@@ -20,7 +20,7 @@ export class ValidateSessionPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public barcodeScanner: BarcodeScanner,
+    //public barcodeScanner: BarcodeScanner,
     public authService: AuthService,
     public gymService: GymService,
     public alertService: AlertService,
@@ -48,12 +48,13 @@ export class ValidateSessionPage {
 
 
   scanCode() {
-    this.barcodeScanner.scan().then(barcodeData => {
+    alert('Temporalmente fuera de servicio');
+    /*this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data: ' + barcodeData.text);
       this.validateCode(barcodeData.text)
     }).catch(err => {
       console.log(err);
-    });
+    });*/
   }
 
   showModalCode() {

@@ -1,12 +1,11 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {GymService} from "../../services/gym.service";
 import {AuthService} from "../../services/auth.service";
 import {LoadingService} from "../../services/loading.service";
 import {UsersService} from "../../services/users.service";
 import {SharedService} from "../../services/shared.service";
 import {AlertService} from "../../services/alert.service";
-import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
+//import {Facebook} from "@ionic-native/facebook";
 
 
 @IonicPage()
@@ -36,7 +35,7 @@ export class LoginPage {
     constructor(public navCtrl: NavController,
                 public navParams: NavParams,
                 public sharedService: SharedService,
-                public facebook: Facebook,
+                //public facebook: Facebook,
                 public alertService: AlertService,
                 public usersService: UsersService,
                 public userService: UsersService,
@@ -73,7 +72,8 @@ export class LoginPage {
 
 
     facebookLogin() {
-        this.loadingService.presentLoading();
+      alert('temporalmente deshabilitado');
+        /*this.loadingService.presentLoading();
         this.authService.facebookLogin().then((response) => {
             console.log(response);
             let user = {
@@ -92,7 +92,7 @@ export class LoginPage {
             this.UserData.password = null;
             this.loadingService.dismiss();
             this.alertService.facebookLoginError();
-        })
+        })*/
     }
 
 

@@ -1,8 +1,7 @@
 import {Injectable} from '@angular/core';
-import {AlertController, App, MenuController, NavController} from "ionic-angular";
+import {AlertController, App, NavController} from "ionic-angular";
 import {Storage} from "@ionic/storage";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
-import {PaymentService} from "./payment.service";
 
 // declare var OpenPay: any;
 @Injectable()
@@ -3015,9 +3014,7 @@ export class SharedService {
 
 
   constructor(private alertCtrl: AlertController,
-              private menu: MenuController,
               private iab: InAppBrowser,
-              private paymentService: PaymentService,
               private app: App,
               private storage: Storage,) {
 
