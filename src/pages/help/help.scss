@@ -19,26 +19,35 @@ page-help {
   }
   .section_2 {
     .item-inner {
-      background: rgb(90, 95, 169);
+      background: rgb(60, 95, 172);
       border-radius: 3px;
     }
   }
 
   section {
-    margin: 0 20px
+    margin: 0 20px;
+    ion-item {
+      //height: 10px !important;
+    }
   }
 
   .child-section {
     margin-bottom: 10px;
     background: #aeaeae;
+    padding-left: 10px;
+    border-radius: 4px;
   }
 
   .link-button {
-    color: rgba(38, 67, 255, 0.81);
+    color: map_get($colors, primary);
   }
 
   .border-box {
     border: 1px solid black;
     padding: 10px;
+  }
+
+  .more-button{
+    padding-top: 10px;
   }
 }

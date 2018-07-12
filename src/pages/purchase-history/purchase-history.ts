@@ -44,6 +44,11 @@ export class PurchaseHistoryPage {
     this.loadingService.presentLoading();
     this.paymentService.getPaymentsByUser(this.currentUser.uid).valueChanges().subscribe((payments: any) => {
       console.log(payments);
+      if(!payments){
+        this.history = [];
+        this.loadingService.dismiss();
+        return;
+      }
       payments = Object.keys(payments).map(key => payments[key]);
       this.gymService.getGyms().valueChanges().subscribe((gyms: any) => {
         console.log(gyms);
