@@ -3107,4 +3107,7 @@ export class SharedService {
     if (today === 5 && gym.open_friday) return true;
     if (today === 6 && gym.open_saturday) return true;
   }
+  getUserData() {
+    return this.UserData;
+  }
 }

@@ -20,7 +20,7 @@ import {AuthService} from "../services/auth.service";
 import {Camera} from "@ionic-native/camera";
 import {UsersService} from "../services/users.service";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
-//import {Facebook} from "@ionic-native/facebook";
+import {Facebook} from "@ionic-native/facebook";
 import {PaymentService} from "../services/payment.service";
 import {HttpModule} from "@angular/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
@@ -71,7 +71,7 @@ import {ScanService} from '../services/scan.service';
     Camera,
     UsersService,
     InAppBrowser,
-    //Facebook,
+    Facebook,
     BarcodeScanner,
     ScanService
   ]
