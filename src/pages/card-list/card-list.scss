@@ -1,0 +1,11 @@
+page-card-list {
+  .action-button {
+    width: 20px;
+  }
+
+  .selected {
+    background: dimgrey;
+    color: white;
+    border-radius: 5px;
+  }
+}
