@@ -71,4 +71,8 @@ export class CardListPage {
     this.storage.set('UserData', this.sharedService.UserData);
   }
 
+  addCard(){
+    this.navCtrl.push('AddCardPage')
+  }
+
 }
