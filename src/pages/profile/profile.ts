@@ -48,7 +48,6 @@ export class ProfilePage {
         fb_token: null
     };
 
-    ccOptions: any = [];
     cameraOptions: CameraOptions;
 
     estados: any = [];
@@ -77,8 +76,6 @@ export class ProfilePage {
             }
         });
         this._imageViewerCtrl = imageViewerCtrl;
-
-        this.getExpirationDate();
 
         //Form validations
         this.RegisterForm1 = formBuilder.group({
@@ -138,44 +135,11 @@ export class ProfilePage {
             mediaType: camera.MediaType.PICTURE
         };
 
-
     }
 
     ionViewDidLoad() {
         this.estados = this.sharedService.States;
         console.log(this.estados);
-    }
-
-    getExpirationDate() {
-        let currentYear = new Date();
-        let yearOpts: any = [];
-        for (let i = 0; i < 11; i++) {
-            yearOpts.push({
-                text: moment(currentYear).add(i, 'years').format("YYYY"),
-                value: moment(currentYear).add(i, 'years').format("YYYY")
-            })
-        }
-        this.ccOptions = [
-            {
-                options: [
-                    {text: '01', value: '01'},
-                    {text: '02', value: '02'},
-                    {text: '03', value: '03'},
-                    {text: '04', value: '04'},
-                    {text: '05', value: '05'},
-                    {text: '06', value: '06'},
-                    {text: '07', value: '07'},
-                    {text: '08', value: '08'},
-                    {text: '09', value: '09'},
-                    {text: '10', value: '10'},
-                    {text: '11', value: '11'},
-                    {text: '12', value: '12'},
-                ]
-            },
-            {
-                options: yearOpts
-            }
-        ];
     }
 
     openImageOptions() {
@@ -295,9 +259,20 @@ export class ProfilePage {
     getUserData(uid) {
         this.usersService.getUser(uid).then(response => {
             console.log(response.val());
-            this.currentUser = response;
+            this.currentUser = response.val();
+            this.RegisterFormData.name = this.currentUser.name;
+            this.RegisterFormData.last_name = this.currentUser.last_name;
+            this.RegisterFormData.email = this.currentUser.email;
+            this.RegisterFormData.password = this.currentUser.password;
+            this.RegisterFormData.confirmPassword = this.currentUser.confirmPassword;
+            this.RegisterFormData.phone = this.currentUser.phone;
+            this.RegisterFormData.birthday = this.currentUser.birthday
+            this.RegisterFormData.gender = this.currentUser.gender;
+            this.RegisterFormData.state = this.currentUser.state;
+            this.RegisterFormData.city = this.currentUser.city;
+            this.RegisterFormData.postal_code = this.currentUser.postal_code;
+            this.RegisterFormData.profile_picture = this.currentUser.profile_picture;
             this.loadingService.dismiss();
-            this.sharedService.login(response.val(), this.navCtrl);
         }).catch((error) => {
             console.log(error);
             console.log('Something went wrong:', error.message);
