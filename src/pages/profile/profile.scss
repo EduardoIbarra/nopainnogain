@@ -1,0 +1,36 @@
+.ion-page > ion-content.profile {
+    background-color: #E5E5E5;
+}
+
+ion-title.profile {
+    padding: 5px 60px 1px;
+}
+iont-title > .toolbar-title {
+    overflow: initial;
+}
+
+input.profileText, select.profileText, ion-datetime.profile {
+    background-color: #CECECE;
+    width: 100%;
+    height: 35px;
+    text-align: center;
+    /* font-size: 1.4rem; */
+    border: 1px solid #c5c5c5;
+    font-size: medium;
+    font-style: italic;
+    border-radius: 5px;
+    margin-bottom: 25px;
+}
+img.profile {
+    max-width: 26px;
+    max-height: 26px;
+}
+
+.add-picture-image > img {
+    max-width: 75px;
+}
+p.profileText {
+    font-size: medium;
+    text-align: center;
+    font-style: italic;
+}

@@ -14,7 +14,7 @@ import {AlertService} from "../../services/alert.service";
 @IonicPage()
 @Component({
     selector: 'page-profile',
-    templateUrl: 'profile.html',
+    templateUrl: 'profile.html'
 })
 export class ProfilePage {
 
@@ -27,6 +27,7 @@ export class ProfilePage {
     _imageViewerCtrl: ImageViewerController;
 
     RegisterFormData: any = {
+        uid: null,
         //First form slide
         name: null,
         last_name: null,
@@ -135,6 +136,28 @@ export class ProfilePage {
             mediaType: camera.MediaType.PICTURE
         };
 
+    }
+
+    viewPass: boolean = false;
+    passType: string = 'password';
+    viewCPass: boolean = false;
+    cpassType: string = 'password';
+
+    changeViewPass() {
+        this.viewPass = !this.viewPass;
+        if(this.viewPass) {
+            this.passType = 'text';
+        } else {
+            this.passType = 'password';
+        }
+    }
+    changeViewCPass() {
+        this.viewCPass = !this.viewCPass;
+        if(this.viewCPass) {
+            this.cpassType = 'text';
+        } else {
+            this.cpassType = 'password';
+        }
     }
 
     ionViewDidLoad() {
@@ -246,9 +269,50 @@ export class ProfilePage {
     }
 
     updateUser(uid) {
-        this.usersService.editUser(this.RegisterFormData).then((response) => {
+        if(this.currentUser === null) return;
+        let auxUser: any = this.currentUser;
+        auxUser.uid = this.RegisterFormData.uid;
+        auxUser.name = this.RegisterFormData.name;
+        auxUser.last_name = this.RegisterFormData.last_name;
+        auxUser.email = this.RegisterFormData.email;
+        auxUser.phone = this.RegisterFormData.phone;
+        auxUser.birthday = this.RegisterFormData.birthday
+        auxUser.gender = this.RegisterFormData.gender;
+        auxUser.state = this.RegisterFormData.state;
+        auxUser.city = this.RegisterFormData.city;
+        auxUser.postal_code = this.RegisterFormData.postal_code;
+
+        if(this.RegisterFormData.password != '' && this.RegisterFormData.password === this.RegisterFormData.confirmPassword) {
+            auxUser.password = this.RegisterFormData.password;
+        } else if(this.RegisterFormData.password != '') {
+            let toast = this.toastCtrl.create({
+                message: 'Las contraseñas no coinciden',
+                duration: 1500,
+                position: 'bottom',
+                showCloseButton: true,
+                closeButtonText: 'Ok'
+            });
+            toast.present();
+            return;
+        }
+
+        if(typeof this.RegisterFormData.profile_picture != 'undefined' && this.RegisterFormData.profile_picture != '' ) {
+            auxUser.profile_picture = this.RegisterFormData.profile_picture;
+        }
+        // auxUser.profile_picture = this.currentUser.profile_picture;
+        this.usersService.editUser(auxUser).then((response) => {
             console.log(response);
-            this.getUserData(uid);
+            // this.getUserData(uid);
+            let toast = this.toastCtrl.create({
+                message: 'Usuario Actualizado',
+                duration: 1500,
+                position: 'bottom',
+                showCloseButton: true,
+                closeButtonText: 'Ok'
+            });
+            this.RegisterFormData.password = '';
+            this.RegisterFormData.confirmPassword = '';
+            toast.present();
         }, (error) => {
             console.log(error);
             this.loadingService.dismiss();
@@ -260,11 +324,10 @@ export class ProfilePage {
         this.usersService.getUser(uid).then(response => {
             console.log(response.val());
             this.currentUser = response.val();
+            this.RegisterFormData.uid = uid;
             this.RegisterFormData.name = this.currentUser.name;
             this.RegisterFormData.last_name = this.currentUser.last_name;
             this.RegisterFormData.email = this.currentUser.email;
-            this.RegisterFormData.password = this.currentUser.password;
-            this.RegisterFormData.confirmPassword = this.currentUser.confirmPassword;
             this.RegisterFormData.phone = this.currentUser.phone;
             this.RegisterFormData.birthday = this.currentUser.birthday
             this.RegisterFormData.gender = this.currentUser.gender;
@@ -273,6 +336,8 @@ export class ProfilePage {
             this.RegisterFormData.postal_code = this.currentUser.postal_code;
             this.RegisterFormData.profile_picture = this.currentUser.profile_picture;
             this.loadingService.dismiss();
+            this.selectState(this.currentUser.state);
+            this.RegisterFormData.city = this.currentUser.city;
         }).catch((error) => {
             console.log(error);
             console.log('Something went wrong:', error.message);
