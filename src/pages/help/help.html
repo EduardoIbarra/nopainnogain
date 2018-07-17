@@ -18,12 +18,46 @@
         {{a.title}}
       </ion-item>
       <section *ngIf="a.open" no-margin no-padding>
-        <ion-item *ngFor="let s of a.sections" text-center text-wrap>
-          <div class="{{s.class}}" text-left [class.border-box]="s.hasBorder">
-            {{s.title}}
+        <ion-item *ngFor="let s of a.sections; let si = index" text-center text-wrap no-padding padding-left no-lines>
+          <div *ngIf="!s.innerHtml">
+            <div class="{{s.class}}" text-left [class.border-box]="s.hasBorder">
+              {{s.title}}
+            </div>
+            <a *ngIf="s.action_label" class="{{s.action_label? 'link-button':''}}">{{s.action_label}}</a>
           </div>
-          <a *ngIf="s.action_label" class="{{s.action_label? 'link-button':''}}">{{s.action_label}}</a>
+          <div *ngIf="s.innerHtml">
+            <div class="{{s.class}}" text-justify innerHtml="{{s.title}}">
+            </div>
+          </div>
         </ion-item>
+        <div *ngIf="i === 1">
+          <ion-list>
+            <ion-item>Me impidieron la entrada</ion-item>
+            <div class="border-box" no-padding>
+              <p text-wrap>Por favor selecciona la compra en donde te impidieron el acceso.</p>
+              <ion-item *ngFor="let h of entriesHistory">
+                <ion-label>{{h.commercial_name}}</ion-label>
+                <ion-checkbox color="secondary" checked="{{h.selected}}"></ion-checkbox>
+              </ion-item>
+              <div text-center class="more-button">
+                <p>Ver más...</p>
+              </div>
+
+            </div>
+            <br>
+            <ion-item>Reportar un cargo no reconocido</ion-item>
+            <div class="border-box" no-padding>
+              <p text-wrap>Por favor selecciona el cargo no reconcido.</p>
+              <ion-item *ngFor="let h of chargeHistory">
+                <ion-label>{{h.commercial_name}}</ion-label>
+                <ion-checkbox color="secondary" checked="{{h.selected}}"></ion-checkbox>
+              </ion-item>
+              <div text-center class="more-button">
+                <p>Ver más...</p>
+              </div>
+            </div>
+          </ion-list>
+        </div>
       </section>
       <br>
     </div>

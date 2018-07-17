@@ -11,67 +11,73 @@
 
 <ion-content>
   <ion-list class="gym-list">
-    <div *ngFor="let i of history; let indx = index">
-      <button ion-item detail-none class="gym-list-item" (click)="i.isOpen = !i.isOpen">
-        <ion-avatar item-start>
-          <img [src]="i.logo || 'https://seeklogo.com/images/G/gym-logo-3F51052256-seeklogo.com.png'">
-        </ion-avatar>
-        <h2>{{i.commercial_name}}</h2>
-        <h3>
-          <b>${{i.purchase_price}} MXN</b>
-          <ion-icon [name]="!i.isOpen ? 'arrow-forward' : 'arrow-down'" item-right></ion-icon>
-        </h3>
-        <p>{{i.purchase_date | date:'fullDate'}}</p>
-      </button>
-      <section *ngIf="i.isOpen">
-        <ion-item class="gym-list-item-detail">
-          <hr>
-          <h3 text-right>Estado: <span ion-text [color]="i.status === 'available'? 'secondary':'danger'">{{i.status === 'available'? 'Vigente': 'Usado'}}</span></h3>
-          <h3>{{i.address_street}} #{{i.address_number}}</h3>
-          <h3>{{i.address_neighborhood}}</h3>
-          <h3>{{i.address_city}}, {{i.address_state}}. C.P. {{i.address_zipcode}}</h3>
-          <h3>Horario: {{i.attention_hours}}</h3>
-          <h1 text-center ion-text [color]="i.openToday? 'secondary':'danger'">{{i.openToday ? '¡Abierto Ahora!': 'Cerrado'}}</h1>
-          <div text-center>
-            <img [src]="'https://api.qrserver.com/v1/create-qr-code/?size=550x550&data=' + i.purchase_code" class="qr-code">
-            <br />
-            <b>{{i.purchase_code}}</b>
-          </div>
-        </ion-item>
-        <ion-item>
-          <h2 text-center><b>Tu calificación</b></h2>
-          <div text-center class="rate-stars">
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star"></ion-icon>
-            <ion-icon name="star-outline"></ion-icon>
-          </div>
-          <br>
-          <h2 text-center><b>Comentarios</b></h2>
-          <div class="comments-section">
-            <div class="comments-section-item">
-              <ion-avatar item-start>
-                <ion-icon name="quote"></ion-icon>
-                <p text-wrap>Buenas instalaciones</p>
-              </ion-avatar>
-            </div>
-            <div class="comments-section-item">
-              <ion-avatar item-start>
-                <ion-icon name="quote"></ion-icon>
-                <p text-wrap>Excelente ubicacion</p>
-              </ion-avatar>
-            </div>
-            <div class="comments-section-item">
-              <ion-avatar item-start>
-                <ion-icon name="quote"></ion-icon>
-                <p text-wrap>Buena musica, parecia antro</p>
-              </ion-avatar>
-            </div>
-          </div>
-        </ion-item>
-      </section>
+    <div *ngIf="!history.length">
+      <ion-item text-center text-wrap text-uppercase>No tienes historial para mostrar</ion-item>
     </div>
+    <div *ngIf="history.length">
+      <div *ngFor="let i of history; let indx = index">
+        <button ion-item detail-none class="gym-list-item" (click)="i.isOpen = !i.isOpen">
+          <ion-avatar item-start>
+            <img [src]="i.logo || 'https://seeklogo.com/images/G/gym-logo-3F51052256-seeklogo.com.png'">
+          </ion-avatar>
+          <h2>{{i.commercial_name}}</h2>
+          <h3>
+            <b>${{i.purchase_price}} MXN</b>
+            <ion-icon [name]="!i.isOpen ? 'arrow-forward' : 'arrow-down'" item-right></ion-icon>
+          </h3>
+          <p>{{i.purchase_date | date:'fullDate'}}</p>
+        </button>
+        <section *ngIf="i.isOpen">
+          <ion-item class="gym-list-item-detail">
+            <hr>
+            <h3 text-right>Estado: <span ion-text [color]="i.status === 'available'? 'secondary':'danger'">{{i.status === 'available'? 'Vigente': 'Usado'}}</span></h3>
+            <h3>{{i.address_street}} #{{i.address_number}}</h3>
+            <h3>{{i.address_neighborhood}}</h3>
+            <h3>{{i.address_city}}, {{i.address_state}}. C.P. {{i.address_zipcode}}</h3>
+            <h3>Horario: {{i.attention_hours}}</h3>
+            <h1 text-center ion-text [color]="i.openToday? 'secondary':'danger'">{{i.openToday ? '¡Abierto Ahora!': 'Cerrado'}}</h1>
+            <div text-center>
+              <img [src]="'https://api.qrserver.com/v1/create-qr-code/?size=550x550&data=' + i.purchase_code" class="qr-code">
+              <br/>
+              <b>{{i.purchase_code}}</b>
+            </div>
+          </ion-item>
+          <ion-item>
+            <h2 text-center><b>Tu calificación</b></h2>
+            <div text-center class="rate-stars">
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star"></ion-icon>
+              <ion-icon name="star-outline"></ion-icon>
+            </div>
+            <br>
+            <h2 text-center><b>Comentarios</b></h2>
+            <div class="comments-section">
+              <div class="comments-section-item">
+                <ion-avatar item-start>
+                  <ion-icon name="quote"></ion-icon>
+                  <p text-wrap>Buenas instalaciones</p>
+                </ion-avatar>
+              </div>
+              <div class="comments-section-item">
+                <ion-avatar item-start>
+                  <ion-icon name="quote"></ion-icon>
+                  <p text-wrap>Excelente ubicacion</p>
+                </ion-avatar>
+              </div>
+              <div class="comments-section-item">
+                <ion-avatar item-start>
+                  <ion-icon name="quote"></ion-icon>
+                  <p text-wrap>Buena musica, parecia antro</p>
+                </ion-avatar>
+              </div>
+            </div>
+          </ion-item>
+        </section>
+      </div>
+    </div>
+
   </ion-list>
 </ion-content>
 <ion-footer text-center>
