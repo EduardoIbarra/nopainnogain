@@ -29,6 +29,23 @@ export class UsersService {
     }
 
     public editUser(user) {
+        /*this.afDB.object('/users/' + user.uid).update({
+            'birthday': user.birthday,
+            'card_cvv': user.card_cvv,
+            'card_expiration': user.card_expiration,
+            'card_holder': user.card_holder,
+            'card_number': user.card_number,
+            'city': user.city,
+            'confirmPassword': user.confirmPassword,
+            'email': user.email,
+            'from_app': user.from_app,
+            'gender': user.gender,
+            'last_name': user.last_name,
+            'name': user.name,
+            'phone': user.phone,
+            'postal_code': user.postal_code,
+            'state':  user.state
+        });*/
         return this.afDB.database.ref('/users/' + user.uid).set(user);
     }
 

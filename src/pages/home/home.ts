@@ -34,7 +34,7 @@ export class HomePage {
                 public sharedService: SharedService,
                 public paymentService: PaymentService,
                 public navParams: NavParams,
-                public loadingService: LoadingService,) {
+                public loadingService: LoadingService) {
     }
 
     ionViewDidLoad() {

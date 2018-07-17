@@ -11,83 +11,97 @@ declare var OpenPay: any;
 
 @IonicPage()
 @Component({
-    selector: 'page-add-card',
-    templateUrl: 'add-card.html',
+  selector: 'page-add-card',
+  templateUrl: 'add-card.html',
 })
 export class AddCardPage {
 
-    CardForm: FormGroup;
+  CardForm: FormGroup;
+  isEditable: boolean;
+  cardIndex: number;
+  CardData: any = {
+    Cardholder: 'Fulanito de Tal',
+    CardNumber: '4111111111111111',
+    CCV: '123',
+    ExpMonth: 12,
+    ExpYear: 21
+  };
 
-    CardData: any = {
-        Cardholder: 'Fulanito de Tal',
-        CardNumber: '4111111111111111',
-        CCV: '123',
-        ExpMonth: 12,
-        ExpYear: 21
-    };
-
-    constructor(public navCtrl: NavController,
-                public navParams: NavParams,
-                public formBuilder: FormBuilder,
-                public loadingService: LoadingService,
-                public storage: Storage,
-                public alertService: AlertService,
-                public sharedService: SharedService,) {
-
-        //Form validations
-        this.CardForm = formBuilder.group({
-            Cardholder: ['', Validators.compose([
-                Validators.required
-            ])],
-            CardNumber: ['', Validators.compose([
-                Validators.required,
-                Validators.minLength(16),
-                Validators.maxLength(16),
-                Validators.pattern('^[0-9]*$'),
-            ])],
-            CCV: ['', Validators.compose([
-                Validators.required,
-            ])],
-            ExpMonth: ['', Validators.compose([
-                Validators.required
-            ])],
-            ExpYear: ['', Validators.compose([
-                Validators.required
-            ])],
-        });
+  constructor(public navCtrl: NavController,
+              public navParams: NavParams,
+              public formBuilder: FormBuilder,
+              public loadingService: LoadingService,
+              public storage: Storage,
+              public alertService: AlertService,
+              public sharedService: SharedService,) {
 
 
+    this.CardData = this.navParams.get('card') || this.CardData;
+    this.isEditable = this.navParams.get('isEditable');
+    this.cardIndex = this.navParams.get('index');
+    if (this.navParams.get('card')) {
+      this.CardData.CardNumber = null;
     }
 
-    ionViewDidLoad() {
-        console.log('ionViewDidLoad AddCardPage');
-    }
 
-    addCard() {
-        this.loadingService.presentLoading();
-        OpenPay.token.create({
-                "card_number": this.CardData.CardNumber,
-                "holder_name": this.CardData.Cardholder,
-                "expiration_year": this.CardData.ExpYear,
-                "expiration_month": this.CardData.ExpMonth,
-                "cvv2": this.CardData.CCV
-            },
-            (data) => {
-                console.log(data);
-                this.loadingService.dismiss();
+    //Form validations
+    this.CardForm = formBuilder.group({
+      Cardholder: ['', Validators.compose([
+        Validators.required
+      ])],
+      CardNumber: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(16),
+        Validators.maxLength(16),
+        Validators.pattern('^[0-9]*$'),
+      ])],
+      CCV: ['', Validators.compose([
+        Validators.required,
+      ])],
+      ExpMonth: ['', Validators.compose([
+        Validators.required
+      ])],
+      ExpYear: ['', Validators.compose([
+        Validators.required
+      ])],
+    });
 
-                if (!this.sharedService.UserData.Cards) {
-                    this.sharedService.UserData.Cards = [];
-                }
-                this.sharedService.UserData.Cards.push(data.data);
-                this.storage.set('UserData', this.sharedService.UserData);
-                this.navCtrl.pop();
 
-            }, (error) => {
-                console.log(error);
-                this.loadingService.dismiss()
-                this.alertService.createAlertError();
-            });
-    }
+  }
+
+  ionViewDidLoad() {
+  }
+
+  addCard() {
+    this.loadingService.presentLoading();
+    OpenPay.token.create({
+        "card_number": this.CardData.CardNumber,
+        "holder_name": this.CardData.Cardholder,
+        "expiration_year": this.CardData.ExpYear,
+        "expiration_month": this.CardData.ExpMonth,
+        "cvv2": this.CardData.CCV
+      },
+      (data) => {
+        console.log(data);
+        this.loadingService.dismiss();
+
+        if (!this.sharedService.UserData.Cards) {
+          this.sharedService.UserData.Cards = [];
+        }
+        if (this.isEditable) {
+          this.sharedService.UserData.Cards[this.cardIndex] = data.data;
+        } else {
+          this.sharedService.UserData.Cards.push(data.data);
+        }
+
+        this.storage.set('UserData', this.sharedService.UserData);
+        this.navCtrl.pop();
+
+      }, (error) => {
+        console.log(error);
+        this.loadingService.dismiss()
+        this.alertService.createAlertError();
+      });
+  }
 
 }
