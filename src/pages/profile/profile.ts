@@ -10,6 +10,13 @@ import {ImageViewerController} from "ionic-img-viewer";
 import {AuthService} from "../../services/auth.service";
 import {UsersService} from "../../services/users.service";
 import {AlertService} from "../../services/alert.service";
+/**
+ * Generated class for the ProfilePage page.
+ *
+ * See https://ionicframework.com/docs/components/#navigation for more info on
+ * Ionic pages and navigation.
+ */
+
 
 @IonicPage()
 @Component({
@@ -344,6 +351,4 @@ export class ProfilePage {
             this.loadingService.dismiss();
         });
     }
-
-
 }

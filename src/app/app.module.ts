@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {ErrorHandler, LOCALE_ID, NgModule} from '@angular/core';
+import {ErrorHandler, NgModule} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {MyApp} from './app.component';
 import {StatusBar} from '@ionic-native/status-bar';
@@ -22,7 +22,7 @@ import {UsersService} from "../services/users.service";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {Facebook} from "@ionic-native/facebook";
 import {PaymentService} from "../services/payment.service";
-import {Http, HttpModule} from "@angular/http";
+import {HttpModule} from "@angular/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {ScanService} from '../services/scan.service';

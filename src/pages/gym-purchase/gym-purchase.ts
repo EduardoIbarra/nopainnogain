@@ -4,9 +4,6 @@ import {LoadingService} from "../../services/loading.service";
 import {SharedService} from "../../services/shared.service";
 import {PaymentService} from "../../services/payment.service";
 import {AuthService} from "../../services/auth.service";
-
-declare var OpenPay: any;
-
 @IonicPage()
 @Component({
   selector: 'page-gym-purchase',

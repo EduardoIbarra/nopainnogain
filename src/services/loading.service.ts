@@ -6,7 +6,6 @@ import {LoadingController} from "ionic-angular";
 export class LoadingService {
     private loading: any;
     // private contentImageLogo: string = '<img class="loading-image" src="assets/img/logo-negative.png">';
-    private contentImageLogo: string = '<div class="loading-image"></div>';
     // contentImageLogo: string = '<img class="loading-rotating-image loading-rotating-image-background" src="assets/img/logo.png">';
 
     constructor(private loadingCtrl: LoadingController) {

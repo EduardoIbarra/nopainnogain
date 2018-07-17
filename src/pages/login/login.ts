@@ -1,12 +1,11 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams} from 'ionic-angular';
-import {GymService} from "../../services/gym.service";
 import {AuthService} from "../../services/auth.service";
 import {LoadingService} from "../../services/loading.service";
 import {UsersService} from "../../services/users.service";
 import {SharedService} from "../../services/shared.service";
 import {AlertService} from "../../services/alert.service";
-import {Facebook, FacebookLoginResponse} from "@ionic-native/facebook";
+import {Facebook} from "@ionic-native/facebook";
 
 
 @IonicPage()
@@ -92,7 +91,7 @@ export class LoginPage {
             this.UserData.password = null;
             this.loadingService.dismiss();
             this.alertService.facebookLoginError();
-        })
+        });
     }
 
 

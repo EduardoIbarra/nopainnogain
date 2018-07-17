@@ -12,6 +12,7 @@ declare var OpenPay: any;
   templateUrl: 'app.html'
 })
 export class MyApp {
+
   @ViewChild(Nav) nav: Nav;
 
   rootPage: any;

@@ -4,13 +4,12 @@ import {AngularFireAuth} from 'angularfire2/auth';
 import * as firebase from 'firebase';
 
 import {Observable} from 'rxjs/Observable';
-import {Facebook} from "@ionic-native/facebook";
 
 @Injectable()
 export class AuthService {
     user: Observable<firebase.User>;
 
-    constructor(private firebaseAuth: AngularFireAuth, private facebook: Facebook) {
+    constructor(private firebaseAuth: AngularFireAuth) {
         this.user = firebaseAuth.authState;
     }
 

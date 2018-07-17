@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {AngularFireDatabase} from 'angularfire2/database/database';
-import {objectAssign} from "@ionic/app-scripts";
 
 @Injectable()
 export class UsersService {

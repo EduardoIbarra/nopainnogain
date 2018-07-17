@@ -1,5 +1,5 @@
 import {Injectable} from '@angular/core';
-import {AlertController, App, MenuController, NavController} from "ionic-angular";
+import {AlertController, App, NavController} from "ionic-angular";
 import {Storage} from "@ionic/storage";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {PaymentService} from "./payment.service";
@@ -3016,7 +3016,6 @@ export class SharedService {
 
 
   constructor(private alertCtrl: AlertController,
-              private menu: MenuController,
               private iab: InAppBrowser,
               private gymService: GymService,
               private app: App,
@@ -3110,5 +3109,8 @@ export class SharedService {
     if (today === 4 && gym.open_thursday) return true;
     if (today === 5 && gym.open_friday) return true;
     if (today === 6 && gym.open_saturday) return true;
+  }
+  getUserData() {
+    return this.UserData;
   }
 }

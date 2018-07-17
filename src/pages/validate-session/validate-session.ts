@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, ModalCmp, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {PaymentService} from "../../services/payment.service";
 import {AuthService} from "../../services/auth.service";
@@ -48,6 +48,7 @@ export class ValidateSessionPage {
 
 
   scanCode() {
+    alert('Temporalmente fuera de servicio');
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data: ' + barcodeData.text);
       this.validateCode(barcodeData.text)

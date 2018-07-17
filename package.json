@@ -22,10 +22,10 @@
     "@angular/platform-browser": "5.2.9",
     "@angular/platform-browser-dynamic": "5.2.9",
     "@firebase/app": "^0.1.10",
-    "@ionic-native/barcode-scanner": "^4.7.0",
+    "@ionic-native/barcode-scanner": "^4.9.0",
     "@ionic-native/camera": "^4.7.0",
     "@ionic-native/core": "4.6.0",
-    "@ionic-native/facebook": "^4.7.0",
+    "@ionic-native/facebook": "^4.9.2",
     "@ionic-native/geolocation": "^3.14.0",
     "@ionic-native/in-app-browser": "^4.7.0",
     "@ionic-native/keyboard": "^4.7.0",
@@ -58,7 +58,7 @@
     "ionic-img-viewer": "^2.9.0",
     "ionicons": "3.0.0",
     "moment": "^2.22.1",
-    "phonegap-plugin-barcodescanner": "^7.0.4",
+    "phonegap-plugin-barcodescanner": "^8.0.0",
     "promise-polyfill": "7.1.2",
     "rxjs": "5.5.8",
     "sw-toolbox": "3.6.0",
@@ -83,11 +83,6 @@
         "GEOLOCATION_USAGE_DESCRIPTION": "Necesitamos tu ubicacion para mostrarte gimnasios mas cercanos"
       },
       "cordova-plugin-whitelist": {},
-      "cordova-plugin-facebook4": {
-        "APP_ID": "242703106469835",
-        "APP_NAME": "Liberi",
-        "ANDROID_SDK_VERSION": "4.+"
-      },
       "cordova-plugin-buildinfo": {},
       "cordova-universal-links-plugin": {},
       "cordova-plugin-browsertab": {},
@@ -99,8 +94,12 @@
       },
       "cordova-custom-config": {},
       "phonegap-plugin-barcodescanner": {
-        "ANDROID_SUPPORT_V4_VERSION": "27.+",
-        "CAMERA_USAGE_DESCRIPTION": " "
+        "ANDROID_SUPPORT_V4_VERSION": "27.+"
+      },
+      "cordova-plugin-facebook4": {
+        "APP_ID": "173017970184122",
+        "APP_NAME": "b151236420dfa2f41a2972e76b3b5019",
+        "ANDROID_SDK_VERSION": "4.+"
       }
     },
     "platforms": [
