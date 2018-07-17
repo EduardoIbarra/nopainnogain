@@ -22,7 +22,7 @@
           <img src="assets/img/Recurso 192xxxhdpi.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <input type="text" class="liberiText" placeholder="Nombre" formControlName="name" [(ngModel)]="RegisterFormData.name" [class.invalid]="!RegisterForm1.controls.name.valid && (RegisterForm1.controls.name.dirty || submitAttemptForm1)"
+          <input type="text" class="liberi-text" placeholder="Nombre" formControlName="name" [(ngModel)]="RegisterFormData.name" [class.invalid]="!RegisterForm1.controls.name.valid && (RegisterForm1.controls.name.dirty || submitAttemptForm1)"
           [class.valid]="RegisterForm1.controls.name.valid"/>
         </ion-col>
       </ion-row>
@@ -31,7 +31,7 @@
           <img src="assets/img/Recurso 192xxxhdpi.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <input type="text" class="liberiText" placeholder="Apellidos" formControlName="last_name" [(ngModel)]="RegisterFormData.last_name" [class.invalid]="!RegisterForm1.controls.last_name.valid && (RegisterForm1.controls.last_name.dirty || submitAttemptForm1)"
+          <input type="text" class="liberi-text" placeholder="Apellidos" formControlName="last_name" [(ngModel)]="RegisterFormData.last_name" [class.invalid]="!RegisterForm1.controls.last_name.valid && (RegisterForm1.controls.last_name.dirty || submitAttemptForm1)"
           [class.valid]="RegisterForm1.controls.last_name.valid"/>
         </ion-col>
       </ion-row>
@@ -50,7 +50,7 @@
           <img src="assets/img/Recurso 182xxxhdpi.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <select class="liberiText" placeholder="Sexo" formControlName="gender" [(ngModel)]="RegisterFormData.gender" [class.invalid]="!RegisterForm1.controls.gender.valid && (RegisterForm1.controls.gender.touched || submitAttemptForm1)"
+          <select class="liberi-text" placeholder="Sexo" formControlName="gender" [(ngModel)]="RegisterFormData.gender" [class.invalid]="!RegisterForm1.controls.gender.valid && (RegisterForm1.controls.gender.touched || submitAttemptForm1)"
           [class.valid]="RegisterForm1.controls.gender.valid">
               <option value="female">Femenino</option>
               <option value="male">Masculino</option>
@@ -62,7 +62,7 @@
           <img src="assets/img/smarphone.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <input type="tel" class="liberiText" placeholder="Teléfono Celular" formControlName="phone" [(ngModel)]="RegisterFormData.phone" [class.invalid]="!RegisterForm1.controls.phone.valid && (RegisterForm1.controls.phone.dirty || submitAttemptForm1)"
+          <input type="tel" class="liberi-text" placeholder="Teléfono Celular" formControlName="phone" [(ngModel)]="RegisterFormData.phone" [class.invalid]="!RegisterForm1.controls.phone.valid && (RegisterForm1.controls.phone.dirty || submitAttemptForm1)"
             [class.valid]="RegisterForm1.controls.phone.valid"/>
         </ion-col>
       </ion-row>
@@ -71,7 +71,7 @@
           <img src="assets/img/pin.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <select class="liberiText" placeholder="Estado" formControlName="state" [(ngModel)]="RegisterFormData.state" [class.invalid]="!RegisterForm1.controls.state.valid && (RegisterForm1.controls.state.touched || submitAttemptForm1)"
+          <select class="liberi-text" placeholder="Estado" formControlName="state" [(ngModel)]="RegisterFormData.state" [class.invalid]="!RegisterForm1.controls.state.valid && (RegisterForm1.controls.state.touched || submitAttemptForm1)"
             [class.valid]="RegisterForm1.controls.state.valid" (ionChange)="selectState($event)">
             <option [value]="e.nombre" *ngFor="let e of estados">{{e.nombre}}</option>
           </select>
@@ -82,7 +82,7 @@
           <img src="assets/img/pin.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <select class="liberiText" placeholder="Ciudad o Municipio" formControlName="city" [(ngModel)]="RegisterFormData.city" [class.invalid]="!RegisterForm1.controls.city.valid && (RegisterForm1.controls.city.touched || submitAttemptForm1)"
+          <select class="liberi-text" placeholder="Ciudad o Municipio" formControlName="city" [(ngModel)]="RegisterFormData.city" [class.invalid]="!RegisterForm1.controls.city.valid && (RegisterForm1.controls.city.touched || submitAttemptForm1)"
             [class.valid]="RegisterForm1.controls.city.valid">
             <option [value]="m" *ngFor="let m of municipios">{{m}}</option>
           </select>
@@ -93,7 +93,7 @@
           <img src="assets/img/pin.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <input type="text" class="liberiText" placeholder="Código Postal" formControlName="postal_code" [(ngModel)]="RegisterFormData.postal_code" type="tel" [class.invalid]="!RegisterForm1.controls.postal_code.valid && (RegisterForm1.controls.postal_code.touched || submitAttemptForm1)"
+          <input type="text" class="liberi-text" placeholder="Código Postal" formControlName="postal_code" [(ngModel)]="RegisterFormData.postal_code" type="tel" [class.invalid]="!RegisterForm1.controls.postal_code.valid && (RegisterForm1.controls.postal_code.touched || submitAttemptForm1)"
             [class.valid]="RegisterForm1.controls.postal_code.valid"/>
         </ion-col>
       </ion-row>
@@ -102,7 +102,7 @@
           <img src="assets/img/Recurso 191xxxhdpi.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <input type="email" class="liberiText" placeholder="Correo Electrónico" formControlName="email" [(ngModel)]="RegisterFormData.email" [class.invalid]="!RegisterForm1.controls.email.valid && (RegisterForm1.controls.email.dirty || submitAttemptForm1)"
+          <input type="email" class="liberi-text" placeholder="Correo Electrónico" formControlName="email" [(ngModel)]="RegisterFormData.email" [class.invalid]="!RegisterForm1.controls.email.valid && (RegisterForm1.controls.email.dirty || submitAttemptForm1)"
           [class.valid]="RegisterForm1.controls.email.valid"/>
         </ion-col>
       </ion-row>
@@ -111,7 +111,7 @@
             <img src="assets/img/Recurso 190xxxhdpi.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-8>
-          <input type="{{passType}}" class="liberiText" placeholder="Contraseña" formControlName="password" [(ngModel)]="RegisterFormData.password" [class.invalid]="!RegisterForm1.controls.password.valid && (RegisterForm1.controls.password.dirty || submitAttemptForm1)"
+          <input type="{{passType}}" class="liberi-text" placeholder="Contraseña" formControlName="password" [(ngModel)]="RegisterFormData.password" [class.invalid]="!RegisterForm1.controls.password.valid && (RegisterForm1.controls.password.dirty || submitAttemptForm1)"
             [class.valid]="RegisterForm1.controls.password.valid"/>
         </ion-col>
         <ion-col col-2>
@@ -124,7 +124,7 @@
             <img src="assets/img/Recurso 190xxxhdpi.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-8>
-          <input type="{{cpassType}}" class="liberiText" placeholder="Confirmar Contrsaeña" formControlName="confirmPassword" [(ngModel)]="RegisterFormData.confirmPassword" id="confirmPassword"
+          <input type="{{cpassType}}" class="liberi-text" placeholder="Confirmar Contrsaeña" formControlName="confirmPassword" [(ngModel)]="RegisterFormData.confirmPassword" id="confirmPassword"
             [class.invalid]="(!RegisterForm1.controls.confirmPassword.valid && (RegisterForm1.controls.confirmPassword.dirty || submitAttemptForm1)) || (RegisterForm1.controls.confirmPassword.errors?.MatchPassword && RegisterFormData.confirmPassword)"
             [class.valid]="RegisterForm1.controls.confirmPassword.valid"/>
         </ion-col>
@@ -136,7 +136,7 @@
       <ion-row>
         <ion-col>
           <div class="valid image-input-padding">
-              <p class="liberiText"> Carga o toma una nueva fotografía</p>
+              <p class="liberi-text"> Carga o toma una nueva fotografía</p>
               <br/>
               <div class="add-picture-image" text-center *ngIf="!RegisterFormData.profile_picture">
                 <img src="assets/img/add-image.png" (tap)="openImageOptions()">

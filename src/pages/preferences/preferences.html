@@ -3,116 +3,197 @@
     <button ion-button menuToggle="left">
       <ion-icon name="arrow-back"></ion-icon>
     </button>
-    <ion-title>PREFERENCIAS</ion-title>
+    <ion-title class="liberi">PREFERENCIAS</ion-title>
   </ion-navbar>
   <navbar-bump></navbar-bump>
 </ion-header>
 
 <ion-content>
-  <ion-fab top right edge>
-    <button ion-fab mini (click)="savePreferences()">
-      <ion-icon name="checkmark"></ion-icon>
-    </button>
-  </ion-fab>
-
   <ion-grid>
     <ion-row>
-      <ion-col col-6>
-        <ion-item>
-          <ion-label text-wrap>Aeróbico</ion-label>
-          <ion-checkbox [(ngModel)]="settings.aerobico" color="dark"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Crossfit</ion-label>
-          <ion-checkbox [(ngModel)]="settings.crossfit" color="dark"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Ritmos Latinos</ion-label>
-          <ion-checkbox [(ngModel)]="settings.ritmos" color="dark"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Pole Dance</ion-label>
-          <ion-checkbox [(ngModel)]="settings.pole" color="dark"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Jumping Fitness</ion-label>
-          <ion-checkbox [(ngModel)]="settings.jumping " color="dark"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Spinning</ion-label>
-          <ion-checkbox [(ngModel)]="settings.spinning" color="dark"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>MMA</ion-label>
-          <ion-checkbox [(ngModel)]="settings.mma" color="dark"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Karate</ion-label>
-          <ion-checkbox [(ngModel)]="settings.karate" color="dark"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Funcional</ion-label>
-          <ion-checkbox [(ngModel)]="settings.funcional" color="dark"></ion-checkbox>
-        </ion-item>
+      <ion-col>
+          <p class="liberi-title">Filtrar por...</p> 
       </ion-col>
-      <ion-col col-6>
-        <ion-item>
-          <ion-label text-wrap>Pesas</ion-label>
-          <ion-checkbox color="dark" [(ngModel)]="settings.pesas"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Zumba</ion-label>
-          <ion-checkbox color="dark" [(ngModel)]="settings.zumba"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Danza Aérea</ion-label>
-          <ion-checkbox color="dark" [(ngModel)]="settings.danza"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Yoga</ion-label>
-          <ion-checkbox color="dark" [(ngModel)]="settings.yoga"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Barre</ion-label>
-          <ion-checkbox color="dark" [(ngModel)]="settings.barre"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Boxeo</ion-label>
-          <ion-checkbox color="dark" [(ngModel)]="settings.boxeo"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Tae Kown Do</ion-label>
-          <ion-checkbox color="dark" [(ngModel)]="settings.taekwondo"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Natación</ion-label>
-          <ion-checkbox color="dark" [(ngModel)]="settings.natacion"></ion-checkbox>
-        </ion-item>
-        <ion-item>
-          <ion-label text-wrap>Otras</ion-label>
-          <ion-checkbox color="dark" [(ngModel)]="settings.otras"></ion-checkbox>
-        </ion-item>
+    </ion-row>
+    <ion-row align-items-center class="chk-row">
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-aerobico" class="liberi-checkbox" [(ngModel)]="settings.aerobico">
+          <label for="chk-aerobico" class="liberi-checkbox-label">Aeróbico</label>
+        </div>
+      </ion-col>
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-pesas" class="liberi-checkbox" [(ngModel)]="settings.pesas">
+          <label for="chk-pesas" class="liberi-checkbox-label">Pesas</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-center class="chk-row">
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-crossfit" class="liberi-checkbox" [(ngModel)]="settings.crossfit">
+          <label for="chk-crossfit" class="liberi-checkbox-label">Crossfit</label>
+        </div>
+      </ion-col>
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-zumba" class="liberi-checkbox" [(ngModel)]="settings.zumba">
+          <label for="chk-zumba" class="liberi-checkbox-label">Zumba</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-center class="chk-row">
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-ritmos" class="liberi-checkbox" [(ngModel)]="settings.ritmos">
+          <label for="chk-ritmos" class="liberi-checkbox-label">Ritmos latinos</label>
+        </div>
+      </ion-col>
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-danza" class="liberi-checkbox" [(ngModel)]="settings.danza">
+          <label for="chk-danza" class="liberi-checkbox-label">Danza aérea</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-center class="chk-row">
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-pole" class="liberi-checkbox" [(ngModel)]="settings.pole">
+          <label for="chk-pole" class="liberi-checkbox-label">Pole dance</label>
+        </div>
+      </ion-col>
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-yoga" class="liberi-checkbox" [(ngModel)]="settings.yoga">
+          <label for="chk-yoga" class="liberi-checkbox-label">Yoga</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-center class="chk-row">
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-jumping" class="liberi-checkbox" [(ngModel)]="settings.jumping">
+          <label for="chk-jumping" class="liberi-checkbox-label">Jumping fitness</label>
+        </div>
+      </ion-col>
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-barre" class="liberi-checkbox" [(ngModel)]="settings.barre">
+          <label for="chk-barre" class="liberi-checkbox-label">Barre</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-center class="chk-row">
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-spinning" class="liberi-checkbox" [(ngModel)]="settings.spinning">
+          <label for="chk-spinning" class="liberi-checkbox-label">Spininng</label>
+        </div>
+      </ion-col>
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-boxeo" class="liberi-checkbox" [(ngModel)]="settings.boxeo">
+          <label for="chk-boxeo" class="liberi-checkbox-label">Boxeo</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-center class="chk-row">
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-mma" class="liberi-checkbox" [(ngModel)]="settings.mma">
+          <label for="chk-mma" class="liberi-checkbox-label">Artes marciales mix.</label>
+        </div>
+      </ion-col>
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-taekwondo" class="liberi-checkbox" [(ngModel)]="settings.taekwondo">
+          <label for="chk-taekwondo" class="liberi-checkbox-label">Taekwondo</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-center class="chk-row">
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-karate" class="liberi-checkbox" [(ngModel)]="settings.karate">
+          <label for="chk-karate" class="liberi-checkbox-label">Karate</label>
+        </div>
+      </ion-col>
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-natacion" class="liberi-checkbox" [(ngModel)]="settings.natacion">
+          <label for="chk-natacion" class="liberi-checkbox-label">Natación</label>
+        </div>
+      </ion-col>
+    </ion-row>
+    <ion-row align-items-center class="chk-row">
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-funcional" class="liberi-checkbox" [(ngModel)]="settings.funcional">
+          <label for="chk-funcional" class="liberi-checkbox-label">Funcional</label>
+        </div>
+      </ion-col>
+      <ion-col col-6 class="no-h-padding">
+        <div class="center-vertical-input">
+          <input type="checkbox" id="chk-otras" class="liberi-checkbox" [(ngModel)]="settings.otras">
+          <label for="chk-otras" class="liberi-checkbox-label">Otras</label>
+        </div>
       </ion-col>
     </ion-row>
   </ion-grid>
 
+  <div class="liberi-divider"></div>
+
   <div text-center>
     <h3>Ubicación: {{settings.location}}km</h3>
   </div>
-  <ion-item>
-    <ion-range [(ngModel)]="settings.location" pin="true" min="0" max="25">
-      <ion-label range-left>0 km</ion-label>
-      <ion-label range-right>25 km</ion-label>
-    </ion-range>
-  </ion-item>
-
+  <ion-grid>
+    <ion-row>
+      <ion-col offset-1>
+        <ion-range [(ngModel)]="settings.location" pin="true" min="0" max="25" no-padding>
+        </ion-range>
+      </ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-2>
+        <ion-label range-left no-margin>0 km</ion-label>
+      </ion-col>
+      <ion-col col-2 offset-8>
+        <ion-label range-right no-margin>25 km</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="liberi-divider"></div>
   <div text-center>
     <h3>Precio ${{settings.price | number: '1.2-2'}}</h3>
   </div>
-  <ion-item>
-    <ion-range [(ngModel)]="settings.price" pin="true" min="0" max="500" step="10">
-      <ion-label range-left>$0</ion-label>
-      <ion-label range-right>$500</ion-label>
-    </ion-range>
-  </ion-item>
+  <ion-grid>
+    <ion-row>
+      <ion-col offset-1>
+        <ion-range [(ngModel)]="settings.price" pin="true" min="0" max="500" step="10" no-padding>
+        </ion-range>
+      </ion-col>
+      <ion-col col-1></ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col col-2>
+        <ion-label range-left no-margin>$0</ion-label>
+      </ion-col>
+      <ion-col col-2 offset-8>
+        <ion-label range-right no-margin>$500</ion-label>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="liberi-divider"></div>
 </ion-content>
+
+<ion-footer no-shadow>
+    <div>
+        <button ion-button color="primary" class="liberi" round (tap)="savePreferences()">
+            <img src="assets/img/Recurso 135hdpi.png" alt="">
+        </button>
+    </div>
+    <ion-toolbar position="bottom"></ion-toolbar>
+</ion-footer>

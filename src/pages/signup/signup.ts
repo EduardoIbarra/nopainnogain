@@ -186,37 +186,6 @@ export class SignupPage {
     ionViewDidLoad() {
         this.slides.lockSwipes(true);
         this.estados = this.sharedService.States;
-        console.log(this.estados);
-        
-        console.log(this.formStep)
-        
-        this.RegisterFormData = {
-            //First form slide
-            name: "Rafael Alejandro",
-            last_name: "Gonzalez Flores",
-            email: "rafael@mailinator.com",
-            password: "abc123",
-            confirmPassword: "abc123",
-            phone: "1234567890",
-            birthday: {
-                value: 674200800,
-                text: "1991-05-14"
-            },
-            gender: "male",
-            state: "Nuevo León",
-            city: "Monterrey",
-            postal_code: "64260",
-            profile_picture: null,
-            // Second form slide
-            card_holder: null,
-            card_number: null,
-            card_expiration: null,
-            card_cvv: null,
-            fb_id: null,
-            fb_token: null
-        };
-        this.selectState("Nuevo León");
-        this.RegisterFormData.city = "Monterrey";
     }
 
     getExpirationDate() {
@@ -253,13 +222,13 @@ export class SignupPage {
 
     formStep = 0;
     next(formNumber) {
-        this.formStep = formNumber;
         if (formNumber === 1) {
             console.log(this.RegisterForm1);
             if (this.RegisterForm1.valid) {
                 this.submitAttemptForm1 = false;
                 this.RegisterFormData.birthday.value = moment(this.RegisterFormData.birthday.text).unix();
                 console.log(this.RegisterFormData);
+                this.formStep = formNumber;
                 this.swipeNext();
             } else {
                 this.submitAttemptForm1 = true;
