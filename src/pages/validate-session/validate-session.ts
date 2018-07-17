@@ -48,7 +48,6 @@ export class ValidateSessionPage {
 
 
   scanCode() {
-    alert('Temporalmente fuera de servicio');
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data: ' + barcodeData.text);
       this.validateCode(barcodeData.text)
