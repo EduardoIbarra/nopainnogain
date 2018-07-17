@@ -118,6 +118,7 @@
         <variable name="APP_NAME" value="b151236420dfa2f41a2972e76b3b5019" />
         <variable name="ANDROID_SDK_VERSION" value="4.+" />
     </plugin>
+    <allow-navigation href="http://10.0.0.24:8102" />
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="7.0.0" />
 </widget>

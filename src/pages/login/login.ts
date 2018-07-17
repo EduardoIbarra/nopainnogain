@@ -72,7 +72,8 @@ export class LoginPage {
 
 
     facebookLogin() {
-        this.loadingService.presentLoading();
+      this.authService.facebookLoginWithCredentials(this.navCtrl);
+        /*this.loadingService.presentLoading();
         this.authService.facebookLogin().then((response) => {
             console.log(response);
             let user = {
@@ -91,7 +92,7 @@ export class LoginPage {
             this.UserData.password = null;
             this.loadingService.dismiss();
             this.alertService.facebookLoginError();
-        });
+        });*/
     }
 
 
