@@ -46,6 +46,20 @@ $text-input-md-show-focus-highlight: false;
 
 $block-button-background: linear-gradient(to right, #ffad22, #ffe904, #ffad22);
 
+$grid-breakpoints: (
+  xs: 0,
+  sm: 200px,
+  md: 768px,
+  lg: 1024px
+);
+
+$grid-max-widths: (
+  xs: 186px,
+  sm: 420px,
+  md: 720px,
+  lg: 960px
+);
+
 // App iOS Variables
 // --------------------------------------------------
 // iOS only Sass variables can go here
