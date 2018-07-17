@@ -212,19 +212,23 @@ ion-popover {
 
 @import "../assets/sass/screen-sizes";
 
-// hacks FORMS
-.ion-page > ion-content.profile {
+/*
+* ======================>
+*  hacks FORMS
+* ++++++++++++++++++++++
+*/
+.ion-page > ion-content.liberi {
   background-color: #E5E5E5;
 }
 
-ion-title.profile {
+ion-title.liberi {
   padding: 5px 60px 1px;
 }
 iont-title > .toolbar-title {
   overflow: initial;
 }
 
-input.profileText, select.profileText, ion-datetime.profile {
+input.liberiText, select.liberiText, ion-datetime.liberi, ion-multi-picker.liberi {
   background-color: #CECECE;
   width: 100%;
   height: 35px;
@@ -236,7 +240,7 @@ input.profileText, select.profileText, ion-datetime.profile {
   border-radius: 5px;
   margin-bottom: 25px;
 }
-img.profile {
+img.liberi {
   max-width: 26px;
   max-height: 26px;
 }
@@ -244,8 +248,40 @@ img.profile {
 .add-picture-image > img {
   max-width: 75px;
 }
-p.profileText {
+p.liberiText {
   font-size: medium;
   text-align: center;
   font-style: italic;
 }
+
+ion-toolbar > .toolbar-background {
+  background-image: url("../assets/img/Recurso\ 193xxxhdpi.png");
+  background-repeat: no-repeat;
+  background-size: 100% 100%;
+}
+
+ion-footer > div > button.liberi {
+  position: relative;
+  left: -50%;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  box-shadow: none;
+  width: 50px;
+  height: 50px;
+}
+ion-footer > div {
+  position: absolute;
+  z-index: 100000;
+  top: -50%;
+  left: 50%;
+}
+
+ion-footer > div > button img {
+  max-width: 50px;
+  max-height: 50px; 
+}
+/*
+* ++++++++++++++++++++++
+*  end hacks FORMS
+* ======================|
+*/
