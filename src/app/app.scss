@@ -261,12 +261,6 @@ p.liberi-text {
   text-align: center;
   font-style: italic;
 }
-img.circle {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAC4jAAAuIwF4pT92AAAAB3RJTUUH4gcRDjUjxxViDQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAGTSURBVEjHvZYxSwNBEIXfnqCd2FtpLUgQo5VgISIWWgpa2EpAFFSwjhYB/4G9VoIWgo1Ya8TCRiQkAYs0IihqoUn4bO5gWe6SI1nz4DhudvZ9zLK3O1IKAevABVAFvoFm+HwBZeAMWFW3Ao6AV9KrBhx0ApoHKnSuJ2A2LWw3XK5u1QRy7WA7LQyugRyQAQYBE74zYfw6Yd5GEmwuobIbYCbl6syE+bYasfOBUgys0OFmKzg+j27CYQws3+UOzzt++/ZgzRm8kAeF/26kahRcialuzBNwzPFdEnDiBE/lUcCp5X0cSBp3cs7lV7bfhIAPp8IRzxWOWN5vBmhI6rNyBowxvx6B/ZJ+ws9moB4rkPTpxIY9M2y/90DSi5OQ9Qy0/aqBpHsnYdkz0PYrCljq4Y+/GA1UenC0leyBvR4c3ltuwsM/Xk+3cUnT4WXp+wKuA9lW7aDvFmMtTQ/a8NBE1dvCLOgUcNcF7DZxGduAtxN6nSQ9A5utPE1K8IKkRUmTkkYlDUVno6SypKKkS2PMVTuvP/B0a6VsH1GUAAAAAElFTkSuQmCC');
-}
-img.line {
-  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAC4jAAAuIwF4pT92AAAAB3RJTUUH4gcRDjYXzYzFewAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAA3SURBVEjH7c+xDQBACEJRcf+dcQELryFXfGrCC1Xh6KVs2+uIdN7p9ENAQEBAQEBAQEDAH8B4BkGzBDSjn3Q4AAAAAElFTkSuQmCC')
-}
 ion-toolbar > .toolbar-background {
   background-image: url("../assets/img/Recurso\ 193xxxhdpi.png");
   background-repeat: no-repeat;
@@ -298,16 +292,25 @@ div.liberi-divider {
   background-color: #cfcfcf;
   box-shadow: inset 0px 1px 4px #868686;
 }
+/*
+* ++++++++++++++++++++++
+*  end hacks FORMS
+* ======================|
+*/
 
-/* PREFERENCES CHECKBOX */
+/*
+* PREFERENCES CHECKBOX
+*/
+img.circle {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAC4jAAAuIwF4pT92AAAAB3RJTUUH4gcRDjUjxxViDQAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAGTSURBVEjHvZYxSwNBEIXfnqCd2FtpLUgQo5VgISIWWgpa2EpAFFSwjhYB/4G9VoIWgo1Ya8TCRiQkAYs0IihqoUn4bO5gWe6SI1nz4DhudvZ9zLK3O1IKAevABVAFvoFm+HwBZeAMWFW3Ao6AV9KrBhx0ApoHKnSuJ2A2LWw3XK5u1QRy7WA7LQyugRyQAQYBE74zYfw6Yd5GEmwuobIbYCbl6syE+bYasfOBUgys0OFmKzg+j27CYQws3+UOzzt++/ZgzRm8kAeF/26kahRcialuzBNwzPFdEnDiBE/lUcCp5X0cSBp3cs7lV7bfhIAPp8IRzxWOWN5vBmhI6rNyBowxvx6B/ZJ+ws9moB4rkPTpxIY9M2y/90DSi5OQ9Qy0/aqBpHsnYdkz0PYrCljq4Y+/GA1UenC0leyBvR4c3ltuwsM/Xk+3cUnT4WXp+wKuA9lW7aDvFmMtTQ/a8NBE1dvCLOgUcNcF7DZxGduAtxN6nSQ9A5utPE1K8IKkRUmTkkYlDUVno6SypKKkS2PMVTuvP/B0a6VsH1GUAAAAAElFTkSuQmCC');
+}
+img.line {
+  background: url('data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABwAAAAcCAYAAAByDd+UAAAABmJLR0QAAAAAAAD5Q7t/AAAACXBIWXMAAC4jAAAuIwF4pT92AAAAB3RJTUUH4gcRDjYXzYzFewAAABl0RVh0Q29tbWVudABDcmVhdGVkIHdpdGggR0lNUFeBDhcAAAA3SURBVEjH7c+xDQBACEJRcf+dcQELryFXfGrCC1Xh6KVs2+uIdN7p9ENAQEBAQEBAQEDAH8B4BkGzBDSjn3Q4AAAAAElFTkSuQmCC')
+}
 ion-row.chk-row {
   margin-bottom: 4px;
+  margin-left: 8%;
 }
-div.center-vertical-input {
-  display: flex;
-  align-items: center;
-}
-
 input.liberi-checkbox {
   position: relative;
   margin: 0;
@@ -359,6 +362,9 @@ label.liberi-checkbox-label {
 }
 /* end CHECKBOX PREFERENCES*/
 
+/**
+* HELPERS
+*/
 .no-padding { padding: 0 !important; }
 .no-margin { margin: 0 !important; }
 .no-v-margin { margin-top: 0 !important; margin-bottom: 0 !important; }
@@ -366,8 +372,14 @@ label.liberi-checkbox-label {
 .no-v-padding { padding-top: 0 !important; padding-bottom: 0 !important; }
 .no-h-padding { padding-left: 0 !important; padding-right: 0 !important; }
 .center-v { align-items: center };
+.center-vertical-input { display: flex; align-items: center; }
+.overflow-ellipsis { overflow: hidden; text-overflow: ellipsis; }
+.nowrap { white-space: nowrap; }
+/* END HELPERS*/
 
-/* SLIDE */
+/*
+* SLIDER
+*/
 .range-slider .range-bar:nth-child(2) {
   border: none;  
 }
@@ -409,9 +421,4 @@ ion-range.range-has-pin {
     border-bottom: 4px solid #1f4487;
 }
 */
-
-/*
-* ++++++++++++++++++++++
-*  end hacks FORMS
-* ======================|
-*/
+/* END SLIDER*/
