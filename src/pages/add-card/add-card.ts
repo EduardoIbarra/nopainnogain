@@ -4,9 +4,7 @@ import {LoadingService} from "../../services/loading.service";
 import {SharedService} from "../../services/shared.service";
 import {AlertService} from "../../services/alert.service";
 import {Storage} from "@ionic/storage";
-import {IonicPage} from "ionic-angular";
-import {NavController, NavParams} from "ionic-angular/umd";
-
+import {IonicPage, NavController, NavParams} from "ionic-angular";
 declare var OpenPay: any;
 
 @IonicPage()
@@ -26,7 +24,6 @@ export class AddCardPage {
     ExpMonth: 12,
     ExpYear: 21
   };
-
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public formBuilder: FormBuilder,
@@ -99,7 +96,7 @@ export class AddCardPage {
 
       }, (error) => {
         console.log(error);
-        this.loadingService.dismiss()
+        this.loadingService.dismiss();
         this.alertService.createAlertError();
       });
   }
