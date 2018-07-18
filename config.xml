@@ -1,8 +1,8 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.liberi.app" version="0.0.19" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="com.liberi.app" version="0.0.22" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Liberi</name>
     <description>An awesome Ionic/Cordova app.</description>
-    <author email="miguelhdzch@gmail.com" href="http://ionicframework.com/">Miguel Hernandez</author>
+    <author email="eduardoibarra904@gmail.com" href="http://ionicframework.com/">Eduardo Ibarra</author>
     <content src="index.html" />
     <access origin="*" />
     <access origin="http://*/*" />
