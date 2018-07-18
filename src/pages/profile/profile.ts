@@ -262,19 +262,6 @@ export class ProfilePage {
 
     }
 
-    signup() {
-        this.loadingService.presentLoading();
-        console.log(this.RegisterFormData);
-        this.authService.signup(this.RegisterFormData.email, this.RegisterFormData.password).then((response) => {
-            console.log(response);
-            this.updateUser(response.uid);
-        }, (error) => {
-            console.log(error);
-            this.loadingService.dismiss();
-            this.alertService.signupError();
-        })
-    }
-
     updateUser(uid) {
         if(this.currentUser === null) return;
         let auxUser: any = this.currentUser;
@@ -307,6 +294,7 @@ export class ProfilePage {
             auxUser.profile_picture = this.RegisterFormData.profile_picture;
         }
         // auxUser.profile_picture = this.currentUser.profile_picture;
+        this.loadingService.presentLoading();
         this.usersService.editUser(auxUser).then((response) => {
             console.log(response);
             // this.getUserData(uid);
@@ -328,6 +316,7 @@ export class ProfilePage {
     }
 
     getUserData(uid) {
+        this.loadingService.presentLoading();
         this.usersService.getUser(uid).then(response => {
             console.log(response.val());
             this.currentUser = response.val();

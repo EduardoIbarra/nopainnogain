@@ -38,7 +38,8 @@ export class HomePage {
     }
 
     ionViewDidLoad() {
-        this.getUserLocation();
+        // this.getUserLocation();
+        this.showMap(25.727169, -100.32796);
     }
 
     gymPayment(data) {
@@ -48,7 +49,6 @@ export class HomePage {
             console.log(error);
         });
     }
-
 
     getUserLocation() {
         this.loadingService.presentLoading();
@@ -103,6 +103,7 @@ export class HomePage {
     }
 
     getGymList() {
+        this.loadingService.presentLoading();
         this.gymService.getGyms().valueChanges().subscribe((response) => {
             this.markersArray.forEach((m) => {
                 m.setMap(null)
