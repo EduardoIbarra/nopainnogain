@@ -2,13 +2,14 @@ page-session-code {
 
   .container {
     display: flex;
-    position: center;
+    align-items: center;
     height: 70vh;
   }
 
   .item-list {
-    display: table-cell;
-    vertical-align: middle;
+    // display: table-cell;
+    // vertical-align: middle;
+    width: 100%;
   }
 
   .item {
