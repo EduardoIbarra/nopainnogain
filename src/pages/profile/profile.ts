@@ -308,6 +308,7 @@ export class ProfilePage {
             this.RegisterFormData.password = '';
             this.RegisterFormData.confirmPassword = '';
             toast.present();
+            this.loadingService.dismiss();
         }, (error) => {
             console.log(error);
             this.loadingService.dismiss();
