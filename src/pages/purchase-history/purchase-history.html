@@ -43,34 +43,40 @@
             </div>
           </ion-item>
           <ion-item>
-            <h2 text-center><b>Tu calificación</b></h2>
-            <div text-center class="rate-stars">
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star"></ion-icon>
-              <ion-icon name="star-outline"></ion-icon>
+            <div id="myReview" *ngIf="!i.reviewDone && i.status !== 'available'">
+              <h2 text-center><b>Tu calificación</b></h2>
+              <div text-center class="rate-stars">
+                <ion-icon (click)="i.myRate = 1" name="{{getStarName(1, i)}}"></ion-icon>
+                <ion-icon (click)="i.myRate = 2" name="{{getStarName(2, i)}}"></ion-icon>
+                <ion-icon (click)="i.myRate = 3" name="{{getStarName(3, i)}}"></ion-icon>
+                <ion-icon (click)="i.myRate = 4" name="{{getStarName(4, i)}}"></ion-icon>
+                <ion-icon (click)="i.myRate = 5" name="{{getStarName(5, i)}}"></ion-icon>
+              </div>
+              <div>
+                <textarea class="reviewTextArea" [(ngModel)]="i.myMessage" placeholder="Qué te pareció?"></textarea>
+                <button ion-button full (click)="setReview(i)">Enviar</button>
+              </div>
             </div>
             <br>
-            <h2 text-center><b>Comentarios</b></h2>
-            <div class="comments-section">
-              <div class="comments-section-item">
-                <ion-avatar item-start>
-                  <ion-icon name="quote"></ion-icon>
-                  <p text-wrap>Buenas instalaciones</p>
-                </ion-avatar>
-              </div>
-              <div class="comments-section-item">
-                <ion-avatar item-start>
-                  <ion-icon name="quote"></ion-icon>
-                  <p text-wrap>Excelente ubicacion</p>
-                </ion-avatar>
-              </div>
-              <div class="comments-section-item">
-                <ion-avatar item-start>
-                  <ion-icon name="quote"></ion-icon>
-                  <p text-wrap>Buena musica, parecia antro</p>
-                </ion-avatar>
+            <div *ngIf="!i.reviews">
+              <h2 text-center><b>Aun no hay comentarios para este Gym</b></h2>
+            </div>
+            <div *ngIf="i.reviews">
+              <h2 text-center><b>Comentarios</b></h2>
+              <div class="comments-section">
+                <div class="comments-section-item" *ngFor="let r of i.reviews">
+                  <ion-avatar item-start>
+                    <ion-icon name="quote"></ion-icon>
+                    <div><p text-wrap>{{r.message}}</p></div>
+                    <div class="rate-stars small">
+                      <ion-icon name="{{getStarNameReview(1, r.rating)}}"></ion-icon>
+                      <ion-icon name="{{getStarNameReview(2, r.rating)}}"></ion-icon>
+                      <ion-icon name="{{getStarNameReview(3, r.rating)}}"></ion-icon>
+                      <ion-icon name="{{getStarNameReview(4, r.rating)}}"></ion-icon>
+                      <ion-icon name="{{getStarNameReview(5, r.rating)}}"></ion-icon>
+                    </div>
+                  </ion-avatar>
+                </div>
               </div>
             </div>
           </ion-item>

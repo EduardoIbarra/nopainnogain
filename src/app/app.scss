@@ -395,7 +395,7 @@ label.liberi-checkbox-label {
 * SLIDER
 */
 .range-slider .range-bar:nth-child(2) {
-  border: none;  
+  border: none;
 }
 ion-range.range-has-pin {
   padding-top: 0 !important;
@@ -420,6 +420,20 @@ ion-range.range-has-pin {
   top: 8px;
   width: 28px;
   height: 28px;
+}
+.rate-stars.small {
+  font-size: .6em;
+  text-align: right;
+  position: absolute;
+  bottom: 5px;
+  right: 0px;
+}
+page-purchase-history .gym-list .comments-section .comments-section-item {
+  position: relative;
+}
+.reviewTextArea {
+  width: 100%;
+  padding: 5px;
 }
 /*
 .range-knob-handle .range-pin::before {
