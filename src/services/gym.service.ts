@@ -29,4 +29,8 @@ export class GymService {
     public deleteGym(gym) {
         return this.afDB.database.ref('/gyms/' + gym.id).remove();
     }
+
+    public setReview(review) {
+      return this.afDB.database.ref('/gyms/' + review.gym_id + '/reviews/' + review.uid).set(review);
+    }
 }

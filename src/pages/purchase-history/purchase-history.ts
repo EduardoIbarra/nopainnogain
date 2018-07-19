@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {PaymentService} from "../../services/payment.service";
 import {AuthService} from "../../services/auth.service";
 import {GymService} from "../../services/gym.service";
@@ -20,7 +20,7 @@ export class PurchaseHistoryPage {
     {isOpen: false, avatar: 'assets/img/example/snap.jpg', name: 'Snap Fitness', price: '55.00', date: 'Viernes 19 de Mayo. 15:03 Hrs'},
     {isOpen: false, avatar: 'assets/img/example/olympia.jpg', name: 'Olympia GYM', price: '65.00', date: 'Lunes 17 de Abril. 06:55 Hrs'},
   ];
-
+  myRate: number = 5;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -29,6 +29,7 @@ export class PurchaseHistoryPage {
     public sharedService: SharedService,
     public loadingService: LoadingService,
     public authService: AuthService,
+    public toastController: ToastController
   ) {
     this.authService.getStatus().subscribe((result) => {
       this.currentUser = result;
@@ -45,16 +46,19 @@ export class PurchaseHistoryPage {
     this.paymentService.getPaymentsByUser(this.currentUser.uid).valueChanges().subscribe((payments: any) => {
       console.log(payments);
       if(!payments){
-        this.history = [];
         this.loadingService.dismiss();
         return;
       }
       payments = Object.keys(payments).map(key => payments[key]);
       this.gymService.getGyms().valueChanges().subscribe((gyms: any) => {
         console.log(gyms);
+        this.history = [];
         payments.map((p) => {
           gyms.forEach((g) => {
             if (p.gym === g.id) {
+              if(g.reviews){
+                g.reviews = Object.keys(g.reviews).map(key => g.reviews[key]);
+              }
               this.history.push(g);
               this.history[this.history.length - 1].purchase_code = p.generated_code;
               this.history[this.history.length - 1].status = p.status;
@@ -75,5 +79,34 @@ export class PurchaseHistoryPage {
       console.log(error);
     })
   }
-
+  getStarName(starN, i) {
+    return (starN <= i.myRate) ? 'star' : 'star-outline';
+  }
+  getStarNameReview(starN, i) {
+    return (starN <= i) ? 'star' : 'star-outline';
+  }
+  setReview(i) {
+    // this.loadingService.presentLoading();
+    const review = {
+      uid: this.currentUser.uid,
+      gym_id: i.id,
+      rating: i.myRate,
+      message: i.myMessage,
+      timestamp: Date.now()
+    };
+    console.log(review);
+    this.gymService.setReview(review).then((data) => {
+      const toast = this.toastController.create({
+        message: '¡Muchas gracias por tu reseña!',
+        duration: 3000
+      });
+      toast.present();
+      i.reviewDone = true;
+      // this.loadingService.dismiss();
+    }).catch((error) => {
+      alert('Ocurrió un error');
+      console.log(error);
+      // this.loadingService.dismiss();
+    });
+  }
 }
