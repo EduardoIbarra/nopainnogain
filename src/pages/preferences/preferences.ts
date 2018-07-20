@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController, ViewController} from 'ionic-angular';
 import {UsersService} from '../../services/users.service';
 import {AuthService} from '../../services/auth.service';
 
@@ -9,6 +9,9 @@ import {AuthService} from '../../services/auth.service';
   templateUrl: 'preferences.html',
 })
 export class PreferencesPage {
+
+  isModal: boolean;
+
   settings = {
     aerobico: false,
     crossfit: false,
@@ -33,13 +36,21 @@ export class PreferencesPage {
   };
   uid: any;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public userService: UsersService, public authService: AuthService, private toastCtrl: ToastController) {
+  constructor(
+    public navCtrl: NavController,
+    public navParams: NavParams,
+    public userService: UsersService,
+    public authService: AuthService,
+    public viewCtrl: ViewController,
+    private toastCtrl: ToastController) {
     this.authService.getStatus().subscribe((result) => {
       this.uid = result.uid;
       this.userService.getUserById(this.uid).valueChanges().subscribe((user: any) => {
         this.settings = user.settings || this.settings;
       });
     });
+
+    this.isModal = this.navParams.get('isModal') || false;
   }
 
   savePreferences() {

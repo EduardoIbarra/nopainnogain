@@ -42,7 +42,7 @@ export class MyApp {
       {title: 'Inicio', component: 'HomePage', icon: 'pin.png', show: true},
       {title: 'Datos Personales', component: 'ProfilePage', icon: 'user.png', show: true},
       {title: 'Datos de tarjeta', component: 'CardListPage', icon: 'card.png', show: false},
-      {title: 'Notificaciones', component: 'HomePage', icon: 'notification.png', show: true},
+      {title: 'Notificaciones', component: 'NotificationsPage', icon: 'notification.png', show: true},
       {title: 'Historial de Compras', component: 'PurchaseHistoryPage', icon: 'history.png', show: true},
       {title: 'Preferencias', component: 'PreferencesPage', icon: 'preferences.png', show: true},
       {title: 'Promociones', component: 'HomePage', icon: 'promos.png', show: true},

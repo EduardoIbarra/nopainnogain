@@ -1,8 +1,13 @@
 <ion-header>
   <ion-navbar>
-    <button ion-button menuToggle="left">
+    <button ion-button menuToggle="left" *ngIf="!isModal">
       <ion-icon name="arrow-back"></ion-icon>
     </button>
+
+    <button ion-button *ngIf="isModal" (click)="viewCtrl.dismiss()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+
     <ion-title class="liberi">PREFERENCIAS</ion-title>
   </ion-navbar>
   <navbar-bump></navbar-bump>
@@ -13,7 +18,7 @@
 
     <ion-row>
       <ion-col>
-          <p class="liberi-title">Filtrar por...</p> 
+          <p class="liberi-title">Filtrar por...</p>
       </ion-col>
     </ion-row>
 
