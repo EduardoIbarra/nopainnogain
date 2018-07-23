@@ -1,0 +1,35 @@
+page-report-charge {
+  .body-title {
+    display: contents;
+    img {
+      width: 20%;
+      float: right;
+      top: -15px;
+      position: relative;
+    }
+  }
+
+  @import url('https://fonts.googleapis.com/css?family=Great+Vibes');
+
+  .comment-section {
+    //ion-textarea {
+    //  top: 60px;
+    //  padding-left: 25px;
+    //}
+    textarea {
+      background: rgba(128, 128, 128, 0.32941176470588235);
+      border-radius: 5px;
+      padding-left: 10px;
+      padding-top: 10px;
+    }
+    .comillas {
+      font-family: 'Great Vibes', cursive;
+      font-size: 100px;
+      font-weight: 800;
+      color: grey;
+      transform: scale(-1, 1);
+      position: absolute;
+    }
+  }
+
+}

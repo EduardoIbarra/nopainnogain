@@ -116,7 +116,7 @@ export class HelpPage {
               this.purchaseHistory[this.purchaseHistory.length - 1].isOpen = false;
               this.purchaseHistory[this.purchaseHistory.length - 1].openToday = this.sharedService.getGymOpenDays(g);
               this.purchaseHistory[this.purchaseHistory.length - 1].selected = false;
-              if(this.purchaseHistory.length < 11)this.chargeHistory.push(this.purchaseHistory[this.purchaseHistory.length - 1]);
+              if (this.purchaseHistory.length < 11) this.chargeHistory.push(this.purchaseHistory[this.purchaseHistory.length - 1]);
             }
           })
         });
@@ -130,10 +130,25 @@ export class HelpPage {
     })
   }
 
-  addHistoryItems(type) {
-    for (let i = 0; i < 10; i++) {
-      this.chargeHistory.push(this.purchaseHistory[this.chargeHistory.length]);
+  seeMore(type) {
+    if (type === 'entry') {
+      for (let i = 0; i < 5; i++) {
+        if (this.purchaseHistory[this.entriesHistory.length]) {
+          this.entriesHistory.push(this.purchaseHistory[this.entriesHistory.length]);
+        }
+      }
     }
+    if (type === 'charge') {
+      for (let i = 0; i < 5; i++) {
+        if (this.purchaseHistory[this.chargeHistory.length]) {
+          this.chargeHistory.push(this.purchaseHistory[this.chargeHistory.length]);
+        }
+      }
+    }
+  }
 
+
+  reportCharge(){
+    this.navCtrl.push('ReportChargePage')
   }
 }
