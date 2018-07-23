@@ -1,12 +1,19 @@
 navbar-bump {
+  position: absolute;
+  z-index: 100000;
+  top: 60%;
+  left: 50%;
+
   .logo-bump {
     background: map_get($colors, primary);
     border-radius: 52%;
     margin: 0 auto;
-    position: relative;
-    top: -2.6vh;
-    width: 12%;
+    // position: relative;
+    // top: -2.6vh;
+    width: 56px;
     padding: 5px 10px 3px;
+    position: relative;
+    left: -50%;
   }
 }
 
