@@ -14,24 +14,11 @@
           <ion-icon name="notifications"></ion-icon>
           <ion-badge color="danger">28</ion-badge>
         </button>
-        <ion-searchbar mode="ios" placeholder="Búsqueda" (keypress)="$event.keyCode === 13 ? searchGyms():null"
-                       [(ngModel)]="searchQuery" (ionFocus)="searchHasfocus = true"></ion-searchbar>
-        <ion-buttons end class="button-group">
-          <button item-right ion-button color="light" *ngIf="searchHasfocus" (click)="searchGyms()">
-            <ion-icon name="search"></ion-icon>
-          </button>
-          <div *ngIf="!searchHasfocus">
-            <button item-right ion-button color="light">
-              <ion-icon name="notifications"></ion-icon>
-              <ion-badge color="danger">28</ion-badge>
-            </button>
-
-            <button item-right ion-button color="light" (click)="goTo('PreferencesPage')">
-              <ion-icon name="options"></ion-icon>
-            </button>
-          </div>
-        </ion-buttons>
+        <button item-right ion-button color="light" (click)="goTo('PreferencesPage')">
+          <ion-icon name="options"></ion-icon>
+        </button>
       </div>
+    </ion-buttons>
   </ion-navbar>
 </ion-header>
 

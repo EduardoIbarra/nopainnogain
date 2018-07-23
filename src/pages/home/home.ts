@@ -38,8 +38,8 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
-    //this.getUserLocation();
-    this.showMap(25.727169, -100.32796);
+    this.getUserLocation();
+    //this.showMap(25.727169, -100.32796);
   }
 
   gymPayment(data) {
@@ -59,6 +59,7 @@ export class HomePage {
       this.userPosition.latitude = position.coords.latitude;
       this.userPosition.longitude = position.coords.longitude;
       this.dataError = false;
+      this.loadingService.dismiss();
     }).catch(error => {
       console.log(error);
       this.alertService.userLocationError();
