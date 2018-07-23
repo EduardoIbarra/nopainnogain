@@ -1,12 +1,14 @@
 <ion-header>
   <ion-navbar>
+    <ion-title class="liberi">NOTIFICACIONES</ion-title>
     <button ion-button menuToggle="left" *ngIf="!isModal">
       <ion-icon name="arrow-back"></ion-icon>
     </button>
-    <button ion-button *ngIf="isModal" (click)="viewCtrl.dismiss()">
-      <ion-icon name="arrow-back"></ion-icon>
-    </button>
-    <ion-title>NOTIFICACIONES</ion-title>
+    <ion-buttons *ngIf="isModal">
+      <button ion-button (click)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
   <navbar-bump></navbar-bump>
 </ion-header>

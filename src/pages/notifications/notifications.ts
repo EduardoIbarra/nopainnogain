@@ -30,4 +30,7 @@ export class NotificationsPage {
     this.isModal = this.navParams.get('isModal') || false;
   }
 
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
 }

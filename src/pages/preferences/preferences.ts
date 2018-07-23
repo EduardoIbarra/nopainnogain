@@ -74,4 +74,8 @@ export class PreferencesPage {
     toast.present();
   }
 
+  dismiss() {
+    this.viewCtrl.dismiss();
+  }
+
 }

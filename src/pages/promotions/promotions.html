@@ -3,7 +3,7 @@
     <button ion-button menuToggle="left">
       <ion-icon name="arrow-back"></ion-icon>
     </button>
-    <ion-title class="liberi">PROMOCINES</ion-title>
+    <ion-title class="liberi">PROMOCIONES</ion-title>
   </ion-navbar>
   <navbar-bump></navbar-bump>
 </ion-header>
@@ -11,50 +11,58 @@
 <ion-content>
   <div class="liberi-divider"></div>
   <ion-grid>
-    <ion-row>
-      <ion-col>
-          <p class="liberi-title">¿Te gustaría tener visitas gratis?</p> 
+    <ion-row padding align-items-center>
+      <ion-col col-8>
+        <p class="p-title">¿Te gustaría tener visitas gratis?</p> 
+      </ion-col>
+      <ion-col col-4 text-center>
+        <img src="assets/img/Recurso 208xxxhdpi.png" class="title-img" alt="">
       </ion-col>
     </ion-row>
-    <ion-row align-items-center class="chk-row">
-      <ion-col col-12 class="no-h-padding">
+    <ion-row padding align-items-center>
+      <ion-col col-12 class="p-text">
         Recibe una visita de regalo en el mismo gimnasio donde realizaste tu primera compra com agradecimiento
-        de parate del equipo LIBERI por haber utilizado por primera vez la apliación.
+        de parate del equipo <span class="span-liberi">LI<b>BE</b>RI</span> por haber utilizado por primera vez la apliación.
       </ion-col>
-      <ion-col col-12 class="no-h-padding">
+      <ion-col col-12 text-center padding-vertical class="p-text">
         ¡Vuelve a ejercitarte GRATIS!
       </ion-col>
-      <ion-col col-12 class="no-h-padding">
-        ¿Cómo funciona la visita gratis?
+      <ion-col col-12 text-center padding-vertical class="p-text">
+        <a (click)="showHowTo('free')">¿Cómo funciona la visita gratis?</a>
       </ion-col>
-      <ion-col col-12 class="no-h-padding">
+      <ion-col col-12 text-center padding-top class="p-text-sm">
         ¡No olvides invitar a tus amigos!
       </ion-col>
-      <ion-col col-12 class="no-h-padding">
-        <button ion-button block class="code-button">INVITAR AMIGOS</button>
+      <ion-col col-12 padding-bottom text-center>
+        <button ion-button block class="button-gray-gradient" [disabled]="free">INVITAR AMIGOS</button>
+        <p *ngIf="free" class="p-red">Acumula <b>2</b> visitas mas en <b>SNAP FITNESS LA RIOJA</b> para activar esta promoción</p>
       </ion-col>
     </ion-row>
   </ion-grid>
   <div class="liberi-divider"></div>
   <ion-grid>
-    <ion-row>
-      <ion-col>
-        <p class="liberi-title">¡Regala una visita a un amigo!</p> 
+    <ion-row padding align-items-center>
+      <ion-col col-8>
+        <p class="p-title">¡Regala una visita a un amigo!</p> 
+      </ion-col>
+      <ion-col col-4 text-center>
+        <img src="assets/img/Recurso 207xxxhdpi.png" class="title-img" alt="">
       </ion-col>
     </ion-row>
-    <ion-row align-items-center class="chk-row">
-      <ion-col col-12 class="no-h-padding">
-        Los usuarios activos de la aplicación pueden invitar a sus amigos a usar LIBERI
+    <ion-row padding align-items-center>
+      <ion-col col-12 class="p-text">
+        Los usuarios activos de la aplicación pueden invitar a sus amigos a usar <span class="span-liberi">LI<b>BE</b>RI</span>
         de manera gratuita por primerav vez después de haber acumulado 6 visitas pagadas en el mismo gimnasio.
       </ion-col>
-      <ion-col col-12 class="no-h-padding">
-        ¡Ayuda a tus amigos a ejercitarte GRATIS!
+      <ion-col col-12 text-center padding-vertical class="p-text">
+        ¡Ayuda a tus amigos a ejercitarse GRATIS!
       </ion-col>
-      <ion-col col-12 class="no-h-padding">
-        ¿Cómo funciona la visita de regalo?
+      <ion-col col-12 text-center padding-vertical class="p-text">
+        <a (click)="showHowTo('gift')">¿Cómo funciona la visita de regalo?</a>
       </ion-col>
-      <ion-col col-12 class="no-h-padding">
-        <button ion-button block class="code-button">REGALAR VISITA</button>
+      <ion-col col-12 padding-vertical text-center>
+        <button ion-button block class="button-gray-gradient" [disabled]="gift">REGALAR VISITA</button>
+        <p *ngIf="gift" class="p-red">Acumula <b>2</b> visitas mas en <b>SNAP FITNESS LA RIOJA</b> para activar esta promoción</p>
       </ion-col>
     </ion-row>
   </ion-grid>
@@ -63,10 +71,5 @@
 
 <ion-footer no-shadow>
     <div class="liberi-logo-line"></div>
-    <div class="action">
-        <button ion-button color="primary" class="liberi" round>
-            <img src="assets/img/Recurso 135hdpi.png" alt="">
-        </button>
-    </div>
     <ion-toolbar position="bottom"></ion-toolbar>
 </ion-footer>

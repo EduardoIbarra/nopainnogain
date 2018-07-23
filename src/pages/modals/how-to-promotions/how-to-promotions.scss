@@ -1,0 +1,27 @@
+page-how-to-promotions {
+  .ios .modal-wrapper > .ion-page > ion-header > .toolbar.statusbar-padding:first-child {
+    padding-top: 0;
+  }
+  .title-img {
+      width: auto;
+      height: 80px;
+  }
+  .p-title {
+      font-weight: 500;
+      font-style: italic;
+      font-size: 2.0rem;
+      color: #424242;
+  }
+  .span-liberi {
+      font-family: Expansiva;
+      font-style: italic;
+  }
+
+  .p-text {
+      font-size: 1.6rem;
+  }
+
+  .p-text-sm {
+      font-size: 1.4rem;
+  }
+}
