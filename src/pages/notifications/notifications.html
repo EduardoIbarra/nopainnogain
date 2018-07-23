@@ -1,0 +1,23 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button menuToggle="left" *ngIf="!isModal">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <button ion-button *ngIf="isModal" (click)="viewCtrl.dismiss()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <ion-title>NOTIFICACIONES</ion-title>
+  </ion-navbar>
+  <navbar-bump></navbar-bump>
+</ion-header>
+<ion-content>
+  <ion-list padding-top>
+    <button ion-item detail-none no-lines *ngFor="let g of items">
+      <ion-avatar item-start>
+        <img [src]="g.img">
+      </ion-avatar>
+      <h2>{{g.gymName}}</h2>
+      <p>{{g.message}}</p>
+    </button>
+  </ion-list>
+</ion-content>

@@ -35,26 +35,30 @@
             <ion-item>Me impidieron la entrada</ion-item>
             <div class="border-box" no-padding>
               <p text-wrap>Por favor selecciona la compra en donde te impidieron el acceso.</p>
-              <ion-item *ngFor="let h of entriesHistory">
-                <ion-label>{{h.commercial_name}}</ion-label>
+              <ion-item *ngFor="let h of entriesHistory" text-wrap>
+                <ion-label>${{h.purchase_price}} - {{h.purchase_date | date}} - {{h.commercial_name}}</ion-label>
                 <ion-checkbox color="secondary" checked="{{h.selected}}"></ion-checkbox>
               </ion-item>
               <div text-center class="more-button">
-                <p>Ver más...</p>
+                <p (click)="seeMore('entry')" *ngIf="entriesHistory.length !== purchaseHistory.length">Ver más...</p>
               </div>
-
             </div>
-            <br>
+            <div text-center>
+              <button ion-button primary>ENVIAR</button>
+            </div>            <br>
             <ion-item>Reportar un cargo no reconocido</ion-item>
             <div class="border-box" no-padding>
               <p text-wrap>Por favor selecciona el cargo no reconcido.</p>
-              <ion-item *ngFor="let h of chargeHistory">
-                <ion-label>{{h.commercial_name}}</ion-label>
+              <ion-item *ngFor="let h of chargeHistory" text-wrap>
+                <ion-label>${{h.purchase_price}} - {{h.purchase_date | date}} - {{h.commercial_name}}</ion-label>
                 <ion-checkbox color="secondary" checked="{{h.selected}}"></ion-checkbox>
               </ion-item>
               <div text-center class="more-button">
-                <p>Ver más...</p>
+                <p (click)="seeMore('charge')" *ngIf="chargeHistory.length !== purchaseHistory.length">Ver más...</p>
               </div>
+            </div>
+            <div text-center>
+              <button ion-button primary (click)="reportCharge()">ENVIAR</button>
             </div>
           </ion-list>
         </div>
