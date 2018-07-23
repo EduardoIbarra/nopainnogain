@@ -1,0 +1,1 @@
+{"name":"com.liberi.app","version":"0.0.23","displayName":"Liberi","cordova":{"platforms":["ios","android"]},"dependencies":{"cordova-ios":"4.5.4","cordova-android":"7.0.0"}}
