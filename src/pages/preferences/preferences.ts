@@ -1,7 +1,8 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController, ViewController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController, ViewController, Events} from 'ionic-angular';
 import {UsersService} from '../../services/users.service';
 import {AuthService} from '../../services/auth.service';
+import { HomePage } from '../home/home';
 
 @IonicPage()
 @Component({
@@ -42,7 +43,8 @@ export class PreferencesPage {
     public userService: UsersService,
     public authService: AuthService,
     public viewCtrl: ViewController,
-    private toastCtrl: ToastController) {
+    private toastCtrl: ToastController,
+    public events: Events) {
     this.authService.getStatus().subscribe((result) => {
       this.uid = result.uid;
       this.userService.getUserById(this.uid).valueChanges().subscribe((user: any) => {
@@ -56,6 +58,11 @@ export class PreferencesPage {
   savePreferences() {
     this.userService.setUserAttribute(this.uid, 'settings', this.settings)
       .then((result) => {
+        if(this.isModal) {
+          this.dismiss();
+        } else {
+          this.events.publish('app:changePage', 'HomePage');
+        }
         this.presentToast('Preferencias guardadas exitosamentme');
       });
   }

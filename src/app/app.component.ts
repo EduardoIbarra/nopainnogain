@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Nav, Platform} from 'ionic-angular';
+import {Nav, Platform, Events} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Keyboard} from "@ionic-native/keyboard";
@@ -26,7 +26,8 @@ export class MyApp {
               public splashScreen: SplashScreen,
               public sharedService: SharedService,
               public storage: Storage,
-              public keyboard: Keyboard,) {
+              public keyboard: Keyboard,
+              public events: Events) {
     this.initializeApp();
 
 
@@ -53,8 +54,17 @@ export class MyApp {
 
     this.activePage = this.pages[0];
 
-  }
+    this.events.subscribe('app:changePage', (page) => {
+      console.log('changePage', page);
+      let activePage = this.pages.findIndex((currPage) => page === currPage.component);
+      console.log('activePage', this.activePage);
+      if(activePage > -1) {
+        this.openPage(this.pages[activePage]);
+        console.log('page', this.pages[activePage]);
+      }
+    });
 
+  }
 
   initializeApp() {
     this.platform.ready().then(() => {
