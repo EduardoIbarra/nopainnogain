@@ -1,28 +1,31 @@
 <ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle="left">
-            <ion-icon name="arrow-back"></ion-icon>
-        </button>
-        <ion-title class="liberi">VALIDAR SESIÓN</ion-title>
-    </ion-navbar>
-    <navbar-bump></navbar-bump>
+  <ion-navbar>
+    <button ion-button menuToggle="left">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <ion-title class="liberi">VALIDAR SESIÓN</ion-title>
+  </ion-navbar>
+  <navbar-bump></navbar-bump>
 </ion-header>
 
 <ion-content padding>
-    <ion-list text-wrap text-center>
-        <ion-item no-lines>
-            <button ion-button block (tap)="scanCode()" class="code-button">Código QR</button>
-        </ion-item>
-        <br>
-        <br>
-        <br>
-        <ion-item no-lines>
-            <button ion-button block (tap)="showModalCode()" class="code-button">Código Alfanumérico</button>
-        </ion-item>
-    </ion-list>
-
+  <ion-grid>
+    <ion-row align-items-center padding-horizontal>
+      <ion-col>
+        <button ion-button block class="button-gray-gradient" (tap)="scanCode()">Código QR</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <div class="liberi-divider"></div>
+  <ion-grid>
+    <ion-row align-items-center padding-horizontal>
+      <ion-col>
+        <button ion-button block class="button-gray-gradient" (tap)="showModalCode()">Código Alfanumérico</button>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 <ion-footer no-shadow>
-    <div class="liberi-logo-line"></div>
-    <ion-toolbar position="bottom"></ion-toolbar>
+  <div class="liberi-logo-line"></div>
+  <ion-toolbar position="bottom"></ion-toolbar>
 </ion-footer>
