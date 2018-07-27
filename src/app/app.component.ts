@@ -49,7 +49,7 @@ export class MyApp {
       {title: 'Promociones', component: 'PromotionsPage', icon: 'promos.png', show: true},
       {title: 'Ayuda', component: 'HelpPage', icon: 'help.png', show: true},
       {title: 'Validar Sesión', component: 'ValidateSessionPage', icon: 'qr-code.png', show: true},
-      {title: 'Cerrar Sesión', component: null, icon: 'logout.png', show: true},
+      {title: 'Cerrar Sesión', component: null, icon: 'logout.png', show: true}
     ];
 
     this.activePage = this.pages[0];
@@ -105,5 +105,12 @@ export class MyApp {
     this.showCardItem = !this.showCardItem;
     this.pages[2].show = !this.pages[2].show;
     ev.stopPropagation()
+  }
+  shouldShow(p) {
+    let response = true;
+    if (this.sharedService.UserData && p.component == 'ValidateSessionPage') {
+      response = !!(this.sharedService.UserData.gym_owner);
+    }
+    return (p.show && response);
   }
 }
