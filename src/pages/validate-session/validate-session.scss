@@ -5,10 +5,19 @@ page-validate-session {
 
   $button-round-background: #b9b9b9;
   $button-round-background-activated: #e1e1e1;
-
+  .scroll-content {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
 
   ion-content {
     text-align: center;
+  }
+  ion-grid {
+    min-height: 48%; // no 50 para poner la division
+  }
+  ion-row {
+    flex: 1;
   }
   .code-button {
     //background-color: #d0d0d0 !important;
@@ -20,5 +29,12 @@ page-validate-session {
       background: $button-round-background-activated;
     }
 
+  }
+
+  .button-gray-gradient {
+      color: #232323;
+      font-style: italic;
+      text-transform: capitalize;
+      border-radius: 8px;
   }
 }
