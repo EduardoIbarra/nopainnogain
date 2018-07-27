@@ -37,8 +37,8 @@
             <h3>Horario: {{i.attention_hours}}</h3>
             <h1 text-center ion-text [color]="i.openToday? 'secondary':'danger'">{{i.openToday ? '¡Abierto Ahora!': 'Cerrado'}}</h1>
             <div text-center>
-              <img [src]="'https://api.qrserver.com/v1/create-qr-code/?size=550x550&data=' + i.purchase_code" class="qr-code">
-              <!--<img [src]="i.QRCodeImage" class="qr-code">-->
+              <img [src]="'https://api.qrserver.com/v1/create-qr-code/?size=100x100&data=' + i.purchase_code" (load)="i.imageLoaded = true"   class="qr-code" [ngClass]="{'img-loaded':i.imageLoaded}" [hidden]="!i.imageLoaded"/>
+              <ion-spinner [ngClass]="{'center':true}" *ngIf="!i.imageLoaded"></ion-spinner>
               <br/>
               <b>{{i.purchase_code}}</b>
             </div>

@@ -63,6 +63,7 @@ export class PurchaseHistoryPage {
               this.history[this.history.length - 1].purchase_date = p.timestamp;
               this.history[this.history.length - 1].isOpen = false;
               this.history[this.history.length - 1].openToday = this.sharedService.getGymOpenDays(g);
+              this.history[this.history.length - 1].imageLoaded = false;
               // this.getCodeImage(this.history.length - 1);
 
             }
