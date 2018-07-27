@@ -23,7 +23,7 @@
             <div class="{{s.class}}" text-left [class.border-box]="s.hasBorder">
               {{s.title}}
             </div>
-            <a *ngIf="s.action_label" class="{{s.action_label? 'link-button':''}}">{{s.action_label}}</a>
+            <a *ngIf="s.action_label" class="{{s.action_label? 'link-button':''}}" [href]="s.url_type === 'video'? s.url:''">{{s.action_label}}</a>
           </div>
           <div *ngIf="s.innerHtml">
             <div class="{{s.class}}" text-justify innerHtml="{{s.title}}">
@@ -45,7 +45,8 @@
             </div>
             <div text-center>
               <button ion-button primary>ENVIAR</button>
-            </div>            <br>
+            </div>
+            <br>
             <ion-item>Reportar un cargo no reconocido</ion-item>
             <div class="border-box" no-padding>
               <p text-wrap>Por favor selecciona el cargo no reconcido.</p>

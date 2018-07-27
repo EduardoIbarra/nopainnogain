@@ -15,12 +15,9 @@ export class PurchaseHistoryPage {
 
   currentUser: any;
   history: any = [];
-  items: any = [
-    {isOpen: false, avatar: 'assets/img/example/bonga.jpg', name: 'Bonga GYM', price: '78.00', date: 'Martes 17 de Agosto. 07:32 Hrs'},
-    {isOpen: false, avatar: 'assets/img/example/snap.jpg', name: 'Snap Fitness', price: '55.00', date: 'Viernes 19 de Mayo. 15:03 Hrs'},
-    {isOpen: false, avatar: 'assets/img/example/olympia.jpg', name: 'Olympia GYM', price: '65.00', date: 'Lunes 17 de Abril. 06:55 Hrs'},
-  ];
+  items: any = [];
   myRate: number = 5;
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
@@ -45,7 +42,7 @@ export class PurchaseHistoryPage {
     this.loadingService.presentLoading();
     this.paymentService.getPaymentsByUser(this.currentUser.uid).valueChanges().subscribe((payments: any) => {
       console.log(payments);
-      if(!payments){
+      if (!payments) {
         this.loadingService.dismiss();
         return;
       }
@@ -56,7 +53,7 @@ export class PurchaseHistoryPage {
         payments.map((p) => {
           gyms.forEach((g) => {
             if (p.gym === g.id) {
-              if(g.reviews){
+              if (g.reviews) {
                 g.reviews = Object.keys(g.reviews).map(key => g.reviews[key]);
               }
               this.history.push(g);
@@ -66,6 +63,8 @@ export class PurchaseHistoryPage {
               this.history[this.history.length - 1].purchase_date = p.timestamp;
               this.history[this.history.length - 1].isOpen = false;
               this.history[this.history.length - 1].openToday = this.sharedService.getGymOpenDays(g);
+              // this.getCodeImage(this.history.length - 1);
+
             }
           })
         });
@@ -79,12 +78,22 @@ export class PurchaseHistoryPage {
       console.log(error);
     })
   }
+
+  getCodeImage(i) {
+    this.paymentService.generateQrCode(this.history[i].purchase_code).subscribe((res: any) => {
+      console.log(res);
+      this.history[i].QRCodeImage = res._body;
+    });
+  }
+
   getStarName(starN, i) {
     return (starN <= i.myRate) ? 'star' : 'star-outline';
   }
+
   getStarNameReview(starN, i) {
     return (starN <= i) ? 'star' : 'star-outline';
   }
+
   setReview(i) {
     // this.loadingService.presentLoading();
     const review = {

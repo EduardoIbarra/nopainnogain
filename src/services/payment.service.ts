@@ -50,5 +50,4 @@ export class PaymentService {
   createPayment(uid, code, payment) {
     return this.afDB.object('/payments/' + uid + '/' + code).set(payment);
   }
-
 }
