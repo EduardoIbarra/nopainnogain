@@ -52,7 +52,9 @@ export class ValidateSessionPage {
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data: ' + barcodeData.text);
-      this.validateCode(barcodeData.text)
+      if(barcodeData.text){
+        this.validateCode(barcodeData.text)
+      }
     }).catch(err => {
       console.log(err);
     });

@@ -28,7 +28,7 @@ export class GymDetailPage {
 
     ionViewDidLoad() {
         console.log(this.gym);
-        this.segment = 'img';
+        this.segment = 'info';
         this.isOpenToday = this.sharedService.getGymOpenDays(this.gym);
         this.getYoutubeLink();
     }

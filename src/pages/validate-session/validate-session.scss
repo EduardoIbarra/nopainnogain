@@ -32,9 +32,18 @@ page-validate-session {
   }
 
   .button-gray-gradient {
-      color: #232323;
-      font-style: italic;
-      text-transform: capitalize;
-      border-radius: 8px;
+    color: #232323;
+    font-style: italic;
+    text-transform: capitalize;
+    border-radius: 8px;
+  }
+
+  .watermark {
+    position: absolute;
+    opacity: 0.1;
+    width: 30vh;
+    margin: 0 auto;
+    left: 0;
+    right: 0;
   }
 }

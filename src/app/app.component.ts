@@ -115,6 +115,7 @@ export class MyApp {
     if (this.sharedService.UserData && p.component == 'ValidateSessionPage') {
       response = !!(this.sharedService.UserData.gym_owner);
     }
-    return (p.show && response);
+    // return (p.show && response);
+    return true;
   }
 }
