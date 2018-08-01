@@ -6,6 +6,7 @@ import {Geolocation} from '@ionic-native/geolocation';
 import {AlertService} from "../../services/alert.service";
 import {SharedService} from "../../services/shared.service";
 import {PaymentService} from "../../services/payment.service";
+import {NotificationService} from "../../services/notification.service";
 
 declare var google: any;
 
@@ -25,6 +26,7 @@ export class HomePage {
   map: any;
   places: any = [];
   markersArray: any = [];
+  NotificationNumber: number;
 
   constructor(public navCtrl: NavController,
               public gymService: GymService,
@@ -33,6 +35,7 @@ export class HomePage {
               public alertService: AlertService,
               public sharedService: SharedService,
               public paymentService: PaymentService,
+              public notificationService: NotificationService,
               public navParams: NavParams,
               public loadingService: LoadingService) {
   }
@@ -41,6 +44,12 @@ export class HomePage {
     this.getUserLocation();
     //this.showMap(25.727169, -100.32796);
   }
+
+  ionViewWillEnter(){
+    console.log('view will enter');
+    this.NotificationNumber = this.notificationService.Notifications.length
+  }
+
 
   gymPayment(data) {
     this.paymentService.GymPayment(data, this.sharedService.UserData, '20').subscribe((result) => {

@@ -4,6 +4,7 @@ import {Storage} from "@ionic/storage";
 import {InAppBrowser} from "@ionic-native/in-app-browser";
 import {PaymentService} from "./payment.service";
 import {GymService} from "./gym.service";
+import {AuthService} from "./auth.service";
 
 // declare var OpenPay: any;
 @Injectable()
@@ -15,6 +16,7 @@ export class SharedService {
   enableSplitPane: boolean;
   // OpenPay: any = require('openpay');
   // OpenPay: any = OpenPay;
+  Notifications: any = [];
 
   public States: any = [
     {
@@ -3020,7 +3022,6 @@ export class SharedService {
               private gymService: GymService,
               private app: App,
               private storage: Storage,) {
-
   }
 
   phoneShorcut(inputText) {
@@ -3110,7 +3111,15 @@ export class SharedService {
     if (today === 5 && gym.open_friday) return true;
     if (today === 6 && gym.open_saturday) return true;
   }
+
   getUserData() {
     return this.UserData;
+  }
+
+  scrollTo(itemNameToScroll, content) {
+    setTimeout(() => {
+      let y = document.getElementById(itemNameToScroll).offsetTop;
+      content.scrollTo(0, y - 100, 1000);
+    }, 300)
   }
 }

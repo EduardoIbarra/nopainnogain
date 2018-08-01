@@ -26,6 +26,7 @@ import {HttpModule} from "@angular/http";
 import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {ScanService} from '../services/scan.service';
+import {NotificationService} from "../services/notification.service";
 
 @NgModule({
   declarations: [
@@ -71,6 +72,7 @@ import {ScanService} from '../services/scan.service';
     Camera,
     UsersService,
     InAppBrowser,
+    NotificationService,
     Facebook,
     BarcodeScanner,
     ScanService

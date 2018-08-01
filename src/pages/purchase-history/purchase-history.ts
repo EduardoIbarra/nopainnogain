@@ -1,5 +1,5 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {Content, IonicPage, NavController, NavParams, ToastController} from 'ionic-angular';
 import {PaymentService} from "../../services/payment.service";
 import {AuthService} from "../../services/auth.service";
 import {GymService} from "../../services/gym.service";
@@ -13,10 +13,12 @@ import {SharedService} from "../../services/shared.service";
 })
 export class PurchaseHistoryPage {
 
+  @ViewChild(Content) content: Content;
   currentUser: any;
   history: any = [];
   items: any = [];
   myRate: number = 5;
+  openGymPurchaseCode: number;
 
   constructor(
     public navCtrl: NavController,
@@ -35,6 +37,7 @@ export class PurchaseHistoryPage {
   }
 
   ionViewDidLoad() {
+    this.openGymPurchaseCode = this.navParams.get('openGymPurchaseCode') || null;
     this.getPayments();
   }
 
@@ -65,13 +68,21 @@ export class PurchaseHistoryPage {
               this.history[this.history.length - 1].openToday = this.sharedService.getGymOpenDays(g);
               this.history[this.history.length - 1].imageLoaded = false;
               // this.getCodeImage(this.history.length - 1);
-
             }
           })
         });
 
         this.loadingService.dismiss();
 
+        if (this.openGymPurchaseCode) {
+          this.history.map((h) => {
+            if (h.purchase_code === this.openGymPurchaseCode) {
+              h.isOpen = true;
+              this.sharedService.scrollTo('gymPurchaseCode_' + this.openGymPurchaseCode, this.content)
+            }
+          });
+
+        }
         console.log(this.history);
       })
     }, (error) => {

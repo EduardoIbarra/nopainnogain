@@ -14,12 +14,14 @@
 </ion-header>
 <ion-content>
   <ion-list padding-top>
-    <button ion-item detail-none no-lines *ngFor="let g of items">
+    <button ion-item no-lines *ngFor="let g of items; let i =  index;" (click)="goToGym(g.purchase_code)">
       <ion-avatar item-start>
-        <img [src]="g.img">
+        <img [src]="g.logo || 'https://seeklogo.com/images/G/gym-logo-3F51052256-seeklogo.com.png'">
       </ion-avatar>
-      <h2>{{g.gymName}}</h2>
-      <p>{{g.message}}</p>
+      <h2>Realizaste un compra en {{g.commercial_name}}</h2>
+      <p>¡Tu código sigue vigente!</p>
     </button>
+    <button ion-item  detail-none no-lines *ngIf="NotificationsError" text-center>Ha ocurrido un error al obtener las notificaciones.</button>
+    <button ion-item  detail-none no-lines *ngIf="!items.length" text-center>No tienes notificaciones pendientes.</button>
   </ion-list>
 </ion-content>
