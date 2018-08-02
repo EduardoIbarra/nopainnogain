@@ -1,11 +1,13 @@
 import {Component, ViewChild} from '@angular/core';
-import {Nav, Platform, Events} from 'ionic-angular';
+import {Nav, Platform, Events, App, NavController} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Keyboard} from "@ionic-native/keyboard";
 import {Storage} from "@ionic/storage";
 import {SharedService} from "../services/shared.service";
 import {NotificationService} from "../services/notification.service";
+import {AddCardPage} from "../pages/add-card/add-card";
+import {CardListPage} from "../pages/card-list/card-list";
 
 declare var OpenPay: any;
 
@@ -21,6 +23,7 @@ export class MyApp {
   showCardItem: boolean = false;
 
   pages: Array<{ title: string, component: any, icon: string, show: boolean }>;
+  cardExcludedPages = ['AddCardPage', 'CardListPage'];
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
@@ -29,7 +32,8 @@ export class MyApp {
               public notificationService: NotificationService,
               public storage: Storage,
               public keyboard: Keyboard,
-              public events: Events) {
+              public events: Events,
+              public app: App) {
     this.initializeApp();
 
 
@@ -65,7 +69,19 @@ export class MyApp {
         console.log('page', this.pages[activePage]);
       }
     });
-
+    app.viewWillEnter.subscribe((event) => {
+        console.log(event.component.name);
+        if (this.sharedService.UserData) {
+          if ((!this.sharedService.UserData.Cards || this.sharedService.UserData.Cards.length == 0) && !this.cardExcludedPages.includes(event.component.name)) {
+            this.app.getActiveNavs()[0].setRoot(CardListPage).then((data) => {
+              alert('Antes de continuar, debe agregar por lo menos una tarjeta');
+            }).catch((error) => {
+              console.log(error);
+            });
+          }
+        }
+      }
+    )
   }
 
   initializeApp() {

@@ -27,10 +27,14 @@ import {FormsModule, ReactiveFormsModule} from "@angular/forms";
 import {BarcodeScanner} from "@ionic-native/barcode-scanner";
 import {ScanService} from '../services/scan.service';
 import {NotificationService} from "../services/notification.service";
+import {AddCardPage} from "../pages/add-card/add-card";
+import {CardListPage} from "../pages/card-list/card-list";
 
 @NgModule({
   declarations: [
     MyApp,
+    AddCardPage,
+    CardListPage
   ],
   imports: [
     BrowserModule,
@@ -55,6 +59,8 @@ import {NotificationService} from "../services/notification.service";
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+    AddCardPage,
+    CardListPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
