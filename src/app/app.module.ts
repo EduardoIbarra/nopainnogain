@@ -29,12 +29,12 @@ import {ScanService} from '../services/scan.service';
 import {NotificationService} from "../services/notification.service";
 import {AddCardPage} from "../pages/add-card/add-card";
 import {CardListPage} from "../pages/card-list/card-list";
+import {AddCardPageModule} from "../pages/add-card/add-card.module";
+import {CardListPageModule} from "../pages/card-list/card-list.module";
 
 @NgModule({
   declarations: [
-    MyApp,
-    AddCardPage,
-    CardListPage
+    MyApp
   ],
   imports: [
     BrowserModule,
@@ -55,6 +55,8 @@ import {CardListPage} from "../pages/card-list/card-list";
     AngularFireAuthModule,
     FormsModule,
     ReactiveFormsModule,
+    AddCardPageModule,
+    CardListPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
