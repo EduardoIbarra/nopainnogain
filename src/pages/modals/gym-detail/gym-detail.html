@@ -1,96 +1,96 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title class="liberi">DETALLE DE NEGOCIO</ion-title>
-        <ion-buttons>
-            <button icon-only ion-button (tap)="dismiss()">
-                <ion-icon name="arrow-back"></ion-icon>
-            </button>
-        </ion-buttons>
-    </ion-navbar>
-    <navbar-bump></navbar-bump>
+  <ion-navbar>
+    <ion-title class="liberi">DETALLE DE NEGOCIO</ion-title>
+    <ion-buttons>
+      <button icon-only ion-button (tap)="dismiss()">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <navbar-bump></navbar-bump>
 </ion-header>
 
 
 <ion-content>
 
-    <div *ngIf="segment === 'info'" padding>
-        <!--<div class="logo-img">-->
-        <!--<img [src]="gym.logo">-->
-        <!--</div>-->
+  <div *ngIf="segment === 'info'" padding>
+    <!--<div class="logo-img">-->
+    <!--<img [src]="gym.logo">-->
+    <!--</div>-->
+    <br>
+    <ion-list no-lines>
+      <ion-item text-center text-wrap>
+        <b>{{gym.commercial_name}}</b>
+      </ion-item>
+
+      <ion-item text-wrap text-center>
+        <span class="price-tag">$78.00 MXN</span>
         <br>
-        <ion-list no-lines>
-            <ion-item text-center text-wrap>
-                <b>{{gym.commercial_name}}</b>
-            </ion-item>
+        <liberi-button name="cart" (click)="purchase()"></liberi-button>
+      </ion-item>
 
-            <ion-item text-wrap text-center>
-                <span class="price-tag">$78.00 MXN</span>
-                <br>
-                <liberi-button name="cart" (click)="purchase()"></liberi-button>
-            </ion-item>
+      <ion-item text-wrap>
+        <b>Direccion:</b> {{gym.address_street}} {{gym.address_number}}, {{gym.address_neighborhood}}. C.P. {{gym.address_zipcode}}. {{gym.address_city}}, {{gym.address_state}}.
+      </ion-item>
 
-            <ion-item text-wrap>
-                <b>Direccion:</b> {{gym.address_street}} {{gym.address_number}}, {{gym.address_neighborhood}}. C.P. {{gym.address_zipcode}}. {{gym.address_city}}, {{gym.address_state}}.
-            </ion-item>
+      <ion-item text-wrap>
+        <b>Horario:</b> <span *ngIf="isOpenToday" class="open-today">Hoy abierto,&nbsp;</span>{{gym.attention_hours}}
+      </ion-item>
 
-            <ion-item text-wrap>
-                <b>Horario:</b> <span *ngIf="isOpenToday" class="open-today">Hoy abierto,&nbsp;</span>{{gym.attention_hours}}
-            </ion-item>
+      <ion-item text-wrap text-center class="website-color">
+        <a (tap)="sharedService.openBrowser(gym.gym_website)">{{gym.gym_website}}</a>
+      </ion-item>
+    </ion-list>
+  </div>
+  <div *ngIf="segment === 'img'" padding class="image-container">
 
-            <ion-item text-wrap text-center class="website-color">
-                <a (tap)="sharedService.openBrowser(gym.gym_website)">{{gym.gym_website}}</a>
-            </ion-item>
-        </ion-list>
-    </div>
-    <div *ngIf="segment === 'img'" padding class="image-container">
+    <ion-item *ngIf="!gym.images" text-center text-wrap no-lines>
+      Este gimnasio aún no cuenta con imágenes
+    </ion-item>
 
-        <ion-item *ngIf="!gym.images" text-center text-wrap no-lines>
-            Este gimnasio aún no cuenta con imágenes
-        </ion-item>
-
-        <div *ngIf="gym.images">
-            <button (tap)="this.slides.slidePrev()" class="slide-back-button" *ngIf="gym.images.length > 1">
-                <ion-icon name="md-arrow-back"></ion-icon>
-            </button>
-            <ion-slides [loop]="true" class="image-slider" pager>
-                <ion-slide *ngFor="let i of gym.images">
-                    <img [src]="i" imageViewer>
-                </ion-slide>
-            </ion-slides>
-            <button (tap)="this.slides.slideNext()" class="slide-next-button" *ngIf="gym.images.length > 1">
-                <ion-icon name="md-arrow-forward"></ion-icon>
-            </button>
-        </div>
-
-    </div>
-    <div *ngIf="segment === 'video'" padding>
-        <div class="video-container">
-            <iframe [src]="youtubeLink" frameborder="0" allowfullscreen></iframe>
-        </div>
+    <div *ngIf="gym.images">
+      <button (tap)="this.slides.slidePrev()" class="slide-back-button" *ngIf="gym.images.length > 1">
+        <ion-icon name="md-arrow-back"></ion-icon>
+      </button>
+      <ion-slides [loop]="true" class="image-slider" pager>
+        <ion-slide *ngFor="let i of gym.images">
+          <img [src]="i" imageViewer>
+        </ion-slide>
+      </ion-slides>
+      <button (tap)="this.slides.slideNext()" class="slide-next-button" *ngIf="gym.images.length > 1">
+        <ion-icon name="md-arrow-forward"></ion-icon>
+      </button>
     </div>
 
-    <div *ngIf="segment === 'phone'" padding>
-        <ion-item *ngIf="!gym.gym_phone" text-center text-wrap no-lines>
-            Este gimnasio aún no cuenta con imágenes
-        </ion-item>
-        <ion-item text-wrap *ngIf="gym.gym_phone">
-            <b>Teléfono:</b> <span [innerHtml]="sharedService.phoneShorcut(gym.gym_phone)">{{sharedService.phoneShorcut(gym.gym_phone)}}</span>
-        </ion-item>
+  </div>
+  <div *ngIf="segment === 'video'" padding>
+    <div class="video-container">
+      <iframe [src]="youtubeLink" frameborder="0" allowfullscreen></iframe>
     </div>
+  </div>
+
+  <div *ngIf="segment === 'phone'" padding>
+    <ion-item *ngIf="!gym.gym_phone" text-center text-wrap no-lines>
+      Este gimnasio aún no cuenta con imágenes
+    </ion-item>
+    <ion-item text-wrap *ngIf="gym.gym_phone">
+      <b>Teléfono:</b> <span [innerHtml]="sharedService.phoneShorcut(gym.gym_phone)">{{sharedService.phoneShorcut(gym.gym_phone)}}</span>
+    </ion-item>
+  </div>
 </ion-content>
 <ion-footer>
-    <ion-segment>
-        <ion-segment-button (tap)="activeSegment('img')" [class.segment-activated]="segment === 'img'" value="'img">
-            <ion-icon name="image"></ion-icon>
-        </ion-segment-button>
-        <ion-segment-button (tap)="activeSegment('video')" [class.segment-activated]="segment === 'video'" value="'video">
-            <ion-icon name="logo-youtube"></ion-icon>
-        </ion-segment-button>
-        <ion-segment-button (tap)="activeSegment('info')" [class.segment-activated]="segment === 'info'" value="'info">
-            <ion-icon name="information-circle"></ion-icon>
-        </ion-segment-button>
-        <ion-segment-button (tap)="activeSegment('phone')" [class.segment-activated]="segment === 'phone'" value="'phone">
-            <ion-icon name="call"></ion-icon>
-        </ion-segment-button>
-    </ion-segment>
+  <ion-segment>
+    <ion-segment-button (tap)="activeSegment('info')" [class.segment-activated]="segment === 'info'" value="'info">
+      <ion-icon name="information-circle"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button (tap)="activeSegment('img')" [class.segment-activated]="segment === 'img'" value="'img">
+      <ion-icon name="image"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button (tap)="activeSegment('video')" [class.segment-activated]="segment === 'video'" value="'video">
+      <ion-icon name="logo-youtube"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button (tap)="activeSegment('phone')" [class.segment-activated]="segment === 'phone'" value="'phone">
+      <ion-icon name="call"></ion-icon>
+    </ion-segment-button>
+  </ion-segment>
 </ion-footer>
