@@ -6,6 +6,7 @@ import {AuthService} from "../../services/auth.service";
 import {AlertService} from "../../services/alert.service";
 import {GymService} from "../../services/gym.service";
 import {SharedService} from "../../services/shared.service";
+import {NotificationService} from "../../services/notification.service";
 
 @IonicPage()
 @Component({
@@ -24,6 +25,7 @@ export class ValidateSessionPage {
     public authService: AuthService,
     public gymService: GymService,
     public alertService: AlertService,
+    public notificationService: NotificationService,
     public paymentService: PaymentService,
     public sharedService: SharedService,
     public modalCtrl: ModalController) {
@@ -50,7 +52,9 @@ export class ValidateSessionPage {
   scanCode() {
     this.barcodeScanner.scan().then(barcodeData => {
       console.log('Barcode data: ' + barcodeData.text);
-      this.validateCode(barcodeData.text)
+      if(barcodeData.text){
+        this.validateCode(barcodeData.text)
+      }
     }).catch(err => {
       console.log(err);
     });
@@ -68,6 +72,7 @@ export class ValidateSessionPage {
         this.gymService.getGym(this.payment.gym).valueChanges().subscribe((gym) => {
           this.modalCtrl.create('SessionCodePage', {code: code, gym: gym}).present();
           stream.unsubscribe();
+          this.notificationService.getHistoryToNotifications();
         });
       } else {
         this.alertService.validateCodeError()

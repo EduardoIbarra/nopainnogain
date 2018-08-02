@@ -22,12 +22,12 @@ export class HelpPage {
     class: 'section',
     open: false,
     sections: [
-      {title: 'Cómo comprar una visita en LIBERI.', url: '', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
-      {title: 'Cómo buscar buscar un código QR.', url: '', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
-      {title: 'Cómo agregar o borrar una categoría de tus "Preferencias".', url: '', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
-      {title: 'Cómo buscar un CAF (Centro de Acondicionamiento Físico)".', url: '', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
-      {title: 'Cómo contactar un CAF (Centro de Acondicionamiento Físico)".', url: '', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
-      {title: 'Cómo reportar un problema".', url: '', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
+      {title: 'Cómo comprar una visita en LIBERI.', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
+      {title: 'Cómo buscar buscar un código QR.', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
+      {title: 'Cómo agregar o borrar una categoría de tus "Preferencias".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
+      {title: 'Cómo buscar un CAF (Centro de Acondicionamiento Físico)".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
+      {title: 'Cómo contactar un CAF (Centro de Acondicionamiento Físico)".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
+      {title: 'Cómo reportar un problema".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
     ]
   },
     {
@@ -45,7 +45,7 @@ export class HelpPage {
         {title: 'b) Envia un reporte', url: '', url_type: 'send-report', action_label: 'Enviar Reporte'},
         {title: 'Problemas con mi cuenta', class: 'child-section', header: true},
         {title: 'Mi perfil', url: null, url_type: null, action_label: null},
-        {title: 'Modificar mis datos personales', url: '', url_type: 'video', action_label: 'Ver Tutorial'},
+        {title: 'Modificar mis datos personales', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial'},
         {title: 'Cargos no reconocidos', url: '', url_type: 'pending', action_label: 'Reportar Cargo'},
         {title: 'Mi Código QR', class: 'child-section', header: true},
         {title: 'No recibí mi codigo QR', url: '', url_type: '', action_label: ''},
@@ -55,7 +55,7 @@ export class HelpPage {
         {title: 'Problemas con el código QR', url: '', url_type: '', action_label: '', class: ''},
         {title: 'Por favor intenta con el código alfanúmerico que viene debajo de tu código QR', url: '', url_type: 'pending', action_label: 'Enviar código a revisión', hasBorder: true},
         {title: 'Centros de Acondicionamiento Fisico', class: 'child-section', header: true},
-        {title: 'Como comentar un CAF', url: '', url_type: 'video', action_label: 'Ver Tutorial'},
+        {title: 'Como comentar un CAF', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial'},
       ]
     },
     {

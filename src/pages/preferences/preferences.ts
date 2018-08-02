@@ -58,10 +58,10 @@ export class PreferencesPage {
   savePreferences() {
     this.userService.setUserAttribute(this.uid, 'settings', this.settings)
       .then((result) => {
-        if(this.isModal) {
-          this.dismiss();
-        } else {
-          this.events.publish('app:changePage', 'HomePage');
+        if(this.isModal){
+          this.viewCtrl.dismiss();
+        }else{
+          this.navCtrl.setRoot('HomePage')
         }
         this.presentToast('Preferencias guardadas exitosamentme');
       });

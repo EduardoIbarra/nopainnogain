@@ -1,5 +1,6 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {NotificationService} from "../../services/notification.service";
 
 @IonicPage()
 @Component({
@@ -25,12 +26,21 @@ export class NotificationsPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public notificationService: NotificationService,
     public viewCtrl: ViewController,
   ) {
     this.isModal = this.navParams.get('isModal') || false;
   }
 
+  ionViewWillEnter() {
+    this.items = this.notificationService.Notifications;
+  }
+
   dismiss() {
     this.viewCtrl.dismiss();
+  }
+
+  goToGym(openGymPurchaseCode) {
+    this.navCtrl.push('PurchaseHistoryPage', {openGymPurchaseCode: openGymPurchaseCode})
   }
 }

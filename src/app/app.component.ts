@@ -5,6 +5,7 @@ import {SplashScreen} from '@ionic-native/splash-screen';
 import {Keyboard} from "@ionic-native/keyboard";
 import {Storage} from "@ionic/storage";
 import {SharedService} from "../services/shared.service";
+import {NotificationService} from "../services/notification.service";
 
 declare var OpenPay: any;
 
@@ -25,6 +26,7 @@ export class MyApp {
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
               public sharedService: SharedService,
+              public notificationService: NotificationService,
               public storage: Storage,
               public keyboard: Keyboard,
               public events: Events) {
@@ -58,7 +60,7 @@ export class MyApp {
       console.log('changePage', page);
       let activePage = this.pages.findIndex((currPage) => page === currPage.component);
       console.log('activePage', this.activePage);
-      if(activePage > -1) {
+      if (activePage > -1) {
         this.openPage(this.pages[activePage]);
         console.log('page', this.pages[activePage]);
       }
@@ -82,6 +84,7 @@ export class MyApp {
       OpenPay.setApiKey('pk_20c7b0256fdb4cf8aa87449ddb158abf')
       //OpenPay.setId('mrtezzirtht6piewm54o');
       //OpenPay.setApiKey('pk_c0a63b5356524d2095a0df7172965ed9')
+      this.notificationService.getHistoryToNotifications()
     });
   }
 
@@ -106,11 +109,13 @@ export class MyApp {
     this.pages[2].show = !this.pages[2].show;
     ev.stopPropagation()
   }
+
   shouldShow(p) {
     let response = true;
     if (this.sharedService.UserData && p.component == 'ValidateSessionPage') {
       response = !!(this.sharedService.UserData.gym_owner);
     }
-    return (p.show && response);
+    // return (p.show && response);
+    return true;
   }
 }

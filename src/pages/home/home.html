@@ -12,7 +12,7 @@
       <div *ngIf="!searchHasfocus">
         <button item-right ion-button color="light" (click)="goTo('NotificationsPage')">
           <ion-icon name="notifications"></ion-icon>
-          <ion-badge color="danger">28</ion-badge>
+          <ion-badge color="danger" *ngIf="NotificationNumber">{{NotificationNumber}}</ion-badge>
         </button>
         <button item-right ion-button color="light" (click)="goTo('PreferencesPage')">
           <ion-icon name="options"></ion-icon>
