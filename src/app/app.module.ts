@@ -32,6 +32,7 @@ import {CardListPage} from "../pages/card-list/card-list";
 import {AddCardPageModule} from "../pages/add-card/add-card.module";
 import {CardListPageModule} from "../pages/card-list/card-list.module";
 import {HomePageModule} from "../pages/home/home.module";
+import {LaunchNavigator} from "@ionic-native/launch-navigator";
 
 @NgModule({
   declarations: [
@@ -85,7 +86,8 @@ import {HomePageModule} from "../pages/home/home.module";
     NotificationService,
     Facebook,
     BarcodeScanner,
-    ScanService
+    ScanService,
+    LaunchNavigator,
   ]
 })
 export class AppModule {

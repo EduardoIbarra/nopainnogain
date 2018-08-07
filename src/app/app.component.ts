@@ -21,6 +21,7 @@ export class MyApp {
   rootPage: any;
   activePage: any;
   showCardItem: boolean = false;
+  notNumber: number;
 
   pages: Array<{ title: string, component: any, icon: string, show: boolean }>;
   cardExcludedPages = ['AddCardPage', 'CardListPage', 'LoadingCmp', 'LoginPage'];
@@ -101,9 +102,15 @@ export class MyApp {
       //OpenPay.setId('mrtezzirtht6piewm54o');
       //OpenPay.setApiKey('pk_c0a63b5356524d2095a0df7172965ed9')
       this.notificationService.getHistoryToNotifications()
+      this.setNotificationsBadge()
     });
   }
 
+  setNotificationsBadge(){
+    setInterval(()=>{
+      this.notNumber = this.notificationService.Notifications.length
+    }, 5000)
+  }
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
