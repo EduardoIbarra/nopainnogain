@@ -141,8 +141,8 @@ export class HomePage {
 
     // Adding item markers
     for (let i = 0; i < places.length; i++) {
-      let timeout = i * 300;
-      let latLng = new google.maps.LatLng(parseFloat(places[i].lat), parseFloat(places[i].lng));
+      let timeout = i * 100;
+      let latLng = new google.maps.LatsLng(parseFloat(places[i].lat), parseFloat(places[i].lng));
 
       //Drop marker one by one
       setTimeout(() => {
