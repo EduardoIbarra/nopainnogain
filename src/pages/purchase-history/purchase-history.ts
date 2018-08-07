@@ -5,6 +5,7 @@ import {AuthService} from "../../services/auth.service";
 import {GymService} from "../../services/gym.service";
 import {LoadingService} from "../../services/loading.service";
 import {SharedService} from "../../services/shared.service";
+import {LaunchNavigator, PromptsOptions, RememberChoiceOptions, AppSelectionOptions, LaunchNavigatorOptions} from "@ionic-native/launch-navigator";
 
 @IonicPage()
 @Component({
@@ -27,6 +28,7 @@ export class PurchaseHistoryPage {
     public gymService: GymService,
     public sharedService: SharedService,
     public loadingService: LoadingService,
+    public launchNavigator: LaunchNavigator,
     public authService: AuthService,
     public toastController: ToastController
   ) {
@@ -129,5 +131,31 @@ export class PurchaseHistoryPage {
       console.log(error);
       // this.loadingService.dismiss();
     });
+  }
+
+  navigate(gym) {
+    console.log(gym);
+    let promtOptions: PromptsOptions = {
+      headerText: '¿Recordar tu elección?',
+      bodyText: '¿Usar la misma aplicación para navegar la próxima vez?',
+      yesButtonText: 'Sí'
+    };
+
+    let rememberChoiceOptions: RememberChoiceOptions = {
+      prompt: promtOptions
+    };
+
+    let appSelectionOptions: AppSelectionOptions = {
+      dialogHeaderText: 'Selecciona aplicación para navegación',
+      cancelButtonText: 'Cancelar',
+      rememberChoice: rememberChoiceOptions
+    };
+
+    let launchNavigatorOptions: LaunchNavigatorOptions = {
+      destinationName: gym.commercial_name,
+      appSelection: appSelectionOptions
+    };
+
+    this.launchNavigator.navigate([gym.lat, gym.lng], launchNavigatorOptions)
   }
 }

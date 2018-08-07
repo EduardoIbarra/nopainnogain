@@ -41,6 +41,10 @@
               <ion-spinner [ngClass]="{'center':true}" *ngIf="!i.imageLoaded"></ion-spinner>
               <br/>
               <b>{{i.purchase_code}}</b>
+              <br>
+              <button ion-button (tap)="navigate(i)">
+                Ir al Gym&nbsp; <ion-icon name="navigate"></ion-icon>
+              </button>
             </div>
           </ion-item>
           <ion-item>
