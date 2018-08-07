@@ -10,6 +10,7 @@ import {ImageViewerController} from "ionic-img-viewer";
 import {AuthService} from "../../services/auth.service";
 import {UsersService} from "../../services/users.service";
 import {AlertService} from "../../services/alert.service";
+import {HomePage} from "../home/home";
 /**
  * Generated class for the ProfilePage page.
  *
@@ -309,6 +310,7 @@ export class ProfilePage {
             this.RegisterFormData.confirmPassword = '';
             toast.present();
             this.loadingService.dismiss();
+            this.navCtrl.setRoot(HomePage);
         }, (error) => {
             console.log(error);
             this.loadingService.dismiss();

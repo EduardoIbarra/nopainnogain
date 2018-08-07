@@ -23,7 +23,7 @@ export class MyApp {
   showCardItem: boolean = false;
 
   pages: Array<{ title: string, component: any, icon: string, show: boolean }>;
-  cardExcludedPages = ['AddCardPage', 'CardListPage', 'LoadingCmp'];
+  cardExcludedPages = ['AddCardPage', 'CardListPage', 'LoadingCmp', 'LoginPage'];
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,

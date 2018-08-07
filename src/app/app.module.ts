@@ -31,6 +31,7 @@ import {AddCardPage} from "../pages/add-card/add-card";
 import {CardListPage} from "../pages/card-list/card-list";
 import {AddCardPageModule} from "../pages/add-card/add-card.module";
 import {CardListPageModule} from "../pages/card-list/card-list.module";
+import {HomePageModule} from "../pages/home/home.module";
 
 @NgModule({
   declarations: [
@@ -56,7 +57,8 @@ import {CardListPageModule} from "../pages/card-list/card-list.module";
     FormsModule,
     ReactiveFormsModule,
     AddCardPageModule,
-    CardListPageModule
+    CardListPageModule,
+    HomePageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
