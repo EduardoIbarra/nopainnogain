@@ -4,11 +4,9 @@
     <button ion-button menuToggle="left" *ngIf="!isModal">
       <ion-icon name="arrow-back"></ion-icon>
     </button>
-    <ion-buttons *ngIf="isModal">
-      <button ion-button (click)="dismiss()">
-        <ion-icon name="arrow-back"></ion-icon>
-      </button>
-    </ion-buttons>
+    <button *ngIf="isModal" ion-button (click)="dismiss()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
   </ion-navbar>
   <navbar-bump></navbar-bump>
 </ion-header>

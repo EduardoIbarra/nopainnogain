@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {IonicPage, NavController, NavParams, Slides, ViewController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, Slides, ViewController, ModalController} from 'ionic-angular';
 import {SharedService} from "../../../services/shared.service";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
 
@@ -21,6 +21,7 @@ export class GymDetailPage {
                 public viewCtrl: ViewController,
                 public sharedService: SharedService,
                 public sanitizer: DomSanitizer,
+                public modalCtrl: ModalController,
                 public navParams: NavParams) {
 
         this.gym = navParams.get('data');
@@ -48,6 +49,8 @@ export class GymDetailPage {
     }
 
     purchase() {
-        this.navCtrl.push('GymPurchasePage', {viewCtrl: this.viewCtrl, gym: this.gym});
+        let modal = this.modalCtrl.create('GymPurchasePage', {viewCtrl: this.viewCtrl, gym: this.gym, isModal: true});
+        modal.present();
+        // this.navCtrl.push('GymPurchasePage', {viewCtrl: this.viewCtrl, gym: this.gym});
     }
 }

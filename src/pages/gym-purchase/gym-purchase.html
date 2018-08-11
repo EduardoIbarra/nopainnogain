@@ -1,6 +1,16 @@
+
 <ion-header>
-  <ion-navbar hideBackButton="{{isPurchaseDone}}">
-    <ion-title>{{isPurchaseDone? 'Compra Exitosa' : 'Comprar'}}</ion-title>
+  <ion-navbar>
+    <ion-title class="liberi">{{isPurchaseDone? 'Compra Exitosa' : 'Comprar'}}</ion-title>
+    <button ion-button menuToggle="left" *ngIf="!isModal">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <button *ngIf="isModal && !isPurchaseDone" ion-button (click)="dismiss()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <button *ngIf="isModal && isPurchaseDone" ion-button (click)="dismiss2()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
   </ion-navbar>
   <navbar-bump></navbar-bump>
 </ion-header>
@@ -47,7 +57,7 @@
 
   <br><br>
   <div text-center *ngIf="cards.length">
-    <liberi-button name="check-blue" (click)="!isPurchaseDone ? purchase() : dismiss()"></liberi-button>
+    <liberi-button name="check-blue" (click)="!isPurchaseDone ? purchase() : dismiss2()"></liberi-button>
   </div>
 </ion-content>
 <ion-footer no-shadow>

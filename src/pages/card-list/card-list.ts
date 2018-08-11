@@ -74,5 +74,4 @@ export class CardListPage {
   addCard(){
     this.navCtrl.push('AddCardPage')
   }
-
 }

@@ -22,7 +22,7 @@
 //Align title to the center
 ion-title {
   position: absolute;
-  top: -9px !important;
+  top: -10px !important;
   left: 0;
   padding: 5px 90px 1px;
   width: 100%;
@@ -488,4 +488,9 @@ ion-navbar.toolbar.statusbar-padding {
 /* problema con menu ios */
 .ios ion-nav > .ion-page > ion-content.statusbar-padding:first-child .scroll-content, .ios ion-nav > .ion-page > ion-header > ion-content.statusbar-padding:first-child .scroll-content, .ios ion-tab > .ion-page > ion-content.statusbar-padding:first-child .scroll-content, .ios ion-tab > .ion-page > ion-header > ion-content.statusbar-padding:first-child .scroll-content, .ios ion-tabs > .ion-page.tab-subpage > ion-header > ion-content.statusbar-padding:first-child .scroll-content, .ios ion-menu > .menu-inner > ion-content.statusbar-padding:first-child .scroll-content, .ios ion-menu > .menu-inner > ion-header > ion-content.statusbar-padding:first-child .scroll-content {
   padding-top: 0;
+}
+
+ion-icon.icon.icon-ios.ion-ios-arrow-back,
+ion-icon.icon.icon-md.ion-md-arrow-back {
+  font-size: 1.8em;
 }

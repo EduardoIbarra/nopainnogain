@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {AlertController, IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
+import {AlertController, IonicPage, NavController, NavParams, ViewController, ModalController} from 'ionic-angular';
 import {LoadingService} from "../../services/loading.service";
 import {SharedService} from "../../services/shared.service";
 import {PaymentService} from "../../services/payment.service";
@@ -18,7 +18,7 @@ export class GymPurchasePage {
   gym: any;
   currentUser: any;
   generated_code: any;
-
+  isModal: boolean;
   // openpay = new this.sharedService.OpenPay('mrtezzirtht6piewm54o', 'pk_c0a63b5356524d2095a0df7172965ed9');
 
   constructor(public navCtrl: NavController,
@@ -27,12 +27,13 @@ export class GymPurchasePage {
               public alertCtrl: AlertController,
               public paymentService: PaymentService,
               public authService: AuthService,
+              public modalCtrl: ModalController,
               public loadingService: LoadingService,
               public sharedService: SharedService,) {
 
     this.viewCtrl = navParams.get('viewCtrl');
     this.gym = navParams.get('gym');
-
+    this.isModal = navParams.get('isModal');
     this._viewCtrl.showBackButton(false);
 
     this.authService.getStatus().subscribe((result) => {
@@ -72,7 +73,9 @@ export class GymPurchasePage {
   }
 
   addCardPage() {
-    this.navCtrl.push('AddCardPage')
+    let modal = this.modalCtrl.create('AddCardPage', {isModal: true});
+    modal.present();
+    // this.navCtrl.push('AddCardPage');
   }
 
   ionViewWillEnter() {
@@ -109,6 +112,9 @@ export class GymPurchasePage {
 
   dismiss() {
     this.navCtrl.pop();
-    this.viewCtrl.dismiss()
+  }
+  dismiss2() {
+    this.navCtrl.pop();
+    this.viewCtrl.dismiss();
   }
 }

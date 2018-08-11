@@ -24,6 +24,7 @@ export class AddCardPage {
     ExpMonth: 12,
     ExpYear: 21
   };
+  isModal: boolean;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public formBuilder: FormBuilder,
@@ -38,6 +39,9 @@ export class AddCardPage {
     this.cardIndex = this.navParams.get('index');
     if (this.navParams.get('card')) {
       this.CardData.CardNumber = null;
+    }
+    if (this.navParams.get('isModal')) {
+      this.isModal = this.navParams.get('isModal');
     }
 
 
@@ -99,6 +103,10 @@ export class AddCardPage {
         this.loadingService.dismiss();
         this.alertService.createAlertError();
       });
+  }
+
+  dismiss() {
+    this.navCtrl.pop();
   }
 
 }
