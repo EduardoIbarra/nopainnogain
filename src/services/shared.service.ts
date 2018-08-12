@@ -3058,6 +3058,14 @@ export class SharedService {
           nav.setRoot('LoginPage');
           setTimeout(() => {
             this.storage.set('UserData', null);
+
+            //Save cards to use when same user logs in
+            let savedCards: any = {
+              cards: this.UserData.Cards,
+              userEmail: this.UserData.email
+            };
+            this.storage.set('SavedUserCards', savedCards);
+
             this.UserData = null;
             this.enableSplitPane = false;
           }, 1000);
@@ -3069,14 +3077,22 @@ export class SharedService {
 
   login(userData, navCtrl: NavController) {
 
-    this.storage.set('UserData', userData);
-    navCtrl.push('WelcomePage', {UserData: userData});
 
-    this.UserData = userData;
-    this.enableSplitPane = true;
-    this.activePage = 'HomePage';
-    // this.menu.enable(false, 'PublicUserMenu');
-    // this.menu.enable(true, 'LoggedUserMenu');
+
+
+    this.storage.get('SavedUserCards').then((SavedUserCards) => {
+      //Do not override saved cards only if is the same user authenticated
+      if (SavedUserCards.userEmail === userData.email) {
+        userData.Cards = SavedUserCards.Cards;
+      }
+
+      this.storage.set('UserData', userData);
+      navCtrl.push('WelcomePage', {UserData: userData});
+
+      this.UserData = userData;
+      this.enableSplitPane = true;
+      this.activePage = 'HomePage';
+    });
   }
 
   //Higlight tab on sidemenu
