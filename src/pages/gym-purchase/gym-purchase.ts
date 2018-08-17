@@ -4,6 +4,7 @@ import {LoadingService} from "../../services/loading.service";
 import {SharedService} from "../../services/shared.service";
 import {PaymentService} from "../../services/payment.service";
 import {AuthService} from "../../services/auth.service";
+import {UsersService} from "../../services/users.service";
 @IonicPage()
 @Component({
   selector: 'page-gym-purchase',
@@ -19,6 +20,7 @@ export class GymPurchasePage {
   currentUser: any;
   generated_code: any;
   isModal: boolean;
+  user: any;
   // openpay = new this.sharedService.OpenPay('mrtezzirtht6piewm54o', 'pk_c0a63b5356524d2095a0df7172965ed9');
 
   constructor(public navCtrl: NavController,
@@ -29,7 +31,8 @@ export class GymPurchasePage {
               public authService: AuthService,
               public modalCtrl: ModalController,
               public loadingService: LoadingService,
-              public sharedService: SharedService,) {
+              public sharedService: SharedService,
+              public usersService: UsersService) {
 
     this.viewCtrl = navParams.get('viewCtrl');
     this.gym = navParams.get('gym');
@@ -79,11 +82,17 @@ export class GymPurchasePage {
   }
 
   ionViewWillEnter() {
-    if (this.sharedService.UserData.Cards) {
-      this.cards = this.sharedService.UserData.Cards;
-      this.selectedCard = this.cards[0];
-    }
     console.log(this.cards);
+    this.usersService.getUserById(this.sharedService.UserData.uid).valueChanges().subscribe((data) => {
+      this.user = data;
+      if(this.user.cards) {
+        this.user.cards = Object.values(this.user.cards);
+        this.cards = this.user.cards;
+        this.selectedCard = this.cards[0];
+      }
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   showCardAlert() {

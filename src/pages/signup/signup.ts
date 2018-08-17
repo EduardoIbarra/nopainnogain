@@ -335,8 +335,9 @@ export class SignupPage {
             });
     }
 
-    selectState(state) {
-        console.log(state);
+    selectState() {
+        const state = this.RegisterFormData.state;
+        console.log(this.RegisterFormData.state);
         this.RegisterFormData.state = state;
         this.RegisterFormData.city = null;
         this.estados.filter((s) => {

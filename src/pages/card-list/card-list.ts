@@ -3,6 +3,7 @@ import {AlertController, IonicPage, NavController, NavParams} from 'ionic-angula
 import {SharedService} from "../../services/shared.service";
 import {AddCardPage} from "../add-card/add-card";
 import {Storage} from "@ionic/storage";
+import {UsersService} from "../../services/users.service";
 
 @IonicPage()
 @Component({
@@ -12,28 +13,42 @@ import {Storage} from "@ionic/storage";
 export class CardListPage {
 
   cards: Array<any> = [];
-
+  user: any;
   constructor(
     public navCtrl: NavController,
     public alertCtrl: AlertController,
     public storage: Storage,
     public navParams: NavParams,
     public sharedService: SharedService,
+    public usersService: UsersService
   ) {
+    this.usersService.getUserById(this.sharedService.UserData.uid).valueChanges().subscribe((data) => {
+      this.user = data;
+      if(this.user.cards) {
+        this.user.cards = Object.values(this.user.cards);
+      }
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   ionViewDidLoad() {
     this.cards = this.sharedService.UserData.Cards;
-    this.cards.forEach((c) => {
-      c.selected = false;
-    });
-    console.log(this.cards);
+    if (!this.cards) {
+      this.cards = [];
+    } else {
+      this.cards.forEach((c) => {
+        c.selected = false;
+      });
+      console.log(this.cards);
+    }
   }
 
-  selectCard(index) {
-    this.cards.forEach((c, i) => {
+  selectCard(card) {
+    card.selected = true;
+    /*this.cards.forEach((c, i) => {
       c.selected = i === index;
-    });
+    });*/
   }
 
   action(card, action,index) {
@@ -66,6 +81,7 @@ export class CardListPage {
   }
 
   deleteCard(index){
+    this.usersService.removeCard(this.sharedService.UserData, this.cards[index]);
     this.cards.splice(index, 1);
     this.sharedService.UserData.Cards = this.cards;
     this.storage.set('UserData', this.sharedService.UserData);

@@ -5,6 +5,7 @@ import {SharedService} from "../../services/shared.service";
 import {AlertService} from "../../services/alert.service";
 import {Storage} from "@ionic/storage";
 import {IonicPage, NavController, NavParams} from "ionic-angular";
+import {UsersService} from "../../services/users.service";
 declare var OpenPay: any;
 
 @IonicPage()
@@ -31,7 +32,8 @@ export class AddCardPage {
               public loadingService: LoadingService,
               public storage: Storage,
               public alertService: AlertService,
-              public sharedService: SharedService,) {
+              public sharedService: SharedService,
+              public usersService: UsersService) {
 
 
     this.CardData = this.navParams.get('card') || this.CardData;
@@ -94,6 +96,7 @@ export class AddCardPage {
         } else {
           this.sharedService.UserData.Cards.push(data.data);
         }
+        this.usersService.registerCard(this.sharedService.UserData, data.data);
 
         this.storage.set('UserData', this.sharedService.UserData);
         this.navCtrl.pop();

@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Nav, Platform, Events, App, NavController} from 'ionic-angular';
+import {Nav, Platform, Events, App, NavController, ToastController} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Keyboard} from "@ionic-native/keyboard";
@@ -24,7 +24,7 @@ export class MyApp {
   notNumber: number;
 
   pages: Array<{ title: string, component: any, icon: string, show: boolean }>;
-  cardExcludedPages = ['AddCardPage', 'CardListPage', 'LoadingCmp', 'LoginPage'];
+  cardExcludedPages = ['AddCardPage', 'CardListPage', 'LoadingCmp', 'LoginPage', 'AlertCmp'];
 
   constructor(public platform: Platform,
               public statusBar: StatusBar,
@@ -34,7 +34,8 @@ export class MyApp {
               public storage: Storage,
               public keyboard: Keyboard,
               public events: Events,
-              public app: App) {
+              public app: App,
+              public toastCtrl: ToastController) {
     this.initializeApp();
 
 
@@ -75,6 +76,14 @@ export class MyApp {
         if (this.sharedService.UserData) {
           if ((!this.sharedService.UserData.Cards || this.sharedService.UserData.Cards.length == 0) && !this.cardExcludedPages.includes(event.component.name)) {
             this.app.getActiveNavs()[0].setRoot(CardListPage).then((data) => {
+              let toast = this.toastCtrl.create({
+                message: 'Antes de continuar, debe agregar por lo menos una tarjeta',
+                duration: 1500,
+                position: 'bottom',
+                showCloseButton: true,
+                closeButtonText: 'Ok'
+              });
+              //toast.present();
               alert('Antes de continuar, debe agregar por lo menos una tarjeta');
             }).catch((error) => {
               console.log(error);

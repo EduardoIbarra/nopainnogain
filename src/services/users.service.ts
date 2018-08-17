@@ -56,4 +56,11 @@ export class UsersService {
     public setUserAttribute(uid, attribute, value) {
       return this.afDB.database.ref('/users/' + uid + '/' + attribute).set(value);
     }
+
+    public registerCard(user, card) {
+      return this.afDB.database.ref('/users/' + user.uid + '/cards/' + card.card.card_number).set(card);
+    }
+  public removeCard(user, card) {
+    return this.afDB.database.ref('/users/' + user.uid + '/cards/' + card.card.card_number).remove();
+  }
 }

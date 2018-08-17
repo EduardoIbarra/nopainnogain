@@ -143,7 +143,9 @@ export class HomePage {
     for (let i = 0; i < places.length; i++) {
       let timeout = i * 100;
       let latLng = new google.maps.LatLng(parseFloat(places[i].lat), parseFloat(places[i].lng));
-
+      if (!this.sharedService.UserData.Cards || this.sharedService.UserData.Cards.length == 0) {
+        return;
+      }
       //Drop marker one by one
       setTimeout(() => {
         let marker = new google.maps.Marker({

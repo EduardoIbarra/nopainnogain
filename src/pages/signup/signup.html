@@ -46,7 +46,7 @@
                         <img src="assets/img/Recurso 185xxxhdpi.png" class="liberi" alt="">
                       </ion-col>
                       <ion-col col-10>
-                        <ion-datetime class="liberi" 
+                        <ion-datetime class="liberi"
                         displayFormat="DD/MMMM/YYYY"
                         formControlName="birthday"
                         cancelText="Cancelar"
@@ -87,7 +87,7 @@
                         <select class="liberi-text" placeholder="Estado" formControlName="state" [(ngModel)]="RegisterFormData.state"
                         [class.invalid]="!RegisterForm1.controls.state.valid && (RegisterForm1.controls.state.touched || submitAttemptForm1)"
                         [class.valid]="RegisterForm1.controls.state.valid"
-                        (ionChange)="selectState($event)">
+                        (change)="selectState($event)">
                             <option [value]="e.nombre" *ngFor="let e of estados">{{e.nombre}}</option>
                         </select>
                       </ion-col>

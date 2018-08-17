@@ -10,9 +10,9 @@
 
 
 <ion-content padding>
-  <ion-list>
+  <ion-list *ngIf="this.user">
     <ion-list-header text-center>Tarjetas Registradas</ion-list-header>
-    <ion-item *ngFor="let c of cards;let i = index" text-wrap text-center (tap)="selectCard(i)" [class.selected]="c.selected" no-lines margin-bottom>
+    <ion-item *ngFor="let c of this.user.cards;let i = index" text-wrap text-center (tap)="selectCard(c)" [class.selected]="c.selected" no-lines margin-bottom>
       <b text-uppercase>{{c.card.brand}}</b> {{c.card.card_number}}
       <img src="assets/img/component/close.png" item-right class="action-button" (tap)="action(c.card, 'remove', i)" *ngIf="c.selected">
       <img src="assets/img/component/check-green.png" item-left class="action-button" (tap)="action(c.card, 'edit', i)" *ngIf="c.selected">
