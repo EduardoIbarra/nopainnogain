@@ -38,6 +38,9 @@
       <ion-item text-wrap text-center class="website-color">
         <a (tap)="sharedService.openBrowser(gym.gym_website)">{{gym.gym_website}}</a>
       </ion-item>
+      <ion-item text-center>
+        <button ion-button (click)="goToGym(gym)">¡Llévame Allí!</button>
+      </ion-item>
     </ion-list>
   </div>
   <div *ngIf="segment === 'img'" padding class="image-container">

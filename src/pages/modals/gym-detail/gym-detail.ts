@@ -2,6 +2,7 @@ import {Component, ViewChild} from '@angular/core';
 import {IonicPage, NavController, NavParams, Slides, ViewController, ModalController} from 'ionic-angular';
 import {SharedService} from "../../../services/shared.service";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import { LaunchNavigator, LaunchNavigatorOptions } from '@ionic-native/launch-navigator';
 
 @IonicPage()
 @Component({
@@ -22,7 +23,8 @@ export class GymDetailPage {
                 public sharedService: SharedService,
                 public sanitizer: DomSanitizer,
                 public modalCtrl: ModalController,
-                public navParams: NavParams) {
+                public navParams: NavParams,
+                private launchNavigator: LaunchNavigator) {
 
         this.gym = navParams.get('data');
     }
@@ -52,5 +54,17 @@ export class GymDetailPage {
         let modal = this.modalCtrl.create('GymPurchasePage', {viewCtrl: this.viewCtrl, gym: this.gym, isModal: true});
         modal.present();
         // this.navCtrl.push('GymPurchasePage', {viewCtrl: this.viewCtrl, gym: this.gym});
+    }
+
+    goToGym(gym) {
+      let options: LaunchNavigatorOptions = {
+        start: ''
+      };
+
+      this.launchNavigator.navigate(gym.lat+','+gym.lng, options)
+        .then(
+          success => console.log('Launched navigator'),
+          error => console.log('Error launching navigator', error)
+        );
     }
 }

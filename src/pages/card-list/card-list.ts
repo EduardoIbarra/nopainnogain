@@ -25,7 +25,8 @@ export class CardListPage {
     this.usersService.getUserById(this.sharedService.UserData.uid).valueChanges().subscribe((data) => {
       this.user = data;
       if(this.user.cards) {
-        this.user.cards = Object.values(this.user.cards);
+        this.user.cards = Object.keys(this.user.cards).map(key => this.user.cards[key]);
+
       }
     }, (error) => {
       console.log(error);

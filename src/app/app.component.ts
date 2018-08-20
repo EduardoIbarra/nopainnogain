@@ -8,6 +8,8 @@ import {SharedService} from "../services/shared.service";
 import {NotificationService} from "../services/notification.service";
 import {AddCardPage} from "../pages/add-card/add-card";
 import {CardListPage} from "../pages/card-list/card-list";
+import {AuthService} from "../services/auth.service";
+import {UsersService} from "../services/users.service";
 
 declare var OpenPay: any;
 
@@ -25,7 +27,7 @@ export class MyApp {
 
   pages: Array<{ title: string, component: any, icon: string, show: boolean }>;
   cardExcludedPages = ['AddCardPage', 'CardListPage', 'LoadingCmp', 'LoginPage', 'AlertCmp'];
-
+  user: any;
   constructor(public platform: Platform,
               public statusBar: StatusBar,
               public splashScreen: SplashScreen,
@@ -35,7 +37,9 @@ export class MyApp {
               public keyboard: Keyboard,
               public events: Events,
               public app: App,
-              public toastCtrl: ToastController) {
+              public toastCtrl: ToastController,
+              public authService: AuthService,
+              public userService: UsersService) {
     this.initializeApp();
 
 
@@ -71,27 +75,39 @@ export class MyApp {
         console.log('page', this.pages[activePage]);
       }
     });
-    app.viewWillEnter.subscribe((event) => {
-        console.log(event.component.name);
-        if (this.sharedService.UserData) {
-          if ((!this.sharedService.UserData.Cards || this.sharedService.UserData.Cards.length == 0) && !this.cardExcludedPages.includes(event.component.name)) {
-            this.app.getActiveNavs()[0].setRoot(CardListPage).then((data) => {
-              let toast = this.toastCtrl.create({
-                message: 'Antes de continuar, debe agregar por lo menos una tarjeta',
-                duration: 1500,
-                position: 'bottom',
-                showCloseButton: true,
-                closeButtonText: 'Ok'
-              });
-              //toast.present();
-              alert('Antes de continuar, debe agregar por lo menos una tarjeta');
-            }).catch((error) => {
-              console.log(error);
-            });
-          }
+
+    this.authService.getStatus().subscribe((data) => {
+      this.userService.getUserById(data.uid).valueChanges().subscribe((data) => {
+        this.user = data;
+        if(this.user.cards) {
+          this.user.cards = Object.keys(this.user.cards).map(key => this.user.cards[key]);
         }
-      }
-    )
+        app.viewWillEnter.subscribe((event) => {
+            if (this.user) {
+              if ((!this.user.cards || this.user.cards.length == 0) && !this.cardExcludedPages.includes(event.component.name)) {
+                this.app.getActiveNavs()[0].setRoot(CardListPage).then((data) => {
+                  let toast = this.toastCtrl.create({
+                    message: 'Antes de continuar, debe agregar por lo menos una tarjeta',
+                    duration: 1500,
+                    position: 'bottom',
+                    showCloseButton: true,
+                    closeButtonText: 'Ok'
+                  });
+                  //toast.present();
+                  alert('Antes de continuar, debe agregar por lo menos una tarjeta');
+                }).catch((error) => {
+                  console.log(error);
+                });
+              }
+            }
+          }
+        )
+      }, (error) => {
+        console.log(error);
+      });
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   initializeApp() {
