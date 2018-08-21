@@ -6,6 +6,7 @@ import {UsersService} from "../../services/users.service";
 import {SharedService} from "../../services/shared.service";
 import {AlertService} from "../../services/alert.service";
 import {Facebook} from "@ionic-native/facebook";
+import {Storage} from "@ionic/storage";
 
 
 @IonicPage()
@@ -40,7 +41,8 @@ export class LoginPage {
                 public usersService: UsersService,
                 public userService: UsersService,
                 public loadingService: LoadingService,
-                public authService: AuthService,) {
+                public authService: AuthService,
+                public storage: Storage) {
     }
 
     login() {
@@ -50,12 +52,21 @@ export class LoginPage {
             console.log(response);
             this.getUserData(response.uid);
         }).catch((error) => {
+            alert(JSON.stringify(error));
             console.log(error);
             console.log('Something went wrong:', error.message);
             if (error.code === 'auth/user-not-found') this.alertService.incorrectEmailLoginCredentials();
             if (error.code === 'auth/wrong-password') this.alertService.incorrectPasswordLoginCredentials();
             this.loadingService.dismiss();
         });
+    }
+
+    clearStorage() {
+      this.storage.clear().then((data) => {
+        alert('Storage limpiado');
+      }).catch((error) => {
+        console.log(error);
+      });
     }
 
     getUserData(uid) {
