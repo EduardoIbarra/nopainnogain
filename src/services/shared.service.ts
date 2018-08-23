@@ -3082,8 +3082,10 @@ export class SharedService {
 
     this.storage.get('SavedUserCards').then((SavedUserCards) => {
       //Do not override saved cards only if is the same user authenticated
-      if (SavedUserCards.userEmail === userData.email) {
-        userData.Cards = SavedUserCards.Cards;
+      if(SavedUserCards && SavedUserCards.userEmail) {
+        if (SavedUserCards.userEmail === userData.email) {
+          userData.Cards = SavedUserCards.Cards;
+        }
       }
 
       this.storage.set('UserData', userData);
