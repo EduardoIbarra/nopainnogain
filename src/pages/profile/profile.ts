@@ -264,6 +264,19 @@ export class ProfilePage {
     }
 
     updateUser(uid) {
+      if(
+        !this.RegisterFormData.name ||
+        !this.RegisterFormData.last_name ||
+        !this.RegisterFormData.birthday ||
+        !this.RegisterFormData.gender ||
+        !this.RegisterFormData.phone
+      ) {
+        alert('Los primeros 5 campos son requeridos');
+        return;
+      }
+      if (!confirm('Seguro que desea guardar los datos e ir al mapa?')) {
+        return;
+      }
         if(this.currentUser === null) return;
         let auxUser: any = this.currentUser;
         auxUser.uid = this.RegisterFormData.uid;
@@ -271,7 +284,7 @@ export class ProfilePage {
         auxUser.last_name = this.RegisterFormData.last_name;
         auxUser.email = this.RegisterFormData.email;
         auxUser.phone = this.RegisterFormData.phone;
-        auxUser.birthday = this.RegisterFormData.birthday
+        auxUser.birthday = this.RegisterFormData.birthday;
         auxUser.gender = this.RegisterFormData.gender;
         auxUser.state = this.RegisterFormData.state;
         auxUser.city = this.RegisterFormData.city;

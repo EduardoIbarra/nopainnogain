@@ -5,7 +5,7 @@ import {SharedModule} from '../../app/shared.module';
 
 @NgModule({
   declarations: [
-    PromotionsPage,
+    PromotionsPage
   ],
   imports: [
     IonicPageModule.forChild(PromotionsPage),

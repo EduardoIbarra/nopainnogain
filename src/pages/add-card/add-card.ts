@@ -19,11 +19,11 @@ export class AddCardPage {
   isEditable: boolean;
   cardIndex: number;
   CardData: any = {
-    Cardholder: 'Fulanito de Tal',
-    CardNumber: '4111111111111111',
-    CCV: '123',
-    ExpMonth: 12,
-    ExpYear: 21
+    Cardholder: null,
+    CardNumber: null,
+    CCV: null,
+    ExpMonth: null,
+    ExpYear: null
   };
   isModal: boolean;
   constructor(public navCtrl: NavController,
