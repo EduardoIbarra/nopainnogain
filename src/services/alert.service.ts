@@ -48,7 +48,7 @@ export class AlertService {
   userLocationError() {
     let alert = this.alertCtrl.create({
       title: 'Ha ocurrido un error',
-      message: 'No hemos podido obtener tu ubicación.',
+      message: 'Por favor activa tu GPS para poder usar la aplicación.',
       buttons: ['OK']
     });
     alert.present();

@@ -10,6 +10,7 @@ import {AddCardPage} from "../pages/add-card/add-card";
 import {CardListPage} from "../pages/card-list/card-list";
 import {AuthService} from "../services/auth.service";
 import {UsersService} from "../services/users.service";
+import {HeaderColor} from "@ionic-native/header-color";
 
 declare var OpenPay: any;
 
@@ -39,7 +40,8 @@ export class MyApp {
               public app: App,
               public toastCtrl: ToastController,
               public authService: AuthService,
-              public userService: UsersService) {
+              public userService: UsersService,
+              private headerColor: HeaderColor) {
     this.initializeApp();
 
 
@@ -116,7 +118,10 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
 
       this.keyboard.hideKeyboardAccessoryBar(false);
-      this.statusBar.styleDefault();
+      // this.statusBar.styleDefault();
+      this.statusBar.overlaysWebView(true);
+      this.statusBar.backgroundColorByHexString('#1f4487');
+      this.headerColor.tint('#1f4487');
       this.splashScreen.hide();
 
 
