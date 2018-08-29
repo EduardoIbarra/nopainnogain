@@ -102,7 +102,7 @@
           <img src="assets/img/Recurso 191xxxhdpi.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <input type="email" class="liberi-text" placeholder="Correo Electrónico" formControlName="email" [(ngModel)]="RegisterFormData.email" [class.invalid]="!RegisterForm1.controls.email.valid && (RegisterForm1.controls.email.dirty || submitAttemptForm1)"
+          <input type="email" disabled class="liberi-text" placeholder="Correo Electrónico" formControlName="email" [(ngModel)]="RegisterFormData.email" [class.invalid]="!RegisterForm1.controls.email.valid && (RegisterForm1.controls.email.dirty || submitAttemptForm1)"
           [class.valid]="RegisterForm1.controls.email.valid"/>
         </ion-col>
       </ion-row>

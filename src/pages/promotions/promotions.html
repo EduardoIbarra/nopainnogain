@@ -34,7 +34,7 @@
         ¡No olvides invitar a tus amigos!
       </ion-col>
       <ion-col col-12 padding-bottom text-center>
-        <button ion-button block class="button-gray-gradient" [disabled]="free">INVITAR AMIGOS</button>
+        <button ion-button block class="button-gray-gradient" [disabled]="free" (click)="invite()">INVITAR AMIGOS</button>
         <p *ngIf="free" class="p-red">Acumula <b>2</b> visitas mas en <b>SNAP FITNESS LA RIOJA</b> para activar esta promoción</p>
       </ion-col>
     </ion-row>

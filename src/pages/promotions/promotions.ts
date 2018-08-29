@@ -2,6 +2,7 @@ import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ToastController, ModalController} from 'ionic-angular';
 import {UsersService} from '../../services/users.service';
 import {AuthService} from '../../services/auth.service';
+import {SocialSharing} from "@ionic-native/social-sharing";
 
 @IonicPage()
 @Component({
@@ -19,7 +20,8 @@ export class PromotionsPage {
     public userService: UsersService,
     public authService: AuthService,
     private toastCtrl: ToastController,
-    public modalCtrl: ModalController) {
+    public modalCtrl: ModalController,
+    private socialSharing: SocialSharing) {
     this.authService.getStatus().subscribe((result) => {
       this.uid = result.uid;
       this.userService.getUserById(this.uid).valueChanges().subscribe((user: any) => {
@@ -47,4 +49,11 @@ export class PromotionsPage {
     modal.present();
   }
 
+  invite() {
+    try {
+      this.socialSharing.share('¡Te invito a usar Líberi, la mejor forma de estar en forma!', 'Conoce Líberi', '', 'https://google.com');
+    } catch (e) {
+      alert('Ocurrió un error: ' +  JSON.stringify(e));
+    }
+  }
 }

@@ -33,6 +33,8 @@ import {AddCardPageModule} from "../pages/add-card/add-card.module";
 import {CardListPageModule} from "../pages/card-list/card-list.module";
 import {HomePageModule} from "../pages/home/home.module";
 import {LaunchNavigator} from "@ionic-native/launch-navigator";
+import {SocialSharing} from "@ionic-native/social-sharing";
+import {HeaderColor} from "@ionic-native/header-color";
 
 @NgModule({
   declarations: [
@@ -88,6 +90,8 @@ import {LaunchNavigator} from "@ionic-native/launch-navigator";
     BarcodeScanner,
     ScanService,
     LaunchNavigator,
+    SocialSharing,
+    HeaderColor
   ]
 })
 export class AppModule {
