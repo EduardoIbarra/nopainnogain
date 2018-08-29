@@ -274,6 +274,14 @@ export class ProfilePage {
         alert('Los primeros 5 campos son requeridos');
         return;
       }
+      if(this.RegisterFormData.phone.toString().length < 10) {
+        alert('Debes ingresar por lo menos 10 dígitos para el celular');
+        return;
+      }
+      if(this.RegisterFormData.postal_code.toString().length < 5) {
+        alert('Debes ingresar por lo menos 5 dígitos para el código postal');
+        return;
+      }
       if (!confirm('Seguro que desea guardar los datos e ir al mapa?')) {
         return;
       }

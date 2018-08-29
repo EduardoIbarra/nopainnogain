@@ -62,7 +62,7 @@
           <img src="assets/img/smarphone.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <input type="tel" class="liberi-text" placeholder="Teléfono Celular" formControlName="phone" [(ngModel)]="RegisterFormData.phone" [class.invalid]="!RegisterForm1.controls.phone.valid && (RegisterForm1.controls.phone.dirty || submitAttemptForm1)"
+          <input type="number" class="liberi-text" placeholder="Teléfono Celular" formControlName="phone" [(ngModel)]="RegisterFormData.phone" [class.invalid]="!RegisterForm1.controls.phone.valid && (RegisterForm1.controls.phone.dirty || submitAttemptForm1)"
             [class.valid]="RegisterForm1.controls.phone.valid"/>
         </ion-col>
       </ion-row>
@@ -93,7 +93,7 @@
           <img src="assets/img/pin.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <input type="text" class="liberi-text" placeholder="Código Postal" formControlName="postal_code" [(ngModel)]="RegisterFormData.postal_code" type="tel" [class.invalid]="!RegisterForm1.controls.postal_code.valid && (RegisterForm1.controls.postal_code.touched || submitAttemptForm1)"
+          <input type="number" class="liberi-text" placeholder="Código Postal" formControlName="postal_code" [(ngModel)]="RegisterFormData.postal_code" type="tel" [class.invalid]="!RegisterForm1.controls.postal_code.valid && (RegisterForm1.controls.postal_code.touched || submitAttemptForm1)"
             [class.valid]="RegisterForm1.controls.postal_code.valid"/>
         </ion-col>
       </ion-row>
@@ -102,7 +102,7 @@
           <img src="assets/img/Recurso 191xxxhdpi.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <input type="email" disabled class="liberi-text" placeholder="Correo Electrónico" formControlName="email" [(ngModel)]="RegisterFormData.email" [class.invalid]="!RegisterForm1.controls.email.valid && (RegisterForm1.controls.email.dirty || submitAttemptForm1)"
+          <input type="email" style="color: gray;" disabled class="liberi-text" placeholder="Correo Electrónico" formControlName="email" [(ngModel)]="RegisterFormData.email" [class.invalid]="!RegisterForm1.controls.email.valid && (RegisterForm1.controls.email.dirty || submitAttemptForm1)"
           [class.valid]="RegisterForm1.controls.email.valid"/>
         </ion-col>
       </ion-row>
