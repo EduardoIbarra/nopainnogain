@@ -5,6 +5,7 @@ import {GymService} from "../../services/gym.service";
 import {LoadingService} from "../../services/loading.service";
 import {AuthService} from "../../services/auth.service";
 import {PaymentService} from "../../services/payment.service";
+import {HelpService} from "../../services/help.service";
 
 @IonicPage()
 @Component({
@@ -17,17 +18,18 @@ export class HelpPage {
   purchaseHistory: any = [];
   chargeHistory: any = [];
   entriesHistory: any = [];
+  tutorials: any = [];
   articles: any[] = [{
     title: 'Servicio de ayuda',
     class: 'section',
     open: false,
     sections: [
-      {title: 'Cómo comprar una visita en LIBERI.', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
-      {title: 'Cómo buscar buscar un código QR.', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
-      {title: 'Cómo agregar o borrar una categoría de tus "Preferencias".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
-      {title: 'Cómo buscar un CAF (Centro de Acondicionamiento Físico)".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
-      {title: 'Cómo contactar un CAF (Centro de Acondicionamiento Físico)".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
-      {title: 'Cómo reportar un problema".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial'},
+      {title: 'Cómo comprar una visita en LIBERI.', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 1},
+      {title: 'Cómo buscar buscar un código QR.', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 2},
+      {title: 'Cómo agregar o borrar una categoría de tus "Preferencias".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 3},
+      {title: 'Cómo buscar un CAF (Centro de Acondicionamiento Físico)".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 4},
+      {title: 'Cómo contactar un CAF (Centro de Acondicionamiento Físico)".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 5},
+      {title: 'Cómo reportar un problema".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 6},
     ]
   },
     {
@@ -45,7 +47,7 @@ export class HelpPage {
         {title: 'b) Envia un reporte', url: '', url_type: 'send-report', action_label: 'Enviar Reporte'},
         {title: 'Problemas con mi cuenta', class: 'child-section', header: true},
         {title: 'Mi perfil', url: null, url_type: null, action_label: null},
-        {title: 'Modificar mis datos personales', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial'},
+        {title: 'Modificar mis datos personales', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial', order: 7},
         {title: 'Cargos no reconocidos', url: '', url_type: 'pending', action_label: 'Reportar Cargo'},
         {title: 'Mi Código QR', class: 'child-section', header: true},
         {title: 'No recibí mi codigo QR', url: '', url_type: '', action_label: ''},
@@ -55,7 +57,7 @@ export class HelpPage {
         {title: 'Problemas con el código QR', url: '', url_type: '', action_label: '', class: ''},
         {title: 'Por favor intenta con el código alfanúmerico que viene debajo de tu código QR', url: '', url_type: 'pending', action_label: 'Enviar código a revisión', hasBorder: true},
         {title: 'Centros de Acondicionamiento Fisico', class: 'child-section', header: true},
-        {title: 'Como comentar un CAF', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial'},
+        {title: 'Como comentar un CAF', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial', order: 8},
       ]
     },
     {
@@ -148,6 +150,7 @@ export class HelpPage {
     public navParams: NavParams,
     public paymentService: PaymentService,
     public gymService: GymService,
+    public helpService: HelpService,
     public sharedService: SharedService,
     public loadingService: LoadingService,
     public authService: AuthService,
@@ -163,6 +166,14 @@ export class HelpPage {
 
   ionViewDidLoad() {
     this.getUserGymHistoryPurchase();
+    this.getTutorials();
+  }
+
+  getTutorials(){
+    this.helpService.getTutorials().valueChanges().subscribe((tutorials: any) => {
+      console.log('TUT', tutorials);
+      this.tutorials = tutorials;
+    })
   }
 
 
@@ -238,8 +249,9 @@ export class HelpPage {
 
   selectOption(item) {
     if (item.url_type === 'video') {
-      window.open(item.url, '_system');
-      //TODO: get video from ulr and match id
+      this.tutorials.filter((t)=>{
+        if(t.order === item.order) window.open(t.url, '_system');
+      })
     }
     if (item.url_type === 'update') {
       alert('Accion pendiente')

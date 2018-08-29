@@ -35,6 +35,7 @@ import {HomePageModule} from "../pages/home/home.module";
 import {LaunchNavigator} from "@ionic-native/launch-navigator";
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {HeaderColor} from "@ionic-native/header-color";
+import {HelpService} from "../services/help.service";
 
 @NgModule({
   declarations: [
@@ -91,7 +92,8 @@ import {HeaderColor} from "@ionic-native/header-color";
     ScanService,
     LaunchNavigator,
     SocialSharing,
-    HeaderColor
+    HeaderColor,
+    HelpService
   ]
 })
 export class AppModule {
