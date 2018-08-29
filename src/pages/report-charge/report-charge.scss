@@ -21,6 +21,7 @@ page-report-charge {
       border-radius: 5px;
       padding-left: 10px;
       padding-top: 10px;
+
     }
     .comillas {
       font-family: 'Great Vibes', cursive;
@@ -30,6 +31,13 @@ page-report-charge {
       transform: scale(-1, 1);
       position: absolute;
     }
+    #myInput {
+      width: calc(100% - 10px);
+      border: 0;
+      border-radius: 0;
+      background: transparent;
+    }
+
   }
 
 }

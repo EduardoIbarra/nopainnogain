@@ -120,7 +120,7 @@ export class HelpPage {
             }
           })
         });
-        this.entriesHistory = this.chargeHistory;
+        this.entriesHistory = Object.assign([], this.chargeHistory);
         console.log(this.purchaseHistory);
       })
     }, (error) => {
@@ -148,7 +148,36 @@ export class HelpPage {
   }
 
 
-  reportCharge(){
-    this.navCtrl.push('ReportChargePage')
+  reportCharge() {
+    let counter = 0;
+    this.chargeHistory.filter((c, ci) => {
+      if (c.selected) counter++;
+      if (counter && ci === this.chargeHistory.length - 1) this.navCtrl.push('ReportChargePage')
+    });
   }
+
+  reportEntry() {
+    let counter = 0;
+    this.entriesHistory.filter((c, ci) => {
+      if (c.selected) counter++;
+      if (counter && ci === this.entriesHistory.length - 1) this.navCtrl.push('ReportChargePage')
+    });
+  }
+
+  selectOption(item) {
+    if (item.url_type === 'video') {
+      window.open(item.url, '_system');
+      //TODO: get video from ulr and match id
+    }
+    if (item.url_type === 'update') {
+      alert('Accion pendiente')
+    }
+    if (item.url_type === 'send-report') {
+      alert('Accion pendiente')
+    }
+    if (item.url_type === 'page') {
+      this.navCtrl.push(item.url);
+    }
+  }
+
 }
