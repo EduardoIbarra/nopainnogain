@@ -78,38 +78,38 @@ export class MyApp {
       }
     });
 
-    // this.authService.getStatus().subscribe((data) => {
-    //   this.userService.getUserById(data.uid).valueChanges().subscribe((data) => {
-    //     this.user = data;
-    //     if(this.user.cards) {
-    //       this.user.cards = Object.keys(this.user.cards).map(key => this.user.cards[key]);
-    //     }
-    //     app.viewWillEnter.subscribe((event) => {
-    //         if (this.user) {
-    //           if ((!this.user.cards || this.user.cards.length == 0) && !this.cardExcludedPages.includes(event.component.name)) {
-    //             this.app.getActiveNavs()[0].setRoot(CardListPage).then((data) => {
-    //               let toast = this.toastCtrl.create({
-    //                 message: 'Antes de continuar, debe agregar por lo menos una tarjeta',
-    //                 duration: 1500,
-    //                 position: 'bottom',
-    //                 showCloseButton: true,
-    //                 closeButtonText: 'Ok'
-    //               });
-    //               //toast.present();
-    //               alert('Antes de continuar, debe agregar por lo menos una tarjeta');
-    //             }).catch((error) => {
-    //               console.log(error);
-    //             });
-    //           }
-    //         }
-    //       }
-    //     )
-    //   }, (error) => {
-    //     console.log(error);
-    //   });
-    // }, (error) => {
-    //   console.log(error);
-    // });
+    this.authService.getStatus().subscribe((data) => {
+      this.userService.getUserById(data.uid).valueChanges().subscribe((data) => {
+        this.user = data;
+        if(this.user.cards) {
+          this.user.cards = Object.keys(this.user.cards).map(key => this.user.cards[key]);
+        }
+        app.viewWillEnter.subscribe((event) => {
+            if (this.user) {
+              if ((!this.user.cards || this.user.cards.length == 0) && !this.cardExcludedPages.includes(event.component.name)) {
+                this.app.getActiveNavs()[0].setRoot(CardListPage).then((data) => {
+                  let toast = this.toastCtrl.create({
+                    message: 'Antes de continuar, debe agregar por lo menos una tarjeta',
+                    duration: 1500,
+                    position: 'bottom',
+                    showCloseButton: true,
+                    closeButtonText: 'Ok'
+                  });
+                  //toast.present();
+                  alert('Antes de continuar, debe agregar por lo menos una tarjeta');
+                }).catch((error) => {
+                  console.log(error);
+                });
+              }
+            }
+          }
+        )
+      }, (error) => {
+        console.log(error);
+      });
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   initializeApp() {
