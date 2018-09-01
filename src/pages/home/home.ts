@@ -86,7 +86,10 @@ export class HomePage {
       zoomControl: true,
       maximumAge: 30000,
       timeout: 30000,
-      enableHighAccuracy: false
+      enableHighAccuracy: true,
+      myLocationButton : true,
+      myLocation: true,
+      compass: true
     };
     const map = new google.maps.Map(this.mapRef.nativeElement, options);
 
@@ -120,7 +123,6 @@ export class HomePage {
         m.setMap(null)
       });
 
-      console.log(response);
       this.loadingService.dismiss();
       this.places = response;
       this.setPlacesMarkers(this.places);
@@ -134,8 +136,6 @@ export class HomePage {
 
   setPlacesMarkers(places) {
     let map = this.map;
-    console.log(places);
-
     //Adjusting zoom dependig on the markers
     let bounds = new google.maps.LatLngBounds();
 

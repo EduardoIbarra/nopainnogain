@@ -1,6 +1,10 @@
 <ion-header>
     <ion-navbar>
-        <ion-title class="liberi">Agregar Tarjeta</ion-title>
+        <ion-title class="liberi">
+          <span *ngIf="!isEditable">Agregar</span>
+          <span *ngIf="isEditable">Editar</span>
+          Tarjeta
+        </ion-title>
         <button ion-button menuToggle="left" *ngIf="!isModal">
             <ion-icon name="arrow-back"></ion-icon>
         </button>

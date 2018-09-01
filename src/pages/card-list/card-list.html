@@ -14,8 +14,10 @@
     <ion-list-header text-center>Tarjetas Registradas</ion-list-header>
     <ion-item *ngFor="let c of this.user.cards;let i = index" text-wrap text-center (tap)="selectCard(c)" [class.selected]="c.selected" no-lines margin-bottom>
       <b text-uppercase>{{c.card.brand}}</b> {{c.card.card_number}}
+      <img src="assets/img/component/star.png" alt="" *ngIf="c.card.default && !c.selected" class="defaultCardStar">
       <img src="assets/img/component/close.png" item-right class="action-button" (tap)="action(c.card, 'remove', i)" *ngIf="c.selected">
-      <img src="assets/img/component/check-green.png" item-left class="action-button" (tap)="action(c.card, 'edit', i)" *ngIf="c.selected">
+      <img src="assets/img/component/pencil.png" item-left class="action-button" (tap)="action(c.card, 'edit', i)" *ngIf="c.selected">
+      <img src="assets/img/component/check-green.png" item-left class="action-button" (tap)="action(c, 'default', i)" *ngIf="c.selected && !c.card.default">
     </ion-item>
   </ion-list>
   <div text-center>

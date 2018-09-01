@@ -497,11 +497,21 @@ ion-icon.icon.icon-md.ion-md-arrow-back {
 .img60 {
   width: 60px !important;
   height: 60px !important;
-  background-image: url(/assets/img/logo-negative.png);
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
 }
 .pato0 {
   padding-top: 0px !important;
+}
+img.avatarBase64 {
+  object-fit: cover !important;
+  width: 60px !important;
+  height: 60px !important;
+  border-radius: 50% !important;
+}
+.defaultCardStar {
+  display: inline-block;
+  width: 20px;
+  vertical-align: top;
 }
