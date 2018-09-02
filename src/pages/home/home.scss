@@ -62,4 +62,9 @@ page-home {
       position: relative;
     }
   }
+
+  ion-navbar.toolbar.toolbar-ios.statusbar-padding {
+    margin: 5%;
+    width: 90%;
+  }
 }

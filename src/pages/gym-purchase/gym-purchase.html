@@ -40,6 +40,7 @@
 
   <div *ngIf="isPurchaseDone">
     <div text-center>
+      <br />
       <img [src]="'https://api.qrserver.com/v1/create-qr-code/?size=550x550&data=' + generated_code" class="qr-code" style="width: 40%;">
       <br />
       <b>{{generated_code}}</b>

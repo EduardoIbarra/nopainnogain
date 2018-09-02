@@ -48,7 +48,7 @@ import {HelpService} from "../services/help.service";
     IonicModule.forRoot(MyApp, {
       platforms: {
         ios: {
-          backButtonText: 'Atrás',
+          backButtonText: '',
           statusbarPadding: true
         }
       },

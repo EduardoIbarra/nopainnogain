@@ -1,5 +1,5 @@
 import {Component, ElementRef, ViewChild} from '@angular/core';
-import {IonicPage, ModalController, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, LoadingController, ModalController, NavController, NavParams} from 'ionic-angular';
 import {LoadingService} from "../../services/loading.service";
 import {GymService} from "../../services/gym.service";
 import {Geolocation} from '@ionic-native/geolocation';
@@ -37,7 +37,8 @@ export class HomePage {
               public paymentService: PaymentService,
               public notificationService: NotificationService,
               public navParams: NavParams,
-              public loadingService: LoadingService) {
+              public loadingService: LoadingService,
+              private loadingCtrl: LoadingController) {
   }
 
   ionViewDidLoad() {
@@ -46,7 +47,6 @@ export class HomePage {
   }
 
   ionViewWillEnter(){
-    console.log('view will enter');
     this.NotificationNumber = this.notificationService.Notifications.length
   }
 
@@ -61,18 +61,19 @@ export class HomePage {
 
 
   getUserLocation() {
-    this.loadingService.presentLoading();
+    const loader = this.loadingCtrl.create({});
+    loader.present();
     let options = {timeout: 10000, enableHighAccuracy: true, maximumAge: 3600};
     this.geolocation.getCurrentPosition(options).then(position => {
       this.showMap(position.coords.latitude, position.coords.longitude);
       this.userPosition.latitude = position.coords.latitude;
       this.userPosition.longitude = position.coords.longitude;
       this.dataError = false;
-      this.loadingService.dismiss();
+      loader.dismiss();
     }).catch(error => {
       console.log(error);
       this.alertService.userLocationError();
-      this.loadingService.dismiss();
+      loader.dismiss();
       this.dataError = true;
     })
   }
@@ -117,18 +118,20 @@ export class HomePage {
   }
 
   getGymList() {
-    this.loadingService.presentLoading();
+    const loader = this.loadingCtrl.create({});
+    loader.present();
     this.gymService.getGyms().valueChanges().subscribe((response) => {
+      console.log(response);
       this.markersArray.forEach((m) => {
         m.setMap(null)
       });
 
-      this.loadingService.dismiss();
+      loader.dismiss();
       this.places = response;
       this.setPlacesMarkers(this.places);
       // this.dataError = false;
     }, (error) => {
-      this.loadingService.dismiss();
+      loader.dismiss();
       this.alertService.gymListError();
       this.dataError = true;
     })
@@ -144,7 +147,7 @@ export class HomePage {
       let timeout = i * 100;
       let latLng = new google.maps.LatLng(parseFloat(places[i].lat), parseFloat(places[i].lng));
       if (!this.sharedService.UserData.Cards || this.sharedService.UserData.Cards.length == 0) {
-        return;
+        // return;
       }
       //Drop marker one by one
       setTimeout(() => {

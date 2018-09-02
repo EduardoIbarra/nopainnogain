@@ -88,7 +88,8 @@ export class GymPurchasePage {
       if(this.user.cards) {
         this.user.cards = Object.keys(this.user.cards).map(key => this.user.cards[key]);
         this.cards = this.user.cards;
-        this.selectedCard = this.cards[0];
+        console.log(this.cards);
+        this.selectedCard = this.cards.find((c) => {return c.card.default}) || this.cards[0];
       }
     }, (error) => {
       console.log(error);
@@ -112,7 +113,7 @@ export class GymPurchasePage {
     alert.addButton({
       text: 'Seleccionar',
       handler: pos => {
-        if (!pos) return;
+        if (!pos && pos !== 0) return;
         this.selectedCard = this.cards[pos];
       }
     });

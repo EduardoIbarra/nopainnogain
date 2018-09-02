@@ -24,8 +24,7 @@ export class NotificationService {
   getHistoryToNotifications() {
     this.authService.getStatus().subscribe((result) => {
       this.currentUser = result;
-      this.getHistory()
-      console.log(result);
+      this.getHistory();
     });
   }
 
@@ -33,8 +32,6 @@ export class NotificationService {
     this.paymentService.getPaymentsByUser(this.currentUser.uid).valueChanges().subscribe((payments: any) => {
       payments = Object.keys(payments).map(key => payments[key]);
       this.gymService.getGyms().valueChanges().subscribe((gyms: any) => {
-        console.log(gyms);
-        console.log(payments);
         let history = [];
         payments.map((p) => {
           gyms.forEach((g) => {
@@ -48,7 +45,6 @@ export class NotificationService {
         });
         this.Notifications = history;
         this.NotificationsError = false;
-        console.log(history);
       })
     }, (error) => {
       console.log(error);

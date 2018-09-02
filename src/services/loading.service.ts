@@ -18,11 +18,15 @@ export class LoadingService {
             // content: this.contentImageLogo
         });
 
-        this.loading.present();
+        return this.loading.present();
     }
 
     dismiss() {
-        this.loading.dismiss();
+        return this.loading.dismiss();
+    }
+
+    dismissAll() {
+      return this.loading.dismissAll();
     }
 
 }
