@@ -37,7 +37,7 @@
               <p text-wrap>Por favor selecciona la compra en donde te impidieron el acceso.</p>
               <ion-item *ngFor="let h of entriesHistory" text-wrap>
                 <ion-label>${{h.purchase_price}} - {{h.purchase_date | date}} - {{h.commercial_name}}</ion-label>
-                <ion-checkbox color="secondary" checked="{{h.selected}}" (click)="h.selected = !h.selected"></ion-checkbox>
+                <ion-checkbox color="secondary" checked="{{h.selected}}" (click)="selectGymListItem(h, 'entries')"></ion-checkbox>
               </ion-item>
               <div text-center class="more-button">
                 <p (click)="seeMore('entry')" *ngIf="entriesHistory.length !== purchaseHistory.length">Ver más...</p>
@@ -52,7 +52,7 @@
               <p text-wrap>Por favor selecciona el cargo no reconcido.</p>
               <ion-item *ngFor="let h of chargeHistory; let i = index" text-wrap>
                 <ion-label>${{h.purchase_price}} - {{h.purchase_date | date}} - {{h.commercial_name}}</ion-label>
-                <ion-checkbox color="secondary" [checked]="h.selected" (click)="h.selected = !h.selected"></ion-checkbox>
+                <ion-checkbox color="secondary" [checked]="h.selected" (click)="selectGymListItem(h, 'charges')"></ion-checkbox>
               </ion-item>
               <div text-center class="more-button">
                 <p (click)="seeMore('charge')" *ngIf="chargeHistory.length !== purchaseHistory.length">Ver más...</p>
