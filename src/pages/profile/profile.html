@@ -72,7 +72,7 @@
         </ion-col>
         <ion-col col-10>
           <select class="liberi-text" placeholder="Estado" formControlName="state" [(ngModel)]="RegisterFormData.state" [class.invalid]="!RegisterForm1.controls.state.valid && (RegisterForm1.controls.state.touched || submitAttemptForm1)"
-            [class.valid]="RegisterForm1.controls.state.valid" (ionChange)="selectState($event)">
+            [class.valid]="RegisterForm1.controls.state.valid" (change)="selectState($event)">
             <option [value]="e.nombre" *ngFor="let e of estados">{{e.nombre}}</option>
           </select>
         </ion-col>

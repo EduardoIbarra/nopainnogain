@@ -1,5 +1,5 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ToastController, ModalController} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ToastController, ModalController, AlertController} from 'ionic-angular';
 import {UsersService} from '../../services/users.service';
 import {AuthService} from '../../services/auth.service';
 import {SocialSharing} from "@ionic-native/social-sharing";
@@ -21,7 +21,8 @@ export class PromotionsPage {
     public authService: AuthService,
     private toastCtrl: ToastController,
     public modalCtrl: ModalController,
-    private socialSharing: SocialSharing) {
+    private socialSharing: SocialSharing,
+              private alertCtrl: AlertController) {
     this.authService.getStatus().subscribe((result) => {
       this.uid = result.uid;
       this.userService.getUserById(this.uid).valueChanges().subscribe((user: any) => {
@@ -55,5 +56,34 @@ export class PromotionsPage {
     } catch (e) {
       alert('Ocurrió un error: ' +  JSON.stringify(e));
     }
+  }
+
+  giveVisit() {
+    let alert = this.alertCtrl.create({
+      title: 'Regalar Visita',
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email de tu amigo'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Enviar',
+          handler: data => {
+            console.log(data.email);
+            this.alertCtrl.create({title: '¡Gracias!', message: 'Le avisaremos a tu amigo acerca de tu regalo', buttons: [{text: 'Ok', role: 'cancel'}]}).present();
+          }
+        }
+      ]
+    });
+    alert.present();
   }
 }

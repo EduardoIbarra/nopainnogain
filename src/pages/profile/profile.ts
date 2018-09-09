@@ -171,6 +171,7 @@ export class ProfilePage {
     ionViewDidLoad() {
         this.estados = this.sharedService.States;
         console.log(this.estados);
+      this.selectState(this.currentUser.state);
     }
 
     openImageOptions() {
@@ -249,18 +250,17 @@ export class ProfilePage {
     }
 
     selectState(state) {
-        console.log(state);
-        this.RegisterFormData.state = state;
-        this.RegisterFormData.city = null;
-        this.estados.filter((s) => {
-            if (s.nombre === state) {
-                this.municipios = s.estados;
-                return;
-            }
-        });
-
-        this.RegisterForm1.controls['city'].enable();
-
+      console.log(this.RegisterFormData.state);
+      // this.RegisterFormData.city = null;
+      if (!this.estados || this.estados.length == 0) {
+        return;
+      }
+      this.municipios = this.estados.find((s) => {
+        return s.nombre == this.RegisterFormData.state;
+      });
+      this.municipios = this.municipios.estados;
+      console.log(this.municipios);
+      this.RegisterForm1.controls['city'].enable();
     }
 
     updateUser(uid) {
@@ -356,7 +356,6 @@ export class ProfilePage {
             this.RegisterFormData.postal_code = this.currentUser.postal_code;
             this.RegisterFormData.profile_picture = this.currentUser.profile_picture;
             this.loadingService.dismiss();
-            this.selectState(this.currentUser.state);
             this.RegisterFormData.city = this.currentUser.city;
         }).catch((error) => {
             console.log(error);

@@ -61,7 +61,7 @@
         <a (click)="showHowTo('gift')">¿Cómo funciona la visita de regalo?</a>
       </ion-col>
       <ion-col col-12 padding-vertical text-center>
-        <button ion-button block class="button-gray-gradient" [disabled]="gift">REGALAR VISITA</button>
+        <button ion-button block class="button-gray-gradient" (click)="giveVisit()">REGALAR VISITA</button>
         <p *ngIf="gift" class="p-red">Acumula <b>2</b> visitas mas en <b>SNAP FITNESS LA RIOJA</b> para activar esta promoción</p>
       </ion-col>
     </ion-row>
