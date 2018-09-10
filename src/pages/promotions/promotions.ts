@@ -3,6 +3,8 @@ import {IonicPage, NavController, NavParams, ToastController, ModalController, A
 import {UsersService} from '../../services/users.service';
 import {AuthService} from '../../services/auth.service';
 import {SocialSharing} from "@ionic-native/social-sharing";
+import {SharedService} from "../../services/shared.service";
+import {GiftService} from "../../services/gift.service";
 
 @IonicPage()
 @Component({
@@ -11,10 +13,9 @@ import {SocialSharing} from "@ionic-native/social-sharing";
 })
 export class PromotionsPage {
   uid: any;
-
   free = false;
   gift = true;
-
+  user: any;
   constructor(public navCtrl: NavController,
     public navParams: NavParams,
     public userService: UsersService,
@@ -22,11 +23,13 @@ export class PromotionsPage {
     private toastCtrl: ToastController,
     public modalCtrl: ModalController,
     private socialSharing: SocialSharing,
-              private alertCtrl: AlertController) {
+              private alertCtrl: AlertController,
+              public sharedService: SharedService,
+              private giftService: GiftService) {
     this.authService.getStatus().subscribe((result) => {
       this.uid = result.uid;
       this.userService.getUserById(this.uid).valueChanges().subscribe((user: any) => {
-        
+        this.user = user;
       });
     });
   }
@@ -78,8 +81,16 @@ export class PromotionsPage {
         {
           text: 'Enviar',
           handler: data => {
-            console.log(data.email);
-            this.alertCtrl.create({title: '¡Gracias!', message: 'Le avisaremos a tu amigo acerca de tu regalo', buttons: [{text: 'Ok', role: 'cancel'}]}).present();
+            const gift = {
+              from: this.user,
+              to: data.email,
+              timestamp: Date.now()
+            };
+            this.giftService.createGift(gift).then((data) => {
+              this.alertCtrl.create({title: '¡Gracias!', message: 'Le avisaremos a tu amigo acerca de tu regalo', buttons: [{text: 'Ok', role: 'cancel'}]}).present();
+            }).catch((error) => {
+              console.log(error);
+            });
           }
         }
       ]

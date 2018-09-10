@@ -1,6 +1,8 @@
 import {Component} from '@angular/core';
 import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular';
 import {NotificationService} from "../../services/notification.service";
+import {GiftService} from "../../services/gift.service";
+import {AuthService} from "../../services/auth.service";
 
 @IonicPage()
 @Component({
@@ -28,12 +30,28 @@ export class NotificationsPage {
     public navParams: NavParams,
     public notificationService: NotificationService,
     public viewCtrl: ViewController,
+    private giftService: GiftService,
+    private authService: AuthService
   ) {
     this.isModal = this.navParams.get('isModal') || false;
   }
 
   ionViewWillEnter() {
     this.items = this.notificationService.Notifications;
+    this.authService.getStatus().subscribe((data) => {
+      console.log(data.email);
+      this.giftService.getGifts(data.email).valueChanges().subscribe((gifts) => {
+        gifts.forEach((g) => {
+          this.items.push(g);
+        });
+        console.log(this.items);
+        this.items.sort((a, b) => {return b.timestamp - a.timestamp});
+      }, (error) => {
+        console.log(error);
+      });
+    }, (error) => {
+      console.log(error);
+    });
   }
 
   dismiss() {

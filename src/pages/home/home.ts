@@ -121,7 +121,6 @@ export class HomePage {
     const loader = this.loadingCtrl.create({});
     loader.present();
     this.gymService.getGyms().valueChanges().subscribe((response) => {
-      console.log(response);
       this.markersArray.forEach((m) => {
         m.setMap(null)
       });
