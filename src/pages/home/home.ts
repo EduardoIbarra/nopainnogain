@@ -7,6 +7,8 @@ import {AlertService} from "../../services/alert.service";
 import {SharedService} from "../../services/shared.service";
 import {PaymentService} from "../../services/payment.service";
 import {NotificationService} from "../../services/notification.service";
+import {AuthService} from "../../services/auth.service";
+import {UsersService} from "../../services/users.service";
 
 declare var google: any;
 
@@ -27,8 +29,33 @@ export class HomePage {
   places: any = [];
   markersArray: any = [];
   NotificationNumber: number;
+    uid: any;
+    settings = {
+        aerobico: false,
+        crossfit: false,
+        ritmos: false,
+        pole: false,
+        jumping: false,
+        spinning: false,
+        mma: false,
+        karate: false,
+        funcional: false,
+        pesas: false,
+        zumba: false,
+        danza: false,
+        yoga: false,
+        barre: false,
+        boxeo: false,
+        taekwondo: false,
+        natacion: false,
+        otras: false,
+        location: 0,
+        price: 0
+    };
 
   constructor(public navCtrl: NavController,
+              public authService: AuthService,
+              public userService: UsersService,
               public gymService: GymService,
               public geolocation: Geolocation,
               public modalCtrl: ModalController,
@@ -39,6 +66,7 @@ export class HomePage {
               public navParams: NavParams,
               public loadingService: LoadingService,
               private loadingCtrl: LoadingController) {
+
   }
 
   ionViewDidLoad() {
@@ -118,22 +146,51 @@ export class HomePage {
   }
 
   getGymList() {
-    const loader = this.loadingCtrl.create({});
-    loader.present();
-    this.gymService.getGyms().valueChanges().subscribe((response) => {
-      this.markersArray.forEach((m) => {
-        m.setMap(null)
+      this.authService.getStatus().subscribe((result) => {
+          this.uid = result.uid;
+          this.userService.getUserById(this.uid).valueChanges().subscribe((user: any) => {
+              this.settings = user.settings || this.settings;
+
+              const loader = this.loadingCtrl.create({});
+              loader.present();
+              this.gymService.getGyms().valueChanges().subscribe((response) => {
+                  this.markersArray.forEach((m) => {
+                      m.setMap(null)
+                  });
+
+                  loader.dismiss();
+                  this.places = response;
+                  let placesTmp: any = [];
+                  for(var i=0; i < this.places.length; i++){
+                      var sttngs = this.places[i].services;
+                      var flag = 0;
+                      if(sttngs){
+                          if(sttngs.length == 21){
+                              var ind = 1;
+                              for(var key in this.settings){
+                                  if(sttngs[ind] === true && this.settings[key] === true){
+                                      flag = 1;
+                                  }
+                                  ind++;
+                              }
+                          }
+                      }
+
+                      if(flag){
+                          placesTmp.push(this.places[i]);
+                      }
+                  }
+
+                  this.setPlacesMarkers(placesTmp);
+                  // this.dataError = false;
+              }, (error) => {
+                  loader.dismiss();
+                  this.alertService.gymListError();
+                  this.dataError = true;
+              })
+          });
       });
 
-      loader.dismiss();
-      this.places = response;
-      this.setPlacesMarkers(this.places);
-      // this.dataError = false;
-    }, (error) => {
-      loader.dismiss();
-      this.alertService.gymListError();
-      this.dataError = true;
-    })
   }
 
   setPlacesMarkers(places) {
