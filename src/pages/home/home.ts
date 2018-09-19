@@ -30,7 +30,7 @@ export class HomePage {
   markersArray: any = [];
   NotificationNumber: number;
     uid: any;
-    settings = {
+    /*settings = {
         aerobico: false,
         crossfit: false,
         ritmos: false,
@@ -49,6 +49,73 @@ export class HomePage {
         taekwondo: false,
         natacion: false,
         otras: false,
+        location: 0,
+        price: 0
+    };*/
+    preferences = [
+        {
+            id: 1, value: false
+        },
+        {
+            id: 2, value: false
+        },
+        {
+            id: 3, value: false
+        },
+        {
+            id: 4, value: false
+        },
+        {
+            id: 5, value: false
+        },
+        {
+            id: 6, value: false
+        },
+        {
+            id: 7, value: false
+        },
+        {
+            id: 8, value: false
+        },
+        {
+            id: 9, value: false
+        },
+        {
+            id: 10, value: false
+        },
+        {
+            id: 11, value: false
+        },
+        {
+            id: 12, value: false
+        },
+        {
+            id: 13, value: false
+        },
+        {
+            id: 14, value: false
+        },
+        {
+            id: 15, value: false
+        },
+        {
+            id: 16, value: false
+        },
+        {
+            id: 17, value: false
+        },
+        {
+            id: 18, value: false
+        },
+        {
+            id: 19, value: false
+        },
+        {
+            id: 20, value: false
+        }
+    ];
+    settings = {
+        preferences: this.preferences,
         location: 0,
         price: 0
     };
@@ -150,7 +217,9 @@ export class HomePage {
           this.uid = result.uid;
           this.userService.getUserById(this.uid).valueChanges().subscribe((user: any) => {
               this.settings = user.settings || this.settings;
-
+              this.preferences = user.settings.preferences || this.preferences;
+              console.log(this.preferences);
+              console.log(this.settings);
               const loader = this.loadingCtrl.create({});
               loader.present();
               this.gymService.getGyms().valueChanges().subscribe((response) => {
@@ -167,11 +236,13 @@ export class HomePage {
                       if(sttngs){
                           if(sttngs.length == 21){
                               var ind = 1;
-                              for(var key in this.settings){
-                                  if(sttngs[ind] === true && this.settings[key] === true){
-                                      flag = 1;
+                              if(this.preferences) {
+                                  for (var key in this.preferences) {
+                                      if (sttngs[ind] === true && this.preferences[key].value === true) {
+                                          flag = 1;
+                                      }
+                                      ind++;
                                   }
-                                  ind++;
                               }
                           }
                       }
