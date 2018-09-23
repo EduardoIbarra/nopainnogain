@@ -218,8 +218,6 @@ export class HomePage {
           this.userService.getUserById(this.uid).valueChanges().subscribe((user: any) => {
               this.settings = user.settings || this.settings;
               this.preferences = user.settings.preferences || this.preferences;
-              console.log(this.preferences);
-              console.log(this.settings);
               const loader = this.loadingCtrl.create({});
               loader.present();
               this.gymService.getGyms().valueChanges().subscribe((response) => {

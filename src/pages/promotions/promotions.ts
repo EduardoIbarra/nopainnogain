@@ -5,6 +5,8 @@ import {AuthService} from '../../services/auth.service';
 import {SocialSharing} from "@ionic-native/social-sharing";
 import {SharedService} from "../../services/shared.service";
 import {GiftService} from "../../services/gift.service";
+import {ScanService} from "../../services/scan.service";
+import {GymService} from "../../services/gym.service";
 
 @IonicPage()
 @Component({
@@ -16,20 +18,51 @@ export class PromotionsPage {
   free = false;
   gift = true;
   user: any;
+  scans: any[] = [];
+  myScans: any[] = [];
+  groupedScans: any[] = [];
   constructor(public navCtrl: NavController,
-    public navParams: NavParams,
-    public userService: UsersService,
-    public authService: AuthService,
-    private toastCtrl: ToastController,
-    public modalCtrl: ModalController,
-    private socialSharing: SocialSharing,
+              public navParams: NavParams,
+              public userService: UsersService,
+              public authService: AuthService,
+              private toastCtrl: ToastController,
+              public modalCtrl: ModalController,
+              private socialSharing: SocialSharing,
               private alertCtrl: AlertController,
               public sharedService: SharedService,
-              private giftService: GiftService) {
+              private giftService: GiftService,
+              private scanService: ScanService,
+              private gymService: GymService) {
     this.authService.getStatus().subscribe((result) => {
       this.uid = result.uid;
       this.userService.getUserById(this.uid).valueChanges().subscribe((user: any) => {
         this.user = user;
+      });
+      this.scanService.getScans().valueChanges().subscribe((data) => {
+        this.scans = [];
+        data.forEach((s) => {
+          const tempArray = Object.keys(s).map(key => s[key]);
+          this.scans = this.scans.concat(tempArray);
+        });
+        this.myScans = this.scans.filter((s) => {return s.uid === this.uid});
+        this.groupedScans = this.myScans.reduce(function (r, a) {
+          r[a.gym] = r[a.gym] || [];
+          r[a.gym].push(a);
+          return r;
+        }, Object.create(null));
+        this.groupedScans = Object.keys(this.groupedScans).map(key => this.groupedScans[key]);
+        this.groupedScans = this.groupedScans.filter((s) => {return s.length >= 3});
+        this.groupedScans.forEach((gs) => {
+          this.gymService.getGym(gs[0].gym).valueChanges().subscribe((data) => {
+            gs[0].gym = data;
+            console.log(gs);
+          }, (error) => {
+            console.log(error);
+          });
+        });
+        console.log(this.groupedScans);
+      }, (error) => {
+        console.log(error);
       });
     });
   }
@@ -85,6 +118,44 @@ export class PromotionsPage {
               from: this.user,
               to: data.email,
               timestamp: Date.now()
+            };
+            this.giftService.createGift(gift).then((data) => {
+              this.alertCtrl.create({title: '¡Gracias!', message: 'Le avisaremos a tu amigo acerca de tu regalo', buttons: [{text: 'Ok', role: 'cancel'}]}).present();
+            }).catch((error) => {
+              console.log(error);
+            });
+          }
+        }
+      ]
+    });
+    alert.present();
+  }
+  give(v) {
+    let alert = this.alertCtrl.create({
+      title: 'Regalar Visita',
+      message: 'Ingresa el email del amigo a quien le deseas regalar una visita para ' + v[0].gym.commercial_name,
+      inputs: [
+        {
+          name: 'email',
+          placeholder: 'Email de tu amigo'
+        }
+      ],
+      buttons: [
+        {
+          text: 'Cancelar',
+          role: 'cancel',
+          handler: data => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Enviar',
+          handler: data => {
+            const gift = {
+              from: this.user,
+              to: data.email,
+              timestamp: Date.now(),
+              gym: v[0].gym
             };
             this.giftService.createGift(gift).then((data) => {
               this.alertCtrl.create({title: '¡Gracias!', message: 'Le avisaremos a tu amigo acerca de tu regalo', buttons: [{text: 'Ok', role: 'cancel'}]}).present();

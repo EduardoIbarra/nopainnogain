@@ -13,16 +13,16 @@
 <ion-content>
   <ion-list padding-top>
     <button ion-item no-lines *ngFor="let g of items; let i =  index;" (click)="goToGym(g.purchase_code)">
-      <ion-avatar *ngIf="!g.from" item-start>
+      <ion-avatar *ngIf="!g.gym" item-start>
         <img [src]="g.logo || 'https://seeklogo.com/images/G/gym-logo-3F51052256-seeklogo.com.png'">
       </ion-avatar>
-      <h2 *ngIf="!g.from">Realizaste un compra en {{g.commercial_name}}</h2>
-      <p *ngIf="!g.from">¡Tu código sigue vigente!</p>
-      <ion-avatar *ngIf="g.from" item-start>
-        <img [src]="g.from.profile_picture || 'https://seeklogo.com/images/G/gym-logo-3F51052256-seeklogo.com.png'">
+      <h2 *ngIf="!g.gym">Realizaste un compra en {{g.commercial_name}}</h2>
+      <p *ngIf="!g.gym">¡Tu código sigue vigente!</p>
+      <ion-avatar *ngIf="g.gym" item-start>
+        <img [src]="g.gym.logo || 'https://seeklogo.com/images/G/gym-logo-3F51052256-seeklogo.com.png'">
       </ion-avatar>
-      <h2 *ngIf="g.from">¡{{g.from.name}} {{g.from.last_name}} te ha regalado una visita!</h2>
-      <p *ngIf="g.from">¡Úsala ahora mismo!</p>
+      <h2 *ngIf="g.gym">¡{{g.from.name}} {{g.from.last_name}} te ha regalado una visita en {{g.gym.commercial_name}}!</h2>
+      <p *ngIf="g.gym">¡Úsala ahora mismo!</p>
     </button>
     <button ion-item  detail-none no-lines *ngIf="NotificationsError" text-center>Ha ocurrido un error al obtener las notificaciones.</button>
     <button ion-item  detail-none no-lines *ngIf="!items.length" text-center>No tienes notificaciones pendientes.</button>

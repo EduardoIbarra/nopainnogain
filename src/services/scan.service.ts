@@ -7,7 +7,7 @@ export class ScanService {
     constructor(private afDB: AngularFireDatabase) {
     }
     getScans(){
-        return this.afDB.object('/scans/');
+        return this.afDB.list('/scans/');
     }
     getScan(uid, code) {
       return this.afDB.object('/scans/' + uid + '/' + code);
