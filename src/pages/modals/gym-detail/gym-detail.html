@@ -18,17 +18,17 @@
     <br>
     <ion-list no-lines>
       <ion-item text-center text-wrap>
-        <b>{{gym.commercial_name}}</b>
+        <b>{{gym.tradename}}</b>
       </ion-item>
 
       <ion-item text-wrap text-center>
-        <span class="price-tag">$78.00 MXN</span>
+        <span class="price-tag">${{gym.gym_monthly_fee | number: '1.2-2'}} MXN</span>
         <br>
         <liberi-button name="cart" (click)="purchase()"></liberi-button>
       </ion-item>
 
       <ion-item text-wrap>
-        <b>Direccion:</b> {{gym.address_street}} {{gym.address_number}}, {{gym.address_neighborhood}}. C.P. {{gym.address_zipcode}}. {{gym.address_city}}, {{gym.address_state}}.
+        <b>Direccion:</b> {{gym.calle}} {{gym.no_ext}}, {{gym.colonia}}. C.P. {{gym.cp}}. {{gym.ciudad}}, {{gym.estado}}.
       </ion-item>
 
       <ion-item text-wrap>

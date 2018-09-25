@@ -11,6 +11,10 @@ export class GiftService {
     return this.afDB.list('/gifts/' + email);
   }
 
+  public getAllGifts() {
+    return this.afDB.list('/gifts/');
+  }
+
   public getGift(id) {
     return this.afDB.object('/gifts/' + id);
   }

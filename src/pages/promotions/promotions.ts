@@ -17,6 +17,7 @@ export class PromotionsPage {
   uid: any;
   free = false;
   gift = true;
+  gifts: any[] = [];
   user: any;
   scans: any[] = [];
   myScans: any[] = [];
@@ -51,19 +52,26 @@ export class PromotionsPage {
           return r;
         }, Object.create(null));
         this.groupedScans = Object.keys(this.groupedScans).map(key => this.groupedScans[key]);
-        this.groupedScans = this.groupedScans.filter((s) => {return s.length >= 3});
+        this.groupedScans = this.groupedScans.filter((s) => {return s.length >= 6});
         this.groupedScans.forEach((gs) => {
           this.gymService.getGym(gs[0].gym).valueChanges().subscribe((data) => {
             gs[0].gym = data;
-            console.log(gs);
           }, (error) => {
             console.log(error);
           });
         });
-        console.log(this.groupedScans);
       }, (error) => {
         console.log(error);
       });
+    });
+    this.giftService.getAllGifts().valueChanges().subscribe((data) => {
+      this.gifts = data;
+      this.gifts.forEach((g) => {
+        g = Object.keys(g).map(key => g[key]);
+      });
+      console.log(this.gifts);
+    }, (error) => {
+      console.log(error);
     });
   }
 
@@ -75,7 +83,6 @@ export class PromotionsPage {
     });
 
     toast.onDidDismiss(() => {
-      console.log('Dismissed toast');
     });
 
     toast.present();

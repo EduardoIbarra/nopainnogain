@@ -3,6 +3,8 @@ import {IonicPage, NavController, NavParams, ViewController} from 'ionic-angular
 import {NotificationService} from "../../services/notification.service";
 import {GiftService} from "../../services/gift.service";
 import {AuthService} from "../../services/auth.service";
+import {SharedService} from "../../services/shared.service";
+import {PaymentService} from "../../services/payment.service";
 
 @IonicPage()
 @Component({
@@ -24,14 +26,17 @@ export class NotificationsPage {
       message: '¡Tiene nuevas clases para ti!'
     },
   ];
-
+  generated_code: any;
+  currentUser: any;
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     public notificationService: NotificationService,
     public viewCtrl: ViewController,
     private giftService: GiftService,
-    private authService: AuthService
+    private authService: AuthService,
+    private sharedService: SharedService,
+    private paymentService: PaymentService
   ) {
     this.isModal = this.navParams.get('isModal') || false;
   }
@@ -39,7 +44,7 @@ export class NotificationsPage {
   ionViewWillEnter() {
     this.items = this.notificationService.Notifications;
     this.authService.getStatus().subscribe((data) => {
-      console.log(data.email);
+      this.currentUser = data;
       this.giftService.getGifts(data.email).valueChanges().subscribe((gifts) => {
         gifts.forEach((g) => {
           this.items.push(g);
@@ -60,5 +65,25 @@ export class NotificationsPage {
 
   goToGym(openGymPurchaseCode) {
     this.navCtrl.push('PurchaseHistoryPage', {openGymPurchaseCode: openGymPurchaseCode})
+  }
+
+  generateCode(v) {
+    if (!confirm('Deseas reclamar tu visita gratis ahora?')) {
+      return;
+    }
+    let payment: any = {
+      amount: '0',
+      generated_code: this.sharedService.generateCode(),
+      gym: v.gym.id,
+      status: 'available',
+      timestamp: Math.round((new Date()).getTime())
+    };
+    this.generated_code = payment.generated_code;
+    this.paymentService.createPayment(this.currentUser.uid, payment.generated_code, payment).then((response) => {
+      alert('Se ha generado exitosamente el código ' + this.generated_code + ', lo puedes encontrar en la sección de HISTORIAL DE COMPRAS');
+      console.log(response);
+    }, (error) => {
+      console.log(error);
+    })
   }
 }
