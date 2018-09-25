@@ -76,7 +76,8 @@ export class NotificationsPage {
       generated_code: this.sharedService.generateCode(),
       gym: v.gym.id,
       status: 'available',
-      timestamp: Math.round((new Date()).getTime())
+      timestamp: Math.round((new Date()).getTime()),
+      from: v.from.uid
     };
     this.generated_code = payment.generated_code;
     this.paymentService.createPayment(this.currentUser.uid, payment.generated_code, payment).then((response) => {
