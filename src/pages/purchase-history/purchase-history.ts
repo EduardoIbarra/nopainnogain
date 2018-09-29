@@ -52,10 +52,40 @@ export class PurchaseHistoryPage {
         return;
       }
       payments = Object.keys(payments).map(key => payments[key]);
-      this.gymService.getGyms().valueChanges().subscribe((gyms: any) => {
+      console.log(payments);
+      payments.forEach((p) => {
+          this.history = [];
+        this.gymService.getGym(p.gym).valueChanges().subscribe((g: any) => {
+            if (g.reviews) {
+                g.reviews = Object.keys(g.reviews).map(key => g.reviews[key]);
+            }
+            this.history.push(g);
+            this.history[this.history.length - 1].purchase_code = p.generated_code;
+            this.history[this.history.length - 1].status = p.status;
+            this.history[this.history.length - 1].purchase_price = p.amount;
+            this.history[this.history.length - 1].purchase_date = p.timestamp;
+            this.history[this.history.length - 1].isOpen = false;
+            this.history[this.history.length - 1].openToday = this.sharedService.getGymOpenDays(g);
+            this.history[this.history.length - 1].imageLoaded = false;
+        });
+      });
+        this.loadingService.dismiss();
+
+        if (this.openGymPurchaseCode) {
+            this.history.map((h) => {
+                if (h.purchase_code === this.openGymPurchaseCode) {
+                    h.isOpen = true;
+                    this.sharedService.scrollTo('gymPurchaseCode_' + this.openGymPurchaseCode, this.content)
+                }
+            });
+
+        }
+        console.log(this.history);
+      /*this.gymService.getGyms().valueChanges().subscribe((gyms: any) => {
         console.log(gyms);
-        this.history = [];
+          this.history = [];
         payments.map((p) => {
+
           gyms.forEach((g) => {
             if (p.gym === g.id) {
               if (g.reviews) {
@@ -73,6 +103,8 @@ export class PurchaseHistoryPage {
             }
           })
         });
+          this.history = payments;
+        console.log(this.history);
 
         this.loadingService.dismiss();
 
@@ -86,7 +118,7 @@ export class PurchaseHistoryPage {
 
         }
         console.log(this.history);
-      })
+      })*/
     }, (error) => {
       this.loadingService.dismiss();
       console.log(error);

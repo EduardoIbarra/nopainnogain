@@ -222,11 +222,13 @@ ion-popover {
 }
 
 ion-title.liberi {
-  padding: 5px 60px 1px;
+  padding: 20px 60px 1px;
+  padding-top: 20px !important;
 }
 ion-title.liberi > .toolbar-title {
   overflow: initial;
   font-size: 1.4rem;
+  font-weight: 700;
 }
 
 input.liberi-text, select.liberi-text, ion-datetime.liberi, ion-multi-picker.liberi {
@@ -514,4 +516,22 @@ img.avatarBase64 {
   display: inline-block;
   width: 20px;
   vertical-align: top;
+}
+.back-button.show-back-button{
+  z-index: 10;
+}
+.alert-wrapper{
+  background-color: rgba(0,0,0,0.3) !important;
+  color: #ffffff;
+  min-width: 80%;
+}
+.alert-wrapper .alert-sub-title{
+  color: #ffffff;
+  font-size: 16px;
+}
+.alert-wrapper .alert-button{
+  color: #ffffff;
+}
+.alert-wrapper .alert-title{
+  font-size: 20px;
 }

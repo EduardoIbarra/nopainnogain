@@ -217,7 +217,9 @@ export class HomePage {
           this.uid = result.uid;
           this.userService.getUserById(this.uid).valueChanges().subscribe((user: any) => {
               this.settings = user.settings || this.settings;
-              this.preferences = user.settings.preferences || this.preferences;
+              if(user.settings){
+                  this.preferences = user.settings.preferences
+              }
               const loader = this.loadingCtrl.create({});
               loader.present();
               this.gymService.getGyms().valueChanges().subscribe((response) => {
@@ -312,7 +314,18 @@ export class HomePage {
 
   searchGyms() {
     this.searchHasFocus = false;
+    console.log(this.places);
     console.log(this.searchQuery);
+
+      if (!this.searchQuery) {
+          return null;
+      }
+      this.searchQuery = this.searchQuery.toLowerCase();
+      this.places.filter(function(item){
+          return JSON.stringify(item).toLowerCase().includes(this.searchQuery);
+      });
+      console.log(this.places);
+      this.setPlacesMarkers(this.places);
   }
 
   goTo(page: string) {

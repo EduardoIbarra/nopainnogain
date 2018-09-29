@@ -17,16 +17,24 @@
     <div *ngIf="history.length">
       <div *ngFor="let i of history; let indx = index" id="gymPurchaseCode_{{i.purchase_code}}">
         <button ion-item detail-none class="gym-list-item" (click)="i.isOpen = !i.isOpen">
+          <ion-row>
           <ion-avatar item-start>
             <img [src]="i.logo || 'https://seeklogo.com/images/G/gym-logo-3F51052256-seeklogo.com.png'">
           </ion-avatar>
-          <h2>{{i.commercial_name}}</h2>
+          <h2 class="tradename">{{i.tradename}}</h2>
           <h3>
-            <b>${{i.purchase_price}} MXN</b>
             <ion-icon [name]="!i.isOpen ? 'arrow-forward' : 'arrow-down'" item-right></ion-icon>
           </h3>
-          <p>{{i.purchase_date | date:'fullDate'}}</p>
+          </ion-row>
         </button>
+        <ion-row class="bg-white pad-10">
+          <ion-col col-9>
+            <p>{{i.purchase_date | date:'fullDate'}}</p>
+          </ion-col>
+          <ion-col col-3 class="center-vertical-input">
+            <b>${{i.purchase_price}} MXN</b>
+          </ion-col>
+        </ion-row>
         <section *ngIf="i.isOpen">
           <ion-item class="gym-list-item-detail">
             <hr>

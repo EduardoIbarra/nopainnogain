@@ -118,7 +118,9 @@ export class PreferencesPage {
       this.uid = result.uid;
       this.userService.getUserById(this.uid).valueChanges().subscribe((user: any) => {
         this.settings = user.settings || this.settings;
-        this.preferences = user.settings.preferences || this.preferences;
+        if(user.settings){
+            this.preferences = user.settings.preferences;
+        }
       });
     });
 

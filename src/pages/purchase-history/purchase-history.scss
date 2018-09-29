@@ -11,7 +11,7 @@ page-purchase-history {
       img {
         height: 60px;
         width: 70px;
-        border-radius: 50%;
+        border-radius: 0 !important;
       }
       h3 {
         ion-icon {
@@ -68,6 +68,16 @@ page-purchase-history {
     margin-left: auto;
     margin-right: auto;
     display: block;
+  }
+  .bg-white{
+    background-color: #ffffff;
+  }
+  .pad-10{
+    padding: 10px;
+  }
+  .tradename{
+    padding-top: 5%;
+    font-size: 2.5rem;
   }
 
 }

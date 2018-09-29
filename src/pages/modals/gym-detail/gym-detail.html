@@ -27,12 +27,16 @@
         <liberi-button name="cart" (click)="purchase()"></liberi-button>
       </ion-item>
 
-      <ion-item text-wrap>
-        <b>Direccion:</b> {{gym.calle}} {{gym.no_ext}}, {{gym.colonia}}. C.P. {{gym.cp}}. {{gym.ciudad}}, {{gym.estado}}.
+      <ion-item text-wrap class="text-center">
+        <b>Ubicación</b><br>
+        {{gym.gym_street}} {{gym.gym_number}}<br>
+        {{gym.gym_neighborhood}}<br>
+        {{gym.gym_city}}, {{gym.gym_state}}<br>
+        C.P. {{gym.gym_zipcode}}
       </ion-item>
 
-      <ion-item text-wrap>
-        <b>Horario:</b> <span *ngIf="isOpenToday" class="open-today">Hoy abierto,&nbsp;</span>{{gym.attention_hours}}
+      <ion-item text-wrap class="text-center">
+        <b>Horario</b><br> <span *ngIf="isOpenToday" class="open-today">Hoy abierto,&nbsp;</span>{{gym.gym_schedule}}
       </ion-item>
 
       <ion-item text-wrap text-center class="website-color">

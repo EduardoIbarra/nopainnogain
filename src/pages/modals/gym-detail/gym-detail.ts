@@ -13,6 +13,8 @@ export class GymDetailPage {
 
     segment: string;
     gym: any;
+    reviews: any;
+    average = 0;
     isOpenToday: boolean = false;
     youtubeLink: SafeResourceUrl;
 
@@ -27,6 +29,7 @@ export class GymDetailPage {
                 private launchNavigator: LaunchNavigator) {
 
         this.gym = navParams.get('data');
+        console.log(this.gym);
     }
 
     ionViewDidLoad() {
