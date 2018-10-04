@@ -60,14 +60,18 @@ export class PromotionsPage {
             console.log(error);
           });
         });
+        console.log(this.groupedScans);
       }, (error) => {
         console.log(error);
       });
     });
-    this.giftService.getAllGifts().valueChanges().subscribe((data) => {
-      this.gifts = data;
-      this.gifts.forEach((g) => {
+    this.giftService.getAllGifts().valueChanges().subscribe((data: any) => {
+      this.gifts = [];
+      data.forEach((g) => {
         g = Object.keys(g).map(key => g[key]);
+        g.forEach((gi) => {
+          this.gifts.push(gi);
+        });
       });
       console.log(this.gifts);
     }, (error) => {
@@ -174,5 +178,10 @@ export class PromotionsPage {
       ]
     });
     alert.present();
+  }
+  shouldBeDisabled(v) {
+    v = v[0];
+    const search = this.gifts.filter((g) => { return g.from.uid === this.user.uid && g.gym.id === v.gym.id});
+    return (search.length <= 0) ? true : false;
   }
 }
