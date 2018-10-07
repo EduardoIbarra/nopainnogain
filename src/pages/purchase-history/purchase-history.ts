@@ -53,6 +53,7 @@ export class PurchaseHistoryPage {
       }
       payments = Object.keys(payments).map(key => payments[key]);
       console.log(payments);
+      payments = payments.sort(function(a, b){return a.timestamp - b.timestamp}).reverse();
       payments.forEach((p) => {
           this.history = [];
         this.gymService.getGym(p.gym).valueChanges().subscribe((g: any) => {
@@ -80,6 +81,7 @@ export class PurchaseHistoryPage {
             });
 
         }
+        this.history = this.history.sort(function(a, b){return a.purchase_date - b.purchase_date});
         console.log(this.history);
       /*this.gymService.getGyms().valueChanges().subscribe((gyms: any) => {
         console.log(gyms);

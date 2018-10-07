@@ -61,8 +61,10 @@
         <a (click)="showHowTo('gift')">¿Cómo funciona la visita de regalo?</a>
       </ion-col>
       <ion-col col-12 padding-vertical text-center>
-        <button ion-button block class="button-gray-gradient" (click)="giveVisit()">REGALAR VISITA</button>
-        <p *ngFor="let v of groupedScans" class="p-red">Has acumulado <b>{{groupedScans[0].length}}</b> visitas en <b>{{v[0].gym.commercial_name}}</b> ¡Ahora puedes regalar una visita! <button ion-button (click)="give(v)">Regalar</button></p>
+        <h2>REGALAR VISITAS EN:</h2>
+        <button (click)="give(v)" *ngFor="let v of groupedScans" [disabled]="shouldBeDisabled(v)" ion-button block class="button-gray-gradient">
+          {{v[0].gym.commercial_name || v[0].gym.tradename}} <span *ngIf="shouldBeDisabled(v)">(Usado)</span>
+        </button>
       </ion-col>
     </ion-row>
   </ion-grid>
