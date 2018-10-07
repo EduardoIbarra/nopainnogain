@@ -177,7 +177,7 @@ export class HomePage {
     const location = new google.maps.LatLng(latitude, longitude);
     const options = {
       center: location,
-      zoom: 15,
+      zoom: 10,
       disableDefaultUI: true,
       zoomControl: true,
       maximumAge: 30000,
@@ -300,9 +300,9 @@ export class HomePage {
         this.markersArray.push(marker);
         // //Adjusting zoom dependig on the markers
         bounds.extend(latLng);
-        map.fitBounds(bounds);
-        map.panToBounds(bounds);
-        map.setCenter(bounds.getCenter());
+        //map.fitBounds(bounds);
+        //map.panToBounds(bounds);
+        //map.setCenter(bounds.getCenter());
       }, timeout);
     }
   }

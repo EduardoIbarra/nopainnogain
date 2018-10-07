@@ -1,5 +1,5 @@
 import {BrowserModule} from '@angular/platform-browser';
-import {ErrorHandler, NgModule} from '@angular/core';
+import {ErrorHandler, NgModule, LOCALE_ID} from '@angular/core';
 import {IonicApp, IonicErrorHandler, IonicModule} from 'ionic-angular';
 import {MyApp} from './app.component';
 import {StatusBar} from '@ionic-native/status-bar';
@@ -37,7 +37,12 @@ import {SocialSharing} from "@ionic-native/social-sharing";
 import {HeaderColor} from "@ionic-native/header-color";
 import {HelpService} from "../services/help.service";
 import {GiftService} from "../services/gift.service";
+import { registerLocaleData } from '@angular/common';
+import localeEsMx from '@angular/common/locales/es-MX';
+import localeEsMXExtra from '@angular/common/locales/extra/es-MX';
 
+
+registerLocaleData(localeEsMx, localeEsMXExtra);
 @NgModule({
   declarations: [
     MyApp
@@ -73,7 +78,7 @@ import {GiftService} from "../services/gift.service";
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},
-    // {provide: LOCALE_ID, useValue: "es"},
+    { provide: LOCALE_ID, useValue: "es-MX" },
     StatusBar,
     SplashScreen,
     Keyboard,
