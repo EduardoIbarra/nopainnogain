@@ -68,19 +68,20 @@ export class PurchaseHistoryPage {
             this.history[this.history.length - 1].isOpen = false;
             this.history[this.history.length - 1].openToday = this.sharedService.getGymOpenDays(g);
             this.history[this.history.length - 1].imageLoaded = false;
+
+            if (this.openGymPurchaseCode) {
+                this.history.forEach((h) => {
+                    if (h.purchase_code === this.openGymPurchaseCode) {
+                        h.isOpen = true;
+                        this.sharedService.scrollTo('gymPurchaseCode_' + this.openGymPurchaseCode, this.content)
+                    }
+                });
+
+            }
         });
       });
         this.loadingService.dismiss();
 
-        if (this.openGymPurchaseCode) {
-            this.history.map((h) => {
-                if (h.purchase_code === this.openGymPurchaseCode) {
-                    h.isOpen = true;
-                    this.sharedService.scrollTo('gymPurchaseCode_' + this.openGymPurchaseCode, this.content)
-                }
-            });
-
-        }
         this.history = this.history.sort(function(a, b){return a.purchase_date - b.purchase_date});
         console.log(this.history);
       /*this.gymService.getGyms().valueChanges().subscribe((gyms: any) => {

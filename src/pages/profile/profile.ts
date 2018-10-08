@@ -172,6 +172,7 @@ export class ProfilePage {
         this.estados = this.sharedService.States;
         console.log(this.estados);
       this.selectState(this.currentUser.state);
+      console.log(this.sharedService.UserData);
     }
 
     openImageOptions() {
@@ -330,6 +331,16 @@ export class ProfilePage {
             this.RegisterFormData.password = '';
             this.RegisterFormData.confirmPassword = '';
             toast.present();
+            if(auxUser.name){
+                this.sharedService.UserData.name = auxUser.name;
+            }
+            if(auxUser.last_name){
+                this.sharedService.UserData.last_name = auxUser.last_name;
+            }
+            if(auxUser.profile_picture){
+                this.sharedService.UserData.profile_picture = auxUser.profile_picture;
+            }
+
             this.loadingService.dismiss();
             this.navCtrl.setRoot(HomePage);
         }, (error) => {
