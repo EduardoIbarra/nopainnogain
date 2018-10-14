@@ -120,9 +120,10 @@ export class CardListPage {
   }
 
   deleteCard(index){
-    this.usersService.removeCard(this.sharedService.UserData, this.cards[index]);
+    console.log(this.user.cards);
+    this.usersService.removeCard(this.sharedService.UserData, this.user.cards[index]);
     this.cards.splice(index, 1);
-    this.sharedService.UserData.Cards = this.cards;
+    this.sharedService.UserData.Cards = this.user.cards;
     this.storage.set('UserData', this.sharedService.UserData);
   }
 
