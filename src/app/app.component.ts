@@ -47,7 +47,14 @@ export class MyApp {
 
     this.storage.get('UserData').then((UserData) => {
       this.sharedService.UserData = UserData;
-      this.rootPage = UserData ? 'HomePage' : 'LoginPage';
+      console.log(UserData);
+      if(UserData){
+          if(this.sharedService.UserData.gym_owner && UserData){
+              this.rootPage = 'ValidateSessionPage';
+          }
+      }else{
+          this.rootPage = UserData ? 'HomePage' : 'LoginPage';
+      }
       this.sharedService.enableSplitPane = this.rootPage !== 'LoginPage';
     });
 
@@ -55,14 +62,14 @@ export class MyApp {
     this.pages = [
       {title: 'Inicio', component: 'HomePage', icon: 'pin.png', show: true},
       {title: 'Datos Personales', component: 'ProfilePage', icon: 'user.png', show: true},
-      {title: 'Datos de tarjeta', component: 'CardListPage', icon: 'card.png', show: false},
+      {title: 'Datos de tarjeta', component: 'CardListPage', icon: 'card.png', show: true},
       {title: 'Notificaciones', component: 'NotificationsPage', icon: 'notification.png', show: true},
       {title: 'Historial de Compras', component: 'PurchaseHistoryPage', icon: 'history.png', show: true},
       {title: 'Preferencias', component: 'PreferencesPage', icon: 'preferences.png', show: true},
       {title: 'Promociones', component: 'PromotionsPage', icon: 'promos.png', show: true},
       {title: 'Ayuda', component: 'HelpPage', icon: 'help.png', show: true},
-      {title: 'Validar Sesión', component: 'ValidateSessionPage', icon: 'qr-code.png', show: true},
-      {title: 'Cerrar Sesión', component: null, icon: 'logout.png', show: true}
+      {title: 'Validar Sesión', component: 'ValidateSessionPage', icon: 'qr-code.png', show: false},
+      {title: 'Cerrar Sesión', component: null, icon: 'logout.png', show: false}
     ];
 
     this.activePage = this.pages[0];
@@ -165,9 +172,9 @@ export class MyApp {
   shouldShow(p) {
     let response = true;
     if (this.sharedService.UserData && p.component == 'ValidateSessionPage') {
-      response = !!(this.sharedService.UserData.gym_owner);
+      response = this.sharedService.UserData.gym_owner;
     }
-    // return (p.show && response);
-    return true;
+    return (p.show && response);
+    //return true;
   }
 }

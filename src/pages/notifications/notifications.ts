@@ -64,6 +64,12 @@ export class NotificationsPage {
   }
 
   goToGym(openGymPurchaseCode) {
+      for (let itemsKey in this.items) {
+          if(this.items[itemsKey].purchase_code == openGymPurchaseCode){
+            this.paymentService.setPaymentProperty(this.currentUser.uid, this.items[itemsKey].purchase_code, 'seen', true);
+            console.log(this.items[itemsKey]);
+          }
+      }
     this.navCtrl.push('PurchaseHistoryPage', {openGymPurchaseCode: openGymPurchaseCode})
   }
 

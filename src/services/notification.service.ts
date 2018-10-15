@@ -37,9 +37,17 @@ export class NotificationService {
           gyms.forEach((g) => {
             if (p.gym === g.id) {
               if (p.status === 'available') {
-                g.timestamp = p.timestamp;
-                history.push(g);
-                history[history.length - 1].purchase_code = p.generated_code;
+                if(p.seen !== undefined){
+                  if(p.seen !== true){
+                      g.timestamp = p.timestamp;
+                      history.push(g);
+                      history[history.length - 1].purchase_code = p.generated_code;
+                  }
+                }else{
+                    g.timestamp = p.timestamp;
+                    history.push(g);
+                    history[history.length - 1].purchase_code = p.generated_code;
+                }
               }
             }
           })

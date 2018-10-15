@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {ActionSheetController, Content, IonicPage, NavController, NavParams, Platform, Slides, ToastController} from 'ionic-angular';
+import {ActionSheetController, Content, IonicPage, NavController, NavParams, Platform, Slides, ToastController, ModalController} from 'ionic-angular';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import * as moment from 'moment';
 import {PasswordValidation} from "../../validators/password.validator";
@@ -97,6 +97,7 @@ export class SignupPage {
                 public platform: Platform,
                 public camera: Camera,
                 public toastCtrl: ToastController,
+                public modalCtrl: ModalController,
                 public formBuilder: FormBuilder,) {
 
         this._imageViewerCtrl = imageViewerCtrl;
@@ -392,5 +393,10 @@ export class SignupPage {
         });
     }
 
+    goTo(page: string) {
+        console.log(page);
+        let modal = this.modalCtrl.create(page, {isModal: true});
+        modal.present();
+    }
 
 }

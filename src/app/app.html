@@ -10,7 +10,7 @@
       </ion-item>
       <div *ngFor="let p of pages; let i  = index">
         <!--<ion-item menuClose [class.active-highlight]="checkActivePage(p)" class="list-item" *ngIf="shouldShow(p)" [class.submenu-option]="i===2" (click)="openPage(p)">-->
-        <ion-item menuClose [class.active-highlight]="checkActivePage(p)" class="list-item" *ngIf="shouldShow(p)" (click)="openPage(p)">
+        <ion-item menuClose [class.active-highlight]="checkActivePage(p)" class="list-item" *ngIf="!shouldShow(p)" (click)="openPage(p)">
           <img [src]="'assets/img/menu/' + p.icon" item-start class="menu-img-icon">
           <span>{{p.title}}</span>
           <ion-badge *ngIf="p.component === 'NotificationsPage' && notNumber" item-end>{{notNumber}}</ion-badge>
