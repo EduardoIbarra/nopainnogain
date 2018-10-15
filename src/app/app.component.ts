@@ -68,8 +68,8 @@ export class MyApp {
       {title: 'Preferencias', component: 'PreferencesPage', icon: 'preferences.png', show: true},
       {title: 'Promociones', component: 'PromotionsPage', icon: 'promos.png', show: true},
       {title: 'Ayuda', component: 'HelpPage', icon: 'help.png', show: true},
-      {title: 'Validar Sesión', component: 'ValidateSessionPage', icon: 'qr-code.png', show: false},
-      {title: 'Cerrar Sesión', component: null, icon: 'logout.png', show: false}
+      {title: 'Validar Sesión', component: 'ValidateSessionPage', icon: 'qr-code.png', show: true},
+      {title: 'Cerrar Sesión', component: null, icon: 'logout.png', show: true}
     ];
 
     this.activePage = this.pages[0];
@@ -174,7 +174,10 @@ export class MyApp {
     if (this.sharedService.UserData && p.component == 'ValidateSessionPage') {
       response = this.sharedService.UserData.gym_owner;
     }
-    return (p.show && response);
+    if (this.sharedService.UserData && this.sharedService.UserData.gym_owner && p.component != 'ValidateSessionPage' && p.title != 'Cerrar Sesión') {
+      response = false;
+    }
+    return (p.show && response) ? true : false;
     //return true;
   }
 }

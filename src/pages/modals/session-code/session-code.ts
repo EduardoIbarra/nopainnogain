@@ -45,6 +45,7 @@ export class SessionCodePage {
   }
 
   validateCode() {
+    alert(this.code);
     if (!this.code) return;
     const stream = this.paymentService.getPayment(this.currentUser.uid, this.code).valueChanges().subscribe((payment) => {
       this.payment = payment;
