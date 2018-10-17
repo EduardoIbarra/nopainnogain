@@ -30,6 +30,9 @@ export class NotificationService {
 
   private getHistory(){
     this.paymentService.getPaymentsByUser(this.currentUser.uid).valueChanges().subscribe((payments: any) => {
+      if (!payments) {
+        return;
+      }
       payments = Object.keys(payments).map(key => payments[key]);
       this.gymService.getGyms().valueChanges().subscribe((gyms: any) => {
         let history = [];
