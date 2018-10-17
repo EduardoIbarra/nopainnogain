@@ -17,7 +17,12 @@ export class WelcomePage {
 
     ionViewDidLoad() {
         setTimeout(() => {
+          console.log(this.user);
+          if (this.user.gym_owner) {
+            this.sharedService.setPageRoot('ValidateSessionPage', true);
+          } else {
             this.sharedService.setPageRoot('HomePage', true);
+          }
         }, 3000)
     }
 

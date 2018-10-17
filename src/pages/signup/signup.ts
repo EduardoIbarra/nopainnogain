@@ -10,6 +10,8 @@ import {ImageViewerController} from "ionic-img-viewer";
 import {AuthService} from "../../services/auth.service";
 import {UsersService} from "../../services/users.service";
 import {AlertService} from "../../services/alert.service";
+import {Storage} from "@ionic/storage";
+declare var OpenPay: any;
 
 @IonicPage()
 @Component({
@@ -67,7 +69,9 @@ export class SignupPage {
     passType: string = 'password';
     viewCPass: boolean = false;
     cpassType: string = 'password';
-
+    CardData: any;
+    user: any;
+    user2: any;
     changeViewPass() {
         this.viewPass = !this.viewPass;
         if(this.viewPass) {
@@ -98,7 +102,8 @@ export class SignupPage {
                 public camera: Camera,
                 public toastCtrl: ToastController,
                 public modalCtrl: ModalController,
-                public formBuilder: FormBuilder,) {
+                public formBuilder: FormBuilder,
+                public storage: Storage) {
 
         this._imageViewerCtrl = imageViewerCtrl;
 
@@ -372,7 +377,7 @@ export class SignupPage {
 
     createUser(uid) {
         this.usersService.createUser(this.RegisterFormData, uid).then((response) => {
-            console.log(response);
+            this.user2 = response;
             this.getUserData(uid)
         }, (error) => {
             console.log(error);
@@ -381,11 +386,36 @@ export class SignupPage {
         })
     }
 
+  addCard() {
+    OpenPay.token.create({
+        "card_number": this.user.card_number,
+        "holder_name": this.user.card_holder,
+        "expiration_year": this.user.card_expiration.split('/')[1].slice(-2),
+        "expiration_month": this.user.card_expiration.split('/')[0],
+        "cvv2": this.user.card_cvv
+      },
+      (data) => {
+        console.log(data);
+        // this.sharedService.UserData.Cards = [];
+        // this.sharedService.UserData.Cards.push(data.data);
+        this.usersService.registerCard(this.user, data.data);
+        // this.storage.set('UserData', this.sharedService.UserData);
+        this.sharedService.login(this.user, this.navCtrl);
+      }, (error) => {
+        console.log(error);
+        alert('La tarjeta no se agregó correctamente, deberá agregarla desde el menú de tarjetas: ' + error.data.description);
+        this.alertService.createAlertError();
+        this.sharedService.login(this.user, this.navCtrl);
+      });
+  }
+
     getUserData(uid) {
         this.usersService.getUser(uid).then(response => {
+          this.user = response.val();
+          this.user.uid = uid;
+          this.addCard();
             console.log(response.val());
             this.loadingService.dismiss();
-            this.sharedService.login(response.val(), this.navCtrl);
         }).catch((error) => {
             console.log(error);
             console.log('Something went wrong:', error.message);
