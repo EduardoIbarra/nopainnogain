@@ -223,7 +223,7 @@ ion-popover {
 
 ion-title.liberi {
   padding: 20px 60px 1px;
-  padding-top: 20px !important;
+  padding-top: 3rem !important;
 }
 ion-title.liberi > .toolbar-title {
   overflow: initial;
@@ -543,3 +543,22 @@ img.avatarBase64 {
 ion-backdrop {
   opacity: 0 !important;
 }
+.toolbar-md, ion-navbar.toolbar.statusbar-padding{
+  min-height: 60px !important;
+  padding-top: 1rem !important;
+}
+navbar-bump .logo-bump{
+  padding: 10px 10px 3px !important;
+}
+navbar-bump{
+  top: 75% !important;
+}
+.login-container{
+  margin-top: 20px !important;
+}
+/*.bar-button-menutoggle-md{
+  padding-top: 1rem;
+}
+.bar-button-menutoggle-ios{
+  padding-top: 1rem;
+}*/
