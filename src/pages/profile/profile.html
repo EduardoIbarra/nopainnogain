@@ -40,7 +40,7 @@
           <img src="assets/img/Recurso 185xxxhdpi.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-10>
-          <ion-datetime class="liberi" displayFormat="DD/MMMM/YYYY" formControlName="birthday" cancelText="Cancelar" doneText="Seleccionar" [(ngModel)]="RegisterFormData.birthday.text"
+          <ion-datetime class="liberi" displayFormat="DD/MMMM/YYYY" formControlName="birthday" cancelText="Cancelar" doneText="Seleccionar" [(ngModel)]="RegisterFormData.birthday && RegisterFormData.birthday.text"
             [class.invalid]="!RegisterForm1.controls.birthday.valid && (RegisterForm1.controls.birthday.dirty || submitAttemptForm1)"
             [class.valid]="RegisterForm1.controls.birthday.valid"></ion-datetime>
         </ion-col>
