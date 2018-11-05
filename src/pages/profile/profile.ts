@@ -76,14 +76,6 @@ export class ProfilePage {
                 public toastCtrl: ToastController,
                 public formBuilder: FormBuilder,) {
 
-        this.authService.getStatus().subscribe((result) => {
-            if(result) {
-                console.log(result);
-                this.getUserData(result.uid);
-            } else {
-                console.log('Usuario no encontrado')
-            }
-        });
         this._imageViewerCtrl = imageViewerCtrl;
 
         //Form validations
@@ -132,7 +124,7 @@ export class ProfilePage {
             validator: PasswordValidation.MatchPassword
         });
 
-        this.RegisterForm1.controls['city'].disable();
+        //this.RegisterForm1.controls['city'].disable();
 
         this.cameraOptions = {
             quality: 100,
@@ -143,6 +135,15 @@ export class ProfilePage {
             correctOrientation: true,
             mediaType: camera.MediaType.PICTURE
         };
+
+        this.authService.getStatus().subscribe((result) => {
+            if(result) {
+                console.log(result);
+                this.getUserData(result.uid);
+            } else {
+                console.log('Usuario no encontrado')
+            }
+        });
 
     }
 
@@ -170,8 +171,8 @@ export class ProfilePage {
 
     ionViewDidLoad() {
         this.estados = this.sharedService.States;
-        console.log(this.estados);
-      this.selectState(this.currentUser.state);
+        //console.log(this.estados);
+      //this.selectState(this.currentUser.state);
       console.log(this.sharedService.UserData);
     }
 
@@ -251,21 +252,25 @@ export class ProfilePage {
     }
 
     selectState(state) {
-      console.log(this.RegisterFormData.state);
       // this.RegisterFormData.city = null;
+      this.RegisterForm1.controls['city'].enable();
       if (!this.estados || this.estados.length == 0) {
         return;
       }
       this.municipios = this.estados.find((s) => {
         return s.nombre == this.RegisterFormData.state;
       });
+      console.log(this.municipios);
       this.municipios = this.municipios.estados;
       console.log(this.municipios);
-      this.RegisterForm1.controls['city'].enable();
+      if(this.currentUser.city !== undefined){
+        this.RegisterFormData.city = this.currentUser.city;
+      }
     }
 
     updateUser(uid) {
-      if(
+        console.log(this.RegisterFormData);
+        if(
         !this.RegisterFormData.name ||
         !this.RegisterFormData.last_name ||
         !this.RegisterFormData.birthday ||
@@ -353,21 +358,31 @@ export class ProfilePage {
     getUserData(uid) {
         this.loadingService.presentLoading();
         this.usersService.getUser(uid).then(response => {
-            console.log(response.val());
+            this.RegisterForm1.controls['city'].enable();
             this.currentUser = response.val();
             this.RegisterFormData.uid = uid;
             this.RegisterFormData.name = this.currentUser.name;
             this.RegisterFormData.last_name = this.currentUser.last_name;
             this.RegisterFormData.email = this.currentUser.email;
             this.RegisterFormData.phone = this.currentUser.phone;
-            this.RegisterFormData.birthday = this.currentUser.birthday
+            console.log('birthday');
+            console.log(this.currentUser.birthday);
+            if(this.currentUser.birthday !== undefined){
+                var date = new Date(this.currentUser.birthday).toISOString();
+                this.RegisterFormData.birthday = date;
+                //this.RegisterFormData.birthday.text = this.currentUser.birthday;
+            }else{
+                this.RegisterFormData.birthday = '';
+                this.RegisterFormData.birthday.text = '';
+            }
             this.RegisterFormData.gender = this.currentUser.gender;
             this.RegisterFormData.state = this.currentUser.state;
-            this.RegisterFormData.city = this.currentUser.city;
+            this.selectState(this.currentUser.state);
+            //this.RegisterFormData.city = this.currentUser.city;
             this.RegisterFormData.postal_code = this.currentUser.postal_code;
             this.RegisterFormData.profile_picture = this.currentUser.profile_picture;
             this.loadingService.dismiss();
-            this.RegisterFormData.city = this.currentUser.city;
+            //this.RegisterFormData.city = this.currentUser.city;
         }).catch((error) => {
             console.log(error);
             console.log('Something went wrong:', error.message);

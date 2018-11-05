@@ -20,6 +20,9 @@
       </div>
     </ion-buttons>
   </ion-navbar>
+  <button ion-button class="large-compass" color="dark" (tap)="getUserLocation()">
+    <ion-icon name="locate"></ion-icon>
+  </button>
 </ion-header>
 
 <ion-content (click)="searchHasfocus = false">

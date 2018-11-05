@@ -100,7 +100,7 @@ registerLocaleData(localeEsMx, localeEsMXExtra);
     SocialSharing,
     HeaderColor,
     HelpService,
-    GiftService
+    GiftService,
   ]
 })
 export class AppModule {

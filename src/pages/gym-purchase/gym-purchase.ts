@@ -21,7 +21,11 @@ export class GymPurchasePage {
   generated_code: any;
   isModal: boolean;
   user: any;
-  // openpay = new this.sharedService.OpenPay('mrtezzirtht6piewm54o', 'pk_c0a63b5356524d2095a0df7172965ed9');
+  //Open_pay = require('openpay');
+//instantiation
+  //openpay = new this.Open_pay();
+
+  openpay = new this.sharedService.OpenPay('mrtezzirtht6piewm54o', 'pk_c0a63b5356524d2095a0df7172965ed9');
 
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
@@ -49,29 +53,78 @@ export class GymPurchasePage {
   purchase() {
     this.loadingService.presentLoading();
     console.log(this.selectedCard);
-    this.paymentService.GymPayment(this.selectedCard, this.sharedService.UserData, '22').subscribe((response) => {
+    console.log('gym');
+    console.log(this.gym);
+    this.paymentService.GymPayment(this.selectedCard, this.sharedService.UserData, this.gym.gym_monthly_fee).subscribe((response) => {
       console.log(response);
+        let payment: any = {
+            id: response.id,
+            authorization: response.authorization,
+            amount: this.gym.gym_monthly_fee || '20',
+            generated_code: this.sharedService.generateCode(),
+            gym: this.gym.id,
+            status: 'available',
+            timestamp: Math.round((new Date()).getTime())
+        };
+        console.log('payment');
+        console.log(payment);
+        this.generated_code = payment.generated_code;
+        this.paymentService.createPayment(this.currentUser.uid, payment.generated_code, payment).then((response) => {
+            console.log(response);
+            this.isPurchaseDone = true;
+        }, (error) => {
+            console.log('error');
+            console.log(error);
+            this.isPurchaseDone = true;
+        });
       this.loadingService.dismiss();
     }, (error) => {
       console.log(error);
       this.loadingService.dismiss();
     });
+      /*this.payPal.init({
+          PayPalEnvironmentProduction: 'ATmTjuHMPpI_6Prs8xojHAY9OEmIkbIwwMq3UW46o8wxvnT0WE_RJ5rse5AaTjN7DABgpSVqWJ4RqdwI',
+          PayPalEnvironmentSandbox: 'Af4NsUtFqkJkiB6abUL4n-F8Sf_d63u2XXYi4hzCBB6xD-izAF0rH4RCsjwMXxqEAriBfuQwUgvsl5Tt'
+      }).then(() => {
+          this.payPal.prepareToRender('PayPalEnvironmentProduction', new PayPalConfiguration({
 
-    let payment: any = {
-      amount: this.gym.monthly_cost || '20',
-      generated_code: this.sharedService.generateCode(),
-      gym: this.gym.id,
-      status: 'available',
-      timestamp: Math.round((new Date()).getTime())
-    };
-    this.generated_code = payment.generated_code;
-    this.paymentService.createPayment(this.currentUser.uid, payment.generated_code, payment).then((response) => {
-      console.log(response);
-      this.isPurchaseDone = true;
-    }, (error) => {
-      console.log(error);
-      this.isPurchaseDone = true;
-    })
+          })).then(() => {
+              let payment = new PayPalPayment('1', 'MXN', this.gym.gym_description, 'sale');
+              this.payPal.renderSinglePaymentUI(payment).then((success) => {
+                  console.log(success);
+                  let payment: any = {
+                      transaction_id: success.response.id,
+                      transaction_state: success.response.state,
+                      amount: this.gym.gym_monthly_fee || '20',
+                      generated_code: this.sharedService.generateCode(),
+                      gym: this.gym.id,
+                      status: 'available',
+                      timestamp: Math.round((new Date()).getTime())
+                  };
+                  this.generated_code = payment.generated_code;
+                  this.paymentService.createPayment(this.currentUser.uid, payment.generated_code, payment).then((response) => {
+                      console.log(response);
+                      this.isPurchaseDone = true;
+                  }, (error) => {
+                      console.log(error);
+                      this.isPurchaseDone = true;
+                  });
+                  this.loadingService.dismiss();
+              }, () => {
+                  // Error or render dialog closed without being successful
+                  console.log('error paypal');
+                  this.loadingService.dismiss();
+              });
+          }, () => {
+              // Error in configuration
+              console.log('error configuration paypal');
+              this.loadingService.dismiss();
+          });
+      }, () => {
+          // Error in initialization, maybe PayPal isn't supported or something else
+          console.log('error last paypal');
+          this.loadingService.dismiss();
+      });*/
 
   }
 

@@ -9,11 +9,13 @@ export class PaymentService {
 
   private API_ENDPOINT: string = 'http://liberi-landing.eduardoibarra.com/';
 
+
   constructor(private http: Http, private afDB: AngularFireDatabase) {
   }
 
   GymPayment(cardData, userData, amount) {
-    let body: any = {
+
+      let body: any = {
       name: userData.name,
       last_name: userData.last_name,
       phone_number: '',

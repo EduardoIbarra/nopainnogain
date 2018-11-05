@@ -127,6 +127,7 @@
     <allow-navigation href="http://10.0.0.9:8101" />
     <plugin name="cordova-plugin-statusbar" spec="^2.4.2" />
     <plugin name="cordova-plugin-headercolor" spec="^1.0.0" />
+    <plugin name="com.paypal.cordova.mobilesdk" spec="^3.5.0" />
     <engine name="ios" spec="4.5.4" />
     <engine name="android" spec="7.0.0" />
 </widget>
