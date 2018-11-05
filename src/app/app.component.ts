@@ -26,6 +26,7 @@ export class MyApp {
   showCardItem: boolean = false;
   notNumber: number;
 
+
   pages: Array<{ title: string, component: any, icon: string, show: boolean }>;
   cardExcludedPages = ['AddCardPage', 'CardListPage', 'LoadingCmp', 'LoginPage', 'AlertCmp'];
   user: any;
@@ -43,7 +44,6 @@ export class MyApp {
               public userService: UsersService,
               private headerColor: HeaderColor) {
     this.initializeApp();
-
 
     this.storage.get('UserData').then((UserData) => {
       this.sharedService.UserData = UserData;
@@ -133,8 +133,8 @@ export class MyApp {
 
       OpenPay.setSandboxMode(true);
       // OpenPay.setApiKey('sk_f7d7e49cdfa7462cb3ca8af2106481fb')
-      OpenPay.setId('mmgdkgnzoy3qpcxf925c');
-      OpenPay.setApiKey('pk_20c7b0256fdb4cf8aa87449ddb158abf')
+      OpenPay.setId('mvvcgnysitepddh4a5cs');
+      OpenPay.setApiKey('pk_b9d64e3391974d35a5314d0beea06f5b')
       //OpenPay.setId('mrtezzirtht6piewm54o');
       //OpenPay.setApiKey('pk_c0a63b5356524d2095a0df7172965ed9')
       this.notificationService.getHistoryToNotifications()

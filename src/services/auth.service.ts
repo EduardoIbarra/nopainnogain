@@ -7,12 +7,13 @@ import {Observable} from 'rxjs/Observable';
 import {Facebook} from "@ionic-native/facebook";
 import {UsersService} from "./users.service";
 import {SharedService} from "./shared.service";
+import {AngularFireDatabase} from "angularfire2/database/database";
 
 @Injectable()
 export class AuthService {
   user: Observable<firebase.User>;
 
-  constructor(private firebaseAuth: AngularFireAuth, private facebook: Facebook, public usersService: UsersService, public sharedService: SharedService) {
+  constructor(private firebaseAuth: AngularFireAuth, private facebook: Facebook, public usersService: UsersService, public sharedService: SharedService, private afDB: AngularFireDatabase) {
     this.user = firebaseAuth.authState;
   }
 
@@ -23,6 +24,7 @@ export class AuthService {
     this.facebook.login(['email', 'public_profile']).then((data) => {
       this.facebook.api('me?fields=id,name,email,first_name,last_name,picture.width(720).height(720).as(picture_large)', []).then((fbData) => {
         const credential = firebase.auth.FacebookAuthProvider.credential(data.authResponse.accessToken);
+        console.log(fbData);
         this.firebaseAuth.auth.signInWithCredential(credential).then((data2) => {
           let user = {
             uid: data2.uid,
@@ -32,8 +34,29 @@ export class AuthService {
             profile_picture: fbData.picture_large.data.url,
             fb_token: data.authResponse.accessToken
           };
-          this.usersService.createUser(user, user.uid);
-          this.sharedService.login(user, navCtrl);
+          //let result : any = this.afDB.object('/users/' + user.uid);
+            let result : any = null;
+
+            this.afDB.object('/users/' + user.uid).valueChanges().subscribe((res: any) => {
+              //console.log('res');
+              //console.log(res);
+              result = res;
+              if(!result){
+                  console.log('user not found');
+                  this.usersService.createUser(user, user.uid);
+              }else{
+                  console.log('user found');
+                  //console.log(result);
+                  user['birthday'] = result.birthday;
+                  user['city'] = result.city;
+                  user['gender'] = result.gender;
+                  user['phone'] = result.phone;
+                  user['postal_code'] = result.postal_code;
+                  user['state'] = result.state;
+                  console.log(user);
+              }
+              this.sharedService.login(user, navCtrl);
+            });
         }).catch((error) => {
           console.log(error);
         });

@@ -63,6 +63,13 @@ page-home {
     }
   }
 
+  .large-compass{
+    position: absolute;
+    right: 20px;
+    top: 80px;
+    border-radius: 25px;
+  }
+
   ion-navbar.toolbar.toolbar-ios.statusbar-padding {
     margin: 5%;
     width: 90%;

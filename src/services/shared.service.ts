@@ -6,7 +6,7 @@ import {PaymentService} from "./payment.service";
 import {GymService} from "./gym.service";
 import {AuthService} from "./auth.service";
 
-// declare var OpenPay: any;
+declare var OpenPay: any;
 @Injectable()
 
 export class SharedService {
@@ -15,7 +15,7 @@ export class SharedService {
   activePage: any;
   enableSplitPane: boolean;
   // OpenPay: any = require('openpay');
-  // OpenPay: any = OpenPay;
+  OpenPay: any = OpenPay;
   Notifications: any = [];
 
   public States: any = [
