@@ -48,6 +48,7 @@ export class ProfilePage {
             text: null
         },
         gender: null,
+        address: null,
         state: null,
         city: null,
         postal_code: null,
@@ -107,6 +108,9 @@ export class ProfilePage {
             ])],
             confirmPassword: ['', Validators.compose([
                 Validators.required,
+            ])],
+            address: ['', Validators.compose([
+                Validators.required
             ])],
             state: ['', Validators.compose([
                 Validators.required
@@ -302,6 +306,7 @@ export class ProfilePage {
         auxUser.gender = this.RegisterFormData.gender;
         auxUser.state = this.RegisterFormData.state;
         auxUser.city = this.RegisterFormData.city;
+        auxUser.address = this.RegisterFormData.address;
         auxUser.postal_code = this.RegisterFormData.postal_code;
 
         if(this.RegisterFormData.password != '' && this.RegisterFormData.password === this.RegisterFormData.confirmPassword) {
@@ -376,6 +381,9 @@ export class ProfilePage {
                 this.RegisterFormData.birthday.text = '';
             }
             this.RegisterFormData.gender = this.currentUser.gender;
+            if(this.currentUser.address !== undefined){
+                this.RegisterFormData.address = this.currentUser.address;
+            }
             this.RegisterFormData.state = this.currentUser.state;
             this.selectState(this.currentUser.state);
             //this.RegisterFormData.city = this.currentUser.city;

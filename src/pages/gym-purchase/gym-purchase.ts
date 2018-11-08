@@ -51,37 +51,72 @@ export class GymPurchasePage {
   }
 
   purchase() {
-    this.loadingService.presentLoading();
+      let alert = this.alertCtrl.create({
+          title: 'CVV',
+          inputs: [
+              {
+                  name: 'card_cvv',
+                  placeholder: 'CVV',
+                  type: 'password'
+              }
+          ],
+          buttons: [
+              {
+                  text: 'Cancelar',
+                  role: 'cancel',
+                  handler: data => {
+                      console.log('Cancel clicked');
+                  }
+              },
+              {
+                  text: 'Aceptar',
+                  handler: data => {
+                      if (data.card_cvv !== '') {
+                          this.loadingService.presentLoading();
+                          this.selectedCard.card.card_cvv = data.card_cvv;
+                          console.log('cvv');
+                          console.log(this.selectedCard.card.card_cvv);
+                          alert.dismiss();
+                          this.paymentService.GymPayment(this.selectedCard, this.sharedService.UserData, this.gym.gym_monthly_fee).subscribe((response) => {
+                              console.log(response);
+                              let payment: any = {
+                                  id: response.id,
+                                  authorization: response.authorization,
+                                  amount: this.gym.gym_monthly_fee || '20',
+                                  generated_code: this.sharedService.generateCode(),
+                                  gym: this.gym.id,
+                                  status: 'available',
+                                  timestamp: Math.round((new Date()).getTime())
+                              };
+                              console.log('payment');
+                              console.log(payment);
+                              this.generated_code = payment.generated_code;
+                              this.paymentService.createPayment(this.currentUser.uid, payment.generated_code, payment).then((response) => {
+                                  console.log(response);
+                                  this.isPurchaseDone = true;
+                              }, (error) => {
+                                  console.log('error');
+                                  console.log(error);
+                                  this.isPurchaseDone = true;
+                              });
+                              this.loadingService.dismiss();
+                          }, (error) => {
+                              console.log(error);
+                              this.loadingService.dismiss();
+                          });
+                          return true;
+                      } else {
+                          return false;
+                      }
+                  }
+              }
+          ]
+      });
+      alert.present();
     console.log(this.selectedCard);
-    console.log('gym');
-    console.log(this.gym);
-    this.paymentService.GymPayment(this.selectedCard, this.sharedService.UserData, this.gym.gym_monthly_fee).subscribe((response) => {
-      console.log(response);
-        let payment: any = {
-            id: response.id,
-            authorization: response.authorization,
-            amount: this.gym.gym_monthly_fee || '20',
-            generated_code: this.sharedService.generateCode(),
-            gym: this.gym.id,
-            status: 'available',
-            timestamp: Math.round((new Date()).getTime())
-        };
-        console.log('payment');
-        console.log(payment);
-        this.generated_code = payment.generated_code;
-        this.paymentService.createPayment(this.currentUser.uid, payment.generated_code, payment).then((response) => {
-            console.log(response);
-            this.isPurchaseDone = true;
-        }, (error) => {
-            console.log('error');
-            console.log(error);
-            this.isPurchaseDone = true;
-        });
-      this.loadingService.dismiss();
-    }, (error) => {
-      console.log(error);
-      this.loadingService.dismiss();
-    });
+    console.log('user');
+    console.log(this.sharedService.UserData);
+
       /*this.payPal.init({
           PayPalEnvironmentProduction: 'ATmTjuHMPpI_6Prs8xojHAY9OEmIkbIwwMq3UW46o8wxvnT0WE_RJ5rse5AaTjN7DABgpSVqWJ4RqdwI',
           PayPalEnvironmentSandbox: 'Af4NsUtFqkJkiB6abUL4n-F8Sf_d63u2XXYi4hzCBB6xD-izAF0rH4RCsjwMXxqEAriBfuQwUgvsl5Tt'

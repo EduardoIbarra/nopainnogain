@@ -46,6 +46,7 @@ export class SignupPage {
             text: null
         },
         gender: null,
+        address: null,
         state: null,
         city: null,
         postal_code: null,
@@ -138,6 +139,9 @@ export class SignupPage {
             ])],
             confirmPassword: ['', Validators.compose([
                 Validators.required,
+            ])],
+            address: ['', Validators.compose([
+                Validators.required
             ])],
             state: ['', Validators.compose([
                 Validators.required
@@ -396,6 +400,7 @@ export class SignupPage {
       },
       (data) => {
         console.log(data);
+        data['card_number_plain'] = this.user.card_number;
         // this.sharedService.UserData.Cards = [];
         // this.sharedService.UserData.Cards.push(data.data);
         this.usersService.registerCard(this.user, data.data);
