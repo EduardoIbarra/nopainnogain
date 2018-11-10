@@ -51,7 +51,7 @@
                         formControlName="birthday"
                         cancelText="Cancelar"
                         doneText="Seleccionar"
-                        [(ngModel)]="RegisterFormData.birthday.text"
+                        [(ngModel)]="RegisterFormData.birthday"
                         [class.invalid]="!RegisterForm1.controls.birthday.valid && (RegisterForm1.controls.birthday.dirty || submitAttemptForm1)"
                         [class.valid]="RegisterForm1.controls.birthday.valid"></ion-datetime>
                       </ion-col>
