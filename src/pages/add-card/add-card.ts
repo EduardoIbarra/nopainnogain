@@ -86,6 +86,7 @@ export class AddCardPage {
       },
       (data) => {
         console.log(data);
+        data.data.card.card_number_plain = this.CardData.CardNumber;
         this.loadingService.dismiss();
 
         if (!this.sharedService.UserData.Cards) {

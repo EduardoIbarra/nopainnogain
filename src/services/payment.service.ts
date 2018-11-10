@@ -16,15 +16,24 @@ export class PaymentService {
   GymPayment(cardData, userData, amount) {
 
       let body: any = {
-      name: userData.name,
-      last_name: userData.last_name,
-      phone_number: '',
-      email: userData.email,
-      token_id: cardData.id,
-      amount: amount,
-      description: cardData.card.card_number,
-      use_card_points: false,
-      deviceIdHiddenFieldName: OpenPay.deviceData.setup()
+          name: userData.name,
+          last_name: userData.last_name,
+          phone_number: '',
+          email: userData.email,
+          token_id: cardData.id,
+          amount: amount,
+          description: 'Gym Payment',
+          holder_name: cardData.card.holder_name,
+          card_number: cardData.card.card_number_plain,
+          expiration_month: cardData.card.expiration_month,
+          expiration_year: cardData.card.expiration_year,
+          card_cvv: cardData.card.card_cvv,
+          address: userData.address,
+          city: userData.city,
+          state: userData.state,
+          postal_code: userData.postal_code,
+          use_card_points: false,
+          deviceIdHiddenFieldName: OpenPay.deviceData.setup()
     };
     return this.http.post(this.API_ENDPOINT + 'processCharge/', body).map(data => data.json());
   }
