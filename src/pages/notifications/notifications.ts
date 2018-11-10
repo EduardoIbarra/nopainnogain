@@ -49,7 +49,6 @@ export class NotificationsPage {
         gifts.forEach((g) => {
           this.items.push(g);
         });
-        console.log(this.items);
         this.items.sort((a, b) => {return b.timestamp - a.timestamp});
       }, (error) => {
         console.log(error);
@@ -67,7 +66,6 @@ export class NotificationsPage {
       for (let itemsKey in this.items) {
           if(this.items[itemsKey].purchase_code == openGymPurchaseCode){
             this.paymentService.setPaymentProperty(this.currentUser.uid, this.items[itemsKey].purchase_code, 'seen', true);
-            console.log(this.items[itemsKey]);
           }
       }
     this.navCtrl.push('PurchaseHistoryPage', {openGymPurchaseCode: openGymPurchaseCode})

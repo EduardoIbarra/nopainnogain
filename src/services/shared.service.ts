@@ -3057,6 +3057,7 @@ export class SharedService {
         handler: () => {
           nav.setRoot('LoginPage');
           setTimeout(() => {
+            this.UserData = null;
             this.storage.set('UserData', null);
 
             //Save cards to use when same user logs in

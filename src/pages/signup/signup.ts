@@ -375,7 +375,7 @@ export class SignupPage {
         }, (error) => {
             console.log(error);
             this.loadingService.dismiss();
-            this.alertService.signupError();
+            this.alertService.signupError(error);
         })
     }
 
