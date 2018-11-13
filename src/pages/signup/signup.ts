@@ -398,6 +398,7 @@ export class SignupPage {
       (data) => {
         console.log(data);
         data.data.card.card_number_plain = this.user.card_number;
+        data.data.card.address = this.user.address;
         // this.sharedService.UserData.Cards = [];
         // this.sharedService.UserData.Cards.push(data.data);
         this.usersService.registerCard(this.user, data.data);

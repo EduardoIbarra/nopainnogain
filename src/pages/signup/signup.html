@@ -80,16 +80,6 @@
                       </ion-col>
                     </ion-row>
                     <ion-row>
-                        <ion-col>
-                            <img src="assets/img/pin.png" class="liberi" alt="">
-                        </ion-col>
-                        <ion-col col-10>
-                            <input type="text" class="liberi-text" placeholder="Dirección"  formControlName="address" [(ngModel)]="RegisterFormData.address"
-                                   [class.invalid]="!RegisterForm1.controls.address.valid && (RegisterForm1.controls.address.dirty || submitAttemptForm1)"
-                                   [class.valid]="RegisterForm1.controls.address.valid"/>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
                       <ion-col>
                         <img src="assets/img/pin.png" class="liberi" alt="">
                       </ion-col>
@@ -204,6 +194,16 @@
                             <input type="text" class="liberi-text" placeholder="Titular" formControlName="card_holder" [(ngModel)]="RegisterFormData.card_holder"
                             [class.invalid]="!RegisterForm2.controls.card_holder.valid && (RegisterForm2.controls.card_holder.dirty || submitAttemptForm2)"
                             [class.valid]="RegisterForm2.controls.card_holder.valid"/>
+                        </ion-col>
+                    </ion-row>
+                    <ion-row>
+                        <ion-col>
+                            <img src="assets/img/pin.png" class="liberi" alt="">
+                        </ion-col>
+                        <ion-col col-10>
+                            <input type="text" class="liberi-text" placeholder="Dirección"  formControlName="address" [(ngModel)]="RegisterFormData.address"
+                                   [class.invalid]="!RegisterForm1.controls.address.valid && (RegisterForm1.controls.address.dirty || submitAttemptForm1)"
+                                   [class.valid]="RegisterForm1.controls.address.valid"/>
                         </ion-col>
                     </ion-row>
                     <ion-row>

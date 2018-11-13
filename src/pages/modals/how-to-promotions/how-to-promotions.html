@@ -1,8 +1,8 @@
 <ion-header>
     <ion-navbar>
         <ion-title class="liberi"> {{ type === 'free' ? 'VISITA GRATIS' : 'VISITA DE REGALO' }}</ion-title>
-        <button ion-button (click)="dismiss()">
-          <ion-icon name="arrow-back"></ion-icon>
+        <button ion-button menuToggle="left" (click)="dismiss()">
+            <ion-icon name="arrow-back"></ion-icon>
         </button>
     </ion-navbar>
     <navbar-bump></navbar-bump>
