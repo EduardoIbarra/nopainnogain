@@ -58,10 +58,12 @@ export class AuthService {
               this.sharedService.login(user, navCtrl);
             });
         }).catch((error) => {
+          alert('Ocurrió un error al tratar de ingresar con Facebook' + ((error && error.message) ? ': ' + error.message : '.'));
           console.log(error);
         });
       });
     }).catch((error) => {
+      alert('Ocurrió un error al tratar de ingresar con Facebook' + ((error && error.message) ? ': ' + error.message : '.'));
       console.log(error);
     });
   }
