@@ -136,9 +136,11 @@ export class SignupPage {
             ])],
             password: ['', Validators.compose([
                 Validators.required,
+              Validators.minLength(6),
             ])],
             confirmPassword: ['', Validators.compose([
                 Validators.required,
+              Validators.minLength(6),
             ])],
             address: ['', Validators.compose([
                 Validators.required
