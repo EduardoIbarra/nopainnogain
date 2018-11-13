@@ -29,6 +29,9 @@ export class NotificationService {
   }
 
   private getHistory(){
+    if (!this.currentUser) {
+      return;
+    }
     this.paymentService.getPaymentsByUser(this.currentUser.uid).valueChanges().subscribe((payments: any) => {
       if (!payments) {
         return;

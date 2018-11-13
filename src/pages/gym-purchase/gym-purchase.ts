@@ -45,7 +45,17 @@ export class GymPurchasePage {
 
     this.authService.getStatus().subscribe((result) => {
       this.currentUser = result;
-      console.log(result);
+      this.usersService.getUserById(this.currentUser.uid).valueChanges().subscribe((data) => {
+        this.user = data;
+        if(this.user.cards) {
+          this.user.cards = Object.keys(this.user.cards).map(key => this.user.cards[key]);
+          this.cards = this.user.cards;
+          console.log(this.cards);
+          this.selectedCard = this.cards.find((c) => {return c.card.default}) || this.cards[0];
+        }
+      }, (error) => {
+        console.log(error);
+      });
     });
 
   }
@@ -77,7 +87,7 @@ export class GymPurchasePage {
                           console.log('cvv');
                           console.log(this.sharedService.UserData);
                           alert.dismiss();
-                          this.paymentService.GymPayment(this.selectedCard, this.sharedService.UserData, this.gym.gym_monthly_fee).subscribe((response) => {
+                          this.paymentService.GymPayment(this.selectedCard, this.user, this.gym.gym_monthly_fee).subscribe((response) => {
                               console.log(response);
                               let payment: any = {
                                   id: response.id,
@@ -170,18 +180,6 @@ export class GymPurchasePage {
   }
 
   ionViewWillEnter() {
-    console.log(this.cards);
-    this.usersService.getUserById(this.sharedService.UserData.uid).valueChanges().subscribe((data) => {
-      this.user = data;
-      if(this.user.cards) {
-        this.user.cards = Object.keys(this.user.cards).map(key => this.user.cards[key]);
-        this.cards = this.user.cards;
-        console.log(this.cards);
-        this.selectedCard = this.cards.find((c) => {return c.card.default}) || this.cards[0];
-      }
-    }, (error) => {
-      console.log(error);
-    });
   }
 
   showCardAlert() {

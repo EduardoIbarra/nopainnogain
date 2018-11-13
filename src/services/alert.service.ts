@@ -63,10 +63,10 @@ export class AlertService {
     alert.present();
   }
 
-  signupError() {
+  signupError(error: any = false) {
     let alert = this.alertCtrl.create({
       title: 'Ha ocurrido un error',
-      message: 'No hemos podido registrar tu informacion, intenta de nuevo más tarde.',
+      message: 'No hemos podido registrar tu informacion, intenta de nuevo' + ((error && error.message) ? ': ' + error.message : '.'),
       buttons: ['OK']
     });
     alert.present();

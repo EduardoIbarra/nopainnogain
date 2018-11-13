@@ -4,9 +4,9 @@
       <ion-item class="avatar-item">
         <ion-avatar item-start>
           <!--<img class="img60" [style.background-image]="'/assets/img/logo-negative.png'" *ngIf="!sharedService.UserData?.profile_picture">-->
-          <img class="avatarBase64" [src]="sharedService.UserData?.profile_picture" *ngIf="sharedService.UserData?.profile_picture">
+          <img *ngIf="user && user.profile_picture" class="avatarBase64" [src]="user.profile_picture">
         </ion-avatar>
-        <h2> {{sharedService.UserData?.name + ' '+ sharedService.UserData?.last_name}}</h2>
+        <h2 *ngIf="user"> {{user.name + ' '+ user.last_name}}</h2>
       </ion-item>
       <div *ngFor="let p of pages; let i  = index">
         <!--<ion-item menuClose [class.active-highlight]="checkActivePage(p)" class="list-item" *ngIf="shouldShow(p)" [class.submenu-option]="i===2" (click)="openPage(p)">-->

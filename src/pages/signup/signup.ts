@@ -133,9 +133,11 @@ export class SignupPage {
             ])],
             password: ['', Validators.compose([
                 Validators.required,
+              Validators.minLength(6),
             ])],
             confirmPassword: ['', Validators.compose([
                 Validators.required,
+              Validators.minLength(6),
             ])],
             address: ['', Validators.compose([
                 Validators.required
@@ -372,7 +374,7 @@ export class SignupPage {
         }, (error) => {
             console.log(error);
             this.loadingService.dismiss();
-            this.alertService.signupError();
+            this.alertService.signupError(error);
         })
     }
 

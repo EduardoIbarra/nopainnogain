@@ -139,16 +139,6 @@ export class ProfilePage {
             correctOrientation: true,
             mediaType: camera.MediaType.PICTURE
         };
-
-        this.authService.getStatus().subscribe((result) => {
-            if(result) {
-                console.log(result);
-                this.getUserData(result.uid);
-            } else {
-                console.log('Usuario no encontrado')
-            }
-        });
-
     }
 
     viewPass: boolean = false;
@@ -174,10 +164,14 @@ export class ProfilePage {
     }
 
     ionViewDidLoad() {
-        this.estados = this.sharedService.States;
-        //console.log(this.estados);
-      //this.selectState(this.currentUser.state);
-      console.log(this.sharedService.UserData);
+      this.estados = this.sharedService.States;
+      this.authService.getStatus().subscribe((result) => {
+        if(result) {
+          this.getUserData(result.uid);
+        } else {
+          console.log('Usuario no encontrado')
+        }
+      });
     }
 
     openImageOptions() {
@@ -228,10 +222,8 @@ export class ProfilePage {
                 setTimeout(() => {
                     this.content.scrollToBottom(1000);
                 }, 500);
-                console.log(this.RegisterFormData);
             }, (err) => {
                 this.loadingService.dismiss();
-                console.log(JSON.stringify(err));
             });
     }
 
@@ -248,10 +240,8 @@ export class ProfilePage {
                 setTimeout(() => {
                     this.content.scrollToBottom(1000);
                 }, 500);
-                console.log(this.RegisterFormData);
             }, (err) => {
                 this.loadingService.dismiss();
-                console.log(JSON.stringify(err));
             });
     }
 
@@ -264,16 +254,13 @@ export class ProfilePage {
       this.municipios = this.estados.find((s) => {
         return s.nombre == this.RegisterFormData.state;
       });
-      console.log(this.municipios);
       this.municipios = this.municipios.estados;
-      console.log(this.municipios);
-      if(this.currentUser.city !== undefined){
+      if(this.currentUser.city){
         this.RegisterFormData.city = this.currentUser.city;
       }
     }
 
     updateUser(uid) {
-        console.log(this.RegisterFormData);
         if(
         !this.RegisterFormData.name ||
         !this.RegisterFormData.last_name ||
@@ -329,8 +316,6 @@ export class ProfilePage {
         // auxUser.profile_picture = this.currentUser.profile_picture;
         this.loadingService.presentLoading();
         this.usersService.editUser(auxUser).then((response) => {
-            console.log(response);
-            // this.getUserData(uid);
             let toast = this.toastCtrl.create({
                 message: 'Usuario Actualizado',
                 duration: 1500,
@@ -354,7 +339,6 @@ export class ProfilePage {
             this.loadingService.dismiss();
             this.navCtrl.setRoot(HomePage);
         }, (error) => {
-            console.log(error);
             this.loadingService.dismiss();
             this.alertService.signupError();
         })
@@ -370,8 +354,6 @@ export class ProfilePage {
             this.RegisterFormData.last_name = this.currentUser.last_name;
             this.RegisterFormData.email = this.currentUser.email;
             this.RegisterFormData.phone = this.currentUser.phone;
-            console.log('birthday');
-            console.log(this.currentUser.birthday);
             if(this.currentUser.birthday !== undefined){
                 var date = new Date(this.currentUser.birthday).toISOString();
                 this.RegisterFormData.birthday = date;
@@ -392,8 +374,6 @@ export class ProfilePage {
             this.loadingService.dismiss();
             //this.RegisterFormData.city = this.currentUser.city;
         }).catch((error) => {
-            console.log(error);
-            console.log('Something went wrong:', error.message);
             this.loadingService.dismiss();
         });
     }

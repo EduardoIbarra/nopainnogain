@@ -29,6 +29,7 @@ export class GymDetailPage {
                 private launchNavigator: LaunchNavigator) {
 
         this.gym = navParams.get('data');
+        this.gym.gym_monthly_fee = parseFloat(this.gym.gym_monthly_fee) / 30;
         console.log(this.gym);
     }
 

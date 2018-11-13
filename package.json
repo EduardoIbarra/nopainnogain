@@ -41,7 +41,7 @@
     "com.paypal.cordova.mobilesdk": "^3.5.0",
     "cordova-android": "7.0.0",
     "cordova-custom-config": "^5.0.2",
-    "cordova-ios": "4.5.4",
+    "cordova-ios": "4.5.5",
     "cordova-plugin-actionsheet": "^2.3.3",
     "cordova-plugin-browsertab": "^0.2.0",
     "cordova-plugin-buildinfo": "^2.0.1",
@@ -123,8 +123,8 @@
       "com.paypal.cordova.mobilesdk": {}
     },
     "platforms": [
-      "ios",
-      "android"
+      "android",
+      "ios"
     ]
   }
 }
