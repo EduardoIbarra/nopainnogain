@@ -68,6 +68,9 @@ export class AddCardPage {
       ExpYear: ['', Validators.compose([
         Validators.required
       ])],
+        Cardaddress: ['', Validators.compose([
+            Validators.required
+        ])],
     });
 
 

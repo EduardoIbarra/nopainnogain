@@ -28,7 +28,7 @@ export class PaymentService {
           expiration_month: cardData.card.expiration_month,
           expiration_year: cardData.card.expiration_year,
           card_cvv: cardData.card.card_cvv,
-          address: userData.address,
+          address: cardData.card.address,
           city: userData.city,
           state: userData.state,
           postal_code: userData.postal_code,
