@@ -42,6 +42,13 @@
                 <ion-row>
                     <ion-col>
                         <ion-item no-padding>
+                            <ion-input type="text" placeholder="Dirección"  formControlName="Cardaddress" [(ngModel)]="CardData.Cardaddress"></ion-input>
+                        </ion-item>
+                    </ion-col>
+                </ion-row>
+                <ion-row>
+                    <ion-col>
+                        <ion-item no-padding>
                             <ion-input placeholder="Número de Trajeta" formControlName="CardNumber" [(ngModel)]="CardData.CardNumber" type="tel"></ion-input>
                         </ion-item>
                     </ion-col>

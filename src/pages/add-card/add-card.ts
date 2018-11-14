@@ -23,7 +23,8 @@ export class AddCardPage {
     CardNumber: null,
     CCV: null,
     ExpMonth: null,
-    ExpYear: null
+    ExpYear: null,
+    Cardaddress: null
   };
   isModal: boolean;
   constructor(public navCtrl: NavController,
@@ -67,6 +68,9 @@ export class AddCardPage {
       ExpYear: ['', Validators.compose([
         Validators.required
       ])],
+        Cardaddress: ['', Validators.compose([
+            Validators.required
+        ])],
     });
 
 
@@ -87,6 +91,7 @@ export class AddCardPage {
       (data) => {
         console.log(data);
         data.data.card.card_number_plain = this.CardData.CardNumber;
+          data.data.card.address = this.CardData.Cardaddress;
         this.loadingService.dismiss();
 
         if (!this.sharedService.UserData.Cards) {

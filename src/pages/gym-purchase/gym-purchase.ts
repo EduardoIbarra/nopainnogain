@@ -85,7 +85,7 @@ export class GymPurchasePage {
                           this.loadingService.presentLoading();
                           this.selectedCard.card.card_cvv = data.card_cvv;
                           console.log('cvv');
-                          console.log(this.selectedCard.card.card_cvv);
+                          console.log(this.sharedService.UserData);
                           alert.dismiss();
                           this.paymentService.GymPayment(this.selectedCard, this.user, this.gym.gym_monthly_fee).subscribe((response) => {
                               console.log(response);

@@ -41,10 +41,7 @@ export class SignupPage {
         password: null,
         confirmPassword: null,
         phone: null,
-        birthday: {
-            value: null,
-            text: null
-        },
+        birthday: null,
         gender: null,
         address: null,
         state: null,
@@ -238,7 +235,7 @@ export class SignupPage {
             console.log(this.RegisterForm1);
             if (this.RegisterForm1.valid) {
                 this.submitAttemptForm1 = false;
-                this.RegisterFormData.birthday.value = moment(this.RegisterFormData.birthday.text).unix();
+                //this.RegisterFormData.birthday.value = moment(this.RegisterFormData.birthday.text).unix();
                 console.log(this.RegisterFormData);
                 this.formStep = formNumber;
                 this.swipeNext();
@@ -402,7 +399,8 @@ export class SignupPage {
       },
       (data) => {
         console.log(data);
-        data['card_number_plain'] = this.user.card_number;
+        data.data.card.card_number_plain = this.user.card_number;
+        data.data.card.address = this.user.address;
         // this.sharedService.UserData.Cards = [];
         // this.sharedService.UserData.Cards.push(data.data);
         this.usersService.registerCard(this.user, data.data);
