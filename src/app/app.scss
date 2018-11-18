@@ -221,7 +221,7 @@ ion-popover {
   background-color: #E5E5E5;
 }
 
-ion-title.liberi {
+ion-title.liberi, .title-ios {
   padding: 20px 60px 1px;
   padding-top: 3rem !important;
 }
@@ -229,6 +229,7 @@ ion-title.liberi > .toolbar-title {
   overflow: initial;
   font-size: 1.4rem;
   font-weight: 700;
+  padding-top: 1.5rem;
 }
 
 input.liberi-text, select.liberi-text, ion-datetime.liberi, ion-multi-picker.liberi {

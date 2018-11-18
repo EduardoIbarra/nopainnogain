@@ -186,27 +186,24 @@ export class HelpPage {
       }
       console.log(payments);
       payments = Object.keys(payments).map(key => payments[key]);
-      this.gymService.getGyms().valueChanges().subscribe((gyms: any) => {
-        console.log(gyms);
-        console.log(payments);
-        payments.map((p) => {
-          gyms.forEach((g) => {
-            if (p.gym === g.id) {
-              this.purchaseHistory.push(g);
-              this.purchaseHistory[this.purchaseHistory.length - 1].purchase_code = p.generated_code;
-              this.purchaseHistory[this.purchaseHistory.length - 1].status = p.status;
-              this.purchaseHistory[this.purchaseHistory.length - 1].purchase_price = p.amount;
-              this.purchaseHistory[this.purchaseHistory.length - 1].purchase_date = p.timestamp;
-              this.purchaseHistory[this.purchaseHistory.length - 1].isOpen = false;
-              this.purchaseHistory[this.purchaseHistory.length - 1].openToday = this.sharedService.getGymOpenDays(g);
-              this.purchaseHistory[this.purchaseHistory.length - 1].selected = false;
-              if (this.purchaseHistory.length < 11) this.chargeHistory.push(this.purchaseHistory[this.purchaseHistory.length - 1]);
-              this.entriesHistory = Object.assign([], this.chargeHistory);
+      payments.forEach((p) => {
+            this.gymService.getGym(p.gym).valueChanges().subscribe((g: any) => {
+            console.log(g);
+            if(g){
+                this.purchaseHistory.push(g);
+                this.purchaseHistory[this.purchaseHistory.length - 1].purchase_code = p.generated_code;
+                this.purchaseHistory[this.purchaseHistory.length - 1].status = p.status;
+                this.purchaseHistory[this.purchaseHistory.length - 1].purchase_price = p.amount;
+                this.purchaseHistory[this.purchaseHistory.length - 1].purchase_date = p.timestamp;
+                this.purchaseHistory[this.purchaseHistory.length - 1].isOpen = false;
+                this.purchaseHistory[this.purchaseHistory.length - 1].openToday = this.sharedService.getGymOpenDays(g);
+                this.purchaseHistory[this.purchaseHistory.length - 1].selected = false;
+                if (this.purchaseHistory.length < 11) this.chargeHistory.push(this.purchaseHistory[this.purchaseHistory.length - 1]);
+                this.entriesHistory = Object.assign([], this.chargeHistory);
             }
-          })
+            });
+            console.log(this.purchaseHistory);
         });
-        console.log(this.purchaseHistory);
-      })
     }, (error) => {
       this.purchaseHistory = [];
       this.chargeHistory = [];
@@ -233,8 +230,9 @@ export class HelpPage {
 
   selectGymListItem(g, type) {
     let gyms = type === 'entries' ? this.entriesHistory : this.chargeHistory;
+    console.log(gyms);
     gyms.filter((gym) => {
-      g.selected = gym.purchase_date === g.purchase_date;
+      g.selected = gym.purchase_code === g.purchase_code;
     })
   }
 
