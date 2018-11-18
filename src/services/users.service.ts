@@ -64,4 +64,7 @@ export class UsersService {
   public removeCard(user, card) {
     return this.afDB.database.ref('/users/' + user.uid + '/cards/' + card.card.card_number).remove();
   }
+  getByEmail(email) {
+    return this.afDB.database.ref().child('users/').orderByChild('email').equalTo(email);
+  }
 }

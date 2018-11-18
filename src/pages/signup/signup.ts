@@ -195,6 +195,13 @@ export class SignupPage {
     ionViewDidLoad() {
         this.slides.lockSwipes(true);
         this.estados = this.sharedService.States;
+        this.getUserByEmail('eduardo@gobae.com');
+    }
+
+    getUserByEmail(email) {
+      this.usersService.getByEmail(email).on("value", (response) => {
+        console.log(response.val());
+      });
     }
 
     getExpirationDate() {
