@@ -58,10 +58,14 @@ export class AuthService {
               this.sharedService.login(user, navCtrl);
             });
         }).catch((error) => {
+          const message = (error && error.code == 'auth/account-exists-with-different-credential') ? 'El correo asociado a tu cuenta de Facebook ya se encuentra registrado, favor de acceder vía email o intenta con otra cuenta.' : error.message;
+          alert('Ocurrió un error al tratar de ingresar con Facebook: ' + message);
           console.log(error);
         });
       });
     }).catch((error) => {
+      const message = (error && error.code == 'auth/account-exists-with-different-credential') ? 'El correo asociado a tu cuenta de Facebook ya se encuentra registrado, favor de acceder vía email o intenta con otra cuenta.' : error.message;
+      alert('Ocurrió un error al tratar de ingresar con Facebook: ' + message);
       console.log(error);
     });
   }

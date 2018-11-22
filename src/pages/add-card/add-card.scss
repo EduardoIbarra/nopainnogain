@@ -29,4 +29,10 @@ page-add-card {
   .max-width {
     max-width: 100% !important;
   }
+
+  .hidden-photo {
+    position: absolute;
+    top: 100vh;
+    opacity: 0;
+  }
 }
