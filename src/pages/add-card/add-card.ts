@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, ViewChild} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {LoadingService} from "../../services/loading.service";
 import {SharedService} from "../../services/shared.service";
@@ -6,6 +6,7 @@ import {AlertService} from "../../services/alert.service";
 import {Storage} from "@ionic/storage";
 import {IonicPage, NavController, NavParams} from "ionic-angular";
 import {UsersService} from "../../services/users.service";
+import {ImageViewerController} from "ionic-img-viewer";
 declare var OpenPay: any;
 
 @IonicPage()
@@ -27,6 +28,7 @@ export class AddCardPage {
     Cardaddress: null
   };
   isModal: boolean;
+  @ViewChild('ccImage') ccImage;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public formBuilder: FormBuilder,
@@ -34,6 +36,7 @@ export class AddCardPage {
               public storage: Storage,
               public alertService: AlertService,
               public sharedService: SharedService,
+              public imageViewerCtrl: ImageViewerController,
               public usersService: UsersService) {
 
 
@@ -116,6 +119,11 @@ export class AddCardPage {
 
   dismiss() {
     this.navCtrl.pop();
+  }
+
+  showCreditCardExample() {
+    const imageViewer = this.imageViewerCtrl.create(this.ccImage.nativeElement);
+    imageViewer.present();
   }
 
 }

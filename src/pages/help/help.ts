@@ -19,13 +19,23 @@ export class HelpPage {
   chargeHistory: any = [];
   entriesHistory: any = [];
   tutorials: any = [];
+  sections: any = [
+    {title: 'Cómo comprar una visita en LIBERI.', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 1},
+    {title: 'Cómo buscar un código QR.', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 2},
+    {title: 'Cómo agregar o borrar una categoría de tus "Preferencias".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 3},
+    {title: 'Cómo buscar un CAF (Centro de Acondicionamiento Físico)".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 4},
+    {title: 'Cómo contactar un CAF (Centro de Acondicionamiento Físico)".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 5},
+    {title: 'Cómo reportar un problema".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 6},
+    {title: 'Modificar mis datos personales', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial', order: 7},
+    {title: 'Como comentar un CAF', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial', order: 8},
+    ];
   articles: any[] = [{
     title: 'Servicio de ayuda',
     class: 'section',
     open: false,
     sections: [
       {title: 'Cómo comprar una visita en LIBERI.', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 1},
-      {title: 'Cómo buscar buscar un código QR.', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 2},
+      {title: 'Cómo buscar un código QR.', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 2},
       {title: 'Cómo agregar o borrar una categoría de tus "Preferencias".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 3},
       {title: 'Cómo buscar un CAF (Centro de Acondicionamiento Físico)".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 4},
       {title: 'Cómo contactar un CAF (Centro de Acondicionamiento Físico)".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 5},
@@ -39,10 +49,10 @@ export class HelpPage {
       sections: [
         {title: 'Problemas con la apliación', class: 'child-section', header: true},
         {title: 'El mapa geolocalizador no funciona.', url: null, url_type: null, action_label: null},
-        {title: 'a) Revisa si tienes la ultima actualizacion', url: '', url_type: 'update', action_label: 'Actualizar'},
+        {title: 'a) Revisa si tienes la ultima actualización', url: '', url_type: 'update', action_label: 'Actualizar'},
         {title: 'b) Reinicia la aplicación', url: null, url_type: null, action_label: null},
         {title: 'c) Envia un reporte', url: '', url_type: 'send-report', action_label: 'Enviar Reporte'},
-        {title: 'La actualizacion no se puede instalar', url: null, url_type: null, action_label: null},
+        {title: 'La actualización no se puede instalar', url: null, url_type: null, action_label: null},
         {title: 'a) Intentar nuevamente', url: '', url_type: 'update', action_label: 'Actualizar'},
         {title: 'b) Envia un reporte', url: '', url_type: 'send-report', action_label: 'Enviar Reporte'},
         {title: 'Problemas con mi cuenta', class: 'child-section', header: true},
@@ -50,10 +60,10 @@ export class HelpPage {
         {title: 'Modificar mis datos personales', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial', order: 7},
         {title: 'Cargos no reconocidos', url: '', url_type: 'pending', action_label: 'Reportar Cargo'},
         {title: 'Mi Código QR', class: 'child-section', header: true},
-        {title: 'No recibí mi codigo QR', url: '', url_type: '', action_label: ''},
+        {title: 'No recibí mi código QR', url: '', url_type: '', action_label: ''},
         {title: 'Por favor revisa si la compra se realizo exitosamente', url: 'PurchaseHistoryPage', url_type: 'page', action_label: 'Ver Historial de Compras'},
         {title: 'Si no encuentras la compra realizada, no se efectuó el cargo. Por favor intentalo nuevamente.', url: null, url_type: null, action_label: null, hasBorder: true},
-        {title: 'Si la compra realizada está en la lista, presionala para abrir y ahí encontrarás tu codigo QR', url: null, url_type: null, action_label: null, hasBorder: true},
+        {title: 'Si la compra realizada está en la lista, presionala para abrir y ahí encontrarás tu código QR', url: null, url_type: null, action_label: null, hasBorder: true},
         {title: 'Problemas con el código QR', url: '', url_type: '', action_label: '', class: ''},
         {title: 'Por favor intenta con el código alfanúmerico que viene debajo de tu código QR', url: '', url_type: 'pending', action_label: 'Enviar código a revisión', hasBorder: true},
         {title: 'Centros de Acondicionamiento Fisico', class: 'child-section', header: true},
@@ -158,20 +168,17 @@ export class HelpPage {
 
     this.authService.getStatus().subscribe((result) => {
       this.currentUser = result;
-      console.log(result);
-      console.log(this.articles);
+      this.getUserGymHistoryPurchase();
     });
   }
 
 
   ionViewDidLoad() {
-    this.getUserGymHistoryPurchase();
     this.getTutorials();
   }
 
   getTutorials() {
     this.helpService.getTutorials().valueChanges().subscribe((tutorials: any) => {
-      console.log('TUT', tutorials);
       this.tutorials = tutorials;
     })
   }
@@ -184,11 +191,9 @@ export class HelpPage {
         this.chargeHistory = [];
         return;
       }
-      console.log(payments);
       payments = Object.keys(payments).map(key => payments[key]);
       payments.forEach((p) => {
             this.gymService.getGym(p.gym).valueChanges().subscribe((g: any) => {
-            console.log(g);
             if(g){
                 this.purchaseHistory.push(g);
                 this.purchaseHistory[this.purchaseHistory.length - 1].purchase_code = p.generated_code;
@@ -202,7 +207,6 @@ export class HelpPage {
                 this.entriesHistory = Object.assign([], this.chargeHistory);
             }
             });
-            console.log(this.purchaseHistory);
         });
     }, (error) => {
       this.purchaseHistory = [];
@@ -254,7 +258,7 @@ export class HelpPage {
 
   selectOption(item) {
     if (item.url_type === 'video') {
-      this.tutorials.filter((t) => {
+      this.sections.filter((t) => {
         if (t.order === item.order) window.open(t.url, '_system');
       })
     }

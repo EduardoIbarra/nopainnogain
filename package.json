@@ -39,7 +39,7 @@
     "angularfire2": "^5.0.0-rc.5-next",
     "card.io.cordova.mobilesdk": "^2.1.0",
     "com.paypal.cordova.mobilesdk": "^3.5.0",
-    "cordova-android": "7.0.0",
+    "cordova-android": "7.1.2",
     "cordova-custom-config": "^5.0.2",
     "cordova-ios": "4.5.5",
     "cordova-plugin-actionsheet": "^2.3.3",
