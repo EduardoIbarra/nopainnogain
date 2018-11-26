@@ -40,6 +40,8 @@ import {GiftService} from "../services/gift.service";
 import { registerLocaleData } from '@angular/common';
 import localeEsMx from '@angular/common/locales/es-MX';
 import localeEsMXExtra from '@angular/common/locales/extra/es-MX';
+import {ReportPage} from "../pages/modals/report/report";
+import {ReportPageModule} from "../pages/modals/report/report.module";
 
 
 registerLocaleData(localeEsMx, localeEsMXExtra);
@@ -68,13 +70,15 @@ registerLocaleData(localeEsMx, localeEsMXExtra);
     ReactiveFormsModule,
     AddCardPageModule,
     CardListPageModule,
-    HomePageModule
+    HomePageModule,
+    ReportPageModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
     AddCardPage,
-    CardListPage
+    CardListPage,
+    ReportPage
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

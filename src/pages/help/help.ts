@@ -1,11 +1,12 @@
 import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams} from 'ionic-angular';
+import {IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController} from 'ionic-angular';
 import {SharedService} from "../../services/shared.service";
 import {GymService} from "../../services/gym.service";
 import {LoadingService} from "../../services/loading.service";
 import {AuthService} from "../../services/auth.service";
 import {PaymentService} from "../../services/payment.service";
 import {HelpService} from "../../services/help.service";
+import {ReportPage} from "../modals/report/report";
 
 @IonicPage()
 @Component({
@@ -28,6 +29,7 @@ export class HelpPage {
     {title: 'Cómo reportar un problema".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 6},
     {title: 'Modificar mis datos personales', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial', order: 7},
     {title: 'Como comentar un CAF', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial', order: 8},
+    {title: 'a) Revisa si tienes la última actualización', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial'},
     ];
   articles: any[] = [{
     title: 'Servicio de ayuda',
@@ -40,6 +42,7 @@ export class HelpPage {
       {title: 'Cómo buscar un CAF (Centro de Acondicionamiento Físico)".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 4},
       {title: 'Cómo contactar un CAF (Centro de Acondicionamiento Físico)".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 5},
       {title: 'Cómo reportar un problema".', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', class: 'child-section', action_label: 'Ver Tutorial', order: 6},
+      {title: 'a) Intentar nuevamente', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial'},
     ]
   },
     {
@@ -49,11 +52,11 @@ export class HelpPage {
       sections: [
         {title: 'Problemas con la apliación', class: 'child-section', header: true},
         {title: 'El mapa geolocalizador no funciona.', url: null, url_type: null, action_label: null},
-        {title: 'a) Revisa si tienes la ultima actualización', url: '', url_type: 'update', action_label: 'Actualizar'},
+        {title: 'a) Revisa si tienes la última actualización', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial'},
         {title: 'b) Reinicia la aplicación', url: null, url_type: null, action_label: null},
         {title: 'c) Envia un reporte', url: '', url_type: 'send-report', action_label: 'Enviar Reporte'},
         {title: 'La actualización no se puede instalar', url: null, url_type: null, action_label: null},
-        {title: 'a) Intentar nuevamente', url: '', url_type: 'update', action_label: 'Actualizar'},
+        {title: 'a) Intentar nuevamente', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial'},
         {title: 'b) Envia un reporte', url: '', url_type: 'send-report', action_label: 'Enviar Reporte'},
         {title: 'Problemas con mi cuenta', class: 'child-section', header: true},
         {title: 'Mi perfil', url: null, url_type: null, action_label: null},
@@ -164,6 +167,9 @@ export class HelpPage {
     public sharedService: SharedService,
     public loadingService: LoadingService,
     public authService: AuthService,
+    public modalCtrl: ModalController,
+    public loadingCtrl: LoadingController,
+    public toastCtrl: ToastController
   ) {
 
     this.authService.getStatus().subscribe((result) => {
@@ -204,7 +210,7 @@ export class HelpPage {
                 this.purchaseHistory[this.purchaseHistory.length - 1].openToday = this.sharedService.getGymOpenDays(g);
                 this.purchaseHistory[this.purchaseHistory.length - 1].selected = false;
                 if (this.purchaseHistory.length < 11) this.chargeHistory.push(this.purchaseHistory[this.purchaseHistory.length - 1]);
-                this.entriesHistory = Object.assign([], this.chargeHistory);
+                this.entriesHistory = JSON.parse(JSON.stringify(Object.assign([], this.chargeHistory)));
             }
             });
         });
@@ -233,26 +239,73 @@ export class HelpPage {
   }
 
   selectGymListItem(g, type) {
-    let gyms = type === 'entries' ? this.entriesHistory : this.chargeHistory;
+    console.log(this.entriesHistory, this.chargeHistory);
+    /*let gyms = type === 'entries' ? this.entriesHistory : this.chargeHistory;
     console.log(gyms);
     gyms.filter((gym) => {
       g.selected = gym.purchase_code === g.purchase_code;
-    })
+    })*/
   }
 
   reportCharge() {
-    let counter = 0;
-    this.chargeHistory.filter((c, ci) => {
-      if (c.selected) counter++;
-      if (counter && ci === this.chargeHistory.length - 1) this.navCtrl.push('ReportChargePage')
+    const charges = this.chargeHistory.filter( c => c.selected );
+    console.log(charges);
+    const loader = this.loadingCtrl.create({
+      content: "Enviando..."
+    });
+    loader.present();
+    const user = this.sharedService.getUserData();
+    const report = {
+      user: user.uid,
+      uid: Date.now(),
+      type: 'report_entry',
+      records: charges
+    };
+    this.helpService.sendReport(report).then((data) => {
+      console.log(data);
+      loader.dismiss();
+      const toast = this.toastCtrl.create({
+        message: '¡Su reporte fue enviado correctamente!',
+        duration: 3500
+      });
+      toast.present().then((data) => {
+      }).catch((error) => {
+        console.log(error);
+      });
+    }).catch((error) => {
+      console.log(error);
+      loader.dismiss();
     });
   }
 
   reportEntry() {
-    let counter = 0;
-    this.entriesHistory.filter((c, ci) => {
-      if (c.selected) counter++;
-      if (counter && ci === this.entriesHistory.length - 1) this.navCtrl.push('ReportChargePage')
+    const entries = this.entriesHistory.filter( e => e.selected );
+    console.log(entries);
+    const loader = this.loadingCtrl.create({
+      content: "Enviando..."
+    });
+    loader.present();
+    const user = this.sharedService.getUserData();
+    const report = {
+      user: user.uid,
+      uid: Date.now(),
+      type: 'report_entry',
+      records: entries
+    };
+    this.helpService.sendReport(report).then((data) => {
+      console.log(data);
+      loader.dismiss();
+      const toast = this.toastCtrl.create({
+        message: '¡Su reporte fue enviado correctamente!',
+        duration: 3500
+      });
+      toast.present().then((data) => {
+      }).catch((error) => {
+        console.log(error);
+      });
+    }).catch((error) => {
+      console.log(error);
+      loader.dismiss();
     });
   }
 
@@ -266,7 +319,8 @@ export class HelpPage {
       alert('Accion pendiente')
     }
     if (item.url_type === 'send-report') {
-      alert('Accion pendiente')
+      let profileModal = this.modalCtrl.create(ReportPage, { type: 'generic' });
+      profileModal.present();
     }
     if (item.url_type === 'page') {
       this.navCtrl.push(item.url);

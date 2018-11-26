@@ -1,0 +1,28 @@
+<ion-header>
+  <ion-navbar>
+    <button ion-button (click)="dismiss()">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <ion-title class="liberi">ENVIAR REPORTE</ion-title>
+  </ion-navbar>
+  <navbar-bump></navbar-bump>
+</ion-header>
+
+
+<ion-content padding class="liberi">
+  <ion-list>
+    <ion-item>
+      <ion-label color="primary" floating>Razón/Título</ion-label>
+      <ion-input [(ngModel)]="form.subject" type="text"></ion-input>
+    </ion-item>
+
+    <ion-item>
+      <ion-label color="primary" floating>Mensaje</ion-label>
+      <ion-textarea [(ngModel)]="form.message" (keyup.enter)="send()"></ion-textarea>
+    </ion-item>
+
+    <ion-item>
+      <button ion-button full (click)="send()">Enviar</button>
+    </ion-item>
+  </ion-list>
+</ion-content>

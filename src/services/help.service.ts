@@ -9,4 +9,7 @@ export class HelpService {
     public getTutorials() {
         return this.afDB.list('/tutorials/');
     }
+    public sendReport(report) {
+      return this.afDB.object('/reports/' + report.uid).set(report);
+    }
 }
