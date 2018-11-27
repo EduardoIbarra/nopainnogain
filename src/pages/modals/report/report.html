@@ -12,12 +12,14 @@
 <ion-content padding class="liberi">
   <ion-list>
     <ion-item>
-      <ion-label color="primary" floating>Razón/Título</ion-label>
+      <ion-label *ngIf="type === 'code'" color="primary" floating>Código</ion-label>
+      <ion-label *ngIf="type !== 'code'" color="primary" floating>Razón/Título</ion-label>
       <ion-input [(ngModel)]="form.subject" type="text"></ion-input>
     </ion-item>
 
     <ion-item>
-      <ion-label color="primary" floating>Mensaje</ion-label>
+      <ion-label *ngIf="type === 'code'" color="primary" floating>Detalles (Opcional)</ion-label>
+      <ion-label *ngIf="type !== 'code'" color="primary" floating>Mensaje</ion-label>
       <ion-textarea [(ngModel)]="form.message" (keyup.enter)="send()"></ion-textarea>
     </ion-item>
 

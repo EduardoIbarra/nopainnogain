@@ -1,5 +1,13 @@
-import {Component} from '@angular/core';
-import {IonicPage, NavController, NavParams, ModalController, LoadingController, ToastController} from 'ionic-angular';
+import {Component, ViewChild} from '@angular/core';
+import {
+  IonicPage,
+  NavController,
+  NavParams,
+  ModalController,
+  LoadingController,
+  ToastController,
+  Content
+} from 'ionic-angular';
 import {SharedService} from "../../services/shared.service";
 import {GymService} from "../../services/gym.service";
 import {LoadingService} from "../../services/loading.service";
@@ -14,7 +22,7 @@ import {ReportPage} from "../modals/report/report";
   templateUrl: 'help.html',
 })
 export class HelpPage {
-
+  @ViewChild(Content) content: Content;
   currentUser: any;
   purchaseHistory: any = [];
   chargeHistory: any = [];
@@ -61,14 +69,14 @@ export class HelpPage {
         {title: 'Problemas con mi cuenta', class: 'child-section', header: true},
         {title: 'Mi perfil', url: null, url_type: null, action_label: null},
         {title: 'Modificar mis datos personales', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial', order: 7},
-        {title: 'Cargos no reconocidos', url: '', url_type: 'pending', action_label: 'Reportar Cargo'},
+        {title: 'Cargos no reconocidos', url: '', url_type: 'scrollTo', id: 'reportCharge', action_label: 'Reportar Cargo'},
         {title: 'Mi Código QR', class: 'child-section', header: true},
         {title: 'No recibí mi código QR', url: '', url_type: '', action_label: ''},
         {title: 'Por favor revisa si la compra se realizo exitosamente', url: 'PurchaseHistoryPage', url_type: 'page', action_label: 'Ver Historial de Compras'},
         {title: 'Si no encuentras la compra realizada, no se efectuó el cargo. Por favor intentalo nuevamente.', url: null, url_type: null, action_label: null, hasBorder: true},
         {title: 'Si la compra realizada está en la lista, presionala para abrir y ahí encontrarás tu código QR', url: null, url_type: null, action_label: null, hasBorder: true},
         {title: 'Problemas con el código QR', url: '', url_type: '', action_label: '', class: ''},
-        {title: 'Por favor intenta con el código alfanúmerico que viene debajo de tu código QR', url: '', url_type: 'pending', action_label: 'Enviar código a revisión', hasBorder: true},
+        {title: 'Por favor intenta con el código alfanúmerico que viene debajo de tu código QR', url: '', url_type: 'send-code', action_label: 'Enviar código a revisión', hasBorder: true},
         {title: 'Centros de Acondicionamiento Fisico', class: 'child-section', header: true},
         {title: 'Como comentar un CAF', url: 'https://www.youtube.com/watch?v=JF-Fkbm0XjU', url_type: 'video', action_label: 'Ver Tutorial', order: 8},
       ]
@@ -319,12 +327,24 @@ export class HelpPage {
       alert('Accion pendiente')
     }
     if (item.url_type === 'send-report') {
-      let profileModal = this.modalCtrl.create(ReportPage, { type: 'generic' });
-      profileModal.present();
+      let reportModal = this.modalCtrl.create(ReportPage, { type: 'generic' });
+      reportModal.present();
+    }
+    if (item.url_type === 'send-code') {
+      let reportModal = this.modalCtrl.create(ReportPage, { type: 'code' });
+      reportModal.present();
     }
     if (item.url_type === 'page') {
       this.navCtrl.push(item.url);
     }
+    if (item.url_type === 'scrollTo') {
+      this.scrollTo(item.id);
+    }
+  }
+
+  scrollTo(elementId: string) {
+    let y = document.getElementById(elementId).offsetTop;
+    this.content.scrollTo(0, y);
   }
 
 }

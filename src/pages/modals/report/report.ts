@@ -43,8 +43,8 @@ export class ReportPage {
         user: user.uid,
         uid: Date.now(),
         subject: this.form.subject,
-        message: this.form.message,
-        type: this.navParams.get('type')
+        message: this.form.message || '',
+        type: this.type
       };
       this.helpService.sendReport(report).then((data) => {
         console.log(data);

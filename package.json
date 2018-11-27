@@ -120,7 +120,8 @@
       },
       "cordova-plugin-x-socialsharing": {},
       "cordova-plugin-headercolor": {},
-      "com.paypal.cordova.mobilesdk": {}
+      "com.paypal.cordova.mobilesdk": {},
+      "cordova-plugin-compat": {}
     },
     "platforms": [
       "android",
