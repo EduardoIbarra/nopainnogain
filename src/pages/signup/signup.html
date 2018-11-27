@@ -85,6 +85,7 @@
                         <img src="assets/img/pin.png" class="liberi" alt="">
                       </ion-col>
                       <ion-col col-10>
+                          <ion-label class="custom-my">Estado</ion-label>
                         <select class="liberi-text" placeholder="Estado" formControlName="state" [(ngModel)]="RegisterFormData.state"
                         [class.invalid]="!RegisterForm1.controls.state.valid && (RegisterForm1.controls.state.touched || submitAttemptForm1)"
                         [class.valid]="RegisterForm1.controls.state.valid"
@@ -98,6 +99,7 @@
                         <img src="assets/img/pin.png" class="liberi" alt="">
                       </ion-col>
                       <ion-col col-10>
+                          <ion-label class="custom-my">Ciudad</ion-label>
                         <select class="liberi-text" placeholder="Ciudad o Municipio" formControlName="city" [(ngModel)]="RegisterFormData.city"
                         [class.invalid]="!RegisterForm1.controls.city.valid && (RegisterForm1.controls.city.touched || submitAttemptForm1)"
                         [class.valid]="RegisterForm1.controls.city.valid">
