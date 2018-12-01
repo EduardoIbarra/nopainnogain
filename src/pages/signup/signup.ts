@@ -11,6 +11,8 @@ import {AuthService} from "../../services/auth.service";
 import {UsersService} from "../../services/users.service";
 import {AlertService} from "../../services/alert.service";
 import {Storage} from "@ionic/storage";
+import {AngularFireAuth} from "angularfire2/auth";
+import {LoginPage} from "../login/login";
 declare var OpenPay: any;
 
 @IonicPage()
@@ -88,7 +90,7 @@ export class SignupPage {
       this.cpassType = 'password';
     }
   }
-
+  verificationSent = false;
   constructor(public navCtrl: NavController,
               public navParams: NavParams,
               public actionSheetCtrl: ActionSheetController,
@@ -103,7 +105,8 @@ export class SignupPage {
               public toastCtrl: ToastController,
               public modalCtrl: ModalController,
               public formBuilder: FormBuilder,
-              public storage: Storage) {
+              public storage: Storage,
+              private firebaseAuth: AngularFireAuth) {
 
     this._imageViewerCtrl = imageViewerCtrl;
 
@@ -424,12 +427,15 @@ export class SignupPage {
         console.log(data);
         data.data.card.card_number_plain = this.user.card_number;
         data.data.card.address = this.user.address;
-        // data.data.card.address = this.user.address;
-        // this.sharedService.UserData.Cards = [];
-        // this.sharedService.UserData.Cards.push(data.data);
         this.usersService.registerCard(this.user, data.data);
-        // this.storage.set('UserData', this.sharedService.UserData);
-        this.sharedService.login(this.user, this.navCtrl);
+
+        this.authService.sendVerificationEmail().then((data) => {
+          this.verificationSent = true;
+          alert('Hemos enviado un email de verificación para que puedas ingresar a tu cuenta');
+        }).catch((error) => {
+          console.log(error);
+        });
+        //this.sharedService.login(this.user, this.navCtrl);
       }, (error) => {
         console.log(error);
         alert('La tarjeta no se agregó correctamente, deberá agregarla desde el menú de tarjetas: ' + error.data.description);
@@ -458,4 +464,20 @@ export class SignupPage {
     modal.present();
   }
 
+  checkForVerification() {
+     this.authService.reloadUser().then((data) => {
+       const emailVerified = this.firebaseAuth.auth.currentUser.emailVerified;
+       if (emailVerified) {
+         this.sharedService.login(this.user, this.navCtrl);
+       } else {
+         alert('Su email aun no ha sido verificado');
+       }
+    }).catch((error) => {
+      console.log(error);
+    });
+  }
+
+  goToLogin() {
+    this.navCtrl.setRoot(LoginPage);
+  }
 }

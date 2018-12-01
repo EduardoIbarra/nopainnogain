@@ -90,4 +90,11 @@ export class AuthService {
     return this.firebaseAuth.authState;
   }
 
+  sendVerificationEmail() {
+    return this.firebaseAuth.auth.currentUser.sendEmailVerification();
+  }
+
+  reloadUser() {
+    return this.firebaseAuth.auth.currentUser.reload();
+  }
 }

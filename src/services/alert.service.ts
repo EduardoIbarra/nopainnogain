@@ -21,7 +21,7 @@ export class AlertService {
   incorrectPasswordLoginCredentials() {
     let alert = this.alertCtrl.create({
       title: 'Información incorrecta',
-      message: 'La contraseña es incorrecta, intenta de nuevo.',
+      message: 'La contraseña es incorrecta, o la cuenta no existe. Intenta de nuevo.',
       buttons: ['Cerrar']
     });
     alert.present();

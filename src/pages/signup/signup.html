@@ -1,293 +1,296 @@
 <ion-header>
-    <ion-navbar>
-        <button ion-button menuToggle="left">
-            <ion-icon name="arrow-back"></ion-icon>
-        </button>
-        <ion-title class="liberi">Registro</ion-title>
-    </ion-navbar>
-    <navbar-bump></navbar-bump>
+  <ion-navbar>
+    <button *ngIf="!verificationSent" ion-button menuToggle="left">
+      <ion-icon name="arrow-back"></ion-icon>
+    </button>
+    <ion-title class="liberi">Registro</ion-title>
+  </ion-navbar>
+  <navbar-bump></navbar-bump>
 </ion-header>
 
 <ion-content padding>
-    <br>
-    <ion-slides paginationType="progress" pager>
-        <ion-slide>
-            <form [formGroup]="RegisterForm1">
-                <ion-grid>
-                    <ion-row>
-                        <ion-col>
-                            <div class="image-input-padding">
-                                <p class="liberi-text">Por favor captura todos tus datos</p> 
-                            </div>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                        <img src="assets/img/Recurso 192xxxhdpi.png" class="liberi" alt="">
-                        </ion-col>
-                        <ion-col col-10>
-                        <input type="text" class="liberi-text" placeholder="Nombre"  formControlName="name" [(ngModel)]="RegisterFormData.name"
-                        [class.invalid]="!RegisterForm1.controls.name.valid && (RegisterForm1.controls.name.dirty || submitAttemptForm1)"
-                        [class.valid]="RegisterForm1.controls.name.valid"/>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>
-                        <img src="assets/img/Recurso 192xxxhdpi.png" class="liberi" alt="">
-                      </ion-col>
-                      <ion-col col-10>
-                        <input type="text" class="liberi-text" placeholder="Apellidos" formControlName="last_name" [(ngModel)]="RegisterFormData.last_name"
-                        [class.invalid]="!RegisterForm1.controls.last_name.valid && (RegisterForm1.controls.last_name.dirty || submitAttemptForm1)"
-                        [class.valid]="RegisterForm1.controls.last_name.valid"/>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>
-                        <img src="assets/img/Recurso 185xxxhdpi.png" class="liberi" alt="">
-                      </ion-col>
-                      <ion-col col-10>
-                        <ion-datetime class="liberi"
-                        displayFormat="DD/MMMM/YYYY"
-                        formControlName="birthday"
-                        cancelText="Cancelar"
-                        doneText="Seleccionar"
-                        [(ngModel)]="RegisterFormData.birthday"
-                        [class.invalid]="!RegisterForm1.controls.birthday.valid && (RegisterForm1.controls.birthday.dirty || submitAttemptForm1)"
-                        [class.valid]="RegisterForm1.controls.birthday.valid"></ion-datetime>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>
-                        <img src="assets/img/Recurso 182xxxhdpi.png" class="liberi" alt="">
-                      </ion-col>
-                      <ion-col col-10>
-                        <select class="liberi-text" interface="popover" formControlName="gender" [(ngModel)]="RegisterFormData.gender"
-                        [class.invalid]="!RegisterForm1.controls.gender.valid && (RegisterForm1.controls.gender.touched || submitAttemptForm1)"
-                        [class.valid]="RegisterForm1.controls.gender.valid">
-                          <option value="" disabled selected>Sexo</option>
-                            <option value="female">Femenino</option>
-                            <option value="male">Masculino</option>
-                          </select>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>
-                        <img src="assets/img/smarphone.png" class="liberi" alt="">
-                      </ion-col>
-                      <ion-col col-10>
-                        <input type="tel" class="liberi-text" placeholder="Teléfono Celular" formControlName="phone" [(ngModel)]="RegisterFormData.phone"
-                        [class.invalid]="!RegisterForm1.controls.phone.valid && (RegisterForm1.controls.phone.dirty || submitAttemptForm1)"
-                        [class.valid]="RegisterForm1.controls.phone.valid"/>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>
-                        <img src="assets/img/pin.png" class="liberi" alt="">
-                      </ion-col>
-                      <ion-col col-10>
-                          <ion-label class="custom-my">Estado</ion-label>
-                        <select class="liberi-text" placeholder="Estado" formControlName="state" [(ngModel)]="RegisterFormData.state"
-                        [class.invalid]="!RegisterForm1.controls.state.valid && (RegisterForm1.controls.state.touched || submitAttemptForm1)"
-                        [class.valid]="RegisterForm1.controls.state.valid"
-                        (change)="selectState($event)">
-                            <option [value]="e.nombre" *ngFor="let e of estados">{{e.nombre}}</option>
-                        </select>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>
-                        <img src="assets/img/pin.png" class="liberi" alt="">
-                      </ion-col>
-                      <ion-col col-10>
-                          <ion-label class="custom-my">Ciudad</ion-label>
-                        <select class="liberi-text" placeholder="Ciudad o Municipio" formControlName="city" [(ngModel)]="RegisterFormData.city"
-                        [class.invalid]="!RegisterForm1.controls.city.valid && (RegisterForm1.controls.city.touched || submitAttemptForm1)"
-                        [class.valid]="RegisterForm1.controls.city.valid">
-                          <option [value]="m" *ngFor="let m of municipios">{{m}}</option>
-                        </select>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>
-                        <img src="assets/img/pin.png" class="liberi" alt="">
-                      </ion-col>
-                      <ion-col col-10>
-                        <input type="text" class="liberi-text" placeholder="Código Postal" formControlName="postal_code" [(ngModel)]="RegisterFormData.postal_code" type="tel"
-                        [class.invalid]="!RegisterForm1.controls.postal_code.valid && (RegisterForm1.controls.postal_code.touched || submitAttemptForm1)"
-                        [class.valid]="RegisterForm1.controls.postal_code.valid"/>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>
-                        <img src="assets/img/Recurso 191xxxhdpi.png" class="liberi" alt="">
-                      </ion-col>
-                      <ion-col col-10>
-                        <input type="email" class="liberi-text" placeholder="Correo Electrónico" formControlName="email" [(ngModel)]="RegisterFormData.email"
-                        [class.invalid]="(!RegisterForm1.controls.email.valid && (RegisterForm1.controls.email.dirty || submitAttemptForm1)) || emailTaken"
-                        [class.valid]="RegisterForm1.controls.email.valid"/>
-                        <small *ngIf="RegisterFormData.email && emailTaken" class="redColor">Este correo se encuentra en uso</small>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col col-2>
-                          <img src="assets/img/Recurso 190xxxhdpi.png" class="liberi" alt="">
-                      </ion-col>
-                      <ion-col col-8>
-                        <input type="{{passType}}" class="liberi-text" placeholder="Contraseña" formControlName="password" [(ngModel)]="RegisterFormData.password"
-                        [class.invalid]="!RegisterForm1.controls.password.valid && (RegisterForm1.controls.password.dirty || submitAttemptForm1)"
-                        [class.valid]="RegisterForm1.controls.password.valid"/>
-                      </ion-col>
-                      <ion-col col-2>
-                          <img *ngIf="viewPass" src="assets/img/Recurso 188xxxhdpi.png" class="liberi" alt="" (tap)="changeViewPass()">
-                          <img *ngIf="!viewPass" src="assets/img/Recurso 189xxxhdpi.png" class="liberi" alt="" (tap)="changeViewPass()">
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col col-2>
-                          <img src="assets/img/Recurso 190xxxhdpi.png" class="liberi" alt="">
-                      </ion-col>
-                      <ion-col col-8>
-                        <input type="{{cpassType}}" class="liberi-text" placeholder="Confirmar Contrsaeña" formControlName="confirmPassword" [(ngModel)]="RegisterFormData.confirmPassword"  id="confirmPassword"
-                        [class.invalid]="(!RegisterForm1.controls.confirmPassword.valid && (RegisterForm1.controls.confirmPassword.dirty || submitAttemptForm1)) || (RegisterForm1.controls.confirmPassword.errors?.MatchPassword && RegisterFormData.confirmPassword)"
-                        [class.valid]="RegisterForm1.controls.confirmPassword.valid"/>
-                      </ion-col>
-                      <ion-col col-2>
-                          <img *ngIf="viewCPass" src="assets/img/Recurso 188xxxhdpi.png" class="liberi" alt="" (tap)="changeViewCPass()">
-                          <img *ngIf="!viewCPass" src="assets/img/Recurso 189xxxhdpi.png" class="liberi" alt="" (tap)="changeViewCPass()">
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                      <ion-col>
-                        <div class="">
-                            <p class="liberi-text"> Carga o toma una nueva fotografía</p>
-                            <br/>
-                            <div class="add-picture-image" text-center *ngIf="!RegisterFormData.profile_picture">
-                              <img src="assets/img/add-image.png" (tap)="openImageOptions()">
-                            </div>
-                            <div class="images-container" *ngIf="RegisterFormData.profile_picture">
-                              <img [src]="RegisterFormData.profile_picture">
-                              <ion-fab bottom right>
-                                <button ion-fab mini color="danger" (tap)="removeImage()">
-                                  <ion-icon name="trash"></ion-icon>
-                                </button>
-                              </ion-fab>
-                            </div>
-                          </div>
-                      </ion-col>
-                    </ion-row>
-                </ion-grid>
-            </form>
-            <br/>
-            <!--div text-center>
-                <button ion-button color="primary" round (tap)="next(1)">
-                    Siguiente&nbsp;
-                    <ion-icon name="md-arrow-forward"></ion-icon>
-                </button>
-            </div-->
-        </ion-slide>
-        <ion-slide>
-            <form [formGroup]="RegisterForm2">
-
-
-                <ion-grid>
-                    <ion-row>
-                        <ion-col>
-                            <img src="assets/img/Recurso 192xxxhdpi.png" class="liberi" alt="">
-                        </ion-col>
-                        <ion-col col-10>
-                            <input type="text" class="liberi-text" placeholder="Titular" formControlName="card_holder" [(ngModel)]="RegisterFormData.card_holder"
-                            [class.invalid]="!RegisterForm2.controls.card_holder.valid && (RegisterForm2.controls.card_holder.dirty || submitAttemptForm2)"
-                            [class.valid]="RegisterForm2.controls.card_holder.valid"/>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <img src="assets/img/pin.png" class="liberi" alt="">
-                        </ion-col>
-                        <ion-col col-10>
-                            <input type="text" class="liberi-text" placeholder="Dirección"  formControlName="address" [(ngModel)]="RegisterFormData.address"
-                                   [class.invalid]="!RegisterForm2.controls.address.valid && (RegisterForm2.controls.address.dirty || submitAttemptForm1)"
-                                   [class.valid]="RegisterForm2.controls.address.valid"/>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <img src="assets/img/menu/card.png" class="liberi" alt="">
-                        </ion-col>
-                        <ion-col col-10>
-                            <input type="tel" class="liberi-text" maxlength="19" placeholder="Número de Tarjeta" formControlName="card_number" [(ngModel)]="RegisterFormData.card_number"
-                            [class.invalid]="!RegisterForm2.controls.card_number.valid && (RegisterForm2.controls.card_number.dirty || submitAttemptForm2)"
-                            [class.valid]="RegisterForm2.controls.card_number.valid"/>
-                        </ion-col>
-                    </ion-row>
-
-                  <!--<ion-row>
-                    <ion-col>
-                      <ion-item no-padding>
-                        <ion-input type="text" placeholder="Dirección"  formControlName="address" [(ngModel)]="CardData.address"></ion-input>
-                      </ion-item>
-                    </ion-col>
-                  </ion-row>-->
-
-                    <ion-row>
-                      <ion-col>
-                        <img src="assets/img/Recurso 185xxxhdpi.png" class="liberi" alt="">
-                      </ion-col>
-                      <ion-col col-10>
-                        <ion-multi-picker class="liberi" item-content formControlName="card_expiration"
-                        separator="/" [(ngModel)]="RegisterFormData.card_expiration"
-                        [class.invalid]="!RegisterForm2.controls.card_expiration.valid && (RegisterForm2.controls.card_expiration.dirty || submitAttemptForm2)"
-                        [class.valid]="RegisterForm2.controls.card_expiration.valid"
-                        [multiPickerColumns]="ccOptions" cancelText="Cancelar"
-                        doneText="Seleccionar"></ion-multi-picker>
-                      </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col col-8 style="text-align: right;">
-                            <img src="assets/img/Recurso 190xxxhdpi.png" class="liberi" alt="">
-                        </ion-col>
-                        <ion-col col-4>
-                            <input type="tel" class="liberi-text" placeholder="CVV" formControlName="card_cvv" [(ngModel)]="RegisterFormData.card_cvv"
-                            [class.invalid]="!RegisterForm2.controls.card_cvv.valid && (RegisterForm2.controls.card_cvv.dirty || submitAttemptForm2)"
-                            [class.valid]="RegisterForm2.controls.card_cvv.valid"/>
-                        </ion-col>
-                    </ion-row>
-                    <ion-row>
-                        <ion-col>
-                            <div text-right>
-                                <liberi-button name="help" (tap)="showCreditCardExample()"></liberi-button>
-                            </div>
-                        </ion-col>
-                    </ion-row>
-                </ion-grid>
-              <img src="assets/img/credit-card-example.png" class="hidden-photo"  #ccImage/>
-            </form>
-            <br/>
-
-            <ion-grid no-padding>
-                <ion-row>
-                    <ion-item class="terms-item">
-                        <ion-label>Acepto términos condiciones</ion-label>
-                        <ion-checkbox [(ngModel)]="accepted_terms"></ion-checkbox>
-                    </ion-item>
-                    <button class="terms-link" (click)="goTo('TermsConditionsPage')">
-                        Ver términos y condiciones
+  <br *ngIf="verificationSent" />
+  <button ion-button full *ngIf="verificationSent" (click)="checkForVerification()">Ya verifiqué mi email</button>
+  <button ion-button full *ngIf="verificationSent" (click)="goToLogin()">Regresar</button>
+  <br>
+  <ion-slides paginationType="progress" *ngIf="!verificationSent" pager>
+    <ion-slide>
+      <form [formGroup]="RegisterForm1">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <div class="image-input-padding">
+                <p class="liberi-text">Por favor captura todos tus datos</p>
+              </div>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/Recurso 192xxxhdpi.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <input type="text" class="liberi-text" placeholder="Nombre"  formControlName="name" [(ngModel)]="RegisterFormData.name"
+                     [class.invalid]="!RegisterForm1.controls.name.valid && (RegisterForm1.controls.name.dirty || submitAttemptForm1)"
+                     [class.valid]="RegisterForm1.controls.name.valid"/>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/Recurso 192xxxhdpi.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <input type="text" class="liberi-text" placeholder="Apellidos" formControlName="last_name" [(ngModel)]="RegisterFormData.last_name"
+                     [class.invalid]="!RegisterForm1.controls.last_name.valid && (RegisterForm1.controls.last_name.dirty || submitAttemptForm1)"
+                     [class.valid]="RegisterForm1.controls.last_name.valid"/>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/Recurso 185xxxhdpi.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <ion-datetime class="liberi"
+                            displayFormat="DD/MMMM/YYYY"
+                            formControlName="birthday"
+                            cancelText="Cancelar"
+                            doneText="Seleccionar"
+                            [(ngModel)]="RegisterFormData.birthday"
+                            [class.invalid]="!RegisterForm1.controls.birthday.valid && (RegisterForm1.controls.birthday.dirty || submitAttemptForm1)"
+                            [class.valid]="RegisterForm1.controls.birthday.valid"></ion-datetime>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/Recurso 182xxxhdpi.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <select class="liberi-text" interface="popover" formControlName="gender" [(ngModel)]="RegisterFormData.gender"
+                      [class.invalid]="!RegisterForm1.controls.gender.valid && (RegisterForm1.controls.gender.touched || submitAttemptForm1)"
+                      [class.valid]="RegisterForm1.controls.gender.valid">
+                <option value="" disabled selected>Sexo</option>
+                <option value="female">Femenino</option>
+                <option value="male">Masculino</option>
+              </select>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/smarphone.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <input type="tel" class="liberi-text" placeholder="Teléfono Celular" formControlName="phone" [(ngModel)]="RegisterFormData.phone"
+                     [class.invalid]="!RegisterForm1.controls.phone.valid && (RegisterForm1.controls.phone.dirty || submitAttemptForm1)"
+                     [class.valid]="RegisterForm1.controls.phone.valid"/>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/pin.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <ion-label class="custom-my">Estado</ion-label>
+              <select class="liberi-text" placeholder="Estado" formControlName="state" [(ngModel)]="RegisterFormData.state"
+                      [class.invalid]="!RegisterForm1.controls.state.valid && (RegisterForm1.controls.state.touched || submitAttemptForm1)"
+                      [class.valid]="RegisterForm1.controls.state.valid"
+                      (change)="selectState($event)">
+                <option [value]="e.nombre" *ngFor="let e of estados">{{e.nombre}}</option>
+              </select>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/pin.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <ion-label class="custom-my">Ciudad</ion-label>
+              <select class="liberi-text" placeholder="Ciudad o Municipio" formControlName="city" [(ngModel)]="RegisterFormData.city"
+                      [class.invalid]="!RegisterForm1.controls.city.valid && (RegisterForm1.controls.city.touched || submitAttemptForm1)"
+                      [class.valid]="RegisterForm1.controls.city.valid">
+                <option [value]="m" *ngFor="let m of municipios">{{m}}</option>
+              </select>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/pin.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <input type="text" class="liberi-text" placeholder="Código Postal" formControlName="postal_code" [(ngModel)]="RegisterFormData.postal_code" type="tel"
+                     [class.invalid]="!RegisterForm1.controls.postal_code.valid && (RegisterForm1.controls.postal_code.touched || submitAttemptForm1)"
+                     [class.valid]="RegisterForm1.controls.postal_code.valid"/>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/Recurso 191xxxhdpi.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <input type="email" class="liberi-text" placeholder="Correo Electrónico" formControlName="email" [(ngModel)]="RegisterFormData.email"
+                     [class.invalid]="(!RegisterForm1.controls.email.valid && (RegisterForm1.controls.email.dirty || submitAttemptForm1)) || emailTaken"
+                     [class.valid]="RegisterForm1.controls.email.valid"/>
+              <small *ngIf="RegisterFormData.email && emailTaken" class="redColor">Este correo se encuentra en uso</small>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-2>
+              <img src="assets/img/Recurso 190xxxhdpi.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-8>
+              <input type="{{passType}}" class="liberi-text" placeholder="Contraseña" formControlName="password" [(ngModel)]="RegisterFormData.password"
+                     [class.invalid]="!RegisterForm1.controls.password.valid && (RegisterForm1.controls.password.dirty || submitAttemptForm1)"
+                     [class.valid]="RegisterForm1.controls.password.valid"/>
+            </ion-col>
+            <ion-col col-2>
+              <img *ngIf="viewPass" src="assets/img/Recurso 188xxxhdpi.png" class="liberi" alt="" (tap)="changeViewPass()">
+              <img *ngIf="!viewPass" src="assets/img/Recurso 189xxxhdpi.png" class="liberi" alt="" (tap)="changeViewPass()">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-2>
+              <img src="assets/img/Recurso 190xxxhdpi.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-8>
+              <input type="{{cpassType}}" class="liberi-text" placeholder="Confirmar Contrsaeña" formControlName="confirmPassword" [(ngModel)]="RegisterFormData.confirmPassword"  id="confirmPassword"
+                     [class.invalid]="(!RegisterForm1.controls.confirmPassword.valid && (RegisterForm1.controls.confirmPassword.dirty || submitAttemptForm1)) || (RegisterForm1.controls.confirmPassword.errors?.MatchPassword && RegisterFormData.confirmPassword)"
+                     [class.valid]="RegisterForm1.controls.confirmPassword.valid"/>
+            </ion-col>
+            <ion-col col-2>
+              <img *ngIf="viewCPass" src="assets/img/Recurso 188xxxhdpi.png" class="liberi" alt="" (tap)="changeViewCPass()">
+              <img *ngIf="!viewCPass" src="assets/img/Recurso 189xxxhdpi.png" class="liberi" alt="" (tap)="changeViewCPass()">
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div class="">
+                <p class="liberi-text"> Carga o toma una nueva fotografía</p>
+                <br/>
+                <div class="add-picture-image" text-center *ngIf="!RegisterFormData.profile_picture">
+                  <img src="assets/img/add-image.png" (tap)="openImageOptions()">
+                </div>
+                <div class="images-container" *ngIf="RegisterFormData.profile_picture">
+                  <img [src]="RegisterFormData.profile_picture">
+                  <ion-fab bottom right>
+                    <button ion-fab mini color="danger" (tap)="removeImage()">
+                      <ion-icon name="trash"></ion-icon>
                     </button>
-                </ion-row>
-            </ion-grid>
-        </ion-slide>
-    </ion-slides>
+                  </ion-fab>
+                </div>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+      </form>
+      <br/>
+      <!--div text-center>
+          <button ion-button color="primary" round (tap)="next(1)">
+              Siguiente&nbsp;
+              <ion-icon name="md-arrow-forward"></ion-icon>
+          </button>
+      </div-->
+    </ion-slide>
+    <ion-slide>
+      <form [formGroup]="RegisterForm2">
+
+
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/Recurso 192xxxhdpi.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <input type="text" class="liberi-text" placeholder="Titular" formControlName="card_holder" [(ngModel)]="RegisterFormData.card_holder"
+                     [class.invalid]="!RegisterForm2.controls.card_holder.valid && (RegisterForm2.controls.card_holder.dirty || submitAttemptForm2)"
+                     [class.valid]="RegisterForm2.controls.card_holder.valid"/>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/pin.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <input type="text" class="liberi-text" placeholder="Dirección"  formControlName="address" [(ngModel)]="RegisterFormData.address"
+                     [class.invalid]="!RegisterForm2.controls.address.valid && (RegisterForm2.controls.address.dirty || submitAttemptForm1)"
+                     [class.valid]="RegisterForm2.controls.address.valid"/>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/menu/card.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <input type="tel" class="liberi-text" maxlength="19" placeholder="Número de Tarjeta" formControlName="card_number" [(ngModel)]="RegisterFormData.card_number"
+                     [class.invalid]="!RegisterForm2.controls.card_number.valid && (RegisterForm2.controls.card_number.dirty || submitAttemptForm2)"
+                     [class.valid]="RegisterForm2.controls.card_number.valid"/>
+            </ion-col>
+          </ion-row>
+
+          <!--<ion-row>
+            <ion-col>
+              <ion-item no-padding>
+                <ion-input type="text" placeholder="Dirección"  formControlName="address" [(ngModel)]="CardData.address"></ion-input>
+              </ion-item>
+            </ion-col>
+          </ion-row>-->
+
+          <ion-row>
+            <ion-col>
+              <img src="assets/img/Recurso 185xxxhdpi.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-10>
+              <ion-multi-picker class="liberi" item-content formControlName="card_expiration"
+                                separator="/" [(ngModel)]="RegisterFormData.card_expiration"
+                                [class.invalid]="!RegisterForm2.controls.card_expiration.valid && (RegisterForm2.controls.card_expiration.dirty || submitAttemptForm2)"
+                                [class.valid]="RegisterForm2.controls.card_expiration.valid"
+                                [multiPickerColumns]="ccOptions" cancelText="Cancelar"
+                                doneText="Seleccionar"></ion-multi-picker>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col col-8 style="text-align: right;">
+              <img src="assets/img/Recurso 190xxxhdpi.png" class="liberi" alt="">
+            </ion-col>
+            <ion-col col-4>
+              <input type="tel" class="liberi-text" placeholder="CVV" formControlName="card_cvv" [(ngModel)]="RegisterFormData.card_cvv"
+                     [class.invalid]="!RegisterForm2.controls.card_cvv.valid && (RegisterForm2.controls.card_cvv.dirty || submitAttemptForm2)"
+                     [class.valid]="RegisterForm2.controls.card_cvv.valid"/>
+            </ion-col>
+          </ion-row>
+          <ion-row>
+            <ion-col>
+              <div text-right>
+                <liberi-button name="help" (tap)="showCreditCardExample()"></liberi-button>
+              </div>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+        <img src="assets/img/credit-card-example.png" class="hidden-photo"  #ccImage/>
+      </form>
+      <br/>
+
+      <ion-grid no-padding>
+        <ion-row>
+          <ion-item class="terms-item">
+            <ion-label>Acepto términos condiciones</ion-label>
+            <ion-checkbox [(ngModel)]="accepted_terms"></ion-checkbox>
+          </ion-item>
+          <button class="terms-link" (click)="goTo('TermsConditionsPage')">
+            Ver términos y condiciones
+          </button>
+        </ion-row>
+      </ion-grid>
+    </ion-slide>
+  </ion-slides>
 </ion-content>
 
-<ion-footer no-shadow>
-    <div class="liberi-logo-line"></div>
-    <div class="action">
-        <button *ngIf="formStep === 0" ion-button color="primary" class="liberi" round (tap)="next(1)">
-            <img src="assets/img/Recurso 180_1xxxhdpi.png" alt="">
-        </button>
-        <button *ngIf="formStep === 1" ion-button color="primary" class="liberi" round [disabled]="!accepted_terms" (tap)="next(2)">
-            <img src="assets/img/Recurso 180_1xxxhdpi.png" alt="">
-        </button>
-    </div>
-    <ion-toolbar position="bottom"></ion-toolbar>
+<ion-footer no-shadow *ngIf="!verificationSent">
+  <div class="liberi-logo-line"></div>
+  <div class="action">
+    <button *ngIf="formStep === 0" ion-button color="primary" class="liberi" round (tap)="next(1)">
+      <img src="assets/img/Recurso 180_1xxxhdpi.png" alt="">
+    </button>
+    <button *ngIf="formStep === 1" ion-button color="primary" class="liberi" round [disabled]="!accepted_terms" (tap)="next(2)">
+      <img src="assets/img/Recurso 180_1xxxhdpi.png" alt="">
+    </button>
+  </div>
+  <ion-toolbar position="bottom"></ion-toolbar>
 </ion-footer>

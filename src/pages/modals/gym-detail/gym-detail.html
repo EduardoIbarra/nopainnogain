@@ -50,7 +50,7 @@
   <div *ngIf="segment === 'img'" padding class="image-container">
 
     <ion-item *ngIf="!gym.images" text-center text-wrap no-lines>
-      Este gimnasio aún no cuenta con imágenes
+      Este CAF aún no cuenta con imágenes
     </ion-item>
 
     <div *ngIf="gym.images">
@@ -76,7 +76,7 @@
 
   <div *ngIf="segment === 'phone'" padding>
     <ion-item *ngIf="!gym.gym_phone" text-center text-wrap no-lines>
-      Este gimnasio aún no cuenta con imágenes
+      Este CAF aún no cuenta con imágenes
     </ion-item>
     <ion-item text-wrap *ngIf="gym.gym_phone">
       <b>Teléfono:</b> <span [innerHtml]="sharedService.phoneShorcut(gym.gym_phone)">{{sharedService.phoneShorcut(gym.gym_phone)}}</span>

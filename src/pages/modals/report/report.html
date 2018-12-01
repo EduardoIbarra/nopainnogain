@@ -11,9 +11,18 @@
 
 <ion-content padding class="liberi">
   <ion-list>
-    <ion-item>
-      <ion-label *ngIf="type === 'code'" color="primary" floating>Código</ion-label>
-      <ion-label *ngIf="type !== 'code'" color="primary" floating>Razón/Título</ion-label>
+    <ion-item *ngIf="type === 'code'">
+      <ion-label color="primary">Elige tu Código</ion-label>
+    </ion-item>
+
+    <ion-item *ngIf="type === 'code'">
+      <select class="liberi-text" [(ngModel)]="form.code">
+        <option [value]="p.purchase_code" *ngFor="let p of payments">{{p.purchase_code}} - {{p.tradename}} - {{p.purchase_date | date:'short'}}</option>
+      </select>
+    </ion-item>
+
+    <ion-item *ngIf="type !== 'code'">
+      <ion-label color="primary" floating>Razón/Título</ion-label>
       <ion-input [(ngModel)]="form.subject" type="text"></ion-input>
     </ion-item>
 

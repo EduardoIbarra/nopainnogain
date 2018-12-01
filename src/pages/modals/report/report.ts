@@ -12,6 +12,7 @@ import {SharedService} from "../../../services/shared.service";
 export class ReportPage {
     type: string;
     form: any = {};
+    payments: any = [];
     constructor(
         public navCtrl: NavController,
         public navParams: NavParams,
@@ -26,7 +27,8 @@ export class ReportPage {
 
     ionViewDidLoad() {
         this.type = this.navParams.get('type') || null;
-        console.log(this.type);
+        this.payments = (this.type === 'code') ? this.navParams.get('payments') : null;
+        console.log(this.payments);
     }
 
     dismiss() {
@@ -39,13 +41,16 @@ export class ReportPage {
       });
       loader.present();
       const user = this.sharedService.getUserData();
-      const report = {
+      const report: any = {
         user: user.uid,
         uid: Date.now(),
-        subject: this.form.subject,
+        subject: this.form.subject || '',
         message: this.form.message || '',
         type: this.type
       };
+      if(this.type === 'code') {
+        report.code = this.form.code;
+      }
       this.helpService.sendReport(report).then((data) => {
         console.log(data);
         loader.dismiss();

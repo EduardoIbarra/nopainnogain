@@ -331,7 +331,7 @@ export class HelpPage {
       reportModal.present();
     }
     if (item.url_type === 'send-code') {
-      let reportModal = this.modalCtrl.create(ReportPage, { type: 'code' });
+      let reportModal = this.modalCtrl.create(ReportPage, { type: 'code', payments: this.purchaseHistory });
       reportModal.present();
     }
     if (item.url_type === 'page') {

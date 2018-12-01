@@ -7,6 +7,7 @@ import {SharedService} from "../../services/shared.service";
 import {AlertService} from "../../services/alert.service";
 import {Facebook} from "@ionic-native/facebook";
 import {Storage} from "@ionic/storage";
+import {AngularFireAuth} from "angularfire2/auth";
 
 
 @IonicPage()
@@ -42,7 +43,8 @@ export class LoginPage {
                 public userService: UsersService,
                 public loadingService: LoadingService,
                 public authService: AuthService,
-                public storage: Storage) {
+                public storage: Storage,
+                private firebaseAuth: AngularFireAuth) {
     }
 
     login() {
@@ -52,7 +54,7 @@ export class LoginPage {
             console.log(response);
             this.getUserData(response.uid);
         }).catch((error) => {
-            alert(JSON.stringify(error));
+            // alert(JSON.stringify(error));
             console.log(error);
             console.log('Something went wrong:', error.message);
             if (error.code === 'auth/user-not-found') this.alertService.incorrectEmailLoginCredentials();
@@ -71,9 +73,26 @@ export class LoginPage {
 
     getUserData(uid) {
         this.userService.getUser(uid).then(response => {
-            console.log(response.val());
-            this.loadingService.dismiss();
-            this.sharedService.login(response.val(), this.navCtrl);
+            // console.log(response.val());
+            // this.loadingService.dismiss();
+            // this.sharedService.login(response.val(), this.navCtrl);
+
+
+          this.authService.reloadUser().then((data) => {
+            const emailVerified = this.firebaseAuth.auth.currentUser.emailVerified;
+            if (emailVerified) {
+              this.loadingService.dismiss();
+              this.sharedService.login(response.val(), this.navCtrl);
+            } else {
+              this.loadingService.dismiss();
+              alert('Tu email aun no ha sido verificado. Verifícalo usando el enlace del correo que se te envió cuando creaste tu cuenta.');
+            }
+          }).catch((error) => {
+            console.log(error);
+          });
+
+
+
         }).catch((error) => {
             console.log(error);
             console.log('Something went wrong:', error.message);
