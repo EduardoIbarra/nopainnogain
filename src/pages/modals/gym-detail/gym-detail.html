@@ -22,7 +22,7 @@
       </ion-item>
 
       <ion-item text-wrap text-center>
-        <span class="price-tag">${{gym.gym_monthly_fee | number: '1.2-2'}} MXN</span>
+        <span class="price-tag">${{gym.CostoIva | number: '1.2-2'}} MXN</span>
         <br>
         <liberi-button name="cart" (click)="purchase()"></liberi-button>
       </ion-item>

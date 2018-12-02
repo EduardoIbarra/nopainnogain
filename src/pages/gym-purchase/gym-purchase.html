@@ -21,7 +21,7 @@
     <ion-item text-center>
       <h1><b>Bonga GYM</b></h1>
       <img src="assets/img/example/bonga.jpg">
-      <h2>Monto: <span ion-text color="danger">${{gym.gym_monthly_fee | number: '1.2-2'}} MXN</span></h2>
+      <h2>Monto: <span ion-text color="danger">${{gym.CostoIva | number: '1.2-2'}} MXN</span></h2>
     </ion-item>
     <button ion-item detail-none text-center *ngIf="cards.length" (tap)="showCardAlert()" text-wrap>
       <h3>Tarjeta</h3>

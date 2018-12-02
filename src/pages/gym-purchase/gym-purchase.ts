@@ -87,12 +87,12 @@ export class GymPurchasePage {
                           console.log('cvv');
                           console.log(this.sharedService.UserData);
                           alert.dismiss();
-                          this.paymentService.GymPayment(this.selectedCard, this.user, this.gym.gym_monthly_fee).subscribe((response) => {
+                          this.paymentService.GymPayment(this.selectedCard, this.user, this.gym.CostoIva).subscribe((response) => {
                               console.log(response);
                               let payment: any = {
                                   id: response.id,
                                   authorization: response.authorization,
-                                  amount: this.gym.gym_monthly_fee || '20',
+                                  amount: this.gym.CostoIva || '20',
                                   generated_code: this.sharedService.generateCode(),
                                   gym: this.gym.id,
                                   status: 'available',
@@ -140,7 +140,7 @@ export class GymPurchasePage {
                   let payment: any = {
                       transaction_id: success.response.id,
                       transaction_state: success.response.state,
-                      amount: this.gym.gym_monthly_fee || '20',
+                      amount: this.gym.CostoIva || '20',
                       generated_code: this.sharedService.generateCode(),
                       gym: this.gym.id,
                       status: 'available',
