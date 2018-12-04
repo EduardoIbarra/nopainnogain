@@ -47,12 +47,13 @@ export class PaymentService {
     return this.afDB.object('/payments/' + uid);
   }
 
-  getPayment(uid, code) {
-    return this.afDB.object('/payments/' + uid + '/' + code);
+  getPayment(code) {
+    return this.afDB.object('/payments_flat/' + code);
   }
 
   setPaymentProperty(uid, code, property, value) {
-    return this.afDB.object('/payments/' + uid + '/' + code + '/' + property).set(value);
+    this.afDB.object('/payments/' + uid + '/' + code + '/' + property).set(value);
+    return this.afDB.object('/payments_flat/' + code + '/' + property).set(value);
   }
 
   generateQrCode(code) {
@@ -60,6 +61,7 @@ export class PaymentService {
   }
 
   createPayment(uid, code, payment) {
-    return this.afDB.object('/payments/' + uid + '/' + code).set(payment);
+    this.afDB.object('/payments/' + uid + '/' + code).set(payment);
+    return this.afDB.object('/payments_flat/' + code).set(payment);
   }
 }

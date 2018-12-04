@@ -182,6 +182,6 @@ export class PromotionsPage {
   shouldBeDisabled(v) {
     v = v[0];
     const search = this.gifts.filter((g) => { return g.from.uid === this.user.uid && g.gym.id === v.gym.id});
-    return (search.length <= 0) ? true : false;
+    return (search.length > 0);
   }
 }

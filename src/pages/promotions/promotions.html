@@ -63,7 +63,7 @@
       <ion-col col-12 padding-vertical text-center>
         <h2>REGALAR VISITAS EN:</h2>
         <button (click)="give(v)" *ngFor="let v of groupedScans" [disabled]="shouldBeDisabled(v)" ion-button block class="button-gray-gradient">
-          {{v[0].gym.commercial_name || v[0].gym.tradename}} <span *ngIf="shouldBeDisabled(v)">(Usado)</span>
+          {{v[0].gym.commercial_name || v[0].gym.tradename}} <span *ngIf="shouldBeDisabled(v)"> (Usado)</span>
         </button>
       </ion-col>
     </ion-row>

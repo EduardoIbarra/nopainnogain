@@ -92,11 +92,12 @@ export class GymPurchasePage {
                               let payment: any = {
                                   id: response.id,
                                   authorization: response.authorization,
-                                  amount: this.gym.CostoIva || '20',
+                                  amount: this.gym.CostoIva || '40',
                                   generated_code: this.sharedService.generateCode(),
                                   gym: this.gym.id,
                                   status: 'available',
-                                  timestamp: Math.round((new Date()).getTime())
+                                  timestamp: Math.round((new Date()).getTime()),
+                                  uid: this.sharedService.UserData.uid
                               };
                               console.log('payment');
                               console.log(payment);
