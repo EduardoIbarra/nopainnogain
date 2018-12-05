@@ -41,9 +41,25 @@ page-signup {
   }
 
   .custom-my{
-    margin-top: -20px !important;
+    margin-top: 5px !important;
     margin-bottom: 5px !important;
     text-align: left;
   }
 
+  .alert-md .alert-wrapper, .alert-md .alert-head{
+    background-color: #f8f8f8 !important;
+  }
+  ion-alert .alert-wrapper{
+    background-color: #f8f8f8 !important;
+  }
+  .alert-ios .alert-wrapper{
+    background-color: #f8f8f8 !important;
+  }
+  .alert-md .alert-button, .alert-ios .alert-button{
+    color: #1f4487 !important;
+  }
+
+}
+.alert-ios .alert-radio-label, .alert-md .alert-radio-label{
+  color: #ffffff !important;
 }
