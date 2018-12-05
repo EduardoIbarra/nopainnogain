@@ -47,7 +47,7 @@ export class SessionCodePage {
   validateCode() {
     alert(this.code);
     if (!this.code) return;
-    const stream = this.paymentService.getPayment(this.currentUser.uid, this.code).valueChanges().subscribe((payment) => {
+    const stream = this.paymentService.getPayment(this.code.generated_code).valueChanges().subscribe((payment) => {
       this.payment = payment;
       if (this.payment && this.payment.status == 'available') {
         this.gymService.getGym(this.payment.gym).valueChanges().subscribe((gym) => {
@@ -62,21 +62,22 @@ export class SessionCodePage {
   }
 
   acceptCode() {
+    console.log(this.code);
     const scan = {
       gym: this.gym.id,
-      scanned_code: this.code,
+      scanned_code: this.code.generated_code,
       timestamp: Date.now(),
-      uid: this.currentUser.uid
+      uid: this.code.uid
     };
     this.scanService.createScan(scan).then(() => {
-      this.paymentService.setPaymentProperty(this.currentUser.uid, this.code, 'status', 'used').then((result) => {
+      this.paymentService.setPaymentProperty(this.currentUser.uid, this.code.generated_code, 'status', 'used').then((result) => {
         this.validationStep++;
       }).catch((error) => {
-        this.alertService.acceptCode(this.code)
+        this.alertService.acceptCode(this.code.generated_code)
         console.log(error);
       });
     }).catch((error) => {
-      this.alertService.acceptCode(this.code)
+      this.alertService.acceptCode(this.code.generated_code)
       console.log(error);
     });
   }

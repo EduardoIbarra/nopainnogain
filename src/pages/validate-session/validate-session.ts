@@ -66,11 +66,11 @@ export class ValidateSessionPage {
   }
 
   validateCode(code) {
-    const stream = this.paymentService.getPayment(this.currentUser.uid, code).valueChanges().subscribe((payment) => {
+    const stream = this.paymentService.getPayment(code).valueChanges().subscribe((payment) => {
       this.payment = payment;
       if (this.payment && this.payment.status == 'available') {
         this.gymService.getGym(this.payment.gym).valueChanges().subscribe((gym) => {
-          this.modalCtrl.create('SessionCodePage', {code: code, gym: gym}).present();
+          this.modalCtrl.create('SessionCodePage', {code: payment, gym: gym}).present();
           stream.unsubscribe();
           this.notificationService.getHistoryToNotifications();
         });
