@@ -173,7 +173,7 @@ export class SignupPage {
       ])],
       card_number: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(16),
+        Validators.minLength(15),
         Validators.maxLength(16),
         Validators.pattern('^[0-9]*$'),
       ])],
@@ -183,6 +183,7 @@ export class SignupPage {
       card_cvv: ['', Validators.compose([
         Validators.required,
         Validators.minLength(3),
+        Validators.maxLength(4),
         Validators.pattern('^[0-9]*$'),
       ])]
     });

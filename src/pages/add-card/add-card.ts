@@ -58,12 +58,15 @@ export class AddCardPage {
       ])],
       CardNumber: ['', Validators.compose([
         Validators.required,
-        Validators.minLength(16),
+        Validators.minLength(15),
         Validators.maxLength(16),
         Validators.pattern('^[0-9]*$'),
       ])],
       CCV: ['', Validators.compose([
         Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(4),
+        Validators.pattern('^[0-9]*$'),
       ])],
       ExpMonth: ['', Validators.compose([
         Validators.required
