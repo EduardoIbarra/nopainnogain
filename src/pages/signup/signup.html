@@ -258,7 +258,7 @@
             <ion-col col-4>
               <input type="tel" class="liberi-text" placeholder="CVV" formControlName="card_cvv" [(ngModel)]="RegisterFormData.card_cvv"
                      [class.invalid]="!RegisterForm2.controls.card_cvv.valid && (RegisterForm2.controls.card_cvv.dirty || submitAttemptForm2)"
-                     [class.valid]="RegisterForm2.controls.card_cvv.valid"/>
+                     [class.valid]="RegisterForm2.controls.card_cvv.valid" maxlength="4"/>
             </ion-col>
           </ion-row>
           <ion-row>

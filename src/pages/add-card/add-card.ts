@@ -129,4 +129,13 @@ export class AddCardPage {
     imageViewer.present();
   }
 
+  changeCVV(value){
+        //manually launch change detection
+      if(value.toString().length <= 4){
+          this.CardData.CCV = value;
+      }else{
+          this.CardData.CCV = value.substring(0,4);
+      }
+  }
+
 }
