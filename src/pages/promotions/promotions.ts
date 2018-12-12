@@ -142,9 +142,10 @@ export class PromotionsPage {
     alert.present();
   }
   give(v) {
+    console.log('gym: ' + v);
     let alert = this.alertCtrl.create({
       title: 'Regalar Visita',
-      message: 'Ingresa el email del amigo a quien le deseas regalar una visita para ' + v[0].gym.commercial_name,
+      message: 'Ingresa el email del amigo a quien le deseas regalar una visita para ' + v[0].gym.tradename,
       inputs: [
         {
           name: 'email',
