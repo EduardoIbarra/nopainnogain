@@ -1,52 +1,57 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title class="liberi">Login</ion-title>
-    </ion-navbar>
-    <navbar-bump></navbar-bump>
+  <ion-navbar>
+    <ion-title class="liberi">Login</ion-title>
+  </ion-navbar>
+  <navbar-bump></navbar-bump>
 </ion-header>
 
 
 <ion-content padding>
 
-    <ion-list no-lines class="login-container">
-        <form (submit)="login()">
-            <ion-item>
-                <ion-input type="email" placeholder="Correo Electrónico" name="username" [(ngModel)]="UserData.username"></ion-input>
-                <ion-icon item-start name="ios-person"></ion-icon>
-            </ion-item>
-            <ion-item>
-                <ion-input type="password" placeholder="Contraseña" name="password" [(ngModel)]="UserData.password"></ion-input>
-                <ion-icon item-start name="md-lock"></ion-icon>
-            </ion-item>
+  <ion-list no-lines class="login-container">
+    <form (submit)="login()">
+      <ion-item>
+        <ion-input type="email" placeholder="Correo Electrónico" name="username" [(ngModel)]="UserData.username"></ion-input>
+        <ion-icon item-start name="ios-person"></ion-icon>
+      </ion-item>
 
-            <div text-center padding-top>
-                <liberi-button name="enter" [disabled]="!UserData.username || !UserData.password"></liberi-button>
-            </div>
-        </form>
+      <p *ngIf="enableEmailVerification">
+        <b><a (click)="sendVerificationEmail()">Reenviar correo de verificación</a></b>
+      </p>
 
-        <div text-center padding class="danger-text" (click)="navCtrl.push('PasswordPage')">
-            <h5>¿Olvidaste tu contraseña?</h5>
-        </div>
+      <ion-item>
+        <ion-input type="password" placeholder="Contraseña" name="password" [(ngModel)]="UserData.password"></ion-input>
+        <ion-icon item-start name="md-lock"></ion-icon>
+      </ion-item>
 
-        <!--<div text-center padding class="pato0">
-            <button ion-button block color="light" class="facebook-button"  (tap)="facebookLogin()">
-                <ion-icon name="logo-facebook" class="social-icon"></ion-icon>
-                Ingresar con Facebook
-            </button>
-        </div>-->
+      <div text-center padding-top>
+        <liberi-button name="enter" [disabled]="!UserData.username || !UserData.password"></liberi-button>
+      </div>
+    </form>
 
-        <div text-center padding class="pato0" class="danger-text">
-            <h5>¿Aún no tienes una cuenta?</h5>
-        </div>
+    <div text-center padding class="danger-text" (click)="navCtrl.push('PasswordPage')">
+      <h5>¿Olvidaste tu contraseña?</h5>
+    </div>
 
-        <div text-center padding class="pato0">
-            <button ion-button block color="light" class="register-button" (click)="navCtrl.push('SignupPage')">
-                Regístrate
-            </button>
-        </div>
-    </ion-list>
+    <!--<div text-center padding class="pato0">
+        <button ion-button block color="light" class="facebook-button"  (tap)="facebookLogin()">
+            <ion-icon name="logo-facebook" class="social-icon"></ion-icon>
+            Ingresar con Facebook
+        </button>
+    </div>-->
+
+    <div text-center padding class="pato0" class="danger-text">
+      <h5>¿Aún no tienes una cuenta?</h5>
+    </div>
+
+    <div text-center padding class="pato0">
+      <button ion-button block color="light" class="register-button" (click)="navCtrl.push('SignupPage')">
+        Regístrate
+      </button>
+    </div>
+  </ion-list>
 </ion-content>
 <ion-footer no-shadow>
-    <div class="liberi-logo-line"></div>
-    <ion-toolbar position="bottom"></ion-toolbar>
+  <div class="liberi-logo-line"></div>
+  <ion-toolbar position="bottom"></ion-toolbar>
 </ion-footer>

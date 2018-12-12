@@ -134,7 +134,7 @@
               <input type="email" class="liberi-text" placeholder="Correo Electrónico" formControlName="email" [(ngModel)]="RegisterFormData.email"
                      [class.invalid]="(!RegisterForm1.controls.email.valid && (RegisterForm1.controls.email.dirty || submitAttemptForm1)) || emailTaken"
                      [class.valid]="RegisterForm1.controls.email.valid"/>
-              <small *ngIf="RegisterFormData.email && emailTaken" class="redColor">Este correo se encuentra en uso</small>
+              <small *ngIf="RegisterFormData.email && emailTaken" class="redColor">Este correo se encuentra en uso. Si no lo has verificado aun, trata de <a (click)="goToLogin()">hacer login</a> y se te permitirá reenviar el correo de confirmación.</small>
             </ion-col>
           </ion-row>
           <ion-row>

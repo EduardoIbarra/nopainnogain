@@ -45,19 +45,19 @@ export class SessionCodePage {
   }
 
   validateCode() {
-    alert(this.code);
-    if (!this.code) return;
-    const stream = this.paymentService.getPayment(this.code.generated_code).valueChanges().subscribe((payment) => {
+    const stream = this.paymentService.getPayment(this.code).valueChanges().subscribe((payment) => {
       this.payment = payment;
-      if (this.payment && this.payment.status == 'available') {
-        this.gymService.getGym(this.payment.gym).valueChanges().subscribe((gym) => {
-          this.gym = gym;
-          this.validationStep++;
-          stream.unsubscribe();
-        });
-      } else {
-        this.alertService.validateCodeError()
-      }
+      if (!this.code) return;
+        this.payment = payment;
+        if (this.payment && this.payment.status == 'available') {
+          this.gymService.getGym(this.payment.gym).valueChanges().subscribe((gym) => {
+            this.gym = gym;
+            this.validationStep++;
+            stream.unsubscribe();
+          });
+        } else {
+          this.alertService.validateCodeError()
+        }
     });
   }
 
@@ -65,9 +65,9 @@ export class SessionCodePage {
     console.log(this.code);
     const scan = {
       gym: this.gym.id,
-      scanned_code: this.code.generated_code,
+      scanned_code: this.code,
       timestamp: Date.now(),
-      uid: this.code.uid
+      uid: this.payment.uid
     };
     this.scanService.createScan(scan).then(() => {
       this.paymentService.setPaymentProperty(this.currentUser.uid, this.code.generated_code, 'status', 'used').then((result) => {
