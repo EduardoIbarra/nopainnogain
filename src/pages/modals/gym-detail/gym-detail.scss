@@ -145,4 +145,31 @@ page-gym-detail {
     font-size: 1.8rem;
     line-height: 1.5;
   }
+
+  .comments-section {
+    .comments-section-item {
+      position: relative;
+      background: white;
+      border-radius: 5px;
+      padding: 8px;
+      margin-bottom: 10px;
+      ion-icon {
+        padding-right: 10px;
+      }
+      ion-avatar {
+        display: -webkit-box;
+        margin-bottom: 0;
+      }
+    }
+  }
+
+  .rate-stars {
+    ion-icon {
+      font-size: 2em;
+      &[name='star'] {
+        color: map_get($colors, primary);
+      }
+
+    }
+  }
 }

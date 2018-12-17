@@ -295,7 +295,12 @@ export class HomePage {
         google.maps.event.addListener(marker, 'click', () => {
           // infoWindow.open(map, marker);
           let modal = this.modalCtrl.create('GymDetailPage', {data: places[i]});
-          modal.present();
+          modal.present().then(() => {
+            this.NotificationNumber = this.notificationService.Notifications.length;
+          });
+          modal.onDidDismiss(() => {
+            this.NotificationNumber = this.notificationService.Notifications.length;
+          })
         });
         //Save marker in array
         this.markersArray.push(marker);

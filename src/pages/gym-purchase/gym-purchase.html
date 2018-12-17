@@ -20,7 +20,7 @@
   <div *ngIf="!isPurchaseDone">
     <ion-item text-center>
       <h1><b>Bonga GYM</b></h1>
-      <img src="assets/img/example/bonga.jpg">
+      <img class="rad15" src="assets/img/example/bonga.jpg">
       <h2>Monto: <span ion-text color="danger">${{gym.CostoIva | number: '1.2-2'}} MXN</span></h2>
     </ion-item>
     <button ion-item detail-none text-center *ngIf="cards.length" (tap)="showCardAlert()" text-wrap>
@@ -41,7 +41,7 @@
   <div *ngIf="isPurchaseDone">
     <div text-center>
       <br />
-      <img [src]="'https://api.qrserver.com/v1/create-qr-code/?size=550x550&data=' + generated_code" class="qr-code" style="width: 40%;">
+      <img class="rad15" [src]="'https://api.qrserver.com/v1/create-qr-code/?size=550x550&data=' + generated_code" class="qr-code" style="width: 40%;">
       <br />
       <b>{{generated_code}}</b>
     </div>

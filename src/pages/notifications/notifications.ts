@@ -50,6 +50,7 @@ export class NotificationsPage {
           this.items.push(g);
         });
         this.items.sort((a, b) => {return b.timestamp - a.timestamp});
+        console.log(this.items);
       }, (error) => {
         console.log(error);
       });

@@ -82,6 +82,30 @@
       <b>Teléfono:</b> <span [innerHtml]="sharedService.phoneShorcut(gym.gym_phone)">{{sharedService.phoneShorcut(gym.gym_phone)}}</span>
     </ion-item>
   </div>
+
+  <div *ngIf="segment === 'star'" padding>
+    <div *ngIf="!gym.reviews">
+      <h2 text-center><b>Aun no hay comentarios para este Gym</b></h2>
+    </div>
+    <div *ngIf="gym.reviews">
+      <h2 text-center><b>Comentarios</b></h2>
+      <div class="comments-section">
+        <div class="comments-section-item" *ngFor="let r of gym.reviews">
+          <ion-avatar item-start>
+            <ion-icon name="quote"></ion-icon>
+            <div><p text-wrap>{{r.message}}</p></div>
+            <div class="rate-stars small">
+              <ion-icon name="{{getStarNameReview(1, r.rating)}}"></ion-icon>
+              <ion-icon name="{{getStarNameReview(2, r.rating)}}"></ion-icon>
+              <ion-icon name="{{getStarNameReview(3, r.rating)}}"></ion-icon>
+              <ion-icon name="{{getStarNameReview(4, r.rating)}}"></ion-icon>
+              <ion-icon name="{{getStarNameReview(5, r.rating)}}"></ion-icon>
+            </div>
+          </ion-avatar>
+        </div>
+      </div>
+    </div>
+  </div>
 </ion-content>
 <ion-footer>
   <ion-segment>
@@ -96,6 +120,9 @@
     </ion-segment-button>
     <ion-segment-button (tap)="activeSegment('phone')" [class.segment-activated]="segment === 'phone'" value="'phone">
       <ion-icon name="call"></ion-icon>
+    </ion-segment-button>
+    <ion-segment-button (tap)="activeSegment('star')" [class.segment-activated]="segment === 'star'" value="'star">
+      <ion-icon name="star"></ion-icon>
     </ion-segment-button>
   </ion-segment>
 </ion-footer>

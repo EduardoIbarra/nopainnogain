@@ -67,7 +67,8 @@ export class GymPurchasePage {
               {
                   name: 'card_cvv',
                   placeholder: 'CVV',
-                  type: 'password'
+                  type: 'password',
+                  id: 'maxLength5'
               }
           ],
           buttons: [
@@ -123,7 +124,7 @@ export class GymPurchasePage {
               }
           ]
       });
-      alert.present();
+      alert.present().then(result =>{document.getElementById('maxLength5').setAttribute('maxlength','4');});
     console.log(this.selectedCard);
     console.log('user');
     console.log(this.sharedService.UserData);

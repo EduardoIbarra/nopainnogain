@@ -430,12 +430,7 @@ export class SignupPage {
         data.data.card.address = this.user.address;
         this.usersService.registerCard(this.user, data.data);
 
-        this.authService.sendVerificationEmail().then((data) => {
-          this.verificationSent = true;
-          alert('Hemos enviado un email de verificación para que puedas ingresar a tu cuenta');
-        }).catch((error) => {
-          console.log(error);
-        });
+        this.sendVerificationEmail();
         //this.sharedService.login(this.user, this.navCtrl);
       }, (error) => {
         console.log(error);
@@ -480,5 +475,14 @@ export class SignupPage {
 
   goToLogin() {
     this.navCtrl.setRoot(LoginPage);
+  }
+
+  sendVerificationEmail() {
+    this.authService.sendVerificationEmail().then((data) => {
+      this.verificationSent = true;
+      alert('Hemos enviado un email de verificación para que puedas ingresar a tu cuenta');
+    }).catch((error) => {
+      console.log(error);
+    });
   }
 }

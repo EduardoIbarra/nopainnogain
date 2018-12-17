@@ -70,7 +70,7 @@ export class SessionCodePage {
       uid: this.payment.uid
     };
     this.scanService.createScan(scan).then(() => {
-      this.paymentService.setPaymentProperty(this.currentUser.uid, this.code.generated_code, 'status', 'used').then((result) => {
+      this.paymentService.setPaymentProperty(this.payment.uid, this.code, 'status', 'used').then((result) => {
         this.validationStep++;
       }).catch((error) => {
         this.alertService.acceptCode(this.code.generated_code)

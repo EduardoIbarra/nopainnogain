@@ -40,7 +40,21 @@ page-purchase-history {
 
       }
     }
-
+    .comments-section {
+      .comments-section-item {
+        background: white;
+        border-radius: 5px;
+        padding: 8px;
+        margin-bottom: 10px;
+        ion-icon {
+          padding-right: 10px;
+        }
+        ion-avatar {
+          display: -webkit-box;
+          margin-bottom: 0;
+        }
+      }
+    }
     .comments-section {
       .comments-section-item {
         background: white;

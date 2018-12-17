@@ -11,6 +11,7 @@
 <ion-content padding>
   <br *ngIf="verificationSent" />
   <button ion-button full *ngIf="verificationSent" (click)="checkForVerification()">Ya verifiqué mi email</button>
+  <button ion-button full *ngIf="verificationSent" (click)="sendVerificationEmail()">Volver a enviar verificación</button>
   <button ion-button full *ngIf="verificationSent" (click)="goToLogin()">Regresar</button>
   <br>
   <ion-slides paginationType="progress" *ngIf="!verificationSent" pager>

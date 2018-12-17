@@ -17,7 +17,7 @@
         <ion-avatar item-start>
           <img [src]="g.logo || 'https://seeklogo.com/images/G/gym-logo-3F51052256-seeklogo.com.png'">
         </ion-avatar>
-        <h2>Realizaste un compra en {{g.commercial_name}}</h2>
+        <h2>Realizaste un compra en {{g.tradename || g.commercial_name}}</h2>
         <p>¡Tu código sigue vigente!</p>
       </button>
       <button class="btn-notification" *ngIf="g.gym" ion-item no-lines (click)="generateCode(g)">
