@@ -45,9 +45,21 @@ export class SessionCodePage {
   }
 
   validateCode() {
-    const stream = this.paymentService.getPayment(this.code).valueChanges().subscribe((payment) => {
-      this.payment = payment;
-      if (!this.code) return;
+    if (this.code && this.code.generated_code) {
+      this.payment = JSON.parse(JSON.stringify(this.code));
+      this.code = JSON.parse(JSON.stringify(this.code.generated_code));
+      if (this.payment && this.payment.status == 'available') {
+        this.gymService.getGym(this.payment.gym).valueChanges().subscribe((gym) => {
+          this.gym = gym;
+          this.validationStep++;
+        });
+      } else {
+        this.alertService.validateCodeError()
+      }
+    } else {
+      const stream = this.paymentService.getPayment(this.code).valueChanges().subscribe((payment) => {
+        this.payment = payment;
+        if (!this.code) return;
         this.payment = payment;
         if (this.payment && this.payment.status == 'available') {
           this.gymService.getGym(this.payment.gym).valueChanges().subscribe((gym) => {
@@ -58,10 +70,11 @@ export class SessionCodePage {
         } else {
           this.alertService.validateCodeError()
         }
-    });
+      });
+    }
   }
 
-  acceptCode() {
+  doAcceptCode() {
     console.log(this.code);
     const scan = {
       gym: this.gym.id,
@@ -80,5 +93,18 @@ export class SessionCodePage {
       this.alertService.acceptCode(this.code.generated_code)
       console.log(error);
     });
+  }
+  acceptCode() {
+    if (!this.payment || !this.payment.uid) {
+      this.code = (this.code.generated_code) ? this.code.generated_code : this.code;
+      const stream = this.paymentService.getPayment(this.code).valueChanges().subscribe((payment) => {
+        this.payment = payment;
+        stream.unsubscribe();
+        this.doAcceptCode();
+      });
+    } else {
+      this.doAcceptCode();
+    }
+
   }
 }

@@ -69,9 +69,10 @@ export class ValidateSessionPage {
     const stream = this.paymentService.getPayment(code).valueChanges().subscribe((payment) => {
       this.payment = payment;
       if (this.payment && this.payment.status == 'available') {
-        this.gymService.getGym(this.payment.gym).valueChanges().subscribe((gym) => {
+        const stream2 = this.gymService.getGym(this.payment.gym).valueChanges().subscribe((gym) => {
           this.modalCtrl.create('SessionCodePage', {code: payment, gym: gym}).present();
           stream.unsubscribe();
+          stream2.unsubscribe();
           this.notificationService.getHistoryToNotifications();
         });
       } else {
