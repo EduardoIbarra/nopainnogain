@@ -18,7 +18,7 @@ export class WelcomePage {
     ionViewDidLoad() {
         setTimeout(() => {
           console.log(this.user);
-          if (this.user.gym_owner) {
+          if (this.user && this.user.gym_owner) {
             this.sharedService.setPageRoot('ValidateSessionPage', true);
           } else {
             this.sharedService.setPageRoot('HomePage', true);
