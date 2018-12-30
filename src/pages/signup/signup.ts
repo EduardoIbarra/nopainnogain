@@ -255,7 +255,7 @@ export class SignupPage {
   formStep = 0;
   next(formNumber) {
     if (formNumber === 1) {
-      if(this.emailTaken) {
+      if(this.emailTaken && this.RegisterFormData.email) {
         alert('El email ingresado ya existe en la base de datos, por favor ingrese otro.');
         return;
       }

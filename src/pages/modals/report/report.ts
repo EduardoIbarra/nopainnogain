@@ -32,14 +32,11 @@ export class ReportPage {
     }
 
     dismiss() {
+      console.log('dismiss');
         this.viewCtrl.dismiss();
     }
 
     send() {
-      const loader = this.loadingCtrl.create({
-        content: "Enviando..."
-      });
-      loader.present();
       const user = this.sharedService.getUserData();
       const report: any = {
         user: user.uid,
@@ -49,8 +46,16 @@ export class ReportPage {
         type: this.type
       };
       if(this.type === 'code') {
+        if (!this.form.code) {
+          alert('Debes elegir un código para revisión');
+          return;
+        }
         report.code = this.form.code;
       }
+      const loader = this.loadingCtrl.create({
+        content: "Enviando..."
+      });
+      loader.present();
       this.helpService.sendReport(report).then((data) => {
         console.log(data);
         loader.dismiss();

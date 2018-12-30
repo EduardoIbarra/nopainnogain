@@ -522,7 +522,7 @@ img.avatarBase64 {
   z-index: 10;
 }
 .alert-wrapper{
-  background-color: rgba(0,0,0,0.6) !important;
+  background-color: rgba(0,0,0,0.8) !important;
   color: #ffffff;
   min-width: 80%;
 }
@@ -571,4 +571,7 @@ navbar-bump{
 }
 .alert-input-wrapper > input {
   color: black;
+}
+image-viewer > ion-backdrop {
+  opacity: .8 !important;
 }

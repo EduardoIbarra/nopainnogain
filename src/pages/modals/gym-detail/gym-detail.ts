@@ -31,6 +31,7 @@ export class GymDetailPage {
     this.gym = navParams.get('data');
     if (this.gym.reviews) {
       this.gym.reviews = Object.keys(this.gym.reviews).map(key => this.gym.reviews[key]);
+      this.gym.reviews.reverse();
     }
     // this.gym.CostoIva = parseFloat(this.gym.CostoIva) / 30;
     console.log(this.gym);

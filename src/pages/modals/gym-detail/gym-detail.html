@@ -94,7 +94,10 @@
         <div class="comments-section-item" *ngFor="let r of gym.reviews">
           <ion-avatar item-start>
             <ion-icon name="quote"></ion-icon>
-            <div><p text-wrap>{{r.message}}</p></div>
+            <div>
+              <p text-wrap>{{r.message}}</p>
+              <small>{{r.timestamp | date}}</small>
+            </div>
             <div class="rate-stars small">
               <ion-icon name="{{getStarNameReview(1, r.rating)}}"></ion-icon>
               <ion-icon name="{{getStarNameReview(2, r.rating)}}"></ion-icon>

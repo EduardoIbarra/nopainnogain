@@ -240,10 +240,13 @@
           </ion-row>-->
 
           <ion-row>
+            <ion-col col-3>
+              Expira:
+            </ion-col>
             <ion-col>
               <img src="assets/img/Recurso 185xxxhdpi.png" class="liberi" alt="">
             </ion-col>
-            <ion-col col-10>
+            <ion-col col-7>
               <ion-multi-picker class="liberi" item-content formControlName="card_expiration"
                                 separator="/" [(ngModel)]="RegisterFormData.card_expiration"
                                 [class.invalid]="!RegisterForm2.controls.card_expiration.valid && (RegisterForm2.controls.card_expiration.dirty || submitAttemptForm2)"
