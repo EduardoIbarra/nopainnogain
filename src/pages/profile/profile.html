@@ -119,7 +119,7 @@
             <img src="assets/img/Recurso 190xxxhdpi.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-8>
-          <input type="{{passType}}" class="liberi-text" placeholder="Contraseña" formControlName="password" [(ngModel)]="RegisterFormData.password" [class.invalid]="!RegisterForm1.controls.password.valid && (RegisterForm1.controls.password.dirty || submitAttemptForm1)"
+          <input type="{{passType}}" class="liberi-text" placeholder="Contraseña" min="6" formControlName="password" [(ngModel)]="RegisterFormData.password" [class.invalid]="!RegisterForm1.controls.password.valid && (RegisterForm1.controls.password.dirty || submitAttemptForm1)"
             [class.valid]="RegisterForm1.controls.password.valid"/>
         </ion-col>
         <ion-col col-2>
@@ -132,7 +132,7 @@
             <img src="assets/img/Recurso 190xxxhdpi.png" class="liberi" alt="">
         </ion-col>
         <ion-col col-8>
-          <input type="{{cpassType}}" class="liberi-text" placeholder="Confirmar Contrsaeña" formControlName="confirmPassword" [(ngModel)]="RegisterFormData.confirmPassword" id="confirmPassword"
+          <input type="{{cpassType}}" min="6" class="liberi-text" placeholder="Confirmar Contrsaeña" formControlName="confirmPassword" [(ngModel)]="RegisterFormData.confirmPassword" id="confirmPassword"
             [class.invalid]="(!RegisterForm1.controls.confirmPassword.valid && (RegisterForm1.controls.confirmPassword.dirty || submitAttemptForm1)) || (RegisterForm1.controls.confirmPassword.errors?.MatchPassword && RegisterFormData.confirmPassword)"
             [class.valid]="RegisterForm1.controls.confirmPassword.valid"/>
         </ion-col>
