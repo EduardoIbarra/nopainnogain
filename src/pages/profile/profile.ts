@@ -296,12 +296,14 @@ export class ProfilePage {
     auxUser.postal_code = this.RegisterFormData.postal_code;
     let updatePassword = false;
     if(this.RegisterFormData.password != '' && this.RegisterFormData.password === this.RegisterFormData.confirmPassword) {
-      if (this.RegisterFormData.password.length < 6) {
+      if (this.RegisterFormData.password && this.RegisterFormData.password.length < 6) {
         alert('La contraseña debe constar de por lo menos 6 caracteres');
         return;
       }
-      auxUser.password = this.RegisterFormData.password;
-      updatePassword = true;
+      if (this.RegisterFormData.password) {
+        auxUser.password = this.RegisterFormData.password;
+        updatePassword = true;
+      }
     } else if(this.RegisterFormData.password != '') {
       let toast = this.toastCtrl.create({
         message: 'Las contraseñas no coinciden',
