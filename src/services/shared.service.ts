@@ -3062,8 +3062,8 @@ export class SharedService {
 
             //Save cards to use when same user logs in
             let savedCards: any = {
-              cards: this.UserData.Cards,
-              userEmail: this.UserData.email
+              cards: (this.UserData) ? this.UserData.Cards : [],
+              userEmail: (this.UserData) ? this.UserData.email : null
             };
             this.storage.set('SavedUserCards', savedCards);
 

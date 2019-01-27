@@ -295,6 +295,9 @@ export class SignupPage {
     this.slides.lockSwipes(true);
   }
 
+  backButtonAction(){
+    this.prev();
+  }
 
   openImageOptions() {
     let actionSheet = this.actionSheetCtrl.create({

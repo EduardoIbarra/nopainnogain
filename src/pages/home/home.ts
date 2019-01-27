@@ -119,6 +119,7 @@ export class HomePage {
         location: 0,
         price: 0
     };
+  initialLoader = this.loadingCtrl.create({});
 
   constructor(public navCtrl: NavController,
               public authService: AuthService,
@@ -155,19 +156,18 @@ export class HomePage {
 
 
   getUserLocation() {
-    const loader = this.loadingCtrl.create({});
-    loader.present();
+    this.initialLoader.present();
     let options = {timeout: 10000, enableHighAccuracy: true, maximumAge: 3600};
     this.geolocation.getCurrentPosition(options).then(position => {
       this.showMap(position.coords.latitude, position.coords.longitude);
       this.userPosition.latitude = position.coords.latitude;
       this.userPosition.longitude = position.coords.longitude;
       this.dataError = false;
-      loader.dismiss();
+      this.initialLoader.dismiss();
     }).catch(error => {
       console.log(error);
       this.alertService.userLocationError();
-      loader.dismiss();
+      this.initialLoader.dismiss();
       this.dataError = true;
     })
   }
@@ -220,13 +220,13 @@ export class HomePage {
                   this.preferences = user.settings.preferences
               }
               const loader = this.loadingCtrl.create({});
-              loader.present();
+              // this.initialLoader.present();
               this.gymService.getGyms().valueChanges().subscribe((response) => {
                   this.markersArray.forEach((m) => {
                       m.setMap(null)
                   });
 
-                  loader.dismiss();
+                  this.initialLoader.dismiss();
                   this.places = response;
                   let placesTmp: any = [];
                   for(var i=0; i < this.places.length; i++){
@@ -254,7 +254,7 @@ export class HomePage {
                   this.setPlacesMarkers(placesTmp);
                   // this.dataError = false;
               }, (error) => {
-                  loader.dismiss();
+                  this.initialLoader.dismiss();
                   this.alertService.gymListError();
                   this.dataError = true;
               })

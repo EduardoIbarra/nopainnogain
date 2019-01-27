@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {Nav, Platform, Events, App, NavController, ToastController} from 'ionic-angular';
+import {Nav, Platform, Events, App, NavController, ToastController, ViewController} from 'ionic-angular';
 import {StatusBar} from '@ionic-native/status-bar';
 import {SplashScreen} from '@ionic-native/splash-screen';
 import {Keyboard} from "@ionic-native/keyboard";
@@ -69,6 +69,8 @@ export class MyApp {
       {title: 'Promociones', component: 'PromotionsPage', icon: 'promos.png', show: true},
       {title: 'Ayuda', component: 'HelpPage', icon: 'help.png', show: true},
       {title: 'Validar Sesión', component: 'ValidateSessionPage', icon: 'qr-code.png', show: true},
+      {title: 'Aviso de Privacidad', component: 'PrivacyPage', icon: 'user.png', show: true},
+      {title: 'Términos y Condiciones', component: 'TermsConditionsPage', icon: 'user.png', show: true},
       {title: 'Cerrar Sesión', component: null, icon: 'logout.png', show: true}
     ];
 
@@ -144,6 +146,21 @@ export class MyApp {
       //OpenPay.setApiKey('pk_c0a63b5356524d2095a0df7172965ed9')
       this.notificationService.getHistoryToNotifications()
       this.setNotificationsBadge()
+    });
+
+    this.platform.registerBackButtonAction(() => {
+      let nav = this.app.getActiveNav();
+      let activeView: ViewController = nav.getActive();
+
+      if(activeView != null){
+        if (typeof activeView.instance.backButtonAction === 'function') {
+          activeView.instance.backButtonAction();
+        } else {
+          if(nav.canGoBack()) {
+            nav.pop();
+          }
+        }
+      }
     });
   }
 

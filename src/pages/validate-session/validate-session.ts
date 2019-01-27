@@ -32,14 +32,12 @@ export class ValidateSessionPage {
 
     this.authService.getStatus().subscribe((result) => {
       this.currentUser = result;
-      console.log(result);
     });
 
   }
 
   ionViewDidLoad() {
-    console.log('ionViewDidLoad ValidateSessionPage');
-    this.generateQrCode()
+    // this.generateQrCode()
   }
 
   generateQrCode() {

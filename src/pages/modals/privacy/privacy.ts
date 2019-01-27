@@ -4,10 +4,10 @@ import {AuthService} from '../../../services/auth.service';
 
 @IonicPage()
 @Component({
-    selector: 'page-terms-conditions',
-    templateUrl: 'terms-conditions.html',
+    selector: 'page-privacy',
+    templateUrl: 'privacy.html',
 })
-export class TermsConditionsPage {
+export class PrivacyPage {
     type: string;
   isModal: boolean;
     constructor(

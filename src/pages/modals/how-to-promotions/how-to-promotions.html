@@ -1,66 +1,68 @@
 <ion-header>
-    <ion-navbar>
-        <ion-title class="liberi"> {{ type === 'free' ? 'VISITA GRATIS' : 'VISITA DE REGALO' }}</ion-title>
-        <button ion-button (click)="dismiss()">
-            <ion-icon name="arrow-back"></ion-icon>
-        </button>
-    </ion-navbar>
-    <navbar-bump></navbar-bump>
+  <ion-navbar>
+    <ion-title class="liberi"> {{ type === 'free' ? 'VISITA GRATIS' : 'VISITA DE REGALO' }}</ion-title>
+    <ion-buttons>
+      <button ion-button (click)="dismiss()" class="buttonLittleRight">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+  <navbar-bump></navbar-bump>
 </ion-header>
 
 <ion-content>
-    <ion-grid *ngIf="type === 'free'">
-        <ion-row padding-horizontal align-items-center>
-            <ion-col col-8>
-                <p class="p-title">¿Cómo funciona la visita gratis?</p> 
-            </ion-col>
-            <ion-col col-4 text-center>
-                <img src="assets/img/Recurso 208xxxhdpi.png" class="title-img" alt="">
-            </ion-col>
-        </ion-row>
-        <ion-row padding align-items-center>
-            <ion-col col-12 class="p-text">
-                Esta promoción está limitada a un único evento por usuario y se aplicará de manera automática a aquellos clientes que usen la plataforma por primera vez.
-            </ion-col>
-            <ion-col col-12 class="p-text">
-                Cada vez que un cliente se registra en <span class="span-liberi">LI<b>BE</b>RI</span> y realiza su primera compra en
-                cualquiera de los CAFs (Centro de Acondicionamiento Físico), se generará automáticamente un código válido para una visita de regalo útil en el mismo CAF (Centro de Acondicionamiento Físico) en el
-                que realizó dicha compra.
-            </ion-col>
-            <ion-col col-12 class="p-text">
-                El código válido por una visita de regalo tiene una vigencia de 7 días naturales a partir de que se genera.
-            </ion-col>
-        </ion-row>
-    </ion-grid>
-    <ion-grid *ngIf="type === 'gift'">
-        <ion-row padding-horizontal align-items-center>
-            <ion-col col-8>
-                <p class="p-title">¡Cómo funciona la visita de regalo!</p> 
-            </ion-col>
-            <ion-col col-4 text-center>
-                <img src="assets/img/Recurso 207xxxhdpi.png" class="title-img" alt="">
-            </ion-col>
-        </ion-row>
-        <ion-row padding align-items-center>
-            <ion-col col-12 class="p-text">
-                Para activar esta promoción, el usuario deberá realizar 6 visitas pagadas en un mismo gimnasio. Dichas visitas pueden o no ser consecutivas.
-            </ion-col>
-            <ion-col col-12 class="p-text">
-                Después de generar las 6 visitas pagadas en el mismo CAF (Centro de Acondicionamiento Físico), se le generarán de manera automática 2 códigos válidos para visita gratis <b>en el mismo establecimiento</b>,
-                (esta promoción sólo se generará una sola vez y será aplicable únicamente en el primer CAF (Centro de Acondicionamiento Físico) en el cual el usuario activo acumuló 6 visitas pagadas).
-            </ion-col>
-            <ion-col col-12 class="p-text">
-                El primero de esos 2 códigos será útil para un tercero, el cual deberá ser usuario nuevo obligatoriamente. (Usuario nuevo: aquel que nunca ha comprado una visita).<br>
-                El segundo código será para el usuario activo (quien acumuló las 6 visitas) quien podrá usar su código de regalo una vez que la persona que invitó (usuario nuevo) use el código propio.<br>
-                El código de regalo se lo envía el usuario activo al usuario nuevo a través de <span class="span-liberi">LI<b>BE</b>RI</span>.
-            </ion-col>
-            <ion-col col-12 class="p-text">
-                El uso de ambos códigos será exclusivos para el CAF (Centro de Acondicionamiento Físico) en el que el usuario activo realizó sus primeras 6 compras.
-            </ion-col>
-        </ion-row>
-    </ion-grid>
+  <ion-grid *ngIf="type === 'free'">
+    <ion-row padding-horizontal align-items-center>
+      <ion-col col-8>
+        <p class="p-title">¿Cómo funciona la visita gratis?</p>
+      </ion-col>
+      <ion-col col-4 text-center>
+        <img src="assets/img/Recurso 208xxxhdpi.png" class="title-img" alt="">
+      </ion-col>
+    </ion-row>
+    <ion-row padding align-items-center>
+      <ion-col col-12 class="p-text">
+        Esta promoción está limitada a un único evento por usuario y se aplicará de manera automática a aquellos clientes que usen la plataforma por primera vez.
+      </ion-col>
+      <ion-col col-12 class="p-text">
+        Cada vez que un cliente se registra en <span class="span-liberi">LI<b>BE</b>RI</span> y realiza su primera compra en
+        cualquiera de los CAFs (Centro de Acondicionamiento Físico), se generará automáticamente un código válido para una visita de regalo útil en el mismo CAF (Centro de Acondicionamiento Físico) en el
+        que realizó dicha compra.
+      </ion-col>
+      <ion-col col-12 class="p-text">
+        El código válido por una visita de regalo tiene una vigencia de 7 días naturales a partir de que se genera.
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  <ion-grid *ngIf="type === 'gift'">
+    <ion-row padding-horizontal align-items-center>
+      <ion-col col-8>
+        <p class="p-title">¡Cómo funciona la visita de regalo!</p>
+      </ion-col>
+      <ion-col col-4 text-center>
+        <img src="assets/img/Recurso 207xxxhdpi.png" class="title-img" alt="">
+      </ion-col>
+    </ion-row>
+    <ion-row padding align-items-center>
+      <ion-col col-12 class="p-text">
+        Para activar esta promoción, el usuario deberá realizar 6 visitas pagadas en un mismo gimnasio. Dichas visitas pueden o no ser consecutivas.
+      </ion-col>
+      <ion-col col-12 class="p-text">
+        Después de generar las 6 visitas pagadas en el mismo CAF (Centro de Acondicionamiento Físico), se le generarán de manera automática 2 códigos válidos para visita gratis <b>en el mismo establecimiento</b>,
+        (esta promoción sólo se generará una sola vez y será aplicable únicamente en el primer CAF (Centro de Acondicionamiento Físico) en el cual el usuario activo acumuló 6 visitas pagadas).
+      </ion-col>
+      <ion-col col-12 class="p-text">
+        El primero de esos 2 códigos será útil para un tercero, el cual deberá ser usuario nuevo obligatoriamente. (Usuario nuevo: aquel que nunca ha comprado una visita).<br>
+        El segundo código será para el usuario activo (quien acumuló las 6 visitas) quien podrá usar su código de regalo una vez que la persona que invitó (usuario nuevo) use el código propio.<br>
+        El código de regalo se lo envía el usuario activo al usuario nuevo a través de <span class="span-liberi">LI<b>BE</b>RI</span>.
+      </ion-col>
+      <ion-col col-12 class="p-text">
+        El uso de ambos códigos será exclusivos para el CAF (Centro de Acondicionamiento Físico) en el que el usuario activo realizó sus primeras 6 compras.
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
 <ion-footer no-shadow>
-    <div class="liberi-logo-line"></div>
-    <ion-toolbar position="bottom"></ion-toolbar>
+  <div class="liberi-logo-line"></div>
+  <ion-toolbar position="bottom"></ion-toolbar>
 </ion-footer>

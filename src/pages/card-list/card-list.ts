@@ -103,6 +103,10 @@ export class CardListPage {
       console.log(card);
     }
     if(action === 'remove'){
+      if (this.user.cards.length === 1) {
+        alert('No puedes quedarte sin tarjetas guardadas. Por favor, primero agrega otra tarjeta y luego borra la actual.');
+        return;
+      }
       this.alertCtrl.create({
         title: 'Eliminar Tarjeta',
         subTitle: '¿Deseas eliminar esta tarjeta?',

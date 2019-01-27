@@ -4,9 +4,11 @@
     <button ion-button menuToggle="left" *ngIf="!isModal">
       <ion-icon name="arrow-back"></ion-icon>
     </button>
-    <button *ngIf="isModal" ion-button (click)="dismiss()">
-      <ion-icon name="arrow-back"></ion-icon>
-    </button>
+    <ion-buttons *ngIf="isModal">
+      <button ion-button (click)="dismiss()" class="buttonLittleRight">
+        <ion-icon name="arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
   <navbar-bump></navbar-bump>
 </ion-header>
@@ -142,7 +144,7 @@
             <div><input type="checkbox" id="chk-spinning" class="liberi-checkbox" [(ngModel)]="preferences[10].value"></div>
           </ion-col>
           <ion-col class="overflow-ellipsis center-vertical-input">
-            <label for="chk-spinning" class="liberi-checkbox-label">Spininng</label>
+            <label for="chk-spinning" class="liberi-checkbox-label">Spinning</label>
           </ion-col>
         </ion-row>
       </ion-col>
