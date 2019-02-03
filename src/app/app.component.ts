@@ -69,8 +69,8 @@ export class MyApp {
       {title: 'Promociones', component: 'PromotionsPage', icon: 'promos.png', show: true},
       {title: 'Ayuda', component: 'HelpPage', icon: 'help.png', show: true},
       {title: 'Validar Sesión', component: 'ValidateSessionPage', icon: 'qr-code.png', show: true},
-      {title: 'Aviso de Privacidad', component: 'PrivacyPage', icon: 'user.png', show: true},
-      {title: 'Términos y Condiciones', component: 'TermsConditionsPage', icon: 'user.png', show: true},
+      // {title: 'Aviso de Privacidad', component: 'PrivacyPage', icon: 'user.png', show: true},
+      // {title: 'Términos y Condiciones', component: 'TermsConditionsPage', icon: 'user.png', show: true},
       {title: 'Cerrar Sesión', component: null, icon: 'logout.png', show: true}
     ];
 

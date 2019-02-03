@@ -22,7 +22,6 @@ declare var OpenPay: any;
 })
 export class SignupPage {
 
-  @ViewChild(Slides) slides: Slides;
   @ViewChild(Content) content: Content;
   @ViewChild('ccImage') ccImage;
 
@@ -160,6 +159,27 @@ export class SignupPage {
         Validators.pattern('^[0-9]*$'),
         Validators.required
       ])],
+      card_holder: ['', Validators.compose([
+        Validators.required,
+      ])],
+      address: ['', Validators.compose([
+        Validators.required,
+      ])],
+      card_number: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(15),
+        Validators.maxLength(16),
+        Validators.pattern('^[0-9]*$'),
+      ])],
+      card_expiration: ['', Validators.compose([
+        Validators.required,
+      ])],
+      card_cvv: ['', Validators.compose([
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(4),
+        Validators.pattern('^[0-9]*$'),
+      ])]
     }, {
       validator: PasswordValidation.MatchPassword
     });
@@ -203,7 +223,6 @@ export class SignupPage {
   }
 
   ionViewDidLoad() {
-    this.slides.lockSwipes(true);
     this.estados = this.sharedService.States;
     this.getUserByEmail('eduardo@gobae.coma');
   }
@@ -265,38 +284,26 @@ export class SignupPage {
         //this.RegisterFormData.birthday.value = moment(this.RegisterFormData.birthday.text).unix();
         console.log(this.RegisterFormData);
         this.formStep = formNumber;
-        this.swipeNext();
       } else {
         this.submitAttemptForm1 = true;
       }
     }
     if (formNumber === 2) {
-      if (this.RegisterForm2.valid) {
+      this.submitAttemptForm2 = false;
+      this.content.scrollToTop(1000);
+      this.signup();
+      /*if (this.RegisterForm2.valid) {
         this.submitAttemptForm2 = false;
         this.content.scrollToTop(1000);
         this.signup();
       } else {
         this.submitAttemptForm2 = true;
-      }
+      }*/
     }
   }
 
-  prev() {
-    this.slides.lockSwipes(false);
-    this.content.scrollToTop(1000);
-    this.slides.slidePrev();
-    this.slides.lockSwipes(true);
-  }
-
-  swipeNext() {
-    this.slides.lockSwipes(false);
-    this.content.scrollToTop(1000);
-    this.slides.slideNext();
-    this.slides.lockSwipes(true);
-  }
-
   backButtonAction(){
-    this.prev();
+    this.formStep = 0;
   }
 
   openImageOptions() {

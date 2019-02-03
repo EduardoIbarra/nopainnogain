@@ -156,23 +156,23 @@ export class HomePage {
 
 
   getUserLocation() {
-    this.initialLoader.present();
+    // this.initialLoader.present();
     let options = {timeout: 10000, enableHighAccuracy: true, maximumAge: 3600};
     this.geolocation.getCurrentPosition(options).then(position => {
-      this.showMap(position.coords.latitude, position.coords.longitude);
+      this.showMap(position.coords.latitude, position.coords.longitude, true);
       this.userPosition.latitude = position.coords.latitude;
       this.userPosition.longitude = position.coords.longitude;
       this.dataError = false;
-      this.initialLoader.dismiss();
+      // this.initialLoader.dismiss();
     }).catch(error => {
       console.log(error);
       this.alertService.userLocationError();
-      this.initialLoader.dismiss();
+      // this.initialLoader.dismiss();
       this.dataError = true;
     })
   }
 
-  showMap(latitude, longitude) {
+  showMap(latitude, longitude, recenter = false) {
     const location = new google.maps.LatLng(latitude, longitude);
     const options = {
       center: location,
@@ -206,7 +206,7 @@ export class HomePage {
       });
 
       this.map = map;
-
+      if (recenter) return;
       this.getGymList()
     });
   }
