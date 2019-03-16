@@ -13,7 +13,7 @@
   <button ion-button full *ngIf="verificationSent" (click)="checkForVerification()">Ya verifiqué mi email</button>
   <button ion-button full *ngIf="verificationSent" (click)="sendVerificationEmail()">Volver a enviar verificación</button>
   <button ion-button full *ngIf="verificationSent" (click)="goToLogin()">Regresar</button>
-  <form [formGroup]="RegisterForm1">
+  <form [formGroup]="RegisterForm1" *ngIf="!verificationSent">
     <ion-grid>
       <ion-row>
         <ion-col>
@@ -259,7 +259,7 @@
 
   <ion-grid no-padding>
     <ion-row>
-      <ion-item class="terms-item">
+      <ion-item class="terms-item" *ngIf="!verificationSent">
         <ion-label>Acepto términos condiciones</ion-label>
         <ion-checkbox [(ngModel)]="accepted_terms"></ion-checkbox>
       </ion-item>

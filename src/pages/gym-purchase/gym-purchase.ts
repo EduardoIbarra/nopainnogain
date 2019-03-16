@@ -40,6 +40,7 @@ export class GymPurchasePage {
 
     this.viewCtrl = navParams.get('viewCtrl');
     this.gym = navParams.get('gym');
+    console.log(this.gym);
     this.isModal = navParams.get('isModal');
     this._viewCtrl.showBackButton(false);
 

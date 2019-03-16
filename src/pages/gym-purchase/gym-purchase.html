@@ -1,4 +1,3 @@
-
 <ion-header>
   <ion-navbar>
     <ion-title class="liberi">{{isPurchaseDone? 'COMPRA EXITOSA' : 'COMPRAR'}}</ion-title>
@@ -25,7 +24,7 @@
 <ion-content padding>
   <div *ngIf="!isPurchaseDone">
     <ion-item text-center>
-      <h1><b>Bonga GYM</b></h1>
+      <h1 *ngIf="gym"><b>{{gym.tradename}}</b></h1>
       <img class="rad15" src="assets/img/example/bonga.jpg">
       <h2>Monto: <span ion-text color="danger">${{gym.CostoIva | number: '1.2-2'}} MXN</span></h2>
     </ion-item>

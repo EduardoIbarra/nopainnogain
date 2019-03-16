@@ -35,10 +35,12 @@
             <ion-item>Me impidieron la entrada</ion-item>
             <div class="border-box" no-padding>
               <p text-wrap>Por favor selecciona la compra en donde te impidieron el acceso.</p>
-              <ion-item *ngFor="let h of entriesHistory" text-wrap>
-                <ion-label>${{h.purchase_price}} - {{h.purchase_date | date}} - {{h.purchase_date | date: 'mediumTime'}}</ion-label>
-                <ion-checkbox color="secondary" [(ngModel)]="h.selected"></ion-checkbox>
-              </ion-item>
+              <div class="scrollableList">
+                <ion-item *ngFor="let h of entriesHistory" text-wrap>
+                  <ion-label>${{h.purchase_price}} - {{h.purchase_date | date}} - {{h.purchase_date | date: 'mediumTime'}}</ion-label>
+                  <ion-checkbox color="secondary" [(ngModel)]="h.selected"></ion-checkbox>
+                </ion-item>
+              </div>
               <div text-center class="more-button">
                 <p (click)="seeMore('entry')" *ngIf="entriesHistory.length !== purchaseHistory.length">Ver más...</p>
               </div>
@@ -50,10 +52,12 @@
             <ion-item id="reportCharge">Reportar un cargo no reconocido</ion-item>
             <div class="border-box" no-padding>
               <p text-wrap>Por favor selecciona el cargo no reconcido.</p>
-              <ion-item *ngFor="let h of chargeHistory; let i = index" text-wrap>
-                <ion-label>${{h.purchase_price}} - {{h.purchase_date | date}} - {{h.purchase_date | date: 'mediumTime'}}</ion-label>
-                <ion-checkbox color="secondary" [(ngModel)]="h.selected"></ion-checkbox>
-              </ion-item>
+              <div class="scrollableList">
+                <ion-item *ngFor="let h of chargeHistory; let i = index" text-wrap>
+                  <ion-label>${{h.purchase_price}} - {{h.purchase_date | date}} - {{h.purchase_date | date: 'mediumTime'}}</ion-label>
+                  <ion-checkbox color="secondary" [(ngModel)]="h.selected"></ion-checkbox>
+                </ion-item>
+              </div>
               <div text-center class="more-button">
                 <p (click)="seeMore('charge')" *ngIf="chargeHistory.length !== purchaseHistory.length">Ver más...</p>
               </div>

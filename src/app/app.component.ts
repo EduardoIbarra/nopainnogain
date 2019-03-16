@@ -49,11 +49,13 @@ export class MyApp {
       this.sharedService.UserData = UserData;
       console.log(UserData);
       if(UserData){
-          if(this.sharedService.UserData.gym_owner && UserData){
-              this.rootPage = 'ValidateSessionPage';
-          }
+        if(this.sharedService.UserData.gym_owner && UserData){
+          this.rootPage = 'ValidateSessionPage';
+        } else {
+          this.rootPage = 'HomePage';
+        }
       }else{
-          this.rootPage = UserData ? 'HomePage' : 'LoginPage';
+        this.rootPage = UserData ? 'HomePage' : 'LoginPage';
       }
       this.sharedService.enableSplitPane = this.rootPage !== 'LoginPage';
     });

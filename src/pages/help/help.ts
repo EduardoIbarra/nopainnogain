@@ -790,6 +790,7 @@ export class HelpPage {
       type: 'report_entry',
       records: charges
     };
+    console.log(report);
     this.helpService.sendReport(report).then((data) => {
       console.log(data);
       loader.dismiss();

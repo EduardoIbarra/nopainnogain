@@ -206,8 +206,8 @@ export class HomePage {
       });
 
       this.map = map;
-      if (recenter) return;
       this.getGymList()
+      if (recenter) return;
     });
   }
 

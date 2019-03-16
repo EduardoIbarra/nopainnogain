@@ -578,3 +578,8 @@ image-viewer > ion-backdrop {
 .buttonLittleRight {
   width: 50px;
 }
+.scrollableList {
+  height: 120px;
+  overflow-y: scroll;
+  margin: 0 10px;
+}
