@@ -777,8 +777,10 @@ export class HelpPage {
   }
 
   reportCharge() {
-    const charges = this.chargeHistory.filter( c => c.selected );
-    console.log(charges);
+    let charges = this.chargeHistory.filter( c => c.selected );
+    charges.forEach((c) => {
+      c.openToday = (c.openToday) ? c.openToday : false;
+    });
     const loader = this.loadingCtrl.create({
       content: "Enviando..."
     });

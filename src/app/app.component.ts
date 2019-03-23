@@ -169,7 +169,7 @@ export class MyApp {
   setNotificationsBadge(){
     setInterval(()=>{
       this.notNumber = this.notificationService.Notifications.length
-    }, 5000)
+    }, 1000)
   }
   openPage(page) {
     // Reset the content nav to have just this page
