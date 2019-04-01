@@ -134,6 +134,9 @@ export class HomePage {
               public navParams: NavParams,
               public loadingService: LoadingService,
               private loadingCtrl: LoadingController) {
+    window.setTimeout(() => {
+      this.NotificationNumber = this.notificationService.Notifications.length;
+    }, 1200);
   }
 
   ionViewDidLoad() {
